@@ -14,6 +14,23 @@ namespace Enemies
         private int _enemiesAlive;
         private bool _roundActive;
         
+        
+        //Lo hacemos singletone
+        public static WaveController _instance { get; private set; }
+
+        private void Awake()
+        {
+            testController = new InputPlayer();
+            if (_instance != null && _instance!=this)
+            {
+                Destroy(this.gameObject);
+            }
+            else
+            {
+                _instance = this;
+            }
+        }
+        
         ////////////////////Test Input/////////////////////////////
         private InputPlayer testController;
 
@@ -39,21 +56,7 @@ namespace Enemies
         }
         
         /////////////////Fin de Test Input///////////////////////////
-        //Lo hacemos singletone
-        public static WaveController _instance { get; private set; }
-
-        private void Awake()
-        {
-            testController = new InputPlayer();
-            if (_instance != null && _instance!=this)
-            {
-                Destroy(this.gameObject);
-            }
-            else
-            {
-                _instance = this;
-            }
-        }
+        
 
         [ContextMenu("Comenzar la ronda")]
         public void StartWave()

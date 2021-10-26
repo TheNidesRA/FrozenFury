@@ -31,7 +31,7 @@ namespace Enemies
         {
             foreach (var enemy in enemies)
             {
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(1.5f);
                 _enemyFactory.Create(enemy.Id, SpawnPoint);
                 Debug.Log("Enemigo creado");
             }

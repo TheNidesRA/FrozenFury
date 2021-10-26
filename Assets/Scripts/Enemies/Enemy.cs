@@ -14,15 +14,15 @@ namespace Enemies
         /// </summary>
         [SerializeField] private InitStats _initStats;
 
-        public event Action<float> OnHealthChanged = delegate {  };
+        /// <summary>
+        /// Agente navmesh que moverá al enemigo
+        /// </summary>
+        private EnemyIA _ia;
+        
         
 
-        //APARTADO DE MOVIMIENTO (TEMPORAL)
-        private Transform _enemyTransform; //Se puede borrar
-        private EnemySpawner _spawner;
-        private Vector3 _objective;
-        private Vector3 _direction;
-        //FIN DE APARTADO DE MOVIMIENTO
+        public event Action<float> OnHealthChanged = delegate {  };
+        
         public string Id => id;
 
         public float Health, HpMult = 1.5f;
@@ -31,9 +31,22 @@ namespace Enemies
         public float Armor, ArmMult = 1.5f;
         public float AtackSpeed, AtkSpMult = 1.5f;
 
-        private void Start()
+        private void Awake()
         {
-            InitializeStats();
+            try
+            {
+                _ia = GetComponent<EnemyIA>();
+            }
+            catch (Exception e)
+            {
+                Debug.Log("You have´t add a EnemyIA component to the enemy prefab");
+            }
+        }
+
+        private void OnEnable()
+        {
+            _ia.setSpeed(Speed);
+            
         }
 
         public void UpdateStats(float[]mult)
