@@ -267,9 +267,11 @@ namespace GridSystem
             
             _grid.GetXZ(playerPosition,out int x, out int z);
             
+            Debug.Log("X: "+x+" Y: "+z);
+            
             foreach (var buildPosition in buildingPositions)
             {
-                if (!_grid.GetObjectValue(buildPosition.x, buildPosition.y).CanBuild() || buildPosition.y==z || buildPosition.x==x )
+                if (!_grid.GetObjectValue(buildPosition.x, buildPosition.y).CanBuild() || (buildPosition.y==z  &&buildPosition.x==x ))
                 {
                     return false;
                 }

@@ -83,7 +83,7 @@ public class nuevoPlayerMovement : MonoBehaviour
             
             if (controlMovimiento)
             {
-                Debug.Log("No debería de haber enemigos");
+                //Debug.Log("No debería de haber enemigos");
                 Quaternion toRotation = Quaternion.LookRotation(v_movement, Vector3.up);
                 _characterController.transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
                 
