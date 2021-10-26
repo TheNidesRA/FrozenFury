@@ -12,36 +12,13 @@ namespace Enemies
     /// </summary>
     public class EnemySpawner:MonoBehaviour
     {
-        private InputPlayer testController;
+        
         [SerializeField] private EnemyConfiguration enemyConfiguration;
         private EnemyFactory _enemyFactory;
         public Vector3 SpawnPoint;
         private void Awake()
         {
-            testController = new InputPlayer();
             _enemyFactory = new EnemyFactory(Instantiate(enemyConfiguration));
-            
-        }
-
-        private void Start()
-        {
-            testController.Test.SpawnEnemy.performed += testSpawn;
-        }
-
-        private void testSpawn(InputAction.CallbackContext obj)
-        {
-            // StartRound();
-        }
-
-        private void OnEnable()
-        {
-            testController.Enable();
-        }
-
-        
-        private void OnDisable()
-        {
-            testController.Disable();
         }
 
         public void StartRound(List<Enemy> enemies)
@@ -54,7 +31,7 @@ namespace Enemies
         {
             foreach (var enemy in enemies)
             {
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(1.5f);
                 _enemyFactory.Create(enemy.Id, SpawnPoint);
                 Debug.Log("Enemigo creado");
             }

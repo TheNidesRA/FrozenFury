@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Enemies
 {
@@ -12,12 +13,14 @@ namespace Enemies
         private int _round=0;
         private int _enemiesAlive;
         private bool _roundActive;
-
+        
+        
         //Lo hacemos singletone
         public static WaveController _instance { get; private set; }
 
         private void Awake()
         {
+            testController = new InputPlayer();
             if (_instance != null && _instance!=this)
             {
                 Destroy(this.gameObject);
@@ -28,9 +31,42 @@ namespace Enemies
             }
         }
 
+        #region TestInput
+
+        
+
+        
+        ////////////////////Test Input/////////////////////////////
+        private InputPlayer testController;
+
+        private void Start()
+        {
+            testController.Test.SpawnEnemy.performed += testSpawn;
+        }
+
+        private void testSpawn(InputAction.CallbackContext obj)
+        {
+            StartWave();
+        }
+
+        private void OnEnable()
+        {
+            testController.Enable();
+        }
+
+        
+        private void OnDisable()
+        {
+            testController.Disable();
+        }
+        
+        /////////////////Fin de Test Input///////////////////////////
+        #endregion
+
         [ContextMenu("Comenzar la ronda")]
         public void StartWave()
         {
+            
             if (_currentWave == null || !_roundActive)
             {
                 if (_round > Waves.Count - 1) return;

@@ -1,20 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Enemies;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyIA : MonoBehaviour
 {
     [SerializeField] private NavMeshAgent _agent;
-    public Vector3 objetive;
-    
     void Start()
     {
-        _agent.destination = objetive;
+        _agent.destination = EnemyGoal.instance.getPosition();
     }
 
-    // Update is called once per frame
-    void Update()
-    { 
+    public void setSpeed(float speed)
+    {
+        _agent.speed = speed;
     }
 }
