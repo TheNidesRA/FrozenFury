@@ -11,6 +11,7 @@ namespace GridSystem
         //Its like a Singelton instance so other objects can use his functions
         public static GridBuildingSystem Instance { get; private set; }
 
+        public GameObject player;
         
         private InputPlayer _control;
 
@@ -261,9 +262,14 @@ namespace GridSystem
 
         private bool CanBuild(List<Vector2Int> buildingPositions)
         {
+
+            Vector3 playerPosition = player.transform.position;
+            
+            _grid.GetXZ(playerPosition,out int x, out int z);
+            
             foreach (var buildPosition in buildingPositions)
             {
-                if (!_grid.GetObjectValue(buildPosition.x, buildPosition.y).CanBuild())
+                if (!_grid.GetObjectValue(buildPosition.x, buildPosition.y).CanBuild() || buildPosition.y==z || buildPosition.x==x )
                 {
                     return false;
                 }
