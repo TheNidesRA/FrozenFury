@@ -30,6 +30,11 @@ namespace Enemies
                 _instance = this;
             }
         }
+
+        #region TestInput
+
+        
+
         
         ////////////////////Test Input/////////////////////////////
         private InputPlayer testController;
@@ -56,11 +61,12 @@ namespace Enemies
         }
         
         /////////////////Fin de Test Input///////////////////////////
-        
+        #endregion
 
         [ContextMenu("Comenzar la ronda")]
         public void StartWave()
         {
+            
             if (_currentWave == null || !_roundActive)
             {
                 if (_round > Waves.Count - 1) return;

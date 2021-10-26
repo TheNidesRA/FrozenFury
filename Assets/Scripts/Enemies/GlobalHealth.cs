@@ -22,5 +22,14 @@ class GlobalHealth : MonoBehaviour
     public void DecreaseHealth()
     {
         globalHealth--;
+        if (globalHealth <= 0)
+        {
+            EndGameFunc();
+        }
+    }
+
+    private void EndGameFunc()
+    {
+        Debug.Log("GAME OVER");
     }
 }
