@@ -117,13 +117,13 @@ namespace AutoAttackScripts
         {
             while (true)
             {
-              
                 //we wait until there's enemies in the dictionary
                 if (!(_enemies.Count > 0))
-                {   
+                {
                     yield return new WaitUntil(() => _enemies.Count > 0);
                     nuevoPlayerMovement.controlMovimiento = false;
                 }
+
                 //we retrieve the minimum distance of the dictionary
                 var minDistance = _enemies.Min(distance => distance.Value);
 
@@ -159,6 +159,7 @@ namespace AutoAttackScripts
                 nuevoPlayerMovement.controlMovimiento = true;
                 return;
             }
+
             _objectiveDirection =
                 Quaternion.LookRotation((enemy.transform.position - player.transform.position).normalized);
             player.transform.rotation =
@@ -190,6 +191,27 @@ namespace AutoAttackScripts
 
             //add forces to bullet
             secondBullet.GetComponent<Rigidbody>().AddForce(directionShoot.normalized * shootForce, ForceMode.Impulse);
+        }
+
+        [ContextMenu("StopStartShooting")]
+        public virtual void StartStopShooting()
+        {
+            var component = GetComponent<Collider>();
+            if (component.enabled)
+            {
+                component.enabled = false;
+                nuevoPlayerMovement.controlMovimiento = true;
+                ClearEnemies();
+            }
+            else
+            {
+                component.enabled = true;
+            }
+        }
+
+        protected void ClearEnemies()
+        {
+            _enemies.Clear();
         }
     }
 }
