@@ -3,8 +3,14 @@ using UnityEngine;
 
 namespace Enemies
 {
-    public class Wave : MonoBehaviour
+    [CreateAssetMenu(menuName = "Custom/Wave")]
+    public class Wave : ScriptableObject
     {
         public List<Enemy> Enemies;
+
+        public Wave()
+        {
+            Enemies = new List<Enemy>();
+        }
     }
 }

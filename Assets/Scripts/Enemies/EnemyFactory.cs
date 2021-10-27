@@ -1,5 +1,4 @@
-﻿using Unity.Mathematics;
-using UnityEngine;
+﻿using UnityEngine;
 using Object = UnityEngine.Object;
 
 namespace Enemies
@@ -21,7 +20,7 @@ namespace Enemies
         {
             var enemy = _enemyConfiguration.GetEnemyPrefabById(id);
             enemy.PrintStats();
-            return Object.Instantiate(enemy, pos, quaternion.identity);
+            return Object.Instantiate(enemy, pos, Quaternion.identity);
         }
 
         public void UpdateEnemyStats(float[]mult)
