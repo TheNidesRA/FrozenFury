@@ -8,7 +8,6 @@ namespace Enemies
     public class WaveController : MonoBehaviour
     {
         public EnemySpawner Spawner;
-        public List<Wave> Waves;
         /// <summary>
         /// Minimmun enemies per round
         /// </summary>

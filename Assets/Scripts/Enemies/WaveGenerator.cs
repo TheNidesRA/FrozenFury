@@ -27,6 +27,7 @@ namespace Enemies
             for (int i = 0; i < enemyAmount; i++)
             {
                 Enemy enemyToAdd = _enemies[Random.Range(0, _enemies.Length)];
+                enemyToAdd.PrintStats();
                 wave.Enemies.Add(enemyToAdd);
             }
             return wave;
