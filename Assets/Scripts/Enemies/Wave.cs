@@ -7,5 +7,10 @@ namespace Enemies
     public class Wave : ScriptableObject
     {
         public List<Enemy> Enemies;
+
+        public Wave()
+        {
+            Enemies = new List<Enemy>();
+        }
     }
 }
