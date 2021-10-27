@@ -44,5 +44,19 @@ namespace AutoAttackScripts
              player.transform.rotation =
                  Quaternion.Slerp(player.transform.rotation, _objectiveDirection, Time.deltaTime * turnSpeed);*/
         }
+
+        public override void StartStopShooting()
+        {
+            var component = GetComponent<Collider>();
+            if (component.enabled)
+            {
+                component.enabled = false;
+                ClearEnemies();
+            }
+            else
+            {
+                component.enabled = true;
+            }
+        }
     }
 }
