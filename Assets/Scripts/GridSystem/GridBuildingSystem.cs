@@ -224,6 +224,11 @@ namespace GridSystem
             _dir = BuildingSO.GetNextDir(_dir);
         }
 
+        public void Rotate()
+        {
+            //Debug.Log(_dir);
+            _dir = BuildingSO.GetNextDir(_dir);
+        }
 
 
         private void SetMousePosition(Vector2Int mouseGridPosition)
@@ -237,7 +242,7 @@ namespace GridSystem
         
         private void PlaceBuilding(InputAction.CallbackContext callbackContext)
         {
-            if (_buildingSO != null)
+            if (_buildingSO != null && !buildMenu)
             {
                 Vector2Int mouseGridPosition = GetMouseGridPosition();
             
@@ -251,14 +256,7 @@ namespace GridSystem
 
                     buildMenu = true;
                     enableBuildMove = false;
-
-                    // Build(mouseGridPosition, buildingPositions);
-                    // PlayerStats._instance.gold -= _buildingSO.goldCost;
-                    // if (_destroyOnPlace)
-                    // {
-                    //     _buildingSO = null;
-                    //     RefreshSelectedObjectType();
-                    // }
+                    
                 }
                 else
                 {
@@ -269,7 +267,7 @@ namespace GridSystem
 
           
         }
-
+    
 
         private void Confirm(InputAction.CallbackContext callbackContext)
         {
@@ -279,8 +277,10 @@ namespace GridSystem
             if (CanBuild(buildingPositions))
             {
                 buildMenu = false;
-                enableBuildMove = false;
+                enableBuildMove = true;
 
+                
+                
                 Build(_ActualBuildPosition, buildingPositions);
                 PlayerStats._instance.gold -= _buildingSO.goldCost;
                 if (_destroyOnPlace)
@@ -294,10 +294,40 @@ namespace GridSystem
                 Debug.Log("No se puede !!! :)");
             }
         }
-        
-        
-        
-        
+
+        public void Confirm()
+        {
+            List<Vector2Int> buildingPositions = _buildingSO.GetGridPositionList(_ActualBuildPosition, _dir);
+
+            if (CanBuild(buildingPositions))
+            {
+                buildMenu = false;
+                enableBuildMove = true;
+
+                
+                
+                Build(_ActualBuildPosition, buildingPositions);
+                PlayerStats._instance.gold -= _buildingSO.goldCost;
+                if (_destroyOnPlace)
+                {
+                    _buildingSO = null;
+                    RefreshSelectedObjectType();
+                }
+            }
+            else
+            {
+                Debug.Log("No se puede !!! :)");
+            }
+        }
+
+
+
+
+        public void Mover()
+        {
+            buildMenu = false;
+            enableBuildMove = true;
+        }
         
 
         private void Build(Vector2Int buildPosition, List<Vector2Int> buildingPositions)
