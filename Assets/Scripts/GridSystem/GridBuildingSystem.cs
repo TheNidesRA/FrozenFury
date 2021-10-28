@@ -23,6 +23,9 @@ namespace GridSystem
         public event EventHandler OnSelectedChanged; //Callback 
 
         public event EventHandler OnObjectPlaced;
+        
+        public event EventHandler OnObjectSetPosition;
+        public event EventHandler OnObjectRemovePosition;
 
         /// <summary>
         /// current Build
@@ -41,7 +44,8 @@ namespace GridSystem
         
         public bool buildMenu = false;
         public bool enableBuildMove = true;
-        
+
+        private PlacedBuild _currentPlaceBuild;
         private Vector2Int _ActualBuildPosition;
         
         public int gridWidth = 10;
@@ -184,6 +188,26 @@ namespace GridSystem
             }
         }
 
+        
+        public void RemoveBuild(PlacedBuild build)
+        {
+
+
+            if (build != null)
+            {
+                build.DestroySelf();
+
+                List<Vector2Int> buildingPositions = build.GetGridPositionList();
+
+                foreach (var buildPosition in buildingPositions)
+                {
+                    _grid.GetObjectValue(buildPosition.x, buildPosition.y).ClearPlacedBuild();
+                }
+            }
+        }
+        
+        
+        
         private GridObject GetMouseGridObject()
         {
             return _grid.GetObjectValue(GetMousePosition());
@@ -234,6 +258,10 @@ namespace GridSystem
         private void SetMousePosition(Vector2Int mouseGridPosition)
         {
             _ActualBuildPosition = mouseGridPosition;
+            buildMenu = true;
+            enableBuildMove = false;
+            OnObjectSetPosition?.Invoke(this,EventArgs.Empty);
+           
         }
         
         
@@ -253,9 +281,6 @@ namespace GridSystem
                 if (CanBuild(buildingPositions))
                 {
                     SetMousePosition(mouseGridPosition);
-
-                    buildMenu = true;
-                    enableBuildMove = false;
                     
                 }
                 else
@@ -263,11 +288,25 @@ namespace GridSystem
                     Debug.Log("No se puede !!! :)");
                 }
             }
+            else
+            {
+                GridObject gridObject = GetMouseGridObject();
+
+                PlacedBuild placedBuild = gridObject.GetPlaceBuild();
+                
+
+                if (placedBuild != null)
+                {
+                    Debug.Log("Cogiendo el aux");
+                    placedBuild.EnableCanvas2();
+                }
+            }
            
 
           
         }
-    
+
+
 
         private void Confirm(InputAction.CallbackContext callbackContext)
         {
@@ -301,13 +340,10 @@ namespace GridSystem
 
             if (CanBuild(buildingPositions))
             {
-                buildMenu = false;
-                enableBuildMove = true;
-
-                
-                
+               
                 Build(_ActualBuildPosition, buildingPositions);
                 PlayerStats._instance.gold -= _buildingSO.goldCost;
+                RemoveFixedMouse();
                 if (_destroyOnPlace)
                 {
                     _buildingSO = null;
@@ -320,13 +356,20 @@ namespace GridSystem
             }
         }
 
-
+        private void RemoveFixedMouse()
+        {
+            _ActualBuildPosition = new Vector2Int();
+            buildMenu = false;
+            enableBuildMove = true;
+            OnObjectRemovePosition?.Invoke(this,EventArgs.Empty);
+        }
 
 
         public void Mover()
         {
             buildMenu = false;
             enableBuildMove = true;
+            OnObjectRemovePosition?.Invoke(this,EventArgs.Empty);
         }
         
 

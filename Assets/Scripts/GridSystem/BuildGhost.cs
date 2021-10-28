@@ -11,12 +11,14 @@ public class BuildGhost : MonoBehaviour
     private Transform visual;
     private BuildingSO _building;
     [SerializeField] private GameObject _grid;
+    private PlacedBuild _placedBuild;
 
     void Start()
     {
         RefreshVisual();
         GridBuildingSystem.Instance.OnSelectedChanged += Instance_OnSelectedChanged;
         GridBuildingSystem.Instance.OnObjectPlaced += Instance_OnObjectPlaced;
+        GridBuildingSystem.Instance.OnObjectSetPosition += Instance_OnObjectSetPosition;
     }
 
 
@@ -24,6 +26,21 @@ public class BuildGhost : MonoBehaviour
     {
         RefreshVisual();
     }
+    private void Instance_OnObjectSetPosition(object sender, System.EventArgs e)
+    {
+        ActivateBuildCanvas();
+    }
+
+    private void ActivateBuildCanvas()
+    {
+        if (_placedBuild != null)
+        {
+            _placedBuild.EnableCanvas();
+            Debug.Log("Activando el canvas");
+        }
+    }
+    
+    
     private void Instance_OnObjectPlaced(object sender, System.EventArgs e)
     {
         _grid.SetActive(false);
@@ -34,7 +51,7 @@ public class BuildGhost : MonoBehaviour
     {
         if (visual != null)
         {
-            
+            _placedBuild = null;
             Destroy(visual.gameObject);
             visual = null;
         }
@@ -45,6 +62,7 @@ public class BuildGhost : MonoBehaviour
         {
             _grid.SetActive(true);
             visual = Instantiate(placedObjectTypeSO.prefab, Vector3.zero, Quaternion.identity);
+            _placedBuild = visual.gameObject.GetComponent<PlacedBuild>();
             visual.parent = transform;
             visual.localPosition = Vector3.zero;
             visual.localEulerAngles = Vector3.zero;

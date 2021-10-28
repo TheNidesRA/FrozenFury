@@ -4,17 +4,15 @@ using UnityEngine;
 
 public class FacingCamera : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private float fixedRotation;
     void Start()
     {
-        
+        fixedRotation = 180f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-            transform.LookAt(Camera.main.transform.position, -Vector3.up);
-       
+        transform.eulerAngles = new Vector3(fixedRotation, Camera.main.transform.eulerAngles.y, 0);
     }
 }

@@ -14,7 +14,9 @@ public class PlacedBuild : MonoBehaviour
     public BuildingSO.Dir dir => _dir;
     private Vector2Int _origin;
     private BuildingSO.Dir _dir;
-    
+
+   [SerializeField] private GameObject UI;
+   [SerializeField] private GameObject UI2;
     
     
     public static PlacedBuild Create(Vector3 worldPosition, Vector2Int origin, BuildingSO.Dir dir, BuildingSO building)
@@ -53,6 +55,22 @@ public class PlacedBuild : MonoBehaviour
     {
         return _buildingSo.GetGridPositionList(origin, dir);
     }
-    
 
+    public void EnableCanvas()
+    {
+        UI.SetActive(true);
+    }
+    public void DisableCanvas()
+    {
+        UI.SetActive(false);
+    }
+
+    public void EnableCanvas2()
+    {
+        UI2.SetActive(true);
+    }
+    public void DisableCanvas2()
+    {
+        UI2.SetActive(false);
+    }
 }
