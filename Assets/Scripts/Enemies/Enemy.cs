@@ -31,6 +31,7 @@ namespace Enemies
         public float Speed, SpdMult = 1.5f;
         public float Armor, ArmMult = 1.5f;
         public float AtackSpeed, AtkSpMult = 1.5f;
+        public float gold;
 
         private void Awake()
         {
@@ -65,6 +66,7 @@ namespace Enemies
             Speed = _initStats.InitSpd;
             Armor = _initStats.InitArm;
             AtackSpeed = _initStats.InitAtkSpd;
+            gold = _initStats.gold;
         }
 
 
@@ -93,6 +95,7 @@ namespace Enemies
         private void OnDestroy()
         {
             OnEnemyDeath?.Invoke(gameObject);
+            PlayerStats._instance.gold += gold;
             WaveController._instance.EnemyDeath();
         }
 

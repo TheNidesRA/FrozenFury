@@ -70,6 +70,7 @@ namespace GridSystem
             _control.Building.RigthClick.performed += RemoveBuild;
             _control.Building.UndoSelection.performed += DeselectObjectType;
             _control.Building.Rotate.performed += Rotate;
+            
         }
 
 
@@ -190,16 +191,25 @@ namespace GridSystem
 
             int i = int.Parse(callbackContext.control.displayName);
             i = i - 1;
-            _buildingSO = _buildingsList[i];
-            Debug.Log(_buildingSO.ToString());
-            RefreshSelectedObjectType();
+            BuildingSO targetBuild = _buildingsList[i];
+            if (PlayerStats._instance.gold >= targetBuild.goldCost)
+            {
+                _buildingSO = targetBuild;
+                Debug.Log(_buildingSO.ToString());
+                RefreshSelectedObjectType();
+            }
         }
 
         public void changeBuild(int build)
         {
-            _buildingSO = _buildingsList[build];
-            Debug.Log(_buildingSO.ToString());
-            RefreshSelectedObjectType();
+            BuildingSO targetBuild = _buildingsList[build];
+            if (PlayerStats._instance.gold >= targetBuild.goldCost)
+            {
+                _buildingSO = targetBuild;
+                Debug.Log(_buildingSO.ToString());
+                RefreshSelectedObjectType();
+
+            }
         }
         
 
@@ -223,6 +233,7 @@ namespace GridSystem
                 if (CanBuild(buildingPositions))
                 {
                     Build(mouseGridPosition, buildingPositions);
+                    PlayerStats._instance.gold -= _buildingSO.goldCost;
                     if (_destroyOnPlace)
                     {
                         _buildingSO = null;
