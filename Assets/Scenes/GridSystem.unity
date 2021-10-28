@@ -276,6 +276,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1987355451}
     - target: {fileID: 3306927050871327791, guid: 7a8ebdf61a0993d4992176b39d202ee0, type: 3}
+      propertyPath: enemiconfig
+      value: 
+      objectReference: {fileID: 11400000, guid: abadacf5ee166c5449de88ce6a81cc7b, type: 2}
+    - target: {fileID: 3306927050871327791, guid: 7a8ebdf61a0993d4992176b39d202ee0, type: 3}
       propertyPath: Waves.Array.data[0]
       value: 
       objectReference: {fileID: 408589599589138576, guid: abd202eaa9bba1344b879fe9268ced14, type: 3}
@@ -285,6 +289,11 @@ PrefabInstance:
       objectReference: {fileID: 408589599589138576, guid: abd202eaa9bba1344b879fe9268ced14, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a8ebdf61a0993d4992176b39d202ee0, type: 3}
+--- !u!1 &223928038 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8251065760102686028, guid: 1200363fc6ada19469f30782af0ac076, type: 3}
+  m_PrefabInstance: {fileID: 693323720}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &487320254
 GameObject:
   m_ObjectHideFlags: 0
@@ -1405,6 +1414,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36b553b6884448e48e3b5a2064169428, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 223928038}
   _destroyOnPlace: 1
   _buildingsList:
   - {fileID: 11400000, guid: 9c7eaeeee6fbbbd4989a527674418ce7, type: 2}

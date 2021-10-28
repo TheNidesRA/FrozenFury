@@ -12,7 +12,7 @@ namespace Enemies
     [CreateAssetMenu(menuName = "Custom/Enemy configuration")]
     public class EnemyConfiguration:ScriptableObject
     {
-        [SerializeField] private Enemy[] enemies;
+        [SerializeField] public Enemy[] enemies;
         private Dictionary<string, Enemy> _idToEnemy;
 
         private void Awake()
@@ -49,11 +49,6 @@ namespace Enemies
             {
                 pair.Value.UpdateStats(mult);
             }
-        }
-
-        public void SetInitialStats(Dictionary<string, float[]> initStats)
-        {
-            
         }
     }
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Enemies;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -23,10 +24,19 @@ namespace AutoAttackScripts
 
         [SerializeField] private bool shooting = false;
 
+        [SerializeField] private bool isPlayer;
+
+        public int numberEnemies = 0;
+
         public bool Shooting
         {
             get => shooting;
             set => shooting = value;
+        }
+
+        private void Update()
+        {
+            numberEnemies = _enemies.Count;
         }
 
         /// <summary>
@@ -82,6 +92,7 @@ namespace AutoAttackScripts
         {
             _enemies = new Dictionary<GameObject, float>();
             StartCoroutine(nameof(AimEnemy));
+            isPlayer = transform.parent.gameObject.CompareTag("Player");
         }
 
 
@@ -98,6 +109,7 @@ namespace AutoAttackScripts
             //Check what object is making the collision
             if (!other.gameObject.CompareTag($"Enemy")) return;
             _enemies.Add(other.gameObject, Vector3.Distance(other.gameObject.transform.position, transform.position));
+            other.gameObject.GetComponent<Enemy>().OnEnemyDeath += RemoveEnemy;
         }
 
         //This method will be used to update the dictionary of enemies
@@ -117,13 +129,20 @@ namespace AutoAttackScripts
         {
             while (true)
             {
-              
+                //Debug.Log("gameobject:" + gameObject + "enemies: " + _enemies.Count);
+                if (_enemies.Count == 0)
+                {
+                    nuevoPlayerMovement.controlMovimiento = true;
+                }
+
                 //we wait until there's enemies in the dictionary
                 if (!(_enemies.Count > 0))
-                {   
+                {
                     yield return new WaitUntil(() => _enemies.Count > 0);
-                    nuevoPlayerMovement.controlMovimiento = false;
+                    if (isPlayer)
+                        nuevoPlayerMovement.controlMovimiento = false;
                 }
+
                 //we retrieve the minimum distance of the dictionary
                 var minDistance = _enemies.Min(distance => distance.Value);
 
@@ -156,9 +175,9 @@ namespace AutoAttackScripts
         {
             if (enemy == null)
             {
-                nuevoPlayerMovement.controlMovimiento = true;
                 return;
             }
+
             _objectiveDirection =
                 Quaternion.LookRotation((enemy.transform.position - player.transform.position).normalized);
             player.transform.rotation =
@@ -168,6 +187,7 @@ namespace AutoAttackScripts
         public void RemoveEnemy(GameObject enemy)
         {
             _enemies.Remove(enemy);
+            enemy.GetComponent<Enemy>().OnEnemyDeath -= RemoveEnemy;
         }
 
         protected IEnumerator WaitToShootBulletBurst(GameObject enemy)
@@ -190,6 +210,32 @@ namespace AutoAttackScripts
 
             //add forces to bullet
             secondBullet.GetComponent<Rigidbody>().AddForce(directionShoot.normalized * shootForce, ForceMode.Impulse);
+        }
+
+        [ContextMenu("StopStartShooting")]
+        public virtual void StartStopShooting()
+        {
+            if (IsShootingEnabled())
+            {
+                GetComponent<Collider>().enabled = false;
+                nuevoPlayerMovement.controlMovimiento = true;
+                ClearEnemies();
+            }
+            else
+            {
+                GetComponent<Collider>().enabled = true;
+            }
+        }
+
+        protected bool IsShootingEnabled()
+        {
+            var component = GetComponent<Collider>();
+            return component.enabled;
+        }
+
+        protected void ClearEnemies()
+        {
+            _enemies.Clear();
         }
     }
 }

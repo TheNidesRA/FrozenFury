@@ -10,5 +10,6 @@ namespace Enemies
         [SerializeField] public float InitSpd = 1;
         [SerializeField] public float InitArm = 1;
         [SerializeField] public float InitAtkSpd = 1;
+        public float gold = 1;
     }
 }
