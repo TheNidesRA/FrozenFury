@@ -70,6 +70,7 @@ namespace GridSystem
             _control.Building.RigthClick.performed += RemoveBuild;
             _control.Building.UndoSelection.performed += DeselectObjectType;
             _control.Building.Rotate.performed += Rotate;
+            
         }
 
 

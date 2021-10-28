@@ -6,7 +6,20 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     public static PlayerStats _instance { get; private set; }
-    public float gold = 0f;
+
+    public event EventHandler OnGoldChanged;
+
+    [SerializeField] private float _gold;
+
+    public float gold
+    {
+        get => _gold;
+        set  {
+            _gold = value;
+            OnGoldChanged?.Invoke(_gold,EventArgs.Empty);
+        }
+    }
+
 
     private void Awake()
     {
@@ -20,4 +33,7 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
+ 
+    
+    
 }
