@@ -39,6 +39,11 @@ namespace GridSystem
         [SerializeField] private List<BuildingSO> _buildingsList;
         
         
+        public bool buildMenu = false;
+        public bool enableBuildMove = true;
+        
+        private Vector2Int _ActualBuildPosition;
+        
         public int gridWidth = 10;
         public int gridHeight = 10;
         public float cellSize = 10f;
@@ -70,7 +75,7 @@ namespace GridSystem
             _control.Building.RigthClick.performed += RemoveBuild;
             _control.Building.UndoSelection.performed += DeselectObjectType;
             _control.Building.Rotate.performed += Rotate;
-            
+            _control.Building.Confirm.performed += Confirm;
         }
 
 
@@ -220,6 +225,16 @@ namespace GridSystem
         }
 
 
+
+        private void SetMousePosition(Vector2Int mouseGridPosition)
+        {
+            _ActualBuildPosition = mouseGridPosition;
+        }
+        
+        
+        
+        
+        
         private void PlaceBuilding(InputAction.CallbackContext callbackContext)
         {
             if (_buildingSO != null)
@@ -232,13 +247,18 @@ namespace GridSystem
 
                 if (CanBuild(buildingPositions))
                 {
-                    Build(mouseGridPosition, buildingPositions);
-                    PlayerStats._instance.gold -= _buildingSO.goldCost;
-                    if (_destroyOnPlace)
-                    {
-                        _buildingSO = null;
-                        RefreshSelectedObjectType();
-                    }
+                    SetMousePosition(mouseGridPosition);
+
+                    buildMenu = true;
+                    enableBuildMove = false;
+
+                    // Build(mouseGridPosition, buildingPositions);
+                    // PlayerStats._instance.gold -= _buildingSO.goldCost;
+                    // if (_destroyOnPlace)
+                    // {
+                    //     _buildingSO = null;
+                    //     RefreshSelectedObjectType();
+                    // }
                 }
                 else
                 {
@@ -250,6 +270,35 @@ namespace GridSystem
           
         }
 
+
+        private void Confirm(InputAction.CallbackContext callbackContext)
+        {
+            
+            List<Vector2Int> buildingPositions = _buildingSO.GetGridPositionList(_ActualBuildPosition, _dir);
+
+            if (CanBuild(buildingPositions))
+            {
+                buildMenu = false;
+                enableBuildMove = false;
+
+                Build(_ActualBuildPosition, buildingPositions);
+                PlayerStats._instance.gold -= _buildingSO.goldCost;
+                if (_destroyOnPlace)
+                {
+                    _buildingSO = null;
+                    RefreshSelectedObjectType();
+                }
+            }
+            else
+            {
+                Debug.Log("No se puede !!! :)");
+            }
+        }
+        
+        
+        
+        
+        
 
         private void Build(Vector2Int buildPosition, List<Vector2Int> buildingPositions)
         {
@@ -355,7 +404,30 @@ namespace GridSystem
                 return default;
             }
         }
+            
+        
+        public Vector3 GetMouseWorldSnappedPositionV2()
+        {
+            // Vector3 mousePosition = GetMousePosition(Input.mousePosition);
+            // _grid.GetXZ(mousePosition, out int x, out int z);
 
+            Vector2Int mousePos = GetMouseGridPosition();
+
+            if (_buildingSO != null)
+            {
+                Vector2Int rotationOffset = _buildingSO.GetRotationOffset(_dir);
+                Vector3 placedObjectWorldPosition = _grid.GetWorldPosition(_ActualBuildPosition) +
+                                                    new Vector3(rotationOffset.x, 0, rotationOffset.y) *
+                                                    _grid.cellSize;
+                return placedObjectWorldPosition;
+            }
+            else
+            {
+                return default;
+            }
+        }
+
+        
 
         public Quaternion GetPlacedObjectRotation()
         {

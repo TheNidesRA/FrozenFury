@@ -16,6 +16,7 @@ public class BuildGhost : MonoBehaviour
     {
         RefreshVisual();
         GridBuildingSystem.Instance.OnSelectedChanged += Instance_OnSelectedChanged;
+        GridBuildingSystem.Instance.OnObjectPlaced += Instance_OnObjectPlaced;
     }
 
 
@@ -23,13 +24,17 @@ public class BuildGhost : MonoBehaviour
     {
         RefreshVisual();
     }
+    private void Instance_OnObjectPlaced(object sender, System.EventArgs e)
+    {
+        _grid.SetActive(false);
+    }
 
 
     private void RefreshVisual()
     {
         if (visual != null)
         {
-            _grid.SetActive(false);
+            
             Destroy(visual.gameObject);
             visual = null;
         }
@@ -63,13 +68,28 @@ public class BuildGhost : MonoBehaviour
         
         if (visual != null)
         {
-          
-            Vector3 targetPosition = GridBuildingSystem.Instance.GetMouseWorldSnappedPosition();
-            targetPosition.y = 1f;
-            transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * 15f);
+            if (GridBuildingSystem.Instance.enableBuildMove)
+            {
+                Vector3 targetPosition = GridBuildingSystem.Instance.GetMouseWorldSnappedPosition();
+                targetPosition.y = 1f;
+           
+                transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * 15f);
+            
+                transform.rotation = Quaternion.Lerp(transform.rotation,
+                    GridBuildingSystem.Instance.GetPlacedObjectRotation(), Time.deltaTime * 15f);                
+            }
+            else
+            {
+                 Vector3 targetPosition = GridBuildingSystem.Instance.GetMouseWorldSnappedPositionV2();
+                 targetPosition.y = 1f;
+                
+                 transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * 15f);
+            
+                transform.rotation = Quaternion.Lerp(transform.rotation,
+                    GridBuildingSystem.Instance.GetPlacedObjectRotation(), Time.deltaTime * 15f);
+            }
+            
 
-            transform.rotation = Quaternion.Lerp(transform.rotation,
-                GridBuildingSystem.Instance.GetPlacedObjectRotation(), Time.deltaTime * 15f);
         }
     }
 }
