@@ -1,9 +1,22 @@
 ﻿using System;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 class GlobalHealth : MonoBehaviour
 {
-    private int globalHealth = 20;
+    private int _globalHealth = 20;
+    public event EventHandler<int> OnHealthChange;
+
+    public int globalHealth
+    {
+        get => _globalHealth;
+        set
+        {
+            _globalHealth = value;
+            OnHealthChange?.Invoke(this,_globalHealth);
+        }
+    }
 
     public static GlobalHealth instance { get; private set; }
 
