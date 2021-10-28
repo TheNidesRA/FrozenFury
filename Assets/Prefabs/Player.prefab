@@ -157,6 +157,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   localDistance: 0
   shooting: 0
+  isPlayer: 0
+  numberEnemies: 0
   bullet: {fileID: 620294786073393379, guid: 43cd4fe1869239540b2db329e91ca826, type: 3}
   shootForce: 20
   timeBetweenShooting: 1
@@ -295,6 +297,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   localDistance: 0
   shooting: 0
+  isPlayer: 0
+  numberEnemies: 0
   bullet: {fileID: 620294786073393379, guid: 43cd4fe1869239540b2db329e91ca826, type: 3}
   shootForce: 20
   timeBetweenShooting: 1.5
@@ -402,7 +406,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: de86266a50062ce41a090553fdf1f1b1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -595,6 +599,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   localDistance: 0
   shooting: 0
+  isPlayer: 0
+  numberEnemies: 0
   bullet: {fileID: 620294786073393379, guid: 43cd4fe1869239540b2db329e91ca826, type: 3}
   shootForce: 50
   timeBetweenShooting: 1
