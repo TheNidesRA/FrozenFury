@@ -9,6 +9,7 @@ namespace Enemies
         /// Enemy id
         /// </summary>
         [SerializeField] protected string id;
+
         /// <summary>
         /// Initial enemy stats
         /// </summary>
@@ -18,11 +19,11 @@ namespace Enemies
         /// Agente navmesh que moverá al enemigo
         /// </summary>
         private EnemyIA _ia;
-        
-        
 
-        public event Action<float> OnHealthChanged = delegate {  };
-        
+        public event Action<GameObject> OnEnemyDeath;
+
+        public event Action<float> OnHealthChanged = delegate { };
+
         public string Id => id;
 
         public float Health, HpMult = 1.5f;
@@ -47,10 +48,9 @@ namespace Enemies
         private void OnEnable()
         {
             _ia.setSpeed(Speed);
-            
         }
 
-        public void UpdateStats(float[]mult)
+        public void UpdateStats(float[] mult)
         {
             Health = Health * mult[0];
             Damage = Damage * mult[1];
@@ -73,11 +73,11 @@ namespace Enemies
         public bool OnHit(float dmg)
         {
             Health -= dmg;
-            
+
             if (Health <= 0) return true;
 
             OnHealthChanged(Health);
-            
+
             return false;
         }
 
@@ -94,15 +94,21 @@ namespace Enemies
 
         private void OnDestroy()
         {
+            OnEnemyDeath?.Invoke(gameObject);
             PlayerStats._instance.gold += gold;
             WaveController._instance.EnemyDeath();
         }
 
         public void PrintStats()
         {
-            Debug.Log("HP: " + Health + " // Dmg: " + Damage + " // Spd: " + Speed + " // Arm: " + Armor + " // AtkSpd: " + AtackSpeed);
+            Debug.Log("HP: " + Health + " // Dmg: " + Damage + " // Spd: " + Speed + " // Arm: " + Armor +
+                      " // AtkSpd: " + AtackSpeed);
+        }
+
+        public void EnemyDeath()
+        {
+            if (OnEnemyDeath != null)
+                OnEnemyDeath(gameObject);
         }
     }
 }
-
-
