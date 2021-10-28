@@ -7,7 +7,7 @@ public class PlayerStats : MonoBehaviour
 {
     public static PlayerStats _instance { get; private set; }
 
-    public event EventHandler OnGoldChanged;
+    public event EventHandler<float> OnGoldChanged;
 
     [SerializeField] private float _gold;
 
@@ -16,7 +16,7 @@ public class PlayerStats : MonoBehaviour
         get => _gold;
         set  {
             _gold = value;
-            OnGoldChanged?.Invoke(_gold,EventArgs.Empty);
+            OnGoldChanged?.Invoke(this,_gold);
         }
     }
 
