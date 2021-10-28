@@ -211,5 +211,31 @@ namespace AutoAttackScripts
             //add forces to bullet
             secondBullet.GetComponent<Rigidbody>().AddForce(directionShoot.normalized * shootForce, ForceMode.Impulse);
         }
+
+        [ContextMenu("StopStartShooting")]
+        public virtual void StartStopShooting()
+        {
+            if (IsShootingEnabled())
+            {
+                GetComponent<Collider>().enabled = false;
+                nuevoPlayerMovement.controlMovimiento = true;
+                ClearEnemies();
+            }
+            else
+            {
+                GetComponent<Collider>().enabled = true;
+            }
+        }
+
+        protected bool IsShootingEnabled()
+        {
+            var component = GetComponent<Collider>();
+            return component.enabled;
+        }
+
+        protected void ClearEnemies()
+        {
+            _enemies.Clear();
+        }
     }
 }
