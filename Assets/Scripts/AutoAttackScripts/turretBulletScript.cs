@@ -26,10 +26,6 @@ namespace AutoAttackScripts
                 _enemy = _enemyToRemove.GetComponent<Enemy>();
                 Destroy(gameObject);
             }
-            else if (other.gameObject.CompareTag($"Barrier"))
-            {
-                Destroy(gameObject);
-            }
         }
 
 
@@ -38,7 +34,7 @@ namespace AutoAttackScripts
             if (_enemyToRemove == null) return;
             if (_enemy.OnHit(turret.Damage))
             {
-                turret.RemoveEnemy(_enemyToRemove);
+                //turret.RemoveEnemy(_enemyToRemove);
                 _enemy.Die();
             }
         }

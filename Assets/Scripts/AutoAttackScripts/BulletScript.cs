@@ -17,15 +17,11 @@ namespace AutoAttackScripts
         }
 
         private void OnCollisionEnter(Collision other)
-        {   
+        {
             if (other.gameObject.CompareTag($"Enemy"))
             {
                 _enemyToRemove = other.gameObject;
                 _enemy = _enemyToRemove.GetComponent<Enemy>();
-                Destroy(gameObject);
-            }
-            else if (other.gameObject.CompareTag($"Barrier"))
-            {
                 Destroy(gameObject);
             }
         }
@@ -34,11 +30,9 @@ namespace AutoAttackScripts
         private void OnDestroy()
         {
             if (_enemyToRemove == null) return;
-            if (_enemy.OnHit(player.Damage))
-            {
-                player.RemoveEnemy(_enemyToRemove);
-                _enemy.Die();
-            }
+            if (!_enemy.OnHit(player.Damage)) return;
+            //player.RemoveEnemy(_enemyToRemove);
+            _enemy.Die();
         }
     }
 }
