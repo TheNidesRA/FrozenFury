@@ -22,8 +22,6 @@ namespace Enemies
 
         public event Action<GameObject> OnEnemyDeath;
 
-        public event Action<float> OnHealthChanged = delegate { };
-
         public string Id => id;
 
         public float Health, HpMult = 1.5f;
@@ -76,7 +74,6 @@ namespace Enemies
 
             if (Health <= 0) return true;
 
-            OnHealthChanged(Health);
 
             return false;
         }

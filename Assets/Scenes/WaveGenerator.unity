@@ -226,7 +226,6 @@ MonoBehaviour:
   m_Cameras: []
   m_RendererIndex: -1
   m_VolumeLayerMask:
-    serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_RenderPostProcessing: 0
@@ -392,6 +391,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 656628950}
     - target: {fileID: 3306927050871327791, guid: 7a8ebdf61a0993d4992176b39d202ee0, type: 3}
+      propertyPath: enemiconfig
+      value: 
+      objectReference: {fileID: 11400000, guid: abadacf5ee166c5449de88ce6a81cc7b, type: 2}
+    - target: {fileID: 3306927050871327791, guid: 7a8ebdf61a0993d4992176b39d202ee0, type: 3}
       propertyPath: Waves.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -533,7 +536,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 73207a7114a7c91488190b5ae0d1dd44, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

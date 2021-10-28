@@ -32,8 +32,4 @@ public class PlayerStats : MonoBehaviour
             _instance = this;
         }
     }
-
- 
-    
-    
 }
