@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 class GlobalHealth : MonoBehaviour
 {
+    [SerializeField]
     private int _globalHealth = 20;
     public event EventHandler<int> OnHealthChange;
 
@@ -44,5 +45,6 @@ class GlobalHealth : MonoBehaviour
     private void EndGameFunc()
     {
         Debug.Log("GAME OVER");
+        SceneController._instance.GoToLoseScene();
     }
 }

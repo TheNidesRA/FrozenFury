@@ -12,6 +12,7 @@ public class HealthUI : MonoBehaviour
     {
         _hpText = GetComponent<TextMeshProUGUI>();
         GlobalHealth.instance.OnHealthChange += UpdateUI;
+        _hpText.text = GlobalHealth.instance.globalHealth.ToString();
     }
 
     private void UpdateUI(object sender, int e)
