@@ -1,9 +1,23 @@
 ﻿using System;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 class GlobalHealth : MonoBehaviour
 {
-    private int globalHealth = 20;
+    [SerializeField]
+    private int _globalHealth = 20;
+    public event EventHandler<int> OnHealthChange;
+
+    public int globalHealth
+    {
+        get => _globalHealth;
+        set
+        {
+            _globalHealth = value;
+            OnHealthChange?.Invoke(this,_globalHealth);
+        }
+    }
 
     public static GlobalHealth instance { get; private set; }
 
@@ -31,5 +45,6 @@ class GlobalHealth : MonoBehaviour
     private void EndGameFunc()
     {
         Debug.Log("GAME OVER");
+        SceneController._instance.GoToLoseScene();
     }
 }
