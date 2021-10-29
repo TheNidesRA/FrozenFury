@@ -61,7 +61,7 @@ public class BuildGhost : MonoBehaviour
         if (placedObjectTypeSO != null)
         {
             _grid.SetActive(true);
-            visual = Instantiate(placedObjectTypeSO.prefab, Vector3.zero, Quaternion.identity);
+            visual = Instantiate(placedObjectTypeSO.visual, Vector3.zero, Quaternion.identity);
             _placedBuild = visual.gameObject.GetComponent<PlacedBuild>();
             visual.parent = transform;
             visual.localPosition = Vector3.zero;
