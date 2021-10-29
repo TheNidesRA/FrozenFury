@@ -20,6 +20,7 @@ public class SideBarButtonActions : MonoBehaviour
 
     private void Start()
     {
+        
         startPosition = rect.anchoredPosition.x;
 
     }

@@ -23,7 +23,12 @@ namespace GridSystem
         public event EventHandler OnSelectedChanged; //Callback 
 
         public event EventHandler OnObjectPlaced;
+        
+        public event EventHandler OnObjectSetPosition;
+        public event EventHandler OnObjectRemovePosition;
 
+        public event EventHandler OnClickOutOfObject;
+        
         /// <summary>
         /// current Build
         /// </summary>
@@ -38,6 +43,12 @@ namespace GridSystem
         private BuildingSO.Dir _dir = BuildingSO.Dir.Down;
         [SerializeField] private List<BuildingSO> _buildingsList;
         
+        
+        public bool buildMenu = false;
+        public bool enableBuildMove = true;
+
+        private PlacedBuild _currentPlaceBuild;
+        private Vector2Int _ActualBuildPosition;
         
         public int gridWidth = 10;
         public int gridHeight = 10;
@@ -70,6 +81,7 @@ namespace GridSystem
             _control.Building.RigthClick.performed += RemoveBuild;
             _control.Building.UndoSelection.performed += DeselectObjectType;
             _control.Building.Rotate.performed += Rotate;
+            _control.Building.Confirm.performed += Confirm;
             
         }
 
@@ -179,6 +191,27 @@ namespace GridSystem
             }
         }
 
+        
+        public void RemoveBuild(PlacedBuild build)
+        {
+            Debug.Log("asd");
+
+            if (build != null)
+            {
+                
+                build.DestroySelf();
+
+                List<Vector2Int> buildingPositions = build.GetGridPositionList();
+
+                foreach (var buildPosition in buildingPositions)
+                {
+                    _grid.GetObjectValue(buildPosition.x, buildPosition.y).ClearPlacedBuild();
+                }
+            }
+        }
+        
+        
+        
         private GridObject GetMouseGridObject()
         {
             return _grid.GetObjectValue(GetMousePosition());
@@ -219,10 +252,29 @@ namespace GridSystem
             _dir = BuildingSO.GetNextDir(_dir);
         }
 
+        public void Rotate()
+        {
+            //Debug.Log(_dir);
+            _dir = BuildingSO.GetNextDir(_dir);
+        }
 
+
+        private void SetMousePosition(Vector2Int mouseGridPosition)
+        {
+            _ActualBuildPosition = mouseGridPosition;
+            buildMenu = true;
+            enableBuildMove = false;
+            OnObjectSetPosition?.Invoke(this,EventArgs.Empty);
+           
+        }
+        
+        
+        
+        
+        
         private void PlaceBuilding(InputAction.CallbackContext callbackContext)
         {
-            if (_buildingSO != null)
+            if (_buildingSO != null && !buildMenu)
             {
                 Vector2Int mouseGridPosition = GetMouseGridPosition();
             
@@ -232,17 +284,29 @@ namespace GridSystem
 
                 if (CanBuild(buildingPositions))
                 {
-                    Build(mouseGridPosition, buildingPositions);
-                    PlayerStats._instance.gold -= _buildingSO.goldCost;
-                    if (_destroyOnPlace)
-                    {
-                        _buildingSO = null;
-                        RefreshSelectedObjectType();
-                    }
+                    SetMousePosition(mouseGridPosition);
+                    
                 }
                 else
                 {
                     Debug.Log("No se puede !!! :)");
+                }
+            }
+            else
+            {
+                GridObject gridObject = GetMouseGridObject();
+
+                PlacedBuild placedBuild = gridObject.GetPlaceBuild();
+                
+
+                if (placedBuild != null)
+                {
+                    Debug.Log("Cogiendo el aux");
+                    placedBuild.IsClicked();
+                }
+                else
+                {
+                    //OnClickOutOfObject?.Invoke(this,EventArgs.Empty);
                 }
             }
            
@@ -250,6 +314,72 @@ namespace GridSystem
           
         }
 
+
+
+        private void Confirm(InputAction.CallbackContext callbackContext)
+        {
+            
+            List<Vector2Int> buildingPositions = _buildingSO.GetGridPositionList(_ActualBuildPosition, _dir);
+
+            if (CanBuild(buildingPositions))
+            {
+                buildMenu = false;
+                enableBuildMove = true;
+
+                
+                
+                Build(_ActualBuildPosition, buildingPositions);
+                PlayerStats._instance.gold -= _buildingSO.goldCost;
+                if (_destroyOnPlace)
+                {
+                    _buildingSO = null;
+                    RefreshSelectedObjectType();
+                }
+            }
+            else
+            {
+                Debug.Log("No se puede !!! :)");
+            }
+        }
+
+        public void Confirm()
+        {
+            List<Vector2Int> buildingPositions = _buildingSO.GetGridPositionList(_ActualBuildPosition, _dir);
+
+            if (CanBuild(buildingPositions))
+            {
+               
+                Build(_ActualBuildPosition, buildingPositions);
+                PlayerStats._instance.gold -= _buildingSO.goldCost;
+                RemoveFixedMouse();
+                if (_destroyOnPlace)
+                {
+                    _buildingSO = null;
+                    RefreshSelectedObjectType();
+                }
+            }
+            else
+            {
+                Debug.Log("No se puede !!! :)");
+            }
+        }
+
+        private void RemoveFixedMouse()
+        {
+            _ActualBuildPosition = new Vector2Int();
+            buildMenu = false;
+            enableBuildMove = true;
+            OnObjectRemovePosition?.Invoke(this,EventArgs.Empty);
+        }
+
+
+        public void Mover()
+        {
+            buildMenu = false;
+            enableBuildMove = true;
+            OnObjectRemovePosition?.Invoke(this,EventArgs.Empty);
+        }
+        
 
         private void Build(Vector2Int buildPosition, List<Vector2Int> buildingPositions)
         {
@@ -355,7 +485,30 @@ namespace GridSystem
                 return default;
             }
         }
+            
+        
+        public Vector3 GetMouseWorldSnappedPositionV2()
+        {
+            // Vector3 mousePosition = GetMousePosition(Input.mousePosition);
+            // _grid.GetXZ(mousePosition, out int x, out int z);
 
+            Vector2Int mousePos = GetMouseGridPosition();
+
+            if (_buildingSO != null)
+            {
+                Vector2Int rotationOffset = _buildingSO.GetRotationOffset(_dir);
+                Vector3 placedObjectWorldPosition = _grid.GetWorldPosition(_ActualBuildPosition) +
+                                                    new Vector3(rotationOffset.x, 0, rotationOffset.y) *
+                                                    _grid.cellSize;
+                return placedObjectWorldPosition;
+            }
+            else
+            {
+                return default;
+            }
+        }
+
+        
 
         public Quaternion GetPlacedObjectRotation()
         {

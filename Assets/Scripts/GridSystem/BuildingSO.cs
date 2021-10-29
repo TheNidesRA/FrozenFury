@@ -57,6 +57,7 @@ public class BuildingSO : ScriptableObject
 
     public string name;
     public Transform prefab;
+    public Transform visual;
     public float goldCost = 1;
 
 
