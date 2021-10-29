@@ -11,9 +11,9 @@ namespace AutoAttackScripts
         private int _timeAlive = 4;
         private float lerpTime = 3f;
         private float _timer = 0f;
-        public AnimationCurve lerpCurve;
+        //public AnimationCurve lerpCurve;
    
-        public Vector3 lerpOffset;
+        //public Vector3 lerpOffset;
 
         public override float Damage
         {
