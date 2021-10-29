@@ -29,4 +29,9 @@ public class SceneController : MonoBehaviour
     {
         SceneManager.LoadScene("WinScreen");
     }
+
+    public void GoToGameScene()
+    {
+        SceneManager.LoadScene("WaveGenerator");
+    }
 }

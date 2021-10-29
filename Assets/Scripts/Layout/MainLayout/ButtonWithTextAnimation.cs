@@ -38,7 +38,7 @@ public class ButtonWithTextAnimation : MonoBehaviour,IPointerEnterHandler, IPoin
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        SceneManager.LoadScene("WaveGenerator");
+        
     }
 
     public void OnPointerExit(PointerEventData eventData)
