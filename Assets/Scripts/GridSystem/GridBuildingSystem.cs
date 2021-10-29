@@ -27,6 +27,8 @@ namespace GridSystem
         public event EventHandler OnObjectSetPosition;
         public event EventHandler OnObjectRemovePosition;
 
+        public event EventHandler OnClickOutOfObject;
+        
         /// <summary>
         /// current Build
         /// </summary>
@@ -80,6 +82,7 @@ namespace GridSystem
             _control.Building.UndoSelection.performed += DeselectObjectType;
             _control.Building.Rotate.performed += Rotate;
             _control.Building.Confirm.performed += Confirm;
+            
         }
 
 
@@ -191,10 +194,11 @@ namespace GridSystem
         
         public void RemoveBuild(PlacedBuild build)
         {
-
+            Debug.Log("asd");
 
             if (build != null)
             {
+                
                 build.DestroySelf();
 
                 List<Vector2Int> buildingPositions = build.GetGridPositionList();
@@ -299,6 +303,10 @@ namespace GridSystem
                 {
                     Debug.Log("Cogiendo el aux");
                     placedBuild.IsClicked();
+                }
+                else
+                {
+                    //OnClickOutOfObject?.Invoke(this,EventArgs.Empty);
                 }
             }
            

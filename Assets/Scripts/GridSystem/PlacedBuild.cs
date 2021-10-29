@@ -37,6 +37,16 @@ public class PlacedBuild : MonoBehaviour
     }
 
 
+    private void OnEnable()
+    {
+        GridBuildingSystem.Instance.OnClickOutOfObject += DisableCanvas;
+    }
+
+    private void OnDisable()
+    {
+        GridBuildingSystem.Instance.OnClickOutOfObject -= DisableCanvas;
+    }
+    
     public void IsClicked()
     {
         EnableCanvas();
@@ -68,8 +78,13 @@ public class PlacedBuild : MonoBehaviour
         UI.SetActive(false);
     }
 
+    public void DisableCanvas(object a, EventArgs args)
+    {
+        UI.SetActive(false);
+    }
     public void SendDestroy()
     {
+       
         GridBuildingSystem.Instance.RemoveBuild(this);
     }
     
