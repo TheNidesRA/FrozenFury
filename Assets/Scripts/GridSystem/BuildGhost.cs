@@ -11,7 +11,7 @@ public class BuildGhost : MonoBehaviour
     private Transform visual;
     private BuildingSO _building;
     [SerializeField] private GameObject _grid;
-    private PlacedBuild _placedBuild;
+    private GhostBuild _ghostBuild;
 
     void Start()
     {
@@ -25,6 +25,7 @@ public class BuildGhost : MonoBehaviour
     private void Instance_OnSelectedChanged(object sender, System.EventArgs e)
     {
         RefreshVisual();
+        ActivateBuildCanvas();
     }
     private void Instance_OnObjectSetPosition(object sender, System.EventArgs e)
     {
@@ -33,9 +34,9 @@ public class BuildGhost : MonoBehaviour
 
     private void ActivateBuildCanvas()
     {
-        if (_placedBuild != null)
+        if (_ghostBuild != null)
         {
-            _placedBuild.EnableCanvas();
+            _ghostBuild.EnableCanvas();
             Debug.Log("Activando el canvas");
         }
     }
@@ -51,7 +52,7 @@ public class BuildGhost : MonoBehaviour
     {
         if (visual != null)
         {
-            _placedBuild = null;
+            _ghostBuild = null;
             Destroy(visual.gameObject);
             visual = null;
         }
@@ -62,7 +63,7 @@ public class BuildGhost : MonoBehaviour
         {
             _grid.SetActive(true);
             visual = Instantiate(placedObjectTypeSO.visual, Vector3.zero, Quaternion.identity);
-            _placedBuild = visual.gameObject.GetComponent<PlacedBuild>();
+            _ghostBuild = visual.gameObject.GetComponent<GhostBuild>();
             visual.parent = transform;
             visual.localPosition = Vector3.zero;
             visual.localEulerAngles = Vector3.zero;

@@ -298,7 +298,7 @@ namespace GridSystem
                 if (placedBuild != null)
                 {
                     Debug.Log("Cogiendo el aux");
-                    placedBuild.EnableCanvas2();
+                    placedBuild.IsClicked();
                 }
             }
            

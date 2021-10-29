@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class BuildingButtons : MonoBehaviour
 {
-   [SerializeField]private PlacedBuild _placedBuild;
-   
+
+
    public void Rotate()
    {
       GridBuildingSystem.Instance.Rotate();
@@ -22,16 +22,6 @@ public class BuildingButtons : MonoBehaviour
       GridBuildingSystem.Instance.Confirm();
          
    }
-
-   public void Remove()
-   {
-    GridBuildingSystem.Instance.RemoveBuild(_placedBuild);
-   }
-
-   public void Close()
-   {
-      _placedBuild.DisableCanvas2();
-   }
-   
+  
    
 }
