@@ -13,7 +13,7 @@ namespace AutoAttackScripts
 
         private void Start()
         {
-            player = GameObject.Find("Player").GetComponentInChildren<AutoShoot>();
+            player = GameObject.Find("PlayerHeladero").GetComponentInChildren<AutoShoot>();
         }
 
         private void OnCollisionEnter(Collision other)
