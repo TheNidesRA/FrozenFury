@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 namespace GridSystem
 {
@@ -50,8 +50,8 @@ namespace GridSystem
         private PlacedBuild _currentPlaceBuild;
         private Vector2Int _ActualBuildPosition;
         
-        public int gridWidth = 10;
-        public int gridHeight = 10;
+        public int gridWidth = 15;
+        public int gridHeight = 9;
         public float cellSize = 10f;
 
         private void OnEnable()
