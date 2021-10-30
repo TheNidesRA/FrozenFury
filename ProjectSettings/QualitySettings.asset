@@ -43,6 +43,8 @@ QualitySettings:
     customRenderPipeline: {fileID: 11400000, guid: a31e9f9f9c9d4b9429ed0d1234e22103, type: 2}
     excludedTargetPlatforms:
     - Standalone
+    - WebGL
+    - Android
   - serializedVersion: 2
     name: Medium
     pixelLightCount: 1
@@ -116,18 +118,16 @@ QualitySettings:
     asyncUploadBufferSize: 16
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
-    customRenderPipeline: {fileID: 11400000, guid: a31e9f9f9c9d4b9429ed0d1234e22103, type: 2}
-    excludedTargetPlatforms:
-    - WebGL
-    - Android
+    customRenderPipeline: {fileID: 0}
+    excludedTargetPlatforms: []
   m_PerPlatformDefaultQuality:
-    Android: 0
+    Android: 2
     Lumin: 2
     Nintendo Switch: 2
     PS4: 2
     Stadia: 2
     Standalone: 2
-    WebGL: 0
+    WebGL: 2
     Windows Store Apps: 2
     XboxOne: 2
     iPhone: 1
