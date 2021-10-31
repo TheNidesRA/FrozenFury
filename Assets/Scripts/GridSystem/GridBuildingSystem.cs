@@ -296,18 +296,22 @@ namespace GridSystem
             {
                 GridObject gridObject = GetMouseGridObject();
 
-                PlacedBuild placedBuild = gridObject.GetPlaceBuild();
+                if (gridObject != null)
+                {
+                    PlacedBuild placedBuild = gridObject.GetPlaceBuild();
                 
 
-                if (placedBuild != null)
-                {
-                    Debug.Log("Cogiendo el aux");
-                    placedBuild.IsClicked();
+                    if (placedBuild != null)
+                    {
+                        Debug.Log("Cogiendo el aux");
+                        placedBuild.IsClicked();
+                    }
+                    else
+                    {
+                        //OnClickOutOfObject?.Invoke(this,EventArgs.Empty);
+                    }
                 }
-                else
-                {
-                    //OnClickOutOfObject?.Invoke(this,EventArgs.Empty);
-                }
+               
             }
            
 
