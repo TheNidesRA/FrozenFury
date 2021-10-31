@@ -22,8 +22,8 @@ namespace AutoAttackScripts
             {
                 _enemyToRemove = other.gameObject;
                 _enemy = _enemyToRemove.GetComponent<Enemy>();
-                Destroy(gameObject);
             }
+            Destroy(gameObject);
         }
 
 

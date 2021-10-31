@@ -19,9 +19,11 @@ namespace AutoAttackScripts
 
         private void OnCollisionEnter(Collision other)
         {
-            if (!other.gameObject.CompareTag($"Enemy")) return;
-            _enemyToRemove = other.gameObject;
-            _enemy = _enemyToRemove.GetComponent<Enemy>();
+            if (other.gameObject.CompareTag($"Enemy"))
+            {
+                _enemyToRemove = other.gameObject;
+                _enemy = _enemyToRemove.GetComponent<Enemy>();
+            }
             Destroy(gameObject);
         }
 
