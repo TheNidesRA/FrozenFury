@@ -131,46 +131,7 @@ namespace GridSystem
         }
 
 
-        private void Update()
-        {
-            // if (Input.GetMouseButtonDown(0))
-            // {
-            //     PlaceBuilding();
-            // }
-
-            // if (Input.GetKeyDown(KeyCode.R))
-            // {
-            //     Rotate();
-            // }
-
-
-            // if (Input.GetKeyDown(KeyCode.Alpha1))
-            // {
-            //     ChangeBuild(0);
-            // }
-
-            // if (Input.GetKeyDown(KeyCode.Alpha2))
-            // {
-            //     ChangeBuild(1);
-            // }
-            //
-            // if (Input.GetKeyDown(KeyCode.Alpha3))
-            // {
-            //     ChangeBuild(2);
-            // }
-            //
-            // if (Input.GetKeyDown(KeyCode.Alpha0))
-            // {
-            //     DeselectObjectType();
-            // }
-
-
-            // if (Input.GetMouseButtonDown(1))
-            // {
-            //     RemoveBuild();
-            // }
-        }
-
+   
         private void RemoveBuild(InputAction.CallbackContext callbackContext)
         {
             GridObject gridObject = GetMouseGridObject();
