@@ -12,7 +12,7 @@ namespace GridSystem
         public static GridBuildingSystem Instance { get; private set; }
 
         public GameObject player;
-        
+
         private InputPlayer _control;
 
         [SerializeField] private bool _destroyOnPlace = false;
@@ -23,12 +23,12 @@ namespace GridSystem
         public event EventHandler OnSelectedChanged; //Callback 
 
         public event EventHandler OnObjectPlaced;
-        
+
         public event EventHandler OnObjectSetPosition;
         public event EventHandler OnObjectRemovePosition;
 
         public event EventHandler OnClickOutOfObject;
-        
+
         /// <summary>
         /// current Build
         /// </summary>
@@ -42,14 +42,14 @@ namespace GridSystem
         private Grid<GridObject> _grid; //Scene grid
         private BuildingSO.Dir _dir = BuildingSO.Dir.Down;
         [SerializeField] private List<BuildingSO> _buildingsList;
-        
-        
+
+
         public bool buildMenu = false;
         public bool enableBuildMove = true;
 
         private PlacedBuild _currentPlaceBuild;
         private Vector2Int _ActualBuildPosition;
-        
+
         public int gridWidth = 15;
         public int gridHeight = 9;
         public float cellSize = 10f;
@@ -69,7 +69,7 @@ namespace GridSystem
         {
             Instance = this;
             _control = new InputPlayer();
-            
+
             _grid = new Grid<GridObject>(gridWidth, gridHeight, cellSize,
                 (Grid<GridObject> global, int x, int z) => new GridObject(global, x, z), Vector3.zero);
 
@@ -82,7 +82,6 @@ namespace GridSystem
             _control.Building.UndoSelection.performed += DeselectObjectType;
             _control.Building.Rotate.performed += Rotate;
             _control.Building.Confirm.performed += Confirm;
-            
         }
 
 
@@ -191,14 +190,13 @@ namespace GridSystem
             }
         }
 
-        
+
         public void RemoveBuild(PlacedBuild build)
         {
             Debug.Log("asd");
 
             if (build != null)
             {
-                
                 build.DestroySelf();
 
                 List<Vector2Int> buildingPositions = build.GetGridPositionList();
@@ -209,9 +207,8 @@ namespace GridSystem
                 }
             }
         }
-        
-        
-        
+
+
         private GridObject GetMouseGridObject()
         {
             return _grid.GetObjectValue(GetMousePosition());
@@ -219,7 +216,6 @@ namespace GridSystem
 
         private void ChangeBuild(InputAction.CallbackContext callbackContext)
         {
-  
             //Debug.Log("Bot: "+callbackContext.control.displayName);
 
             int i = int.Parse(callbackContext.control.displayName);
@@ -241,10 +237,9 @@ namespace GridSystem
                 _buildingSO = targetBuild;
                 Debug.Log(_buildingSO.ToString());
                 RefreshSelectedObjectType();
-
             }
         }
-        
+
 
         private void Rotate(InputAction.CallbackContext callbackContext)
         {
@@ -264,20 +259,16 @@ namespace GridSystem
             _ActualBuildPosition = mouseGridPosition;
             buildMenu = true;
             enableBuildMove = false;
-            OnObjectSetPosition?.Invoke(this,EventArgs.Empty);
-           
+            OnObjectSetPosition?.Invoke(this, EventArgs.Empty);
         }
-        
-        
-        
-        
-        
+
+
         private void PlaceBuilding(InputAction.CallbackContext callbackContext)
         {
             if (_buildingSO != null && !buildMenu)
             {
                 Vector2Int mouseGridPosition = GetMouseGridPosition();
-            
+
                 Debug.Log(mouseGridPosition);
 
                 List<Vector2Int> buildingPositions = _buildingSO.GetGridPositionList(mouseGridPosition, _dir);
@@ -285,7 +276,6 @@ namespace GridSystem
                 if (CanBuild(buildingPositions))
                 {
                     SetMousePosition(mouseGridPosition);
-                    
                 }
                 else
                 {
@@ -299,7 +289,7 @@ namespace GridSystem
                 if (gridObject != null)
                 {
                     PlacedBuild placedBuild = gridObject.GetPlaceBuild();
-                
+
 
                     if (placedBuild != null)
                     {
@@ -311,18 +301,12 @@ namespace GridSystem
                         //OnClickOutOfObject?.Invoke(this,EventArgs.Empty);
                     }
                 }
-               
             }
-           
-
-          
         }
-
 
 
         private void Confirm(InputAction.CallbackContext callbackContext)
         {
-            
             List<Vector2Int> buildingPositions = _buildingSO.GetGridPositionList(_ActualBuildPosition, _dir);
 
             if (CanBuild(buildingPositions))
@@ -330,8 +314,7 @@ namespace GridSystem
                 buildMenu = false;
                 enableBuildMove = true;
 
-                
-                
+
                 Build(_ActualBuildPosition, buildingPositions);
                 PlayerStats._instance.gold -= _buildingSO.goldCost;
                 if (_destroyOnPlace)
@@ -352,7 +335,6 @@ namespace GridSystem
 
             if (CanBuild(buildingPositions))
             {
-               
                 Build(_ActualBuildPosition, buildingPositions);
                 PlayerStats._instance.gold -= _buildingSO.goldCost;
                 RemoveFixedMouse();
@@ -373,7 +355,7 @@ namespace GridSystem
             _ActualBuildPosition = new Vector2Int();
             buildMenu = false;
             enableBuildMove = true;
-            OnObjectRemovePosition?.Invoke(this,EventArgs.Empty);
+            OnObjectRemovePosition?.Invoke(this, EventArgs.Empty);
         }
 
 
@@ -381,9 +363,9 @@ namespace GridSystem
         {
             buildMenu = false;
             enableBuildMove = true;
-            OnObjectRemovePosition?.Invoke(this,EventArgs.Empty);
+            OnObjectRemovePosition?.Invoke(this, EventArgs.Empty);
         }
-        
+
 
         private void Build(Vector2Int buildPosition, List<Vector2Int> buildingPositions)
         {
@@ -407,16 +389,16 @@ namespace GridSystem
 
         private bool CanBuild(List<Vector2Int> buildingPositions)
         {
-
             Vector3 playerPosition = player.transform.position;
-            
-            _grid.GetXZ(playerPosition,out int x, out int z);
-            
-            Debug.Log("X: "+x+" Y: "+z);
-            
+
+            _grid.GetXZ(playerPosition, out int x, out int z);
+
+            Debug.Log("X: " + x + " Y: " + z);
+
             foreach (var buildPosition in buildingPositions)
             {
-                if (!_grid.GetObjectValue(buildPosition.x, buildPosition.y).CanBuild() || (buildPosition.y==z  &&buildPosition.x==x ))
+                if (!_grid.GetObjectValue(buildPosition.x, buildPosition.y).CanBuild() ||
+                    (buildPosition.y == z && buildPosition.x == x))
                 {
                     return false;
                 }
@@ -458,10 +440,10 @@ namespace GridSystem
         {
             Vector3 mousePosition = GetMousePosition();
             //Debug.Log("posicion mundo: "+ mousePosition);
-            
+
             _grid.GetXZ(mousePosition, out int x, out int z);
 
-            
+
             Vector2Int placedObjectOrigin = new Vector2Int(x, z);
             placedObjectOrigin = _grid.ClampIntoGridPosition(placedObjectOrigin);
 
@@ -489,8 +471,8 @@ namespace GridSystem
                 return default;
             }
         }
-            
-        
+
+
         public Vector3 GetMouseWorldSnappedPositionV2()
         {
             // Vector3 mousePosition = GetMousePosition(Input.mousePosition);
@@ -512,7 +494,6 @@ namespace GridSystem
             }
         }
 
-        
 
         public Quaternion GetPlacedObjectRotation()
         {
