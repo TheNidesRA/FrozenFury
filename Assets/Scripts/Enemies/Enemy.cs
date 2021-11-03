@@ -101,11 +101,5 @@ namespace Enemies
             Debug.Log("HP: " + Health + " // Dmg: " + Damage + " // Spd: " + Speed + " // Arm: " + Armor +
                       " // AtkSpd: " + AtackSpeed);
         }
-
-        public void EnemyDeath()
-        {
-            if (OnEnemyDeath != null)
-                OnEnemyDeath(gameObject);
-        }
     }
 }

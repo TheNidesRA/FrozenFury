@@ -7,15 +7,9 @@ namespace AutoAttackScripts
 {
     public class BulletScript : MonoBehaviour
     {
-        public AutoShoot player;
         private GameObject _enemyToRemove;
         private Enemy _enemy;
-
-        private void Start()
-        {
-            player = GameObject.Find("PlayerHeladero").GetComponentInChildren<AutoShoot>();
-        }
-
+        
         private void OnCollisionEnter(Collision other)
         {
             if (other.gameObject.CompareTag($"Enemy"))
@@ -23,6 +17,7 @@ namespace AutoAttackScripts
                 _enemyToRemove = other.gameObject;
                 _enemy = _enemyToRemove.GetComponent<Enemy>();
             }
+
             Destroy(gameObject);
         }
 
@@ -30,8 +25,7 @@ namespace AutoAttackScripts
         private void OnDestroy()
         {
             if (_enemyToRemove == null) return;
-            if (!_enemy.OnHit(player.Damage)) return;
-            //player.RemoveEnemy(_enemyToRemove);
+            if (!_enemy.OnHit(PlayerStats._instance.Damage)) return;
             _enemy.Die();
         }
     }

@@ -265,7 +265,7 @@ namespace AutoAttackScripts
 
         private void ShootingNormal(GameObject enemy)
         {
-            Damage = 3;
+            PlayerStats._instance.Damage = 3;
             //calculate direction from the attackpoint to the enemy
             var position = attackPoint.position;
             Vector3 directionShoot = enemy.transform.position - position;
@@ -280,14 +280,14 @@ namespace AutoAttackScripts
 
         private void ShootingBurst(GameObject enemy)
         {
-            Damage = 2;
+            PlayerStats._instance.Damage = 2;
             ShootBulletBurst(enemy);
             StartCoroutine(nameof(WaitToShootBulletBurst), enemy);
         }
 
         private void ShootingShotgun(GameObject enemy)
         {
-            Damage = 5;
+            PlayerStats._instance.Damage = 5;
             var enemyPos = enemy.transform.position;
             var position = attackPoint.position;
 
