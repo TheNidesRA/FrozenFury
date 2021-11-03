@@ -1964,7 +1964,7 @@ GameObject:
   - component: {fileID: 7517002940941140451}
   - component: {fileID: 7517002940941140452}
   - component: {fileID: 7517002940941140453}
-  - component: {fileID: 7517002940941140454}
+  - component: {fileID: 1785316000444156042}
   m_Layer: 10
   m_Name: AttackOneShootRange (Choose only one)
   m_TagString: Untagged
@@ -2064,7 +2064,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &7517002940941140454
+--- !u!114 &1785316000444156042
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2073,20 +2073,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 7517002940941140472}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8ae8b074e076dd4083fe6930183af90, type: 3}
+  m_Script: {fileID: 11500000, guid: 97140db3a5378884d9054ae15cf3590e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  localDistance: 0
-  shooting: 0
-  isPlayer: 0
-  numberEnemies: 0
+  typeOfShooting: 2
+  bulletTimeAlive: 4
+  shootForce: 200
   bullet: {fileID: 620294786073393379, guid: 43cd4fe1869239540b2db329e91ca826, type: 3}
-  shootForce: 180
-  timeBetweenShooting: 1
+  timeBetweenShooting: 0.5
   timeToShootBulletBurst: 0.2
+  shotgunBulletSeparation: 40
   attackPoint: {fileID: 1932166075073489495}
   player: {fileID: 3254825549761764286}
-  _objectiveDirection: {x: 0, y: 0, z: 0, w: 1}
   turnSpeed: 500
   damage: 1
 --- !u!1 &7590409581902874670

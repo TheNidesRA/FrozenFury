@@ -18,6 +18,7 @@ namespace AutoAttackScripts
 
         protected override void ShootEnemy(GameObject enemy)
         {
+            Damage = 2;
             if (enemy == null) return;
             //calculate direction from the attackpoint to the enemy
             Vector3 directionShoot = enemy.transform.position - attackPoint.position;
