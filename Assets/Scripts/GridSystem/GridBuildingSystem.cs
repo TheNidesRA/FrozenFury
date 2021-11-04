@@ -42,8 +42,8 @@ namespace GridSystem
         private Grid<GridObject> _grid; //Scene grid
         private BuildingSO.Dir _dir = BuildingSO.Dir.Down;
         [SerializeField] private List<BuildingSO> _buildingsList;
-
-
+        
+        public  Vector3 startPoint;
         public bool buildMenu = false;
         public bool enableBuildMove = true;
 
@@ -71,7 +71,7 @@ namespace GridSystem
             _control = new InputPlayer();
 
             _grid = new Grid<GridObject>(gridWidth, gridHeight, cellSize,
-                (Grid<GridObject> global, int x, int z) => new GridObject(global, x, z), Vector3.zero);
+                (Grid<GridObject> global, int x, int z) => new GridObject(global, x, z), startPoint);
 
             _buildingSO = null;
             _control.Building.LeftClick.performed += PlaceBuilding;
