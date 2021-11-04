@@ -231,10 +231,10 @@ namespace AutoAttackScripts
             Vector3 directionShoot = enemy.transform.position - position;
 
             //instantiate bullet
-            GameObject secondBullet = Instantiate(bullet, position, Quaternion.identity);
-
+            GameObject currentBullet = Instantiate(bullet, position, Quaternion.identity);
+            AssignShooterOfTheBullet(new List<GameObject>() { currentBullet });
             //add forces to bullet
-            secondBullet.GetComponent<Rigidbody>().AddForce(directionShoot.normalized * shootForce, ForceMode.Impulse);
+            currentBullet.GetComponent<Rigidbody>().AddForce(directionShoot.normalized * shootForce, ForceMode.Impulse);
         }
 
         [ContextMenu("StopStartShooting")]
@@ -272,6 +272,7 @@ namespace AutoAttackScripts
 
             //instantiate bullet
             GameObject currentBullet = Instantiate(bullet, position, Quaternion.identity);
+            AssignShooterOfTheBullet(new List<GameObject>() { currentBullet });
             Destroy(currentBullet, bulletTimeAlive);
 
             //add forces to bullet
@@ -300,6 +301,7 @@ namespace AutoAttackScripts
             var secondBullet = Instantiate(bullet, position, Quaternion.identity);
             var thirdBullet = Instantiate(bullet, position, Quaternion.identity);
 
+            AssignShooterOfTheBullet(new List<GameObject>() { firstBullet, secondBullet, thirdBullet });
             Destroy(firstBullet, bulletTimeAlive);
             Destroy(secondBullet, bulletTimeAlive);
             Destroy(thirdBullet, bulletTimeAlive);
@@ -311,6 +313,24 @@ namespace AutoAttackScripts
                 .AddForce(leftShootPropagation.normalized * shootForce, ForceMode.Impulse);
             thirdBullet.GetComponent<Rigidbody>()
                 .AddForce(rightShootPropagation.normalized * shootForce, ForceMode.Impulse);
+        }
+
+        private void AssignShooterOfTheBullet(List<GameObject> bullets)
+        {
+            if (isPlayer)
+            {
+                foreach (var bullet in bullets)
+                {
+                    bullet.GetComponent<BulletScript>().BulletFromPlayer = true;
+                }
+            }
+            else
+            {
+                foreach (var bullet in bullets)
+                {
+                    bullet.GetComponent<BulletScript>().BulletFromPlayer = false;
+                }
+            }
         }
     }
 }

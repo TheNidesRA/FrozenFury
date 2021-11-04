@@ -72,10 +72,7 @@ namespace Enemies
         {
             Health -= dmg;
 
-            if (Health <= 0) return true;
-
-
-            return false;
+            return Health <= 0;
         }
 
         public RemainingStats GetReaminingStats()
