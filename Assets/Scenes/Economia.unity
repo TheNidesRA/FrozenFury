@@ -7664,6 +7664,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1785316000444156042, guid: b420ffd20606eee4ebd614355291455f, type: 3}
+      propertyPath: typeOfShooting
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1977132254190414253, guid: b420ffd20606eee4ebd614355291455f, type: 3}
       propertyPath: m_Name
       value: PlayerHeladero
@@ -7671,18 +7675,6 @@ PrefabInstance:
     - target: {fileID: 3254825549761764286, guid: b420ffd20606eee4ebd614355291455f, type: 3}
       propertyPath: m_RootOrder
       value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3254825549761764286, guid: b420ffd20606eee4ebd614355291455f, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 3.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3254825549761764286, guid: b420ffd20606eee4ebd614355291455f, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 3.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3254825549761764286, guid: b420ffd20606eee4ebd614355291455f, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 3254825549761764286, guid: b420ffd20606eee4ebd614355291455f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7722,10 +7714,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3254825549761764286, guid: b420ffd20606eee4ebd614355291455f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7517002940695657029, guid: b420ffd20606eee4ebd614355291455f, type: 3}
-      propertyPath: _gold
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -9,18 +9,20 @@ namespace AutoAttackScripts
     public class AutoOneShoot : AutoShoot
     {
         private int _timeAlive = 4;
+
         public override float Damage
         {
-            get => 3;
+            get => damage;
             set
             {
                 if (value <= 0) throw new ArgumentOutOfRangeException(nameof(value));
-                damage = 3;
+                damage = value;
             }
         }
 
         protected override void ShootEnemy(GameObject enemy)
         {
+            Damage = 3;
             if (enemy == null) return;
             //calculate direction from the attackpoint to the enemy
             Vector3 directionShoot = enemy.transform.position - attackPoint.position;
