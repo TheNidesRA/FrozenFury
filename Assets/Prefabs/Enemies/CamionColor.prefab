@@ -741,7 +741,8 @@ GameObject:
   - component: {fileID: 7835134444737689894}
   - component: {fileID: 1964973344541014563}
   - component: {fileID: 2672407461175995592}
-  m_Layer: 0
+  - component: {fileID: 797014961149290380}
+  m_Layer: 9
   m_Name: CamionColor
   m_TagString: Van
   m_Icon: {fileID: 0}
@@ -821,6 +822,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609517bd880c49f792af818c539efe3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &797014961149290380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2555366140905641461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3cced692f044432a3dc2ba18e120650, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _globalHealth: 20
 --- !u!1 &4248030930576238863
 GameObject:
   m_ObjectHideFlags: 0

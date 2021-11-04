@@ -25,6 +25,17 @@ namespace Enemies
         [SerializeField] public EnemyConfiguration enemiconfig;
         
         private WaveGenerator _generator;
+
+        public event EventHandler<int> OnRoundChange;
+        public int round
+        {
+            get => _round;
+            set
+            {
+                _round = value;
+                OnRoundChange?.Invoke(this, _round);
+            }
+        }
         
         
         //Lo hacemos singletone
@@ -102,7 +113,7 @@ namespace Enemies
         public void EndRound()
         {
             _roundActive = false;
-            _round++;
+            round++;
             if(_round == winRound){SceneController._instance.GoToWinScene();}
             Debug.Log("Fin de la ronda. \n" +
                       "round:  " + _round);

@@ -62,6 +62,9 @@
 
 	4.  Fecha de lanzamiento
 
+9. **Contenido jugable en la versión Alpha**
+
+
 # 1. Introducción
 ## 1.1 Descripción breve del concepto
 
@@ -76,7 +79,7 @@ En ese viaje, el heladero robará diferentes recursos para conseguir crear su he
 
 ## 1.3 Propósito, público objetivo y plataformas
 
-Se quiere generar una sensación de diversión y entretenimiento indefinido en los clientes que favorezca la acogida del videojuego entre el público.
+Se quiere generar una sensación de diversión y entretenimiento indefinido en los clientes que favorezca la correcta acogida del videojuego entre el público.
 
 Se debe crear un buen producto con el que el equipo y los diferentes contribuyentes del mismo estén satisfechos.
 
@@ -122,7 +125,7 @@ El equipo de trabajo de la empresa se compone de los siguientes miembros, los cu
 -   **Daniel Sánchez Cánovas**  : Pertenece a las áreas técnica y de diseño del proyecto. Se encarga junto a otro miembro del equipo, del  _Diseño del Gameplay_  del producto, que involucra el planteamiento de las mecánicas y la jugabilidad del mismo, además de la programación de estas dos facetas.
 -   **Miguel Vidal de la Plaza:**  Pertenece al área técnica del proyecto. Se encarga de la programación de las distintas herramientas del producto, además de la programación de mecánicas y jugabilidad junto al resto del equipo técnico.
 -   **Jorge Galiano García:**  Pertenece a las áreas técnica y de diseño del proyecto, especializado en el área técnica mayoritariamente. Se encarga de la programación de mecánicas y jugabilidad y es flexible y polivalente respecto al apartado artístico, pudiendo asumir cargos y tareas de animación 3D de los modelos del videojuego.
--   **Javier Morales Lasheras:**  Pertenece al área artística del proyecto. Se encarga de la elaboración del concept art del producto, que incluye personajes y escenarios jugables. Adicionalmente, lleva a cabo tareas de 3D como modelado de personajes y animación de los mismos.
+-   **Javier Morales Lasheras:**  Pertenece al área artística del proyecto. Se encarga de la elaboración del concept art del producto, que incluye personajes y escenarios jugables, interfaz de juego y pantallas tipo Splash Art. Adicionalmente, lleva a cabo tareas de 3D como modelado de personajes y animación de los mismos.
 -   **Paloma Leiva Haro:**  Pertenece al área artística del proyecto. Se encarga de la elaboración de assets 3D para escenarios y el diseño y modelado del propio escenario jugable de los distintos niveles del producto.
 -   **Adrián Valiente González:**  Pertenece al área artística del proyecto. Se encarga de coordinar las distintas tareas del equipo de 3D (Lead 3D Artist) y de la realización de tareas de modelado de personajes y creación de assets, rigging y animación de los mismos
 
@@ -202,20 +205,18 @@ Todo esto se observará desde una vista ligeramente picada, las hordas de enemig
 
 **PC**
 
--   Espacio/Clic menú desplegable → Modo construcción.
+-   Tecla "Espacio"/Clic menú desplegable → Modo construcción.
 -   Clic izquierdo en el mapa en modo construcción → Colocación de trampas y edificaciones ofensivas y defensivas.
--   Clic izquierdo en el mapa → Movimiento del personaje.
--   QWER → Habilidad
--   1234 → Uso del boost in-game
--   Botón inicio de ronda/asignar tecla → Iniciar ronda
+-   WASD → Movimiento del personaje
+-   E → Habilidad de personaje (No implementada)
+-   Botón inicio de ronda / Tecla "P" → Iniciar ronda
 
 **Móvil**
 
--   Pad → Movimiento del personaje.
--   Clic en el mapa en modo construcción → Colocación de trampas y edificaciones ofensivas y defensivas.
 -   Menú desplegable → Modo construcción.
--   Clic botón → Habilidades
--   Botón para boost → Uso del boost in-game
+-   Clic en el mapa en modo construcción → Colocación de trampas y edificaciones ofensivas y defensivas.
+-   Movimiento del PAD con el dedo → Movimiento del personaje
+-   Clic botón → Habilidad de personaje (No implementada)
 -   Botón inicio de ronda → Iniciar ronda
 
 ## 4.4 Niveles y misiones
@@ -436,3 +437,24 @@ La retroalimentación recibida sobre aquellos aspectos más importantes en el ju
 ## 8.4. Fecha de lanzamiento
 
 El lanzamiento del producto está previsto para el 22 de diciembre del 2021.
+
+# 9. Contenido jugable en la versión Alpha
+
+Como se ha mencionado en apartados previos, el primer entregable del prototipo del videojuego permitirá que el usuario pueda llevar a cabo el transcurso de una partida de comienzo a fin. A falta de implementar un gran número de funcionalidades, esta versión del producto posee las características más relevantes del mismo. Entre ellas se encuentran:
+
+-   Mecánicas principales de juego como el movimiento y disparo del personaje, la generación de oleadas de enemigos que se dirigirán hacia el objetivo principal que el jugador debe defender, la implementación de un modo construcción donde el usuario puede elegir una estructura para situar en un grid y de esta forma defender el objetivo mencionado, implementación de varios tipos de disparo de personaje (tan solo uno de ellos se podrá usar en la alpha), implementación de diferentes tipos de enemigos (en cuanto a sus estadísticas se refiere).
+-   Pantallas de Menú principal, ajustes, contacto con el equipo de desarrollo, victoria y derrota.
+-   Primera aproximación de la estética visual final que tendrá el videojuego, con un shader de tipo 'toon', donde el sombreado será plano y tanto personajes como escenario y edificables, tendrán un outline alrededor.
+
+# 10. Mejora del prototipo de cara a Fase Beta
+
+La fase alpha del producto sirve como una primera toma de contacto con el flujo principal del videojuego, las mecánicas básicas y fundamentales, el arte, estética y temática... y en general, una experiencia inicial de juego que el mismo usuario experimentará en mayor medida en fases posteriores del mismo.
+
+Para la fase Beta, se debe procurar lograr un producto prácticamente completo, con todas las funcionalidades estipuladas en los documentos de diseño del juego. De esta forma:
+-   En cuanto a la parte artística, se incluirán animaciones de todos los personajes del juego para las acciones que lleven a cabo durante el desarrollo de una partida (saltar, caminar, correr, atacar, morir, disparar, idle etc.). Adicionalmente, se refinarán los shaders empleados en la Alpha, y se completarán todos los elementos visuales del HUD (iconos, botones, menús restantes...)
+-   Se incluirán elementos sonoros tanto para SFX como para música de menús y de juego.
+-   Se implementará un inventario de personaje, donde el usuario podrá establecer una configuración de las estructuras que desee construir en el mapa de cara a la siguiente partida. Adicionalmente, en el inventario, se podrá escoger al personaje con el que el usuario jugará la siguiente partida (lo que conlleva un cambio en las mecánicas de disparo) e invertir recursos para mejorarle tanto a él como a las estadísticas de las estructuras que posea en ese momento.
+-   Se creará una tienda donde el usuario podrá invertir la divisa gratuita del juego en la compra de cosméticos para los personajes. En un principio, cada personaje cuenta con dos cosméticos cada uno.
+-   Se desarrollará más en profundidad los distintos tipos de enemigos con los que cuenta el juego y sus respectivos comportamientos. Se estudiarán también diversos artículos de investigación sobre el ajuste de dificultad dinámica de los enemigos, basados en fórmulas matemáticas y factores multiplicadores dependiendes de estadísticas del jugador o del entorno de juego para fomentar la rejugabilidad del producto. Se pretende en todo momento que el usuario se proponga un reto y trate de superar su marca en cada partida que juegue. Es precisamente por ello por lo que la IA de Frozen Fury contará con un ajuste de dificultad dinámica; el desarrollo de una partida puede ser completamente diferente a otra, lo que despertará la curiosidad del jugador por descubrir los límites que la IA será capaz de superar o alcanzar.
+
+	

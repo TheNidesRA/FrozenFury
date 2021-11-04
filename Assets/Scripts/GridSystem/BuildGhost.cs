@@ -11,17 +11,40 @@ public class BuildGhost : MonoBehaviour
     private Transform visual;
     private BuildingSO _building;
     [SerializeField] private GameObject _grid;
+    private GhostBuild _ghostBuild;
 
     void Start()
     {
         RefreshVisual();
         GridBuildingSystem.Instance.OnSelectedChanged += Instance_OnSelectedChanged;
+        GridBuildingSystem.Instance.OnObjectPlaced += Instance_OnObjectPlaced;
+        GridBuildingSystem.Instance.OnObjectSetPosition += Instance_OnObjectSetPosition;
     }
 
 
     private void Instance_OnSelectedChanged(object sender, System.EventArgs e)
     {
         RefreshVisual();
+        ActivateBuildCanvas();
+    }
+    private void Instance_OnObjectSetPosition(object sender, System.EventArgs e)
+    {
+        ActivateBuildCanvas();
+    }
+
+    private void ActivateBuildCanvas()
+    {
+        if (_ghostBuild != null)
+        {
+            _ghostBuild.EnableCanvas();
+            Debug.Log("Activando el canvas");
+        }
+    }
+    
+    
+    private void Instance_OnObjectPlaced(object sender, System.EventArgs e)
+    {
+        _grid.SetActive(false);
     }
 
 
@@ -29,7 +52,7 @@ public class BuildGhost : MonoBehaviour
     {
         if (visual != null)
         {
-            _grid.SetActive(false);
+            _ghostBuild = null;
             Destroy(visual.gameObject);
             visual = null;
         }
@@ -39,7 +62,8 @@ public class BuildGhost : MonoBehaviour
         if (placedObjectTypeSO != null)
         {
             _grid.SetActive(true);
-            visual = Instantiate(placedObjectTypeSO.prefab, Vector3.zero, Quaternion.identity);
+            visual = Instantiate(placedObjectTypeSO.visual, Vector3.zero, Quaternion.identity);
+            _ghostBuild = visual.gameObject.GetComponent<GhostBuild>();
             visual.parent = transform;
             visual.localPosition = Vector3.zero;
             visual.localEulerAngles = Vector3.zero;
@@ -63,13 +87,28 @@ public class BuildGhost : MonoBehaviour
         
         if (visual != null)
         {
-          
-            Vector3 targetPosition = GridBuildingSystem.Instance.GetMouseWorldSnappedPosition();
-            targetPosition.y = 1f;
-            transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * 15f);
+            if (GridBuildingSystem.Instance.enableBuildMove)
+            {
+                Vector3 targetPosition = GridBuildingSystem.Instance.GetMouseWorldSnappedPosition();
+                targetPosition.y = 1f;
+           
+                transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * 15f);
+            
+                transform.rotation = Quaternion.Lerp(transform.rotation,
+                    GridBuildingSystem.Instance.GetPlacedObjectRotation(), Time.deltaTime * 15f);                
+            }
+            else
+            {
+                 Vector3 targetPosition = GridBuildingSystem.Instance.GetMouseWorldSnappedPositionV2();
+                 targetPosition.y = 1f;
+                
+                 transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * 15f);
+            
+                transform.rotation = Quaternion.Lerp(transform.rotation,
+                    GridBuildingSystem.Instance.GetPlacedObjectRotation(), Time.deltaTime * 15f);
+            }
+            
 
-            transform.rotation = Quaternion.Lerp(transform.rotation,
-                GridBuildingSystem.Instance.GetPlacedObjectRotation(), Time.deltaTime * 15f);
         }
     }
 }

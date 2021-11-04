@@ -1,11 +1,12 @@
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
 public class SceneController : MonoBehaviour
 {
-
     public int round;
     public static SceneController _instance { get; private set; }
+
     private void Awake()
     {
         if (_instance != null && _instance != this)
@@ -28,5 +29,10 @@ public class SceneController : MonoBehaviour
     public void GoToWinScene()
     {
         SceneManager.LoadScene("WinScreen");
+    }
+
+    public void GoToGameScene()
+    {
+        SceneManager.LoadScene("Economia");
     }
 }
