@@ -18,38 +18,15 @@ public class BuildGhost : MonoBehaviour
         RefreshVisual();
         GridBuildingSystem.Instance.OnSelectedChanged += Instance_OnSelectedChanged;
         GridBuildingSystem.Instance.OnObjectPlaced += Instance_OnObjectPlaced;
-        GridBuildingSystem.Instance.OnObjectSetPosition += Instance_OnObjectSetPosition;
-        GridBuildingSystem.Instance.OnObjectRemovePosition += Instance_OnObjectRemovePosition;
+
     }
 
 
     private void Instance_OnSelectedChanged(object sender, System.EventArgs e)
     {
         RefreshVisual();
-        ActivateDisableBuildCanvas();
-    }
-    private void Instance_OnObjectSetPosition(object sender, System.EventArgs e)
-    {
-        ActivateDisableBuildCanvas();
     }
 
-    private void Instance_OnObjectRemovePosition(object sender, System.EventArgs e)
-    {
-        ActivateDisableBuildCanvas();
-    }
-    
-    private void ActivateDisableBuildCanvas()
-    {
-        if (_ghostBuild != null && GridBuildingSystem.Instance.buildMenu)
-        {
-            _ghostBuild.EnableCanvas();
-            Debug.Log("Activando el canvas");
-        }
-        else
-        {
-            _ghostBuild.DisableCanvas();
-        }
-    }
     
     
     private void Instance_OnObjectPlaced(object sender, System.EventArgs e)

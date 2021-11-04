@@ -220,6 +220,8 @@ namespace GridSystem
             _ActualBuildPosition = mouseGridPosition;
             buildMenu = true;
             enableBuildMove = false;
+            
+            ComunicacionGridCanvas._instance.SetBuildPosition();
             OnObjectSetPosition?.Invoke(this, EventArgs.Empty);
         }
 
@@ -230,12 +232,16 @@ namespace GridSystem
             {
                 Vector2Int mouseGridPosition = GetMouseGridPosition();
 
+                if (mouseGridPosition == new Vector2Int(-1, -1))
+                    return;
+
                 Debug.Log(mouseGridPosition);
 
                 List<Vector2Int> buildingPositions = _buildingSO.GetGridPositionList(mouseGridPosition, _dir);
 
                 if (CanBuild(buildingPositions))
                 {
+                    ComunicacionGridCanvas._instance.StartBuilding();
                     SetMousePosition(mouseGridPosition);
                 }
                 else
@@ -283,6 +289,7 @@ namespace GridSystem
                     _buildingSO = null;
                     RefreshSelectedObjectType();
                 }
+                ComunicacionGridCanvas._instance.FinishBuilding();
             }
             else
             {
@@ -304,6 +311,7 @@ namespace GridSystem
                     _buildingSO = null;
                     RefreshSelectedObjectType();
                 }
+                ComunicacionGridCanvas._instance.FinishBuilding();
             }
             else
             {
@@ -316,6 +324,7 @@ namespace GridSystem
             _ActualBuildPosition = new Vector2Int();
             buildMenu = false;
             enableBuildMove = true;
+            ComunicacionGridCanvas._instance.EnableBuildMoving();
             OnObjectRemovePosition?.Invoke(this, EventArgs.Empty);
         }
 
@@ -324,6 +333,7 @@ namespace GridSystem
         {
             buildMenu = false;
             enableBuildMove = true;
+            ComunicacionGridCanvas._instance.EnableBuildMoving();
             OnObjectRemovePosition?.Invoke(this, EventArgs.Empty);
         }
 
@@ -378,6 +388,7 @@ namespace GridSystem
 
         private void RefreshSelectedObjectType()
         {
+            ComunicacionGridCanvas._instance.RefreshVisual();
             OnSelectedChanged?.Invoke(this, EventArgs.Empty);
         }
 
@@ -406,6 +417,14 @@ namespace GridSystem
 
 
             Vector2Int placedObjectOrigin = new Vector2Int(x, z);
+            
+            if (x < 0 || z < 0 || x >= gridWidth || z >= gridHeight)
+            {
+                Debug.Log("Fuera de los limites");
+                return new Vector2Int(-1, -1);
+            }
+            
+            
             placedObjectOrigin = _grid.ClampIntoGridPosition(placedObjectOrigin);
 
             return placedObjectOrigin;
