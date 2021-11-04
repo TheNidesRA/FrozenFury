@@ -29,8 +29,12 @@ namespace Enemies
             try{GlobalHealth.instance.DecreaseHealth();}
             catch{Debug.Log("Bro, you need to introduce a globalHealth controller.");}
 
-            //Destruimos al enemigo que ha entrado
+            
             Enemy enemy = other.gameObject.GetComponent<Enemy>();
+            
+            //Add the enemy remaining stats to the DDA
+            DDACalculator.instance.AddWinner(enemy);
+            //Destroy the enemy 
             enemy.Die();
         }
 

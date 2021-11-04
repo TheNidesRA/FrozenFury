@@ -9,47 +9,48 @@ namespace Enemies
     /// </summary>
     public class DDACalculator : MonoBehaviour
     {
-        private Stack<EnemyStats> _winners;
-        public string[] enemyTypes;
+        /// <summary>
+        /// Variable used to read the enemies initialStats
+        /// </summary>
+        public EnemyConfiguration enemyConfig;
+        
+        /// <summary>
+        /// This stack will dynamically store those enemies who reach their goal.
+        /// </summary>
+        private Stack<WinnerStats> _winners;
 
         /// <summary>
-        ///  Contains the multipliers for the DDA:
-        ///  multiplier[0] -> Health
-        ///  multiplier[1] -> Damage
-        ///  multiplier[2] -> Speed
-        ///  multiplier[3] -> Armor
-        ///  multiplier[4] -> Atack Speed
+        /// List with the enemies stats which will be used to keep track of them during the game
         /// </summary>
-        private float[] _multipliers;
+        private List<EnemyStats> _enemyStats;
+        
+        
 
-        /// <summary>
-        /// Function called when a enemy reach the endPoint
-        /// </summary>
-        /// <param name="rs">Enemy remaining stats</param>
-        public void UpdateRemainingStats(EnemyStats rs)
+        public static DDACalculator instance { get; private set; }
+        
+        private void Awake()
         {
-            _winners.Push(rs);
-        }
-
-        public Stack<string> CalculateRoundEnemies()
-        {
-            Stack<string> roundEnemies = new Stack<string>();
-            return null;
-        }
-
-        public void ComputeAdjustment(int round)
-        {
-            if (round == 1) return;
-
-
-            int enemyWinners = _winners.Count;
-            float remainingHp = 0;
-            foreach (var stats in _winners)
+            if (instance != null && instance != this)
             {
-                remainingHp += stats.hp;
+                Destroy(gameObject);
             }
+            else
+            {
+                instance = this;
+            }
+            
+            foreach (var enemy in enemyConfig.enemies)
+            {
+                EnemyStats stats = new EnemyStats(enemy.Id, enemy.Health, enemy.Damage, enemy.Speed, enemy.Armor,
+                    enemy.AtackSpeed, enemy.gold);
+                _enemyStats.Add(stats);
+            }
+        }
 
-
+        public void AddWinner(Enemy enemy)
+        {
+            WinnerStats winner = new WinnerStats(enemy.Id, enemy.Health);
+            _winners.Push(winner);
         }
     }
 }
