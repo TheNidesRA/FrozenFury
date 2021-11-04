@@ -9,7 +9,7 @@ namespace Enemies
     /// </summary>
     public class DDACalculator : MonoBehaviour
     {
-        private Stack<RemainingStats> _winners;
+        private Stack<EnemyStats> _winners;
         public string[] enemyTypes;
 
         /// <summary>
@@ -26,7 +26,7 @@ namespace Enemies
         /// Function called when a enemy reach the endPoint
         /// </summary>
         /// <param name="rs">Enemy remaining stats</param>
-        public void UpdateRemainingStats(RemainingStats rs)
+        public void UpdateRemainingStats(EnemyStats rs)
         {
             _winners.Push(rs);
         }

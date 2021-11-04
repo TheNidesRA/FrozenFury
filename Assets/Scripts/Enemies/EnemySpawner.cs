@@ -27,6 +27,11 @@ namespace Enemies
             StartCoroutine(SpawnWave(enemies));
         }
 
+        public void UpdateEnemyPrefabs()
+        {
+            
+        }
+
 
         private IEnumerator SpawnWave(List<Enemy> enemies)
         {
