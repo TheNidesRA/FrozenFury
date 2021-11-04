@@ -226,6 +226,7 @@ namespace AutoAttackScripts
 
         private void ShootBulletBurst(GameObject enemy)
         {
+            if (enemy == null) return;
             //calculate direction from the attackpoint to the enemy
             var position = attackPoint.position;
             Vector3 directionShoot = enemy.transform.position - position;
