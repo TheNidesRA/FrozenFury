@@ -7,13 +7,14 @@ namespace AutoAttackScripts
     public class AutoShotGunShoot : AutoShoot
     {
         private int _timeAlive = 4;
+
         public override float Damage
         {
-            get => 5;
+            get => damage;
             set
             {
                 if (value <= 0) throw new ArgumentOutOfRangeException(nameof(value));
-                damage = 5;
+                damage = value;
             }
         }
 
@@ -22,6 +23,7 @@ namespace AutoAttackScripts
 
         protected override void ShootEnemy(GameObject enemy)
         {
+            Damage = 5;
             if (enemy == null) return;
 
             //calculate direction from the shot points to the enemy
@@ -37,7 +39,7 @@ namespace AutoAttackScripts
             //instantiate bullets
             var firstBullet = Instantiate(bullet, positionLeft, Quaternion.identity);
             var secondBullet = Instantiate(bullet, positionRight, Quaternion.identity);
-            
+
             Destroy(firstBullet, _timeAlive);
             Destroy(secondBullet, _timeAlive);
 
