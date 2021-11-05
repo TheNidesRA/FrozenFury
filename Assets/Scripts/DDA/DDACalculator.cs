@@ -23,7 +23,8 @@ namespace Enemies
         /// List with the enemies stats which will be used to keep track of them during the game
         /// </summary>
         private List<EnemyStats> _enemyStats;
-        
+
+        private MultiplierManager _multManager;
         
 
         public static DDACalculator instance { get; private set; }
@@ -38,6 +39,9 @@ namespace Enemies
             {
                 instance = this;
             }
+
+            _winners = new Stack<WinnerStats>();
+            _enemyStats = new List<EnemyStats>();
             
             foreach (var enemy in enemyConfig.enemies)
             {
@@ -47,10 +51,15 @@ namespace Enemies
             }
         }
 
+        /// <summary>
+        /// Function called when an enemy reaches the Van
+        /// </summary>
+        /// <param name="enemy"></param>
         public void AddWinner(Enemy enemy)
         {
             WinnerStats winner = new WinnerStats(enemy.Id, enemy.Health);
             _winners.Push(winner);
+            Debug.Log(winner.id + " reached the Van with " + winner.hp + " HP.");
         }
     }
 }

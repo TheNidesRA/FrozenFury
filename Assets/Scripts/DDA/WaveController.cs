@@ -44,7 +44,6 @@ namespace Enemies
         private void Awake()
         {
             _generator = new WaveGenerator(enemiconfig, levelDificulty, minEnemies);
-            testController = new InputPlayer();
             if (_instance != null && _instance!=this)
             {
                 Destroy(this.gameObject);
@@ -54,38 +53,7 @@ namespace Enemies
                 _instance = this;
             }
         }
-
-        #region TestInput
-
         
-
-        
-        ////////////////////Test Input/////////////////////////////
-        private InputPlayer testController;
-
-        private void Start()
-        {
-            testController.Test.SpawnEnemy.performed += testSpawn;
-        }
-
-        private void testSpawn(InputAction.CallbackContext obj)
-        {
-            StartWave();
-        }
-
-        private void OnEnable()
-        {
-            testController.Enable();
-        }
-
-        
-        private void OnDisable()
-        {
-            testController.Disable();
-        }
-        
-        /////////////////Fin de Test Input///////////////////////////
-        #endregion
 
         [ContextMenu("Comenzar la ronda")]
         public void StartWave()
