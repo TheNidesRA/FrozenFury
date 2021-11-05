@@ -22,6 +22,11 @@ public class BuildingButtons : MonoBehaviour
       GridBuildingSystem.Instance.Confirm();
          
    }
+
+   public void UndoSelection()
+   {
+      GridBuildingSystem.Instance.removeSelectedBuild();
+   }
   
    
 }

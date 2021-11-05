@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using GridSystem;
@@ -6,7 +7,7 @@ using UnityEngine;
 
 public class ComunicacionGridCanvas : MonoBehaviour
 {
-    public static ComunicacionGridCanvas _instance { get; private set; }
+
 
     public GameObject BuildButton;
 
@@ -19,19 +20,39 @@ public class ComunicacionGridCanvas : MonoBehaviour
     
     
     
-    private void Awake()
+    private void Start()
     {
-        if (_instance != null && _instance != this)
-        {
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            _instance = this;
-        }
+        RefreshVisual();
+        GridBuildingSystem.Instance.OnSelectedChanged += Instance_OnSelectedChanged;
+        GridBuildingSystem.Instance.OnObjectRemovePosition += Instance_OnObjectRemovePosition;
+        GridBuildingSystem.Instance.OnObjectPlaced += Instance_OnObjectPlaced;
+        GridBuildingSystem.Instance.OnObjectSetPosition += Instance_OnObjectSetPosition;
     }
 
 
+    private void Instance_OnSelectedChanged(object sender, EventArgs eventArgs)
+    {
+        RefreshVisual();
+    }
+
+    private void Instance_OnObjectRemovePosition(object sender, EventArgs eventArgs)
+    {
+        EnableBuildMoving();
+    }
+    
+    private void Instance_OnObjectPlaced(object sender, EventArgs eventArgs)
+    {
+        FinishBuilding();
+    }
+    private void Instance_OnObjectSetPosition(object sender, EventArgs eventArgs)
+    {
+        SetBuildPosition();
+    }
+
+    
+    
+    
+    
     public void StartBuilding()
     {
         BuildButton.SetActive(false);
@@ -57,9 +78,8 @@ public class ComunicacionGridCanvas : MonoBehaviour
     }
 
 
-    public void RefreshVisual()
+    private void RefreshVisual()
     {
-
         if (build != null)
         {
             Destroy(build.gameObject);
@@ -77,6 +97,11 @@ public class ComunicacionGridCanvas : MonoBehaviour
             build.localEulerAngles = Vector3.zero;
             SetLayerRecursive(build.gameObject, 5);
             _texto.text = placedObjectTypeSO.name;
+        }
+        else
+        {
+            EditBuild.SetActive(false);
+            BuildButton.SetActive(true);
         }
     }
     

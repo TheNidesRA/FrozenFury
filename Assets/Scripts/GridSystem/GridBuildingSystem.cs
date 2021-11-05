@@ -26,6 +26,7 @@ namespace GridSystem
 
         public event EventHandler OnObjectSetPosition;
         public event EventHandler OnObjectRemovePosition;
+        public event EventHandler OnMissSetPosition;
 
         public event EventHandler OnClickOutOfObject;
 
@@ -202,6 +203,15 @@ namespace GridSystem
         }
 
 
+
+        public void removeSelectedBuild()
+        {
+            _buildingSO = null;
+            buildMenu = false;
+            enableBuildMove = true;
+            RefreshSelectedObjectType();
+        }
+
         private void Rotate(InputAction.CallbackContext callbackContext)
         {
             //Debug.Log(_dir);
@@ -221,7 +231,7 @@ namespace GridSystem
             buildMenu = true;
             enableBuildMove = false;
             
-            ComunicacionGridCanvas._instance.SetBuildPosition();
+            //ComunicacionGridCanvas._instance.SetBuildPosition();
             OnObjectSetPosition?.Invoke(this, EventArgs.Empty);
         }
 
@@ -241,11 +251,12 @@ namespace GridSystem
 
                 if (CanBuild(buildingPositions))
                 {
-                    ComunicacionGridCanvas._instance.StartBuilding();
+                    //ComunicacionGridCanvas._instance.StartBuilding();
                     SetMousePosition(mouseGridPosition);
                 }
                 else
                 {
+                    OnMissSetPosition?.Invoke(this,EventArgs.Empty);
                     Debug.Log("No se puede !!! :)");
                 }
             }
@@ -274,6 +285,7 @@ namespace GridSystem
 
         private void Confirm(InputAction.CallbackContext callbackContext)
         {
+            if (_buildingSO == null) return;
             List<Vector2Int> buildingPositions = _buildingSO.GetGridPositionList(_ActualBuildPosition, _dir);
 
             if (CanBuild(buildingPositions))
@@ -289,10 +301,11 @@ namespace GridSystem
                     _buildingSO = null;
                     RefreshSelectedObjectType();
                 }
-                ComunicacionGridCanvas._instance.FinishBuilding();
+               // ComunicacionGridCanvas._instance.FinishBuilding();
             }
             else
             {
+                OnMissSetPosition?.Invoke(this,EventArgs.Empty);
                 Debug.Log("No se puede !!! :)");
             }
         }
@@ -311,10 +324,11 @@ namespace GridSystem
                     _buildingSO = null;
                     RefreshSelectedObjectType();
                 }
-                ComunicacionGridCanvas._instance.FinishBuilding();
+              //  ComunicacionGridCanvas._instance.FinishBuilding();
             }
             else
             {
+                OnMissSetPosition?.Invoke(this,EventArgs.Empty);
                 Debug.Log("No se puede !!! :)");
             }
         }
@@ -324,7 +338,7 @@ namespace GridSystem
             _ActualBuildPosition = new Vector2Int();
             buildMenu = false;
             enableBuildMove = true;
-            ComunicacionGridCanvas._instance.EnableBuildMoving();
+            //ComunicacionGridCanvas._instance.EnableBuildMoving();
             OnObjectRemovePosition?.Invoke(this, EventArgs.Empty);
         }
 
@@ -333,7 +347,7 @@ namespace GridSystem
         {
             buildMenu = false;
             enableBuildMove = true;
-            ComunicacionGridCanvas._instance.EnableBuildMoving();
+           // ComunicacionGridCanvas._instance.EnableBuildMoving();
             OnObjectRemovePosition?.Invoke(this, EventArgs.Empty);
         }
 
@@ -383,12 +397,13 @@ namespace GridSystem
         private void DeselectObjectType(InputAction.CallbackContext callbackContext)
         {
             _buildingSO = null;
+            
             RefreshSelectedObjectType();
         }
 
         private void RefreshSelectedObjectType()
         {
-            ComunicacionGridCanvas._instance.RefreshVisual();
+            
             OnSelectedChanged?.Invoke(this, EventArgs.Empty);
         }
 
@@ -420,7 +435,7 @@ namespace GridSystem
             
             if (x < 0 || z < 0 || x >= gridWidth || z >= gridHeight)
             {
-                Debug.Log("Fuera de los limites");
+               // Debug.Log("Fuera de los limites");
                 return new Vector2Int(-1, -1);
             }
             
