@@ -74,7 +74,7 @@ namespace GridSystem
                 (Grid<GridObject> global, int x, int z) => new GridObject(global, x, z), startPoint);
 
             _buildingSO = null;
-            _control.Building.LeftClick.performed += PlaceBuilding;
+            _control.Building.LeftClick.canceled += PlaceBuilding;
             _control.Building.Build1.performed += ChangeBuild;
             _control.Building.Build2.performed += ChangeBuild;
             _control.Building.Build3.performed += ChangeBuild;
