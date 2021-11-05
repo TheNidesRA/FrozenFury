@@ -878,6 +878,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rct: {fileID: 3202668868432589829}
+  _originalPosition: {x: 0, y: 0, z: 0}
+  pivot: {fileID: 0}
+  check: 0
 --- !u!1 &8581267214235627194
 GameObject:
   m_ObjectHideFlags: 0
@@ -963,8 +966,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5856697410693596186}
   - component: {fileID: 3795701794946904302}
-  - component: {fileID: 7055557033947324622}
   - component: {fileID: 5824530454211883362}
+  - component: {fileID: 1176679413300254720}
   m_Layer: 11
   m_Name: PivoteTurret
   m_TagString: Untagged
@@ -1003,31 +1006,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &7055557033947324622
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8647953171325567924}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51f6bb74126e504438ad95007c15771c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  localDistance: 0
-  shooting: 0
-  isPlayer: 0
-  numberEnemies: 0
-  bullet: {fileID: 7040415461391761229, guid: 030c8365f12db1d45a83ca8ee5992619, type: 3}
-  shootForce: 40
-  timeBetweenShooting: 1
-  timeToShootBulletBurst: 0.2
-  attackPoint: {fileID: 7847305244981481126}
-  player: {fileID: 5856697410693596186}
-  _objectiveDirection: {x: 0, y: 0, z: 0, w: 1}
-  turnSpeed: 1000
-  damage: 2
 --- !u!135 &5824530454211883362
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1041,3 +1019,26 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 20
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1176679413300254720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8647953171325567924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97140db3a5378884d9054ae15cf3590e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  typeOfShooting: 0
+  bulletTimeAlive: 4
+  shootForce: 40
+  bullet: {fileID: 7040415461391761229, guid: 030c8365f12db1d45a83ca8ee5992619, type: 3}
+  timeBetweenShooting: 1
+  timeToShootBulletBurst: 0.2
+  shotgunBulletSeparation: 40
+  attackPoint: {fileID: 7847305244981481126}
+  player: {fileID: 5856697410693596186}
+  turnSpeed: 1000
+  damage: 2
