@@ -12,16 +12,29 @@ public class ComunicacionGridCanvas : MonoBehaviour
     public GameObject BuildButton;
 
     public GameObject EditBuild;
-
+    private RectTransform _rectTransformEditBuild;
     public GameObject buildPlaceVisual;
 
     private Transform build;
     public TextMeshProUGUI _texto;
+
+    public Vector3 insidePosition;
+    public Vector3 outsidePosition;
+
+    public float transitionTime;
+
+    private LTDescr tween;
+    
+    
+    /////////////////////////////////////////////////////////////////////////////
+   
+    
     
     
     
     private void Start()
     {
+        _rectTransformEditBuild = EditBuild.GetComponent<RectTransform>();
         RefreshVisual();
         GridBuildingSystem.Instance.OnSelectedChanged += Instance_OnSelectedChanged;
         GridBuildingSystem.Instance.OnObjectRemovePosition += Instance_OnObjectRemovePosition;
@@ -50,31 +63,25 @@ public class ComunicacionGridCanvas : MonoBehaviour
     }
 
     
-    
-    
-    
-    public void StartBuilding()
-    {
-        BuildButton.SetActive(false);
-        EditBuild.SetActive(true);
-        
-    }
+
 
     public void FinishBuilding()
     {
         BuildButton.SetActive(true);
-        EditBuild.SetActive(false);
+        tween = LeanTween.move(_rectTransformEditBuild, outsidePosition, 0.5f).setEaseOutCubic().setOnComplete(() => {EditBuild.SetActive(false); });
     }
 
 
     public void SetBuildPosition()
     {
+        BuildButton.SetActive(false);
         EditBuild.SetActive(true);
+        tween = LeanTween.moveX(_rectTransformEditBuild.GetComponent<RectTransform>(), insidePosition.x, 0.5f).setEaseInCubic();//.setOnComplete(() => {EditBuild.SetActive(true); });
     }
     
     public void EnableBuildMoving()
     {
-        EditBuild.SetActive(false);
+        tween = LeanTween.move(_rectTransformEditBuild, outsidePosition, 0.5f).setEaseOutCubic().setOnComplete(() => {EditBuild.SetActive(false); });
     }
 
 
@@ -100,7 +107,7 @@ public class ComunicacionGridCanvas : MonoBehaviour
         }
         else
         {
-            EditBuild.SetActive(false);
+            tween = LeanTween.move(_rectTransformEditBuild, outsidePosition, 0.5f).setEaseOutCubic().setOnComplete(() => {EditBuild.SetActive(false); });
             BuildButton.SetActive(true);
         }
     }
@@ -115,7 +122,5 @@ public class ComunicacionGridCanvas : MonoBehaviour
         }
     }
     
-    
-    
-    
+
 }
