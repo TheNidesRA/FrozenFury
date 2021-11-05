@@ -21,14 +21,15 @@ namespace GridSystem
         /// called when _buildingSO is changed
         /// </summary>
         public event EventHandler OnSelectedChanged; //Callback 
-
         public event EventHandler OnObjectPlaced;
-
         public event EventHandler OnObjectSetPosition;
         public event EventHandler OnObjectRemovePosition;
         public event EventHandler OnMissSetPosition;
-
         public event EventHandler OnClickOutOfObject;
+        public event EventHandler<PlacedBuild> OnBuildSelected;
+        
+        
+        
 
         /// <summary>
         /// current Build
@@ -83,6 +84,7 @@ namespace GridSystem
             _control.Building.UndoSelection.performed += DeselectObjectType;
             _control.Building.Rotate.performed += Rotate;
             _control.Building.Confirm.performed += Confirm;
+            _control.Building.SelectBuid.performed += SearchBuilding;
         }
 
 
@@ -235,7 +237,35 @@ namespace GridSystem
             OnObjectSetPosition?.Invoke(this, EventArgs.Empty);
         }
 
+        private void SearchBuilding(InputAction.CallbackContext callbackContext)
+        {
+            Debug.Log("Buscando y talll");
+            if (_buildingSO != null && !buildMenu)
+            {
+                
+            }
+            else
+            {
+                GridObject gridObject = GetMouseGridObject();
 
+                if (gridObject != null)
+                {
+                    PlacedBuild placedBuild = gridObject.GetPlaceBuild();
+                    if (placedBuild != null)
+                    {
+                        Debug.Log("Cogiendo el aux");
+                        OnBuildSelected?.Invoke(this,placedBuild);
+                       
+                    }
+                    else
+                    {
+                        //OnClickOutOfObject?.Invoke(this,EventArgs.Empty);
+                    }
+                }
+            }
+        }
+        
+        
         private void PlaceBuilding(InputAction.CallbackContext callbackContext)
         {
             if (_buildingSO != null && !buildMenu)
@@ -260,26 +290,7 @@ namespace GridSystem
                     Debug.Log("No se puede !!! :)");
                 }
             }
-            else
-            {
-                GridObject gridObject = GetMouseGridObject();
-
-                if (gridObject != null)
-                {
-                    PlacedBuild placedBuild = gridObject.GetPlaceBuild();
-
-
-                    if (placedBuild != null)
-                    {
-                        Debug.Log("Cogiendo el aux");
-                        placedBuild.IsClicked();
-                    }
-                    else
-                    {
-                        //OnClickOutOfObject?.Invoke(this,EventArgs.Empty);
-                    }
-                }
-            }
+       
         }
 
 

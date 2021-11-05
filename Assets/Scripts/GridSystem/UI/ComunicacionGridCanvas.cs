@@ -28,18 +28,24 @@ public class ComunicacionGridCanvas : MonoBehaviour
     
     /////////////////////////////////////////////////////////////////////////////
    
-    
-    
+    public TextMeshProUGUI _buildUpdateText;
+    public GameObject _buildUpdateObjectPlace;
+    public GameObject _buildUpdateConteiner;
+    private Transform buildUpdate;
+    private PlacedBuild _placedBuild;
+    private RectTransform _rectTransformBuildUpdate;
     
     
     private void Start()
     {
         _rectTransformEditBuild = EditBuild.GetComponent<RectTransform>();
+        _rectTransformBuildUpdate = _buildUpdateConteiner.GetComponent<RectTransform>();
         RefreshVisual();
         GridBuildingSystem.Instance.OnSelectedChanged += Instance_OnSelectedChanged;
         GridBuildingSystem.Instance.OnObjectRemovePosition += Instance_OnObjectRemovePosition;
         GridBuildingSystem.Instance.OnObjectPlaced += Instance_OnObjectPlaced;
         GridBuildingSystem.Instance.OnObjectSetPosition += Instance_OnObjectSetPosition;
+        GridBuildingSystem.Instance.OnBuildSelected += Instance_OnBuildSelected;
     }
 
 
@@ -61,9 +67,18 @@ public class ComunicacionGridCanvas : MonoBehaviour
     {
         SetBuildPosition();
     }
-
     
+    
+    private void Instance_OnBuildSelected(object sender, PlacedBuild eventArgs)
+    {
+        _buildUpdateConteiner.SetActive(true);
+        RefreshVisualUpdateBuild(eventArgs);
+        tween = LeanTween.move(_rectTransformBuildUpdate, insidePosition, 0.5f).setEaseInCubic();
+        BuildButton.SetActive(false);
 
+
+    }
+    
 
     public void FinishBuilding()
     {
@@ -84,6 +99,21 @@ public class ComunicacionGridCanvas : MonoBehaviour
         tween = LeanTween.move(_rectTransformEditBuild, outsidePosition, 0.5f).setEaseOutCubic().setOnComplete(() => {EditBuild.SetActive(false); });
     }
 
+
+
+    public void RemoveBuild()
+    {
+        if (_placedBuild == null) return;
+        GridBuildingSystem.Instance.RemoveBuild(_placedBuild);
+        RefreshVisualUpdateBuild(null);
+    }
+
+    public void HideUpdateBuild()
+    {
+        tween = LeanTween.move(_rectTransformBuildUpdate, outsidePosition, 0.5f).setEaseOutCubic().setOnComplete(() => {_buildUpdateConteiner.SetActive(false); });
+        BuildButton.SetActive(true);
+    }
+    
 
     private void RefreshVisual()
     {
@@ -111,6 +141,39 @@ public class ComunicacionGridCanvas : MonoBehaviour
             BuildButton.SetActive(true);
         }
     }
+    
+    
+    
+    private void RefreshVisualUpdateBuild(PlacedBuild placedBuild)
+    {
+        if (buildUpdate != null)
+        {
+            Destroy(buildUpdate.gameObject);
+            buildUpdate = null;
+            _placedBuild = null;
+        }
+        
+      
+        if (placedBuild != null)
+        {
+            _placedBuild = placedBuild;
+            buildUpdate = Instantiate(placedBuild.BuildingSo.canvasVisual, Vector3.zero, Quaternion.identity,
+                _buildUpdateObjectPlace.transform);
+
+            buildUpdate.localPosition = new Vector3(0, 0, -60);
+            buildUpdate.localEulerAngles = Vector3.zero;
+            SetLayerRecursive(buildUpdate.gameObject, 5);
+            _buildUpdateText.text = placedBuild.BuildingSo.name;
+        }
+        else
+        {
+            tween = LeanTween.move(_rectTransformBuildUpdate, outsidePosition, 0.5f).setEaseOutCubic().setOnComplete(() => {_buildUpdateConteiner.SetActive(false); });
+            BuildButton.SetActive(true);
+        }
+    }
+    
+    
+    
     
     
     private void SetLayerRecursive(GameObject targetGameObject, int layer)
