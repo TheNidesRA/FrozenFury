@@ -60,7 +60,7 @@ public class BuildingSO : ScriptableObject
     public Transform visual;
     public Transform canvasVisual;
     public float goldCost = 1;
-
+    
 
     public List<Vector2Int> GetGridPositionList(Vector2Int offset, Dir dir)
     {

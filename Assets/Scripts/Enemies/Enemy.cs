@@ -72,10 +72,7 @@ namespace Enemies
         {
             Health -= dmg;
 
-            if (Health <= 0) return true;
-
-
-            return false;
+            return Health <= 0;
         }
 
         public RemainingStats GetReaminingStats()
@@ -100,12 +97,6 @@ namespace Enemies
         {
             Debug.Log("HP: " + Health + " // Dmg: " + Damage + " // Spd: " + Speed + " // Arm: " + Armor +
                       " // AtkSpd: " + AtackSpeed);
-        }
-
-        public void EnemyDeath()
-        {
-            if (OnEnemyDeath != null)
-                OnEnemyDeath(gameObject);
         }
     }
 }
