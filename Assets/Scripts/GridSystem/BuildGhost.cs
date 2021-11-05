@@ -11,6 +11,8 @@ public class BuildGhost : MonoBehaviour
     private Transform visual;
     private BuildingSO _building;
     [SerializeField] private GameObject _grid;
+
+    private ChangeColor _changeColor;
     //private GhostBuild _ghostBuild;
 
     void Start()
@@ -31,7 +33,9 @@ public class BuildGhost : MonoBehaviour
 
     private void Instance_OnMissSetPosition(object sender, System.EventArgs e)
     {
-        visual.GetComponent<Material>().color=Color.red;
+        if(_changeColor!=null)
+        _changeColor.Cambiar();
+   
     }
     
     private void Instance_OnObjectPlaced(object sender, System.EventArgs e)
@@ -47,6 +51,7 @@ public class BuildGhost : MonoBehaviour
             //_ghostBuild = null;
             Destroy(visual.gameObject);
             visual = null;
+            _changeColor = null;
         }
 
         BuildingSO placedObjectTypeSO = GridBuildingSystem.Instance.buildingSo;
@@ -59,6 +64,7 @@ public class BuildGhost : MonoBehaviour
             visual.parent = transform;
             visual.localPosition = Vector3.zero;
             visual.localEulerAngles = Vector3.zero;
+            _changeColor=visual.GetComponent<ChangeColor>();
             SetLayerRecursive(visual.gameObject, 11);
         }
         else
