@@ -131,7 +131,7 @@ public class ComunicacionGridCanvas : MonoBehaviour
                 buildPlaceVisual.transform);
 
             build.localPosition = new Vector3(0, 0, -60);
-            build.localEulerAngles = Vector3.zero;
+            build.localEulerAngles = placedObjectTypeSO.canvasVisual.rotation.eulerAngles;
             SetLayerRecursive(build.gameObject, 5);
             _texto.text = placedObjectTypeSO.name;
         }
@@ -161,7 +161,7 @@ public class ComunicacionGridCanvas : MonoBehaviour
                 _buildUpdateObjectPlace.transform);
 
             buildUpdate.localPosition = new Vector3(0, 0, -60);
-            buildUpdate.localEulerAngles = Vector3.zero;
+            buildUpdate.localEulerAngles = placedBuild.BuildingSo.canvasVisual.rotation.eulerAngles;;
             SetLayerRecursive(buildUpdate.gameObject, 5);
             _buildUpdateText.text = placedBuild.BuildingSo.name;
         }

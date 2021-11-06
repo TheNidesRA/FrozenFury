@@ -13,6 +13,16 @@ public class ChangeColor : MonoBehaviour
     public LeanTweenType inEase;
     public LeanTweenType outEase;
 
+
+    void Reset()
+    {
+        newColor = new Color(255, 0, 0, 140);
+        time = 0.6f;
+        inEase = LeanTweenType.easeInSine;
+        outEase = LeanTweenType.easeOutSine;
+    }
+
+
     private void Awake()
     {
         originalColor = Materials[0].material.GetColor("_Color");
@@ -25,20 +35,14 @@ public class ChangeColor : MonoBehaviour
 
     public void Cambiar()
     {
-      
-
         Debug.Log("Cambiando color");
 
         foreach (var VARIABLE in Materials)
         {
- 
             VARIABLE.gameObject.LeanColor(newColor, time).setEase(inEase).setOnComplete(() =>
             {
                 VARIABLE.gameObject.LeanColor(originalColor, time).setEase(outEase);
             });
         }
     }
-
-
-
 }
