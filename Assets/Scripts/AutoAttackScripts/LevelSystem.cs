@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class UpgradePlayer : MonoBehaviour
+public class LevelSystem : MonoBehaviour
 {
     public AnimationCurve damageLevelCurve;
     public AnimationCurve attackSpeedLevelCurve;
@@ -56,8 +56,8 @@ public class UpgradePlayer : MonoBehaviour
         }
     }
 
-    public static float prueba(AnimationCurve curva, float pos)
+    public static float CalculateStat(AnimationCurve curve, float level)
     {
-        return curva.Evaluate(pos);
+        return curve.Evaluate(level);
     }
 }
