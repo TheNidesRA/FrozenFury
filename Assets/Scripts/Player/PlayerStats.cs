@@ -9,7 +9,7 @@ public class PlayerStats : MonoBehaviour
 
     [SerializeField] private float _gold;
 
-    [SerializeField] private float damage;
+    [SerializeField] private float damage = 0;
 
     public float Damage
     {
