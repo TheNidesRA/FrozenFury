@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using Enemies;
 using UnityEngine;
 
@@ -7,13 +5,14 @@ namespace AutoAttackScripts
 {
     public class BulletScript : MonoBehaviour
     {
-        public AutoShoot player;
         private GameObject _enemyToRemove;
         private Enemy _enemy;
+        private bool _bulletFromPlayer;
 
-        private void Start()
+        public bool BulletFromPlayer
         {
-            player = GameObject.Find("Player").GetComponentInChildren<AutoShoot>();
+            get => _bulletFromPlayer;
+            set => _bulletFromPlayer = value;
         }
 
         private void OnCollisionEnter(Collision other)
@@ -22,16 +21,26 @@ namespace AutoAttackScripts
             {
                 _enemyToRemove = other.gameObject;
                 _enemy = _enemyToRemove.GetComponent<Enemy>();
-                Destroy(gameObject);
             }
+
+            Destroy(gameObject);
         }
 
 
         private void OnDestroy()
         {
             if (_enemyToRemove == null) return;
-            if (!_enemy.OnHit(player.Damage)) return;
-            //player.RemoveEnemy(_enemyToRemove);
+            if (_bulletFromPlayer)
+            {
+                if (!_enemy.OnHit(PlayerStats._instance.Damage))
+                    return;
+            }
+            else
+            {
+                if (!_enemy.OnHit(3))
+                    return;
+            }
+
             _enemy.Die();
         }
     }

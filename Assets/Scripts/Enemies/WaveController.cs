@@ -12,16 +12,30 @@ namespace Enemies
         /// Minimmun enemies per round
         /// </summary>
         public int minEnemies = 10;
+
         /// <summary>
         /// Global level difficulty
         /// </summary>
+        public int winRound = 2;
         public int levelDificulty = 10;
         private Wave _currentWave;
         private int _round=1;
         private int _enemiesAlive;
         private bool _roundActive;
         [SerializeField] public EnemyConfiguration enemiconfig;
+        
         private WaveGenerator _generator;
+
+        public event EventHandler<int> OnRoundChange;
+        public int round
+        {
+            get => _round;
+            set
+            {
+                _round = value;
+                OnRoundChange?.Invoke(this, _round);
+            }
+        }
         
         
         //Lo hacemos singletone
@@ -79,8 +93,7 @@ namespace Enemies
             
             if (_currentWave == null || !_roundActive)
             {
-                // if (_round > Waves.Count - 1) return;
-                // _currentWave = Waves[_round];
+                SceneController._instance.round = _round;
                 _currentWave = _generator.GenerateWave(_round);
                 Spawner.StartRound(_currentWave.Enemies);
                 _enemiesAlive = _currentWave.Enemies.Count;
@@ -100,8 +113,10 @@ namespace Enemies
         public void EndRound()
         {
             _roundActive = false;
-            _round++;
-            Debug.Log("Fin de la ronda");
+            round++;
+            if(_round == winRound){SceneController._instance.GoToWinScene();}
+            Debug.Log("Fin de la ronda. \n" +
+                      "round:  " + _round);
         }
     }
 }

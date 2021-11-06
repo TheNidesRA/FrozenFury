@@ -17,7 +17,6 @@ namespace Enemies
             // Camera = GameObject.FindWithTag("MainCamera");
             Enemy enemy = GetComponentInParent<Enemy>();
             // healtBar = GetComponentInChildren<UnityEngine.UI.Image>();
-            enemy.OnHealthChanged += HandleHealth;
             maxHealth = enemy.Health;
             // gameObject.transform.LookAt(Camera.transform.position);
         }

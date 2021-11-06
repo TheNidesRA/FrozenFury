@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Enemies;
 using UnityEngine;
-using UnityEngine.Serialization;
+using Quaternion = UnityEngine.Quaternion;
+using Vector3 = UnityEngine.Vector3;
 
 namespace AutoAttackScripts
 {
@@ -14,19 +15,27 @@ namespace AutoAttackScripts
     /// because detecting the enemies is the same no matter which type of shoot you are making, but the method
     /// Shoot() is what will be changing in the other classes. This can be updated/change in the future.
     /// </summary>
-    public abstract class AutoShoot : MonoBehaviour
+    public class AutoShoot : MonoBehaviour
     {
+        [Header("Choose type of shooting")] public ShootingStyle typeOfShooting = ShootingStyle.Normal;
+        [Header("Time to destroy bullet")] public float bulletTimeAlive = 4.0f;
+
+        /// <summary>
+        /// This changes the velocity of the projectile
+        /// </summary>
+        [Header("This changes the velocity of the projectile")]
+        public float shootForce;
+
         /// <summary>
         /// variable to store the distance between the player and the center of the collider which should be where
         /// the player is.
         /// </summary>
-        [SerializeField] private float localDistance = 0;
+        private float localDistance = 0;
 
-        [SerializeField] private bool shooting = false;
+        private bool shooting = false;
 
-        [SerializeField] private bool isPlayer;
+        private bool isPlayer;
 
-        public int numberEnemies = 0;
 
         public bool Shooting
         {
@@ -34,9 +43,11 @@ namespace AutoAttackScripts
             set => shooting = value;
         }
 
-        private void Update()
+        public enum ShootingStyle
         {
-            numberEnemies = _enemies.Count;
+            Normal,
+            Burst,
+            Shotgun,
         }
 
         /// <summary>
@@ -46,12 +57,6 @@ namespace AutoAttackScripts
 
         [Header("The GameObject which will be shot")]
         public GameObject bullet;
-
-        /// <summary>
-        /// This changes the velocity of the projectile
-        /// </summary>
-        [Header("This changes the velocity of the projectile")]
-        public float shootForce;
 
         /// <summary>
         /// Time to wait until the Shoot() method is executed
@@ -65,6 +70,9 @@ namespace AutoAttackScripts
         [Header("Time between you shoot the second bullet of the Shoot() method, this is only used in AutoTwoShoots")]
         public float timeToShootBulletBurst = 0.2f;
 
+        [Header("Change the shotgun bullets spreed")]
+        public int shotgunBulletSeparation = 40;
+
         /// <summary>
         /// The point from where you shoot.
         /// </summary>
@@ -73,7 +81,7 @@ namespace AutoAttackScripts
 
         [Header("Position of the player")] public Transform player;
 
-        [SerializeField] private Quaternion _objectiveDirection = Quaternion.identity;
+        private Quaternion _objectiveDirection = Quaternion.identity;
 
         /// <summary>
         /// velocity to turn.
@@ -85,9 +93,8 @@ namespace AutoAttackScripts
         /// </summary>
         [SerializeField] protected float damage = 1;
 
-        public abstract float Damage { set; get; }
+        public virtual float Damage { set; get; }
 
-        // Start is called before the first frame update
         private void Start()
         {
             _enemies = new Dictionary<GameObject, float>();
@@ -129,7 +136,6 @@ namespace AutoAttackScripts
         {
             while (true)
             {
-                //Debug.Log("gameobject:" + gameObject + "enemies: " + _enemies.Count);
                 if (_enemies.Count == 0)
                 {
                     nuevoPlayerMovement.controlMovimiento = true;
@@ -169,22 +175,43 @@ namespace AutoAttackScripts
             }
         }
 
-        protected abstract void ShootEnemy(GameObject enemy);
+        protected virtual void ShootEnemy(GameObject enemy)
+        {
+            if (enemy == null) return;
+            switch (typeOfShooting)
+            {
+                case ShootingStyle.Normal:
+                    ShootingNormal(enemy);
+                    break;
+                case ShootingStyle.Burst:
+                    ShootingBurst(enemy);
+                    break;
+                case ShootingStyle.Shotgun:
+                    ShootingShotgun(enemy);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException("typeofShooting", "Invalid type of shooting");
+            }
+        }
 
         public virtual void RotatePlayerToEnemy(GameObject enemy)
         {
-            if (enemy == null)
-            {
-                return;
-            }
+            if (enemy == null) return;
 
-            _objectiveDirection =
-                Quaternion.LookRotation((enemy.transform.position - player.transform.position).normalized);
-            player.transform.rotation =
-                Quaternion.Slerp(player.transform.rotation, _objectiveDirection, Time.deltaTime * turnSpeed);
+            if (isPlayer)
+            {
+                _objectiveDirection =
+                    Quaternion.LookRotation((enemy.transform.position - player.transform.position).normalized);
+                player.transform.rotation =
+                    Quaternion.Slerp(player.transform.rotation, _objectiveDirection, Time.deltaTime * turnSpeed);
+            }
+            else
+            {
+                player.transform.LookAt(enemy.transform);
+            }
         }
 
-        public void RemoveEnemy(GameObject enemy)
+        private void RemoveEnemy(GameObject enemy)
         {
             _enemies.Remove(enemy);
             enemy.GetComponent<Enemy>().OnEnemyDeath -= RemoveEnemy;
@@ -203,13 +230,14 @@ namespace AutoAttackScripts
         {
             if (enemy == null) return;
             //calculate direction from the attackpoint to the enemy
-            Vector3 directionShoot = enemy.transform.position - attackPoint.position;
+            var position = attackPoint.position;
+            Vector3 directionShoot = enemy.transform.position - position;
 
             //instantiate bullet
-            GameObject secondBullet = Instantiate(bullet, attackPoint.position, Quaternion.identity);
-
+            GameObject currentBullet = Instantiate(bullet, position, Quaternion.identity);
+            AssignShooterOfTheBullet(new List<GameObject>() { currentBullet });
             //add forces to bullet
-            secondBullet.GetComponent<Rigidbody>().AddForce(directionShoot.normalized * shootForce, ForceMode.Impulse);
+            currentBullet.GetComponent<Rigidbody>().AddForce(directionShoot.normalized * shootForce, ForceMode.Impulse);
         }
 
         [ContextMenu("StopStartShooting")]
@@ -218,7 +246,8 @@ namespace AutoAttackScripts
             if (IsShootingEnabled())
             {
                 GetComponent<Collider>().enabled = false;
-                nuevoPlayerMovement.controlMovimiento = true;
+                if (isPlayer)
+                    nuevoPlayerMovement.controlMovimiento = true;
                 ClearEnemies();
             }
             else
@@ -236,6 +265,76 @@ namespace AutoAttackScripts
         protected void ClearEnemies()
         {
             _enemies.Clear();
+        }
+
+        private void ShootingNormal(GameObject enemy)
+        {
+            PlayerStats._instance.Damage = 3;
+            //calculate direction from the attackpoint to the enemy
+            var position = attackPoint.position;
+            Vector3 directionShoot = enemy.transform.position - position;
+
+            //instantiate bullet
+            GameObject currentBullet = Instantiate(bullet, position, Quaternion.identity);
+            AssignShooterOfTheBullet(new List<GameObject>() { currentBullet });
+            Destroy(currentBullet, bulletTimeAlive);
+
+            //add forces to bullet
+            currentBullet.GetComponent<Rigidbody>().AddForce(directionShoot.normalized * shootForce, ForceMode.Impulse);
+        }
+
+        private void ShootingBurst(GameObject enemy)
+        {
+            PlayerStats._instance.Damage = 2;
+            ShootBulletBurst(enemy);
+            StartCoroutine(nameof(WaitToShootBulletBurst), enemy);
+        }
+
+        private void ShootingShotgun(GameObject enemy)
+        {
+            PlayerStats._instance.Damage = 5;
+            var enemyPos = enemy.transform.position;
+            var position = attackPoint.position;
+
+            Vector3 straightShootDirection = enemyPos - position;
+            Vector3 leftShootPropagation = (enemyPos - Vector3.forward * shotgunBulletSeparation) - position;
+            Vector3 rightShootPropagation = (enemyPos + Vector3.forward * shotgunBulletSeparation) - position;
+
+            //instantiate bullets
+            var firstBullet = Instantiate(bullet, position, Quaternion.identity);
+            var secondBullet = Instantiate(bullet, position, Quaternion.identity);
+            var thirdBullet = Instantiate(bullet, position, Quaternion.identity);
+
+            AssignShooterOfTheBullet(new List<GameObject>() { firstBullet, secondBullet, thirdBullet });
+            Destroy(firstBullet, bulletTimeAlive);
+            Destroy(secondBullet, bulletTimeAlive);
+            Destroy(thirdBullet, bulletTimeAlive);
+
+            //add forces to the bullets
+            firstBullet.GetComponent<Rigidbody>()
+                .AddForce(straightShootDirection.normalized * shootForce, ForceMode.Impulse);
+            secondBullet.GetComponent<Rigidbody>()
+                .AddForce(leftShootPropagation.normalized * shootForce, ForceMode.Impulse);
+            thirdBullet.GetComponent<Rigidbody>()
+                .AddForce(rightShootPropagation.normalized * shootForce, ForceMode.Impulse);
+        }
+
+        private void AssignShooterOfTheBullet(List<GameObject> bullets)
+        {
+            if (isPlayer)
+            {
+                foreach (var bullet in bullets)
+                {
+                    bullet.GetComponent<BulletScript>().BulletFromPlayer = true;
+                }
+            }
+            else
+            {
+                foreach (var bullet in bullets)
+                {
+                    bullet.GetComponent<BulletScript>().BulletFromPlayer = false;
+                }
+            }
         }
     }
 }

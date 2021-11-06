@@ -30,7 +30,7 @@ public class isOnDevice : MonoBehaviour
 
     private void Awake()
     {
-        CheckIfMobile();
+        //CheckIfMobile();
        
     }
 

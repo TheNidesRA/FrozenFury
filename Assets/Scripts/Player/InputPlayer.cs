@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/Scripts/MovementScripts/InputPlayer.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Scripts/Player/InputPlayer.inputactions'
 
 using System;
 using System.Collections;
@@ -163,6 +163,14 @@ public class @InputPlayer : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Confirm"",
+                    ""type"": ""Button"",
+                    ""id"": ""7f501612-0123-4d92-9791-f319f0113d10"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -275,6 +283,17 @@ public class @InputPlayer : IInputActionCollection, IDisposable
                     ""action"": ""Rotate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a0d5b233-df57-4357-a9bf-1c6601d3bf1f"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Confirm"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -321,6 +340,7 @@ public class @InputPlayer : IInputActionCollection, IDisposable
         m_Building_UndoSelection = m_Building.FindAction("UndoSelection", throwIfNotFound: true);
         m_Building_MousePosition = m_Building.FindAction("MousePosition", throwIfNotFound: true);
         m_Building_Rotate = m_Building.FindAction("Rotate", throwIfNotFound: true);
+        m_Building_Confirm = m_Building.FindAction("Confirm", throwIfNotFound: true);
         // Test
         m_Test = asset.FindActionMap("Test", throwIfNotFound: true);
         m_Test_SpawnEnemy = m_Test.FindAction("SpawnEnemy", throwIfNotFound: true);
@@ -414,6 +434,7 @@ public class @InputPlayer : IInputActionCollection, IDisposable
     private readonly InputAction m_Building_UndoSelection;
     private readonly InputAction m_Building_MousePosition;
     private readonly InputAction m_Building_Rotate;
+    private readonly InputAction m_Building_Confirm;
     public struct BuildingActions
     {
         private @InputPlayer m_Wrapper;
@@ -426,6 +447,7 @@ public class @InputPlayer : IInputActionCollection, IDisposable
         public InputAction @UndoSelection => m_Wrapper.m_Building_UndoSelection;
         public InputAction @MousePosition => m_Wrapper.m_Building_MousePosition;
         public InputAction @Rotate => m_Wrapper.m_Building_Rotate;
+        public InputAction @Confirm => m_Wrapper.m_Building_Confirm;
         public InputActionMap Get() { return m_Wrapper.m_Building; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -459,6 +481,9 @@ public class @InputPlayer : IInputActionCollection, IDisposable
                 @Rotate.started -= m_Wrapper.m_BuildingActionsCallbackInterface.OnRotate;
                 @Rotate.performed -= m_Wrapper.m_BuildingActionsCallbackInterface.OnRotate;
                 @Rotate.canceled -= m_Wrapper.m_BuildingActionsCallbackInterface.OnRotate;
+                @Confirm.started -= m_Wrapper.m_BuildingActionsCallbackInterface.OnConfirm;
+                @Confirm.performed -= m_Wrapper.m_BuildingActionsCallbackInterface.OnConfirm;
+                @Confirm.canceled -= m_Wrapper.m_BuildingActionsCallbackInterface.OnConfirm;
             }
             m_Wrapper.m_BuildingActionsCallbackInterface = instance;
             if (instance != null)
@@ -487,6 +512,9 @@ public class @InputPlayer : IInputActionCollection, IDisposable
                 @Rotate.started += instance.OnRotate;
                 @Rotate.performed += instance.OnRotate;
                 @Rotate.canceled += instance.OnRotate;
+                @Confirm.started += instance.OnConfirm;
+                @Confirm.performed += instance.OnConfirm;
+                @Confirm.canceled += instance.OnConfirm;
             }
         }
     }
@@ -538,6 +566,7 @@ public class @InputPlayer : IInputActionCollection, IDisposable
         void OnUndoSelection(InputAction.CallbackContext context);
         void OnMousePosition(InputAction.CallbackContext context);
         void OnRotate(InputAction.CallbackContext context);
+        void OnConfirm(InputAction.CallbackContext context);
     }
     public interface ITestActions
     {

@@ -14,7 +14,9 @@ public class PlacedBuild : MonoBehaviour
     public BuildingSO.Dir dir => _dir;
     private Vector2Int _origin;
     private BuildingSO.Dir _dir;
-    
+
+   [SerializeField] private GameObject UI;
+
     
     
     public static PlacedBuild Create(Vector3 worldPosition, Vector2Int origin, BuildingSO.Dir dir, BuildingSO building)
@@ -34,8 +36,21 @@ public class PlacedBuild : MonoBehaviour
         return placedBuild;
     }
 
-  
 
+    private void OnEnable()
+    {
+        GridBuildingSystem.Instance.OnClickOutOfObject += DisableCanvas;
+    }
+
+    private void OnDisable()
+    {
+        GridBuildingSystem.Instance.OnClickOutOfObject -= DisableCanvas;
+    }
+    
+    public void IsClicked()
+    {
+        EnableCanvas();
+    }
 
     private void Activate(object sender, EventArgs eventArgs)
     {
@@ -53,6 +68,24 @@ public class PlacedBuild : MonoBehaviour
     {
         return _buildingSo.GetGridPositionList(origin, dir);
     }
-    
 
+    public void EnableCanvas()
+    {
+        UI.SetActive(true);
+    }
+    public void DisableCanvas()
+    {
+        UI.SetActive(false);
+    }
+
+    public void DisableCanvas(object a, EventArgs args)
+    {
+        UI.SetActive(false);
+    }
+    public void SendDestroy()
+    {
+       
+        GridBuildingSystem.Instance.RemoveBuild(this);
+    }
+    
 }

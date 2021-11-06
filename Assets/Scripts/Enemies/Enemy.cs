@@ -22,8 +22,6 @@ namespace Enemies
 
         public event Action<GameObject> OnEnemyDeath;
 
-        public event Action<float> OnHealthChanged = delegate { };
-
         public string Id => id;
 
         public float Health, HpMult = 1.5f;
@@ -74,11 +72,7 @@ namespace Enemies
         {
             Health -= dmg;
 
-            if (Health <= 0) return true;
-
-            OnHealthChanged(Health);
-
-            return false;
+            return Health <= 0;
         }
 
         public RemainingStats GetReaminingStats()
@@ -103,12 +97,6 @@ namespace Enemies
         {
             Debug.Log("HP: " + Health + " // Dmg: " + Damage + " // Spd: " + Speed + " // Arm: " + Armor +
                       " // AtkSpd: " + AtackSpeed);
-        }
-
-        public void EnemyDeath()
-        {
-            if (OnEnemyDeath != null)
-                OnEnemyDeath(gameObject);
         }
     }
 }

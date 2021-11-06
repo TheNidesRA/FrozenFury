@@ -16,6 +16,7 @@ namespace Enemies
         [SerializeField] private EnemyConfiguration enemyConfiguration;
         private EnemyFactory _enemyFactory;
         public Vector3 SpawnPoint;
+        public float spawnDelay = 2.0f;
         private void Awake()
         {
             _enemyFactory = new EnemyFactory(Instantiate(enemyConfiguration));
@@ -31,7 +32,7 @@ namespace Enemies
         {
             foreach (var enemy in enemies)
             {
-                yield return new WaitForSeconds(3f);
+                yield return new WaitForSeconds(spawnDelay);
                 _enemyFactory.Create(enemy.Id, SpawnPoint);
                 Debug.Log("Enemigo creado");
             }

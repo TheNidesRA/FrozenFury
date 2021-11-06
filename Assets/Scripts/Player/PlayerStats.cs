@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
@@ -11,19 +9,28 @@ public class PlayerStats : MonoBehaviour
 
     [SerializeField] private float _gold;
 
+    [SerializeField] private float damage;
+
+    public float Damage
+    {
+        get => damage;
+        set => damage = value;
+    }
+
     public float gold
     {
         get => _gold;
-        set  {
+        set
+        {
             _gold = value;
-            OnGoldChanged?.Invoke(this,_gold);
+            OnGoldChanged?.Invoke(this, _gold);
         }
     }
 
 
     private void Awake()
     {
-        if (_instance != null && _instance!=this)
+        if (_instance != null && _instance != this)
         {
             Destroy(this.gameObject);
         }
@@ -32,8 +39,4 @@ public class PlayerStats : MonoBehaviour
             _instance = this;
         }
     }
-
- 
-    
-    
 }
