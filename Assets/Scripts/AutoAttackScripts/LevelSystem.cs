@@ -55,4 +55,9 @@ public class UpgradePlayer : MonoBehaviour
             yield return new WaitForSeconds(5.0f);
         }
     }
+
+    public static float prueba(AnimationCurve curva, float pos)
+    {
+        return curva.Evaluate(pos);
+    }
 }
