@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5189095574741592057}
   - component: {fileID: 5882117205906723065}
   - component: {fileID: 5471390934065256059}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Circle002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7126117742457831229}
-  m_Layer: 11
+  m_Layer: 5
   m_Name: BulletSpawnPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7254240146828692848}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: CanonHelado
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,13 +135,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4101317270743952085}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 0.001887228, y: 0.18000007, z: -0.15335765}
-  m_LocalScale: {x: 0.32817936, y: 0.32817936, z: 0.32817936}
+  m_LocalPosition: {x: 0.0018859, y: -48.1, z: 10.5}
+  m_LocalScale: {x: 6.540339, y: 6.540339, z: 6.540339}
   m_Children:
   - {fileID: 8807643691018750112}
   - {fileID: 1097718417603678042}
   m_Father: {fileID: 9040980739992282383}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &4464011497867871784
 GameObject:
@@ -171,6 +171,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1016807882534898956}
   - {fileID: 7254240146828692848}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -197,7 +198,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8807643691018750112}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -229,7 +230,7 @@ GameObject:
   - component: {fileID: 8875225759310738414}
   - component: {fileID: 3188510520440384005}
   - component: {fileID: 7489096092556431783}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Cylinder001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -313,7 +314,7 @@ GameObject:
   - component: {fileID: 8776777476447743079}
   - component: {fileID: 232569033547554481}
   - component: {fileID: 6089085977122831244}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Circle001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -392,7 +393,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1097718417603678042}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: TorretaVisualice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -413,4 +414,34 @@ Transform:
   - {fileID: 8875225759310738414}
   m_Father: {fileID: 7254240146828692848}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8151846693111287690
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1016807882534898956}
+  m_Layer: 5
+  m_Name: cannonCanvas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1016807882534898956
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8151846693111287690}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 13.26724, y: 13.26723, z: 13.26724}
+  m_Children: []
+  m_Father: {fileID: 9040980739992282383}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
