@@ -54,7 +54,7 @@ public class BuildingSO : ScriptableObject
 
     public int width;
     public int heigth;
-    public int damage;
+    public float damage;
     public string name;
     public Transform prefab;
     public Transform visual;

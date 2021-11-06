@@ -319,7 +319,7 @@ namespace AutoAttackScripts
         }
 
         /// <summary>
-        /// Assigns the shooter of the bullet to the bullet, if it's not the player who's shooting. It will assign
+        /// Assigns the shooter of the bullet to the bullet, if it's not the player who's shooting it will assign
         /// to the bullet that the shooter is a structure and the structure information
         /// </summary>
         /// <param name="bullets"></param>
