@@ -23,6 +23,8 @@ namespace Enemies
         /// List with the enemies stats which will be used to keep track of them during the game
         /// </summary>
         private List<EnemyStats> _enemyStats;
+        
+        
 
         private MultiplierManager _multManager;
         
@@ -49,6 +51,14 @@ namespace Enemies
                     enemy.AtackSpeed, enemy.gold);
                 _enemyStats.Add(stats);
             }
+
+            WaveController._instance.OnRoundChange += EndRoundFunction
+                ;
+        }
+
+        private void EndRoundFunction(object sender, int e)
+        {
+            throw new NotImplementedException();
         }
 
         /// <summary>
