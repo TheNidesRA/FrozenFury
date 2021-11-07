@@ -2,10 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
 using Enemies;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Quaternion = UnityEngine.Quaternion;
 using Vector3 = UnityEngine.Vector3;
 
@@ -198,15 +196,19 @@ namespace AutoAttackScripts
 
         public virtual void RotatePlayerToEnemy(GameObject enemy)
         {
-            if (enemy == null)
-            {
-                return;
-            }
+            if (enemy == null) return;
 
-            _objectiveDirection =
-                Quaternion.LookRotation((enemy.transform.position - player.transform.position).normalized);
-            player.transform.rotation =
-                Quaternion.Slerp(player.transform.rotation, _objectiveDirection, Time.deltaTime * turnSpeed);
+            if (isPlayer)
+            {
+                _objectiveDirection =
+                    Quaternion.LookRotation((enemy.transform.position - player.transform.position).normalized);
+                player.transform.rotation =
+                    Quaternion.Slerp(player.transform.rotation, _objectiveDirection, Time.deltaTime * turnSpeed);
+            }
+            else
+            {
+                player.transform.LookAt(enemy.transform);
+            }
         }
 
         private void RemoveEnemy(GameObject enemy)
@@ -244,7 +246,8 @@ namespace AutoAttackScripts
             if (IsShootingEnabled())
             {
                 GetComponent<Collider>().enabled = false;
-                nuevoPlayerMovement.controlMovimiento = true;
+                if (isPlayer)
+                    nuevoPlayerMovement.controlMovimiento = true;
                 ClearEnemies();
             }
             else
