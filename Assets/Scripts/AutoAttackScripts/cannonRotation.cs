@@ -48,10 +48,12 @@ namespace AutoAttackScripts
 
             //instantiate bullet
             GameObject currentBullet = Instantiate(bullet, attackPoint.position, Quaternion.identity);
-            //currentBullet.GetComponent<Rigidbody>().velocity = result;
-            currentBullet.transform.position = Vector3.Lerp(attackPoint.position, enemy.transform.position, lerpRatio);
+            AssignShooterOfTheBullet(new List<GameObject>() { currentBullet });
+            currentBullet.GetComponent<Rigidbody>().velocity = result;
+
+            //currentBullet.transform.position = Vector3.Lerp(attackPoint.position, enemy.transform.position, lerpRatio);
             //add forces to bullet
-            currentBullet.GetComponent<Rigidbody>().AddForce(result * currentBullet.GetComponent<Rigidbody>().mass, ForceMode.Impulse);
+            //currentBullet.GetComponent<Rigidbody>().AddForce(result * currentBullet.GetComponent<Rigidbody>().mass, ForceMode.Impulse);
             Destroy(currentBullet, _timeAlive);
 
 
@@ -70,7 +72,17 @@ namespace AutoAttackScripts
              currentBullet.GetComponent<Rigidbody>().AddForce(result*currentBullet.GetComponent<Rigidbody>().mass, ForceMode.Impulse);*/
         }
 
-        public void FixedUpdate()
+        protected override void AssignShooterOfTheBullet(List<GameObject> bullets)
+        {
+                foreach (var bullet in bullets)
+                {
+                    bullet.GetComponent<BulletScript>().BuildingInfo = buildinginfo;
+                    bullet.GetComponent<BulletScript>().BulletFromPlayer = false;
+                }
+            
+        }
+
+      /*  public void FixedUpdate()
         {
             _timer += Time.deltaTime;
 
@@ -80,7 +92,7 @@ namespace AutoAttackScripts
             }
             lerpRatio = _timer / lerpTime;
             Vector3 positionOffset = lerpCurve.Evaluate(lerpRatio) * lerpOffset;
-        }
+        }*/
 
         override
         public void RotatePlayerToEnemy(GameObject enemy)
