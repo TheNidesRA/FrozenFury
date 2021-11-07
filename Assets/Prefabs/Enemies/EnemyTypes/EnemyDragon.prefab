@@ -2891,7 +2891,6 @@ GameObject:
   - component: {fileID: 4099255032100252201}
   - component: {fileID: 8832873612687946694}
   - component: {fileID: 6936126059404462845}
-  - component: {fileID: 6054702229890308165}
   m_Layer: 8
   m_Name: EnemyDragon
   m_TagString: Enemy
@@ -2957,16 +2956,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: Dragon
   _initStats: {fileID: 11400000, guid: 68681b477c7602b4b8483500b5067551, type: 2}
+  NavMeshAgent: {fileID: 6936126059404462845}
   Health: 5
-  HpMult: 1.5
   Damage: 1
-  DmgMult: 1.5
   Speed: 15
-  SpdMult: 1.5
   Armor: 1
-  ArmMult: 1.5
   AtackSpeed: 1
-  AtkSpMult: 1.5
   gold: 1
 --- !u!195 &6936126059404462845
 NavMeshAgent:
@@ -2990,19 +2985,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &6054702229890308165
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9033808410121625148}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8df6c56721ef532448ed1340e8210aab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _agent: {fileID: 6936126059404462845}
 --- !u!1 &9037268421309093563
 GameObject:
   m_ObjectHideFlags: 0

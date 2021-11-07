@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 995780911888942015}
+  - component: {fileID: 4276728427109115417}
   m_Layer: 0
   m_Name: TorretaVisualice
   m_TagString: Untagged
@@ -32,6 +33,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4276728427109115417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 995780911888942008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5c682b780d9e58438c32569da151962, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Materials:
+  - {fileID: 4070296000136530552}
+  - {fileID: 7162617290385611981}
+  - {fileID: 8926682612935408991}
+  - {fileID: 6458838389681446674}
+  newColor: {r: 0.745283, g: 0, b: 0, a: 0.54901963}
+  time: 0.6
+  inEase: 14
+  outEase: 15
 --- !u!1 &1265331046297089023
 GameObject:
   m_ObjectHideFlags: 0
@@ -183,7 +205,7 @@ Transform:
   m_GameObject: {fileID: 5711970868882335323}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 5, y: 0, z: 5}
-  m_LocalScale: {x: 10, y: 0.1, z: 10}
+  m_LocalScale: {x: 10, y: 0.61425, z: 10}
   m_Children: []
   m_Father: {fileID: 995780911888942015}
   m_RootOrder: 0
