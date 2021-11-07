@@ -15,7 +15,6 @@ public class PlacedBuild : MonoBehaviour
     private Vector2Int _origin;
     private BuildingSO.Dir _dir;
 
-   [SerializeField] private GameObject UI;
 
     
     
