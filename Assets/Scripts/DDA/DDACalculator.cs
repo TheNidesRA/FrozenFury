@@ -58,7 +58,7 @@ namespace Enemies
 
         private void EndRoundFunction(object sender, int e)
         {
-            throw new NotImplementedException();
+            Debug.Log("Aquí se calcularían los ajustes de dificultad.");
         }
 
         /// <summary>
