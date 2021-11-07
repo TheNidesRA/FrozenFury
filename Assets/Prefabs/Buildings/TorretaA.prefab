@@ -236,8 +236,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5311987203864459683}
   - component: {fileID: 5311987203864459709}
-  - component: {fileID: 3006426484038670458}
   - component: {fileID: 975058125705811688}
+  - component: {fileID: 5700260977326840663}
   m_Layer: 11
   m_Name: PivoteTurret
   m_TagString: Untagged
@@ -276,31 +276,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &3006426484038670458
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5311987203864459680}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51f6bb74126e504438ad95007c15771c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  localDistance: 0
-  shooting: 0
-  isPlayer: 0
-  numberEnemies: 0
-  bullet: {fileID: 7040415461391761229, guid: 030c8365f12db1d45a83ca8ee5992619, type: 3}
-  shootForce: 40
-  timeBetweenShooting: 1
-  timeToShootBulletBurst: 0.2
-  attackPoint: {fileID: 5311987202857491985}
-  player: {fileID: 5311987203864459683}
-  _objectiveDirection: {x: 0, y: 0, z: 0, w: 1}
-  turnSpeed: 1000
-  damage: 1
 --- !u!135 &975058125705811688
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -314,6 +289,29 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 20
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5700260977326840663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5311987203864459680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97140db3a5378884d9054ae15cf3590e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  typeOfShooting: 0
+  bulletTimeAlive: 4
+  shootForce: 40
+  bullet: {fileID: 7040415461391761229, guid: 030c8365f12db1d45a83ca8ee5992619, type: 3}
+  timeBetweenShooting: 1
+  timeToShootBulletBurst: 0.2
+  shotgunBulletSeparation: 40
+  attackPoint: {fileID: 0}
+  player: {fileID: 0}
+  turnSpeed: 1000
+  damage: 2
 --- !u!1 &5311987203957648370
 GameObject:
   m_ObjectHideFlags: 0
