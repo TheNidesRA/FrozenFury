@@ -36,7 +36,7 @@ namespace AutoAttackScripts
 
         private bool isPlayer;
 
-
+        private GameObject enemyToLook;
         public bool Shooting
         {
             get => shooting;
@@ -129,6 +129,8 @@ namespace AutoAttackScripts
 
             //assign the distance to the enemy
             _enemies[other.gameObject] = localDistance;
+            //When there's enemy inside the shooting area, we'll rotate to the closest one
+            RotatePlayerToEnemy(enemyToLook);
         }
 
         private IEnumerator AimEnemy()
@@ -159,10 +161,9 @@ namespace AutoAttackScripts
                     {
                         if (Shooting) continue;
                         Shooting = true;
-                        // Debug.Log("Shooting " + enemy.Key);
 
-                        //We rotate the player to face the enemy
-                        RotatePlayerToEnemy(enemy.Key);
+                        //We retrieve the enemy the player will look to
+                        enemyToLook = enemy.Key;
                         //We start shooting the enemy
                         ShootEnemy(enemy.Key);
                     }
