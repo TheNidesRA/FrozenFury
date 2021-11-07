@@ -72,16 +72,6 @@ namespace AutoAttackScripts
              currentBullet.GetComponent<Rigidbody>().AddForce(result*currentBullet.GetComponent<Rigidbody>().mass, ForceMode.Impulse);*/
         }
 
-        protected override void AssignShooterOfTheBullet(List<GameObject> bullets)
-        {
-                foreach (var bullet in bullets)
-                {
-                    bullet.GetComponent<BulletScript>().BuildingInfo = buildinginfo;
-                    bullet.GetComponent<BulletScript>().BulletFromPlayer = false;
-                }
-            
-        }
-
       /*  public void FixedUpdate()
         {
             _timer += Time.deltaTime;
