@@ -158,6 +158,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "SelectBuid",
+                    "type": "Button",
+                    "id": "7cdbb6d0-c47c-4a31-9d67-8986e5728b6c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -174,9 +182,9 @@
                 },
                 {
                     "name": "",
-                    "id": "6a9f29be-fea8-4f5b-bb7f-7a70965a5080",
-                    "path": "<Touchscreen>/touch0/tap",
-                    "interactions": "",
+                    "id": "f7821a77-ab6b-4846-829c-a4c57ad42829",
+                    "path": "<Touchscreen>/primaryTouch/press",
+                    "interactions": "Press(behavior=1)",
                     "processors": "",
                     "groups": "",
                     "action": "LeftClick",
@@ -279,6 +287,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Confirm",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b6d06a1c-1cc2-43cf-82ea-99e2f9eba4f7",
+                    "path": "<Touchscreen>/primaryTouch/press",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SelectBuid",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "620c4668-614c-4d1a-ad4b-e86595f11b1e",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SelectBuid",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
