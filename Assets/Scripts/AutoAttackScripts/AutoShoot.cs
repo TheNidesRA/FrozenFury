@@ -89,11 +89,10 @@ namespace AutoAttackScripts
         [Header("Velocity to turn")] public float turnSpeed = 100.0f;
 
         /// <summary>
-        /// Damage effect when hit, if not changed it will be 1 by default
+        /// Add the building information if this is assigned to a building
         /// </summary>
-        [SerializeField] protected float damage = 1;
-
-        public virtual float Damage { set; get; }
+        [Header("Assign this only if this is a building")]
+        public BuildingSO buildinginfo;
 
         private void Start()
         {
@@ -319,6 +318,11 @@ namespace AutoAttackScripts
                 .AddForce(rightShootPropagation.normalized * shootForce, ForceMode.Impulse);
         }
 
+        /// <summary>
+        /// Assigns the shooter of the bullet to the bullet, if it's not the player who's shooting it will assign
+        /// to the bullet that the shooter is a structure and the structure information
+        /// </summary>
+        /// <param name="bullets"></param>
         private void AssignShooterOfTheBullet(List<GameObject> bullets)
         {
             if (isPlayer)
@@ -332,6 +336,7 @@ namespace AutoAttackScripts
             {
                 foreach (var bullet in bullets)
                 {
+                    bullet.GetComponent<BulletScript>().BuildingInfo = buildinginfo;
                     bullet.GetComponent<BulletScript>().BulletFromPlayer = false;
                 }
             }

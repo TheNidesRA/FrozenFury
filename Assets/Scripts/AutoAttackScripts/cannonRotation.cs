@@ -15,16 +15,6 @@ namespace AutoAttackScripts
    
         //public Vector3 lerpOffset;
 
-        public override float Damage
-        {
-            get => 3;
-            set
-            {
-                if (value <= 0) throw new ArgumentOutOfRangeException(nameof(value));
-                damage = 3;
-            }
-        }
-
         protected override void ShootEnemy(GameObject enemy)
         {
             if (enemy == null) return;

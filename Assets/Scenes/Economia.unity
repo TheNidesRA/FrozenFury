@@ -2099,7 +2099,6 @@ GameObject:
   - component: {fileID: 487320257}
   - component: {fileID: 487320256}
   - component: {fileID: 487320255}
-  - component: {fileID: 487320258}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2172,18 +2171,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 65, y: 0, z: 0}
---- !u!114 &487320258
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 487320254}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &500424346
 GameObject:
   m_ObjectHideFlags: 0
@@ -5064,6 +5051,83 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1040447760}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1057130118 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7517002940941140472, guid: b420ffd20606eee4ebd614355291455f, type: 3}
+  m_PrefabInstance: {fileID: 7517002940863644311}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1057130125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1057130118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dec7f9e27dd1cf944a655f6bdfda18c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageLevelCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 1
+      value: 2
+      inSlope: 0.5555556
+      outSlope: 0.5555556
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 10
+      value: 7
+      inSlope: 0.5555556
+      outSlope: 0.5555556
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  attackSpeedLevelCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 1
+      value: 10
+      inSlope: 377.6066
+      outSlope: 377.6066
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 2.2725978
+      value: 490.54132
+      inSlope: 221.76772
+      outSlope: 221.76772
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 10
+      value: 1000
+      inSlope: 65.92884
+      outSlope: 65.92884
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  playerLevel: 0
+  attackSpeed: 0
+  damage: 0
 --- !u!1 &1059788832
 GameObject:
   m_ObjectHideFlags: 0
