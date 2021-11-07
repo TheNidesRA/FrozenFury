@@ -21,13 +21,15 @@ namespace GridSystem
         /// called when _buildingSO is changed
         /// </summary>
         public event EventHandler OnSelectedChanged; //Callback 
-
         public event EventHandler OnObjectPlaced;
-
         public event EventHandler OnObjectSetPosition;
         public event EventHandler OnObjectRemovePosition;
-
+        public event EventHandler OnMissSetPosition;
         public event EventHandler OnClickOutOfObject;
+        public event EventHandler<PlacedBuild> OnBuildSelected;
+        
+        
+        
 
         /// <summary>
         /// current Build
@@ -74,7 +76,7 @@ namespace GridSystem
                 (Grid<GridObject> global, int x, int z) => new GridObject(global, x, z), startPoint);
 
             _buildingSO = null;
-            _control.Building.LeftClick.performed += PlaceBuilding;
+            _control.Building.LeftClick.canceled += PlaceBuilding;
             _control.Building.Build1.performed += ChangeBuild;
             _control.Building.Build2.performed += ChangeBuild;
             _control.Building.Build3.performed += ChangeBuild;
@@ -82,6 +84,7 @@ namespace GridSystem
             _control.Building.UndoSelection.performed += DeselectObjectType;
             _control.Building.Rotate.performed += Rotate;
             _control.Building.Confirm.performed += Confirm;
+            _control.Building.SelectBuid.performed += SearchBuilding;
         }
 
 
@@ -202,6 +205,15 @@ namespace GridSystem
         }
 
 
+
+        public void removeSelectedBuild()
+        {
+            _buildingSO = null;
+            buildMenu = false;
+            enableBuildMove = true;
+            RefreshSelectedObjectType();
+        }
+
         private void Rotate(InputAction.CallbackContext callbackContext)
         {
             //Debug.Log(_dir);
@@ -221,11 +233,39 @@ namespace GridSystem
             buildMenu = true;
             enableBuildMove = false;
             
-            ComunicacionGridCanvas._instance.SetBuildPosition();
+            //ComunicacionGridCanvas._instance.SetBuildPosition();
             OnObjectSetPosition?.Invoke(this, EventArgs.Empty);
         }
 
+        private void SearchBuilding(InputAction.CallbackContext callbackContext)
+        {
+            Debug.Log("Buscando y talll");
+            if (_buildingSO != null && !buildMenu)
+            {
+                
+            }
+            else
+            {
+                GridObject gridObject = GetMouseGridObject();
 
+                if (gridObject != null)
+                {
+                    PlacedBuild placedBuild = gridObject.GetPlaceBuild();
+                    if (placedBuild != null)
+                    {
+                        Debug.Log("Cogiendo el aux");
+                        OnBuildSelected?.Invoke(this,placedBuild);
+                       
+                    }
+                    else
+                    {
+                        //OnClickOutOfObject?.Invoke(this,EventArgs.Empty);
+                    }
+                }
+            }
+        }
+        
+        
         private void PlaceBuilding(InputAction.CallbackContext callbackContext)
         {
             if (_buildingSO != null && !buildMenu)
@@ -241,39 +281,22 @@ namespace GridSystem
 
                 if (CanBuild(buildingPositions))
                 {
-                    ComunicacionGridCanvas._instance.StartBuilding();
+                    //ComunicacionGridCanvas._instance.StartBuilding();
                     SetMousePosition(mouseGridPosition);
                 }
                 else
                 {
+                    OnMissSetPosition?.Invoke(this,EventArgs.Empty);
                     Debug.Log("No se puede !!! :)");
                 }
             }
-            else
-            {
-                GridObject gridObject = GetMouseGridObject();
-
-                if (gridObject != null)
-                {
-                    PlacedBuild placedBuild = gridObject.GetPlaceBuild();
-
-
-                    if (placedBuild != null)
-                    {
-                        Debug.Log("Cogiendo el aux");
-                        placedBuild.IsClicked();
-                    }
-                    else
-                    {
-                        //OnClickOutOfObject?.Invoke(this,EventArgs.Empty);
-                    }
-                }
-            }
+       
         }
 
 
         private void Confirm(InputAction.CallbackContext callbackContext)
         {
+            if (_buildingSO == null) return;
             List<Vector2Int> buildingPositions = _buildingSO.GetGridPositionList(_ActualBuildPosition, _dir);
 
             if (CanBuild(buildingPositions))
@@ -289,10 +312,11 @@ namespace GridSystem
                     _buildingSO = null;
                     RefreshSelectedObjectType();
                 }
-                ComunicacionGridCanvas._instance.FinishBuilding();
+               // ComunicacionGridCanvas._instance.FinishBuilding();
             }
             else
             {
+                OnMissSetPosition?.Invoke(this,EventArgs.Empty);
                 Debug.Log("No se puede !!! :)");
             }
         }
@@ -311,10 +335,11 @@ namespace GridSystem
                     _buildingSO = null;
                     RefreshSelectedObjectType();
                 }
-                ComunicacionGridCanvas._instance.FinishBuilding();
+              //  ComunicacionGridCanvas._instance.FinishBuilding();
             }
             else
             {
+                OnMissSetPosition?.Invoke(this,EventArgs.Empty);
                 Debug.Log("No se puede !!! :)");
             }
         }
@@ -324,7 +349,7 @@ namespace GridSystem
             _ActualBuildPosition = new Vector2Int();
             buildMenu = false;
             enableBuildMove = true;
-            ComunicacionGridCanvas._instance.EnableBuildMoving();
+            //ComunicacionGridCanvas._instance.EnableBuildMoving();
             OnObjectRemovePosition?.Invoke(this, EventArgs.Empty);
         }
 
@@ -333,7 +358,7 @@ namespace GridSystem
         {
             buildMenu = false;
             enableBuildMove = true;
-            ComunicacionGridCanvas._instance.EnableBuildMoving();
+           // ComunicacionGridCanvas._instance.EnableBuildMoving();
             OnObjectRemovePosition?.Invoke(this, EventArgs.Empty);
         }
 
@@ -383,12 +408,13 @@ namespace GridSystem
         private void DeselectObjectType(InputAction.CallbackContext callbackContext)
         {
             _buildingSO = null;
+            
             RefreshSelectedObjectType();
         }
 
         private void RefreshSelectedObjectType()
         {
-            ComunicacionGridCanvas._instance.RefreshVisual();
+            
             OnSelectedChanged?.Invoke(this, EventArgs.Empty);
         }
 
@@ -420,7 +446,7 @@ namespace GridSystem
             
             if (x < 0 || z < 0 || x >= gridWidth || z >= gridHeight)
             {
-                Debug.Log("Fuera de los limites");
+               // Debug.Log("Fuera de los limites");
                 return new Vector2Int(-1, -1);
             }
             

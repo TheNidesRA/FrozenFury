@@ -1,15 +1,16 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Enemies
 {
     [CreateAssetMenu(menuName = "Custom/InitStats")]
     public class InitStats : ScriptableObject
     {
-        [SerializeField] public float InitHp = 1;
-        [SerializeField] public float InitDmg = 1;
-        [SerializeField] public float InitSpd = 1;
-        [SerializeField] public float InitArm = 1;
-        [SerializeField] public float InitAtkSpd = 1;
+        public float initHp = 1;
+        public float initDmg = 1;
+        public float initSpd = 1;
+        public float initArm = 1;
+        public float initAtkSpd = 1;
         public float gold = 1;
     }
 }

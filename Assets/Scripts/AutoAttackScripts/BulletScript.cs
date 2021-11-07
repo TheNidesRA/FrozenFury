@@ -8,13 +8,18 @@ namespace AutoAttackScripts
         private GameObject _enemyToRemove;
         private Enemy _enemy;
         private bool _bulletFromPlayer;
-
+        private BuildingSO _buildingInfo;
         public bool BulletFromPlayer
         {
             get => _bulletFromPlayer;
             set => _bulletFromPlayer = value;
         }
 
+        public BuildingSO BuildingInfo
+        {
+            get => _buildingInfo;
+            set => _buildingInfo = value;
+        }
         private void OnCollisionEnter(Collision other)
         {
             if (other.gameObject.CompareTag($"Enemy"))
@@ -37,7 +42,7 @@ namespace AutoAttackScripts
             }
             else
             {
-                if (!_enemy.OnHit(3))
+                if (!_enemy.OnHit(BuildingInfo.damage))
                     return;
             }
 
