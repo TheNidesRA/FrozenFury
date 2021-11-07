@@ -324,7 +324,7 @@ namespace AutoAttackScripts
         /// to the bullet that the shooter is a structure and the structure information
         /// </summary>
         /// <param name="bullets"></param>
-        private void AssignShooterOfTheBullet(List<GameObject> bullets)
+        protected virtual void AssignShooterOfTheBullet(List<GameObject> bullets)
         {
             if (isPlayer)
             {
