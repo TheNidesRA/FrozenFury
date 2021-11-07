@@ -11,9 +11,10 @@ namespace AutoAttackScripts
         private int _timeAlive = 4;
         private float lerpTime = 3f;
         private float _timer = 0f;
-        //public AnimationCurve lerpCurve;
-   
-        //public Vector3 lerpOffset;
+        private GameObject currentBullet;
+        public AnimationCurve lerpCurve;
+        public Vector3 lerpOffset;
+        private float lerpRatio;
 
         protected override void ShootEnemy(GameObject enemy)
         {
@@ -47,7 +48,10 @@ namespace AutoAttackScripts
 
             //instantiate bullet
             GameObject currentBullet = Instantiate(bullet, attackPoint.position, Quaternion.identity);
-            currentBullet.GetComponent<Rigidbody>().velocity = result;
+            //currentBullet.GetComponent<Rigidbody>().velocity = result;
+            currentBullet.transform.position = Vector3.Lerp(attackPoint.position, enemy.transform.position, lerpRatio);
+            //add forces to bullet
+            currentBullet.GetComponent<Rigidbody>().AddForce(result * currentBullet.GetComponent<Rigidbody>().mass, ForceMode.Impulse);
             Destroy(currentBullet, _timeAlive);
 
 
@@ -66,8 +70,20 @@ namespace AutoAttackScripts
              currentBullet.GetComponent<Rigidbody>().AddForce(result*currentBullet.GetComponent<Rigidbody>().mass, ForceMode.Impulse);*/
         }
 
+        public void FixedUpdate()
+        {
+            _timer += Time.deltaTime;
+
+            if (_timer > lerpTime)
+            {
+                _timer = lerpTime;
+            }
+            lerpRatio = _timer / lerpTime;
+            Vector3 positionOffset = lerpCurve.Evaluate(lerpRatio) * lerpOffset;
+        }
+
         override
-            public void RotatePlayerToEnemy(GameObject enemy)
+        public void RotatePlayerToEnemy(GameObject enemy)
         {
             if (enemy == null) return;
 
