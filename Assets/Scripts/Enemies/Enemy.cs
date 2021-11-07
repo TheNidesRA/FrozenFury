@@ -24,11 +24,11 @@ namespace Enemies
 
         public string Id => id;
 
-        public float Health, HpMult = 1.5f;
-        public float Damage, DmgMult = 1.5f;
-        public float Speed, SpdMult = 1.5f;
-        public float Armor, ArmMult = 1.5f;
-        public float AtackSpeed, AtkSpMult = 1.5f;
+        public float Health;
+        public float Damage;
+        public float Speed;
+        public float Armor;
+        public float AtackSpeed;
         public float gold;
 
         private void Awake()
@@ -59,11 +59,11 @@ namespace Enemies
 
         public void InitializeStats()
         {
-            Health = _initStats.InitHp;
-            Damage = _initStats.InitDmg;
-            Speed = _initStats.InitSpd;
-            Armor = _initStats.InitArm;
-            AtackSpeed = _initStats.InitAtkSpd;
+            Health = _initStats.initHp;
+            Damage = _initStats.initDmg;
+            Speed = _initStats.initSpd;
+            Armor = _initStats.initArm;
+            AtackSpeed = _initStats.initAtkSpd;
             gold = _initStats.gold;
         }
 
@@ -73,12 +73,6 @@ namespace Enemies
             Health -= dmg;
 
             return Health <= 0;
-        }
-
-        public RemainingStats GetReaminingStats()
-        {
-            RemainingStats rStats = new RemainingStats(Health, Damage, Speed);
-            return rStats;
         }
 
         public void Die()

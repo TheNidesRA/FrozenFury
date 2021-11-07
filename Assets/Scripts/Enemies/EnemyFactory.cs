@@ -19,7 +19,7 @@ namespace Enemies
         public Enemy Create(string id, Vector3 pos)
         {
             var enemy = _enemyConfiguration.GetEnemyPrefabById(id);
-            enemy.PrintStats();
+            // enemy.PrintStats();
             return Object.Instantiate(enemy, pos, Quaternion.identity);
         }
 
