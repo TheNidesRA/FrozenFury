@@ -33,7 +33,7 @@ namespace Enemies
             Enemy enemy = other.gameObject.GetComponent<Enemy>();
             
             //Add the enemy remaining stats to the DDA
-            DDACalculator.instance.AddWinner(enemy);
+            //DDACalculator.instance.AddWinner(enemy);
             //Destroy the enemy 
             enemy.Die();
         }

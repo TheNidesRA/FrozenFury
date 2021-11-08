@@ -3348,6 +3348,7 @@ GameObject:
   - component: {fileID: 6259721114511714890}
   - component: {fileID: 3508815072017628486}
   - component: {fileID: 6568612553291909285}
+  - component: {fileID: 4813426109003400373}
   m_Layer: 8
   m_Name: EnemyGolem
   m_TagString: Enemy
@@ -3435,13 +3436,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: Golem
   _initStats: {fileID: 11400000, guid: 02ebd71750f34ec468184b883725a6da, type: 2}
+  NavMeshAgent: {fileID: 3508815072017628486}
   Health: 0
   Damage: 0
   Speed: 0
   Armor: 0
   AtackSpeed: 0
   gold: 0
-  NavMeshAgent: {fileID: 3508815072017628486}
+  distancia: 0
+  path: 0
+  PathStatus: 0
+--- !u!114 &4813426109003400373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7578239022502461647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58c6f9b140a52a14881ec09eaebb66eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tree: {fileID: 11400000, guid: 15b4c75f9769e024dac26cee545cbeb7, type: 2}
 --- !u!1 &7864356728470800812
 GameObject:
   m_ObjectHideFlags: 0

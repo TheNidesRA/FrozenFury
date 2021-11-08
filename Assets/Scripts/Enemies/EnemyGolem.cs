@@ -23,22 +23,22 @@ namespace Enemies
         
         void Start()
         {
-            BuildBehaviourTree();
+            //BuildBehaviourTree();
         }
 
 
         void BuildBehaviourTree()
         {
-            IsGolemAnObjetiveTransform isGolemAnObjetiveTransform =
-                new IsGolemAnObjetiveTransform(this, EnemyGoal.instance.transform);
-            GolemMoveObjetiveNode golemMoveObjetiveNode =
-                new GolemMoveObjetiveNode(EnemyGoal.instance.transform, NavMeshAgent);
-
-            Sequence GoToObjetive = new Sequence(new List<Node>
-                {isGolemAnObjetiveTransform, golemMoveObjetiveNode});
-
-
-            topNode = new Selector(new List<Node> {GoToObjetive});
+            // IsGolemAnObjetiveTransform isGolemAnObjetiveTransform =
+            //     new IsGolemAnObjetiveTransform(this, EnemyGoal.instance.transform);
+            // GolemMoveObjetiveNode golemMoveObjetiveNode =
+            //     new GolemMoveObjetiveNode(EnemyGoal.instance.transform, NavMeshAgent);
+            //
+            // Sequence GoToObjetive = new Sequence(new List<Node>
+            //     {isGolemAnObjetiveTransform, golemMoveObjetiveNode});
+            //
+            //
+            // topNode = new Selector(new List<Node> {GoToObjetive});
         }
 
         private void Update()
@@ -48,11 +48,11 @@ namespace Enemies
                 path = NavMeshAgent.remainingDistance;
             PathStatus = NavMeshAgent.pathStatus;
             
-            topNode.Evaluate();
-            if (topNode.nodeState == NodeState.FAILURE)
-            {
-                Debug.Log("Se ha liao pacooo!!");
-            }
+            // topNode.Evaluate();
+            // if (topNode.nodeState == NodeState.FAILURE)
+            // {
+            //     Debug.Log("Se ha liao pacooo!!");
+            // }
         }
     }
 
@@ -75,10 +75,36 @@ namespace Enemies
                                            Vector3.Distance(script.NavMeshAgent.destination, script.transform.position)
                                                .ToString());
 
-                EditorGUILayout.LabelField("Distacia camino: " +script.NavMeshAgent.remainingDistance);
+                EditorGUILayout.LabelField("Distacia camino: " +GetPathRemainingDistance(script.NavMeshAgent));
             }
           
         }
+        
+        
+        
+        public static float GetPathRemainingDistance(NavMeshAgent navMeshAgent)
+        {
+            if (navMeshAgent.pathPending ||
+                navMeshAgent.pathStatus == NavMeshPathStatus.PathInvalid ||
+                navMeshAgent.path.corners.Length == 0)
+                return -1f;
+
+            float distance = 0.0f;
+            for (int i = 0; i < navMeshAgent.path.corners.Length - 1; ++i)
+            {
+                distance += Vector3.Distance(navMeshAgent.path.corners[i], navMeshAgent.path.corners[i + 1]);
+            }
+
+            return distance;
+        }
+        
+        
+        
+        
+        
+        
+        
+        
     }
 #endif
 }
