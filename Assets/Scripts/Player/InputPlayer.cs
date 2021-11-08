@@ -171,6 +171,14 @@ public class @InputPlayer : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""SelectBuid"",
+                    ""type"": ""Button"",
+                    ""id"": ""7cdbb6d0-c47c-4a31-9d67-8986e5728b6c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -187,9 +195,9 @@ public class @InputPlayer : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""6a9f29be-fea8-4f5b-bb7f-7a70965a5080"",
-                    ""path"": ""<Touchscreen>/touch0/tap"",
-                    ""interactions"": """",
+                    ""id"": ""f7821a77-ab6b-4846-829c-a4c57ad42829"",
+                    ""path"": ""<Touchscreen>/primaryTouch/press"",
+                    ""interactions"": ""Press(behavior=1)"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""LeftClick"",
@@ -294,6 +302,28 @@ public class @InputPlayer : IInputActionCollection, IDisposable
                     ""action"": ""Confirm"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b6d06a1c-1cc2-43cf-82ea-99e2f9eba4f7"",
+                    ""path"": ""<Touchscreen>/primaryTouch/press"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectBuid"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""620c4668-614c-4d1a-ad4b-e86595f11b1e"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectBuid"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -341,6 +371,7 @@ public class @InputPlayer : IInputActionCollection, IDisposable
         m_Building_MousePosition = m_Building.FindAction("MousePosition", throwIfNotFound: true);
         m_Building_Rotate = m_Building.FindAction("Rotate", throwIfNotFound: true);
         m_Building_Confirm = m_Building.FindAction("Confirm", throwIfNotFound: true);
+        m_Building_SelectBuid = m_Building.FindAction("SelectBuid", throwIfNotFound: true);
         // Test
         m_Test = asset.FindActionMap("Test", throwIfNotFound: true);
         m_Test_SpawnEnemy = m_Test.FindAction("SpawnEnemy", throwIfNotFound: true);
@@ -435,6 +466,7 @@ public class @InputPlayer : IInputActionCollection, IDisposable
     private readonly InputAction m_Building_MousePosition;
     private readonly InputAction m_Building_Rotate;
     private readonly InputAction m_Building_Confirm;
+    private readonly InputAction m_Building_SelectBuid;
     public struct BuildingActions
     {
         private @InputPlayer m_Wrapper;
@@ -448,6 +480,7 @@ public class @InputPlayer : IInputActionCollection, IDisposable
         public InputAction @MousePosition => m_Wrapper.m_Building_MousePosition;
         public InputAction @Rotate => m_Wrapper.m_Building_Rotate;
         public InputAction @Confirm => m_Wrapper.m_Building_Confirm;
+        public InputAction @SelectBuid => m_Wrapper.m_Building_SelectBuid;
         public InputActionMap Get() { return m_Wrapper.m_Building; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -484,6 +517,9 @@ public class @InputPlayer : IInputActionCollection, IDisposable
                 @Confirm.started -= m_Wrapper.m_BuildingActionsCallbackInterface.OnConfirm;
                 @Confirm.performed -= m_Wrapper.m_BuildingActionsCallbackInterface.OnConfirm;
                 @Confirm.canceled -= m_Wrapper.m_BuildingActionsCallbackInterface.OnConfirm;
+                @SelectBuid.started -= m_Wrapper.m_BuildingActionsCallbackInterface.OnSelectBuid;
+                @SelectBuid.performed -= m_Wrapper.m_BuildingActionsCallbackInterface.OnSelectBuid;
+                @SelectBuid.canceled -= m_Wrapper.m_BuildingActionsCallbackInterface.OnSelectBuid;
             }
             m_Wrapper.m_BuildingActionsCallbackInterface = instance;
             if (instance != null)
@@ -515,6 +551,9 @@ public class @InputPlayer : IInputActionCollection, IDisposable
                 @Confirm.started += instance.OnConfirm;
                 @Confirm.performed += instance.OnConfirm;
                 @Confirm.canceled += instance.OnConfirm;
+                @SelectBuid.started += instance.OnSelectBuid;
+                @SelectBuid.performed += instance.OnSelectBuid;
+                @SelectBuid.canceled += instance.OnSelectBuid;
             }
         }
     }
@@ -567,6 +606,7 @@ public class @InputPlayer : IInputActionCollection, IDisposable
         void OnMousePosition(InputAction.CallbackContext context);
         void OnRotate(InputAction.CallbackContext context);
         void OnConfirm(InputAction.CallbackContext context);
+        void OnSelectBuid(InputAction.CallbackContext context);
     }
     public interface ITestActions
     {
