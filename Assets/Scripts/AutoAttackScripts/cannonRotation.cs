@@ -10,6 +10,8 @@ namespace AutoAttackScripts
     {
         private int _timeAlive = 4;
         public float _fuerzaDisparo = 20;
+        Vector3 ajuste;
+        GameObject enemyAux;
         /*private float lerpTime = 3f;
         private float _timer = 0f;
         public AnimationCurve lerpCurve;
@@ -19,6 +21,8 @@ namespace AutoAttackScripts
         protected override void ShootEnemy(GameObject enemy)
         {
             if (enemy == null) return;
+
+            enemyAux = enemy;
             //calculate direction from the attackpoint to the enemy
             Vector3 directionShoot = enemy.transform.position - attackPoint.position;
 
@@ -69,8 +73,19 @@ namespace AutoAttackScripts
              currentBullet.GetComponent<Rigidbody>().AddForce(result*currentBullet.GetComponent<Rigidbody>().mass, ForceMode.Impulse);*/
         }
 
-      /*  public void FixedUpdate()
+       /* public void FixedUpdate()
         {
+           if (enemyAux != null)
+            {
+               ajuste = new Vector3(0, enemyAux.transform.position.y, enemyAux.transform.position.z);
+
+            
+                 if (player.transform.rotation.x > 0 || player.transform.rotation.x < 0)
+                 {
+                     player.transform.Rotate(0, enemyAux.transform.rotation.y, enemyAux.transform.rotation.z);
+                 }
+            }
+             
             _timer += Time.deltaTime;
 
             if (_timer > lerpTime)
@@ -82,17 +97,27 @@ namespace AutoAttackScripts
         }*/
 
 
-
-
         override
         public void RotatePlayerToEnemy(GameObject enemy)
         {
             if (enemy == null) return;
 
+
             player.transform.LookAt(enemy.transform);
-            player.transform.Rotate(enemy.transform.rotation.x - 40, 0, 0);
-            
-            
+            //Vector3 lookPosition = new Vector3(0f, enemy.transform.position.y, enemy.transform.position.z);
+
+            //Quaternion.LookRotation(lookPosition);
+
+            /*if (player.transform.rotation.x > 0 || player.transform.rotation.x < 0)
+            {
+                 player.transform.Rotate(0, enemy.transform.rotation.y, enemy.transform.rotation.z);
+            }else{
+                 player.transform.LookAt(enemy.transform);
+            }*/
+
+            //player.transform.Rotate(enemy.transform.rotation.x - 40, 0, 0);
+
+
 
             /*_objectiveDirection =
                 Quaternion.LookRotation((enemy.transform.position - player.transform.position).normalized);
