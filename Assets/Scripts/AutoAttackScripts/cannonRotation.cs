@@ -9,21 +9,18 @@ namespace AutoAttackScripts
     public class cannonRotation : AutoShoot
     {
         private int _timeAlive = 4;
-        private float lerpTime = 3f;
+        public float _fuerzaDisparo = 20;
+        /*private float lerpTime = 3f;
         private float _timer = 0f;
-        private GameObject currentBullet;
         public AnimationCurve lerpCurve;
         public Vector3 lerpOffset;
-        private float lerpRatio;
+        private float lerpRatio;*/
 
         protected override void ShootEnemy(GameObject enemy)
         {
             if (enemy == null) return;
             //calculate direction from the attackpoint to the enemy
             Vector3 directionShoot = enemy.transform.position - attackPoint.position;
-
-          
-
 
             //define the distance x and y first
             Vector3 distance_x_z = directionShoot;
@@ -49,11 +46,11 @@ namespace AutoAttackScripts
             //instantiate bullet
             GameObject currentBullet = Instantiate(bullet, attackPoint.position, Quaternion.identity);
             AssignShooterOfTheBullet(new List<GameObject>() { currentBullet });
-            currentBullet.GetComponent<Rigidbody>().velocity = result;
+            //currentBullet.GetComponent<Rigidbody>().velocity = result;
 
             //currentBullet.transform.position = Vector3.Lerp(attackPoint.position, enemy.transform.position, lerpRatio);
             //add forces to bullet
-            //currentBullet.GetComponent<Rigidbody>().AddForce(result * currentBullet.GetComponent<Rigidbody>().mass, ForceMode.Impulse);
+            currentBullet.GetComponent<Rigidbody>().AddForce(attackPoint.transform.forward * _fuerzaDisparo, ForceMode.Impulse);
             Destroy(currentBullet, _timeAlive);
 
 
@@ -83,6 +80,9 @@ namespace AutoAttackScripts
             lerpRatio = _timer / lerpTime;
             Vector3 positionOffset = lerpCurve.Evaluate(lerpRatio) * lerpOffset;
         }*/
+
+
+
 
         override
         public void RotatePlayerToEnemy(GameObject enemy)
