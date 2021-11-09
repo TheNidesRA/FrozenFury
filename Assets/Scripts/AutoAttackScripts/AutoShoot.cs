@@ -40,6 +40,10 @@ namespace AutoAttackScripts
 
         private GameObject enemyToLook;
 
+        private bool enemySighted = false;
+
+        private Animator characterAnimator;
+
         #region AnimationVariables
 
         private bool[] quadrant;
@@ -113,6 +117,7 @@ namespace AutoAttackScripts
             _enemies = new Dictionary<GameObject, float>();
             StartCoroutine(nameof(AimEnemy));
             isPlayer = transform.parent.gameObject.CompareTag("Player");
+            characterAnimator = GetComponentInParent<Animator>();
             quadrant = new bool[2];
         }
 
@@ -122,6 +127,12 @@ namespace AutoAttackScripts
             //You have to check whether your collision is with an enemy or with another object
             if (!other.gameObject.CompareTag($"Enemy")) return;
             _enemies.Remove(other.gameObject);
+            enemySighted = false;
+
+            //Enemy out of sight, trigger for animation blend tree
+            characterAnimator.SetBool("EnemySighted", enemySighted);
+
+            Debug.Log("Dejamos de detectar enemigo");
         }
 
 
@@ -131,6 +142,10 @@ namespace AutoAttackScripts
             if (!other.gameObject.CompareTag($"Enemy")) return;
             _enemies.Add(other.gameObject, Vector3.Distance(other.gameObject.transform.position, transform.position));
             other.gameObject.GetComponent<Enemy>().OnEnemyDeath += RemoveEnemy;
+            enemySighted = true;
+
+            //Enemy detected, trigger for animation blend tree
+            characterAnimator.SetBool("EnemySighted", enemySighted);
         }
 
         //This method will be used to update the dictionary of enemies
@@ -211,7 +226,12 @@ namespace AutoAttackScripts
 
         public virtual void RotatePlayerToEnemy(GameObject enemy)
         {
-            if (enemy == null) return;
+            if (enemy == null)
+            {
+                enemySighted = false;
+                characterAnimator.SetBool("EnemySighted", enemySighted);
+                return;
+            } 
 
             if (isPlayer)
             {
@@ -393,7 +413,7 @@ namespace AutoAttackScripts
                     LeftDown = true;
                     LeftUp = false;
                     RightDown = false;
-                    RightUp = false;
+                    RightUp = false;                    
                     break;
                 case true when !quadrants[1]:
                     LeftDown = false;
@@ -414,6 +434,12 @@ namespace AutoAttackScripts
                     RightUp = true;
                     break;
             }
+
+            characterAnimator.SetBool("FirstQuad", LeftUp);
+            characterAnimator.SetBool("SecondQuad", RightUp);
+            characterAnimator.SetBool("ThirdQuad", LeftDown);
+            characterAnimator.SetBool("FourthQuad", RightDown);
+
         }
 
         #endregion
