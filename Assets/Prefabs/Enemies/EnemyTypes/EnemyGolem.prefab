@@ -3346,9 +3346,9 @@ GameObject:
   - component: {fileID: 6877007513113703132}
   - component: {fileID: 3071728770618380103}
   - component: {fileID: 6259721114511714890}
-  - component: {fileID: 9145732018176767850}
   - component: {fileID: 3508815072017628486}
-  - component: {fileID: 6804889064483878918}
+  - component: {fileID: 6568612553291909285}
+  - component: {fileID: 4813426109003400373}
   m_Layer: 8
   m_Name: EnemyGolem
   m_TagString: Enemy
@@ -3400,31 +3400,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.9535065, y: 6.2277775, z: 3.6792355}
   m_Center: {x: 0.016336918, y: 2.6138887, z: -0.03267342}
---- !u!114 &9145732018176767850
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7578239022502461647}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 451b18cd87a748ca8014abe0f1b2abff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: Golem
-  _initStats: {fileID: 11400000, guid: 02ebd71750f34ec468184b883725a6da, type: 2}
-  Health: 10
-  HpMult: 1.5
-  Damage: 1
-  DmgMult: 1.5
-  Speed: 5
-  SpdMult: 1.5
-  Armor: 1
-  ArmMult: 1.5
-  AtackSpeed: 1
-  AtkSpMult: 1.5
-  gold: 1
 --- !u!195 &3508815072017628486
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -3447,7 +3422,7 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &6804889064483878918
+--- !u!114 &6568612553291909285
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3456,10 +3431,34 @@ MonoBehaviour:
   m_GameObject: {fileID: 7578239022502461647}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8df6c56721ef532448ed1340e8210aab, type: 3}
+  m_Script: {fileID: 11500000, guid: 75219822548947bbbe22d96fa7aec033, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _agent: {fileID: 3508815072017628486}
+  id: Golem
+  _initStats: {fileID: 11400000, guid: 02ebd71750f34ec468184b883725a6da, type: 2}
+  NavMeshAgent: {fileID: 3508815072017628486}
+  Health: 0
+  Damage: 0
+  Speed: 0
+  Armor: 0
+  AtackSpeed: 0
+  gold: 0
+  distancia: 0
+  path: 0
+  PathStatus: 0
+--- !u!114 &4813426109003400373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7578239022502461647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58c6f9b140a52a14881ec09eaebb66eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tree: {fileID: 11400000, guid: 15b4c75f9769e024dac26cee545cbeb7, type: 2}
 --- !u!1 &7864356728470800812
 GameObject:
   m_ObjectHideFlags: 0

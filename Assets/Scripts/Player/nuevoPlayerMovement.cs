@@ -9,9 +9,13 @@ public class nuevoPlayerMovement : MonoBehaviour
     private CharacterController _characterController;
     private InputPlayer inputPlayer;
 
+    private Animator characterAnimator;
+
     private Vector2 inputMovement;
     private Vector3 v_movement;
     private Vector3 v_velocity;
+    public float v_movement_z;
+    public float v_movement_x;
     public float moveSpeed;
     private float gravity;
     private int rotationSpeed;
@@ -22,6 +26,10 @@ public class nuevoPlayerMovement : MonoBehaviour
     {
         inputPlayer = new InputPlayer();
         _characterController = GetComponent<CharacterController>();
+        v_movement_z = v_movement.z;
+        v_movement_x = v_movement.x;
+
+        characterAnimator = GetComponent<Animator>();
 
         controlMovimiento = true;
         moveSpeed = 35f;
@@ -72,6 +80,12 @@ public class nuevoPlayerMovement : MonoBehaviour
 
         v_movement.z = inputMovement.y;
         v_movement.x = inputMovement.x;
+
+        v_movement_z = v_movement.z;
+        v_movement_x = v_movement.x;
+
+        characterAnimator.SetFloat("MoveZ", v_movement.z);
+        characterAnimator.SetFloat("MoveX", v_movement.x);
 
 
         if (inputMovement == Vector2.zero)
