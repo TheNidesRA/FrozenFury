@@ -32,7 +32,7 @@ public class LevelSystem : MonoBehaviour
     void Start()
     {
         OnPlayerLevelChanged += Instace_OnPlayerLevelChange;
-        StartCoroutine(nameof(upgradeLevel));
+      //  StartCoroutine(nameof(upgradeLevel));
     }
 
     private void UpdateDamagePlayer(int level)
