@@ -41,10 +41,14 @@ public class ChangeColor : MonoBehaviour
 
             foreach (var VARIABLE in Materials)
             {
-                VARIABLE.gameObject.LeanColor(newColor, time).setEase(inEase).setOnComplete(() =>
+                if (VARIABLE.gameObject.activeSelf)
                 {
-                    VARIABLE.gameObject.LeanColor(originalColor, time).setEase(outEase);
-                });
+                    VARIABLE.gameObject.LeanColor(newColor, time).setEase(inEase).setOnComplete(() =>
+                    {
+                        VARIABLE.gameObject.LeanColor(originalColor, time).setEase(outEase);
+                    });
+                }
+               
             }
         }
     }

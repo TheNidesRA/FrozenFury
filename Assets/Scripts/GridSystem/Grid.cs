@@ -33,7 +33,7 @@ public class Grid<TGridObject>
         this._height = height;
         this._cellSize = cellSize;
         this._originPosition = originPosition;
-        Debug.Log("Origin" + originPosition);
+//        Debug.Log("Origin" + originPosition);
         _gridArray = new TGridObject[width, height];
         _debugTextArray = new TextMesh[width, height];
 
