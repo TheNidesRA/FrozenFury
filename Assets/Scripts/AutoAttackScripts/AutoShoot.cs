@@ -32,11 +32,25 @@ namespace AutoAttackScripts
         /// </summary>
         private float localDistance = 0;
 
+        private Vector3 vectorAb;
+
         private bool shooting = false;
 
         private bool isPlayer;
 
         private GameObject enemyToLook;
+
+        #region AnimationVariables
+
+        private bool[] quadrant;
+
+        private bool LeftUp;
+        private bool LeftDown;
+        private bool RightUp;
+        private bool RightDown;
+
+        #endregion
+
         public bool Shooting
         {
             get => shooting;
@@ -99,6 +113,7 @@ namespace AutoAttackScripts
             _enemies = new Dictionary<GameObject, float>();
             StartCoroutine(nameof(AimEnemy));
             isPlayer = transform.parent.gameObject.CompareTag("Player");
+            quadrant = new bool[2];
         }
 
 
@@ -204,6 +219,9 @@ namespace AutoAttackScripts
                     Quaternion.LookRotation((enemy.transform.position - player.transform.position).normalized);
                 player.transform.rotation =
                     Quaternion.Slerp(player.transform.rotation, _objectiveDirection, Time.deltaTime * turnSpeed);
+                vectorAb = enemy.transform.position - transform.position;
+                CheckQuadrant(vectorAb.normalized);
+                PlayerEnemyQuadrant(quadrant);
             }
             else
             {
@@ -342,5 +360,62 @@ namespace AutoAttackScripts
                 }
             }
         }
+
+        #region AnimationQuadrantsMethods
+
+        private void CheckQuadrant(Vector3 vector)
+        {
+            if (vector.x > 0)
+            {
+                quadrant[0] = true;
+            }
+            else
+            {
+                quadrant[0] = false;
+            }
+
+            if (vector.z > 0)
+            {
+                quadrant[1] = true;
+            }
+            else
+
+            {
+                quadrant[1] = false;
+            }
+        }
+
+        private void PlayerEnemyQuadrant(IReadOnlyList<bool> quadrants)
+        {
+            switch (quadrants[0])
+            {
+                case true when quadrants[1]:
+                    LeftDown = true;
+                    LeftUp = false;
+                    RightDown = false;
+                    RightUp = false;
+                    break;
+                case true when !quadrants[1]:
+                    LeftDown = false;
+                    LeftUp = true;
+                    RightDown = false;
+                    RightUp = false;
+                    break;
+                case false when quadrants[1]:
+                    LeftDown = false;
+                    LeftUp = false;
+                    RightDown = true;
+                    RightUp = false;
+                    break;
+                case false when !quadrants[1]:
+                    LeftDown = false;
+                    LeftUp = false;
+                    RightDown = false;
+                    RightUp = true;
+                    break;
+            }
+        }
+
+        #endregion
     }
 }
