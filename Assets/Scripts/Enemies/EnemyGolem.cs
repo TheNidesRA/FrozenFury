@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Nodes;
 using Nodes.GolemNodes;
+using TheKiwiCoder;
 using UnityEngine;
 using UnityEngine.AI;
 #if UNITY_EDITOR
@@ -17,8 +18,10 @@ namespace Enemies
         private NavMeshPathStatus s;
         public Vector3 objetive;
         public PlacedBuild buildObjetive;
+        public BehaviourTreeRunner tr;
         private void Update()
         {
+          
             s = this.NavMeshAgent.pathStatus;
         }
 
@@ -59,7 +62,18 @@ namespace Enemies
                                                .ToString());
 
                 EditorGUILayout.LabelField("Distacia camino: " + GetPathRemainingDistance(script.NavMeshAgent));
+                EditorGUILayout.LabelField("Distacia ubi: " + script.NavMeshAgent.destination);
                 EditorGUILayout.LabelField("Path status: " + script.NavMeshAgent.pathStatus);
+            }
+
+            if (script.tr!=null)
+            {
+                EditorGUILayout.LabelField("Arbol status: " + script.tr.tree.treeState);
+                EditorGUILayout.LabelField("Arbol nombre?: " + script.tr.tree.rootNode.position);
+                EditorGUILayout.LabelField("Arbol Description?: " + script.tr.tree.rootNode.description);
+                EditorGUILayout.LabelField("Arbol asd?: " + script.tr.tree.name);
+                EditorGUILayout.LabelField("Arbol asd?: " + script.tr.tree.rootNode.guid);
+                //script.tr.tree.nodes.Find(n => n.guid ==script.tr.tree.)
             }
         }
 

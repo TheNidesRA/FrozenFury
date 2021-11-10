@@ -27,14 +27,17 @@ namespace Nodes.GolemNodes
 
         protected override State OnUpdate()
         {
+            Debug.Log(name);
             searchWalls();
 
             if (listaMuros.Count > 0)
             {
                 PlacedBuild closest = listaMuros[0];
+                
                 float maxDistance = Vector3.Distance(context.transform.position, closest.gameObject.transform.position);
                 foreach (var VARIABLE in listaMuros)
                 {
+                    
                     float dis = Vector3.Distance(context.transform.position, VARIABLE.gameObject.transform.position);
                     if (dis < maxDistance)
                     {
@@ -53,12 +56,12 @@ namespace Nodes.GolemNodes
 
                 _enemyGolem.objetive = closest.transform.position;
                 _enemyGolem.buildObjetive = closest;
-
+                
                 // Debug.DrawLine(context.transform.position, closest.transform.position);
                 return State.Success;
             }
 
-            Debug.Log("Fracaso en la busqueda de muritos");
+          //  Debug.Log("Fracaso en la busqueda de muritos");
             return State.Failure;
         }
 

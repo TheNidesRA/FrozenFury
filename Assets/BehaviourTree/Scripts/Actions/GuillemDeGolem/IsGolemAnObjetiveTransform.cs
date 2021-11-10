@@ -18,9 +18,10 @@ public class IsGolemAnObjetiveTransform : ActionNode
 
     protected override State OnUpdate()
     {
+        Debug.Log(name);
         if (EnemyGoal.instance != null)
         {
-            context.agent.destination = EnemyGoal.instance.getPosition();
+//            context.agent.destination = EnemyGoal.instance.getPosition();
             return State.Success;
         }
         else

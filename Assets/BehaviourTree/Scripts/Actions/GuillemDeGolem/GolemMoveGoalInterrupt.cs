@@ -13,7 +13,8 @@ public class GolemMoveGoalInterrupt : ActionNode
     }
 
     protected override State OnUpdate() {
-        Debug.Log("Viendo si hay que abortar");
+        //Debug.Log(name);
+        //Debug.Log("Viendo si hay que abortar");
         float distance = Vector3.Distance(context.agent.destination, context.transform.position);
         float diferencia = EnemyGolem.GetPathRemainingDistance(context.agent) - distance;
 

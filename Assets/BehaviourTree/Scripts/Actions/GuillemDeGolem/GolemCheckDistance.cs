@@ -12,6 +12,7 @@ public class GolemCheckDistance : ActionNode
 
     protected override void OnStart()
     {
+        
         _enemyGolem = context.gameObject.GetComponent<EnemyGolem>();
         //throw new System.NotImplementedException();
     }
@@ -23,6 +24,8 @@ public class GolemCheckDistance : ActionNode
 
     protected override State OnUpdate()
     {
+        Debug.Log(name);
+        Debug.Log("aaa?");
         if (context.agent.hasPath)
         {
             if (context.agent.pathStatus == NavMeshPathStatus.PathComplete)
@@ -43,7 +46,7 @@ public class GolemCheckDistance : ActionNode
                 }
             }
 
-            Debug.Log("No es completo");
+           Debug.Log("No es completo");
             return State.Failure;
         }
         else
