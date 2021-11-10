@@ -247,13 +247,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1027235333215062396}
-  m_LocalRotation: {x: -0.17364825, y: 0, z: 0, w: 0.9848078}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.059999447, y: 1.2900002, z: -0.97999984}
   m_LocalScale: {x: 1, y: 0.73792005, z: 0.76803374}
   m_Children: []
   m_Father: {fileID: 9186043760956937099}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -20, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1887852419729497804
 GameObject:
   m_ObjectHideFlags: 0
@@ -338,7 +338,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   typeOfShooting: 0
   bulletTimeAlive: 4
-  shootForce: 40
+  shootForce: 200
   bullet: {fileID: 7040415461391761229, guid: db32f131587bd4a4eaaba662368c36fd, type: 3}
   timeBetweenShooting: 1
   timeToShootBulletBurst: 0.2
@@ -347,7 +347,8 @@ MonoBehaviour:
   player: {fileID: 9186043760956937099}
   turnSpeed: 1000
   buildinginfo: {fileID: 11400000, guid: aaeeb991aee2b0c45a688584dcccf4ac, type: 2}
-  _fuerzaDisparo: 30
+  h: 25
+  gravity: -18
 --- !u!1 &2711251045519925758
 GameObject:
   m_ObjectHideFlags: 0

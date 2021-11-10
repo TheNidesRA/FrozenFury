@@ -117,7 +117,8 @@ namespace AutoAttackScripts
             _enemies = new Dictionary<GameObject, float>();
             StartCoroutine(nameof(AimEnemy));
             isPlayer = transform.parent.gameObject.CompareTag("Player");
-            characterAnimator = GetComponentInParent<Animator>();
+            if (isPlayer)
+                characterAnimator = GetComponentInParent<Animator>();
             quadrant = new bool[2];
         }
 
@@ -129,8 +130,9 @@ namespace AutoAttackScripts
             _enemies.Remove(other.gameObject);
             enemySighted = false;
 
-            //Enemy out of sight, trigger for animation blend tree
-            characterAnimator.SetBool("EnemySighted", enemySighted);
+            if (isPlayer)
+                //Enemy out of sight, trigger for animation blend tree
+                characterAnimator.SetBool("EnemySighted", enemySighted);
 
             Debug.Log("Dejamos de detectar enemigo");
         }
@@ -144,8 +146,9 @@ namespace AutoAttackScripts
             other.gameObject.GetComponent<Enemy>().OnEnemyDeath += RemoveEnemy;
             enemySighted = true;
 
-            //Enemy detected, trigger for animation blend tree
-            characterAnimator.SetBool("EnemySighted", enemySighted);
+            if (isPlayer)
+                //Enemy detected, trigger for animation blend tree
+                characterAnimator.SetBool("EnemySighted", enemySighted);
         }
 
         //This method will be used to update the dictionary of enemies
@@ -229,9 +232,10 @@ namespace AutoAttackScripts
             if (enemy == null)
             {
                 enemySighted = false;
-                characterAnimator.SetBool("EnemySighted", enemySighted);
+                if (isPlayer)
+                    characterAnimator.SetBool("EnemySighted", enemySighted);
                 return;
-            } 
+            }
 
             if (isPlayer)
             {
@@ -413,7 +417,7 @@ namespace AutoAttackScripts
                     LeftDown = true;
                     LeftUp = false;
                     RightDown = false;
-                    RightUp = false;                    
+                    RightUp = false;
                     break;
                 case true when !quadrants[1]:
                     LeftDown = false;
