@@ -15,14 +15,14 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 9828d5ba1c6b2c94d8a37e8fc512d706
-  position: {x: -23.403933, y: -64.148994}
+  position: {x: -10.399995, y: -474.46802}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
   description: 
-  drawGizmos: 1
+  drawGizmos: 0
   child: {fileID: -3877756184050008839}
   restartOnSuccess: 1
-  restartOnFailure: 0
+  restartOnFailure: 1
 --- !u!114 &-6452352853697070936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38,12 +38,32 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 454a44d35c823044ea0b2412c409babf
-  position: {x: -22.697983, y: -186.047}
+  position: {x: -10.157035, y: -584.09595}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
   description: 
   drawGizmos: 1
   child: {fileID: -9064564434680279753}
+--- !u!114 &-6038938351507838446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12491b2526754472b8e6a1421143dcba, type: 3}
+  m_Name: GolemSearchWall
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 2600a5dd4d487884ab1a24c23612c280
+  position: {x: -298.28253, y: 171.46246}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+  description: 
+  drawGizmos: 0
 --- !u!114 &-3877756184050008839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59,13 +79,14 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: f37adcaa513d6ad4a9d2ede928190897
-  position: {x: -23.403933, y: 75.05099}
+  position: {x: -11.631105, y: -345.93713}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
   description: 
   drawGizmos: 1
   children:
   - {fileID: 786942299824133773}
+  - {fileID: 4719126558277253356}
 --- !u!114 &-3309965330814681434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81,7 +102,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: e6154884595ddff4bba3253046115c98
-  position: {x: 139.45003, y: 374.8001}
+  position: {x: 514.46356, y: -60.70598}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
   description: 
@@ -101,12 +122,11 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 2e5e3619613d2ff4c8a0a88f4a2af63a
-  position: {x: -240.6001, y: 379.9}
+  position: {x: 64.14903, y: -67.19998}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
   description: 
   drawGizmos: 0
-  _objetive: {fileID: 0}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,6 +148,10 @@ MonoBehaviour:
   - {fileID: -9064564434680279753}
   - {fileID: -3042683934550056320}
   - {fileID: -3309965330814681434}
+  - {fileID: 1303730706557833739}
+  - {fileID: 6888871839441604063}
+  - {fileID: 4719126558277253356}
+  - {fileID: -6038938351507838446}
   blackboard:
     moveToPosition: {x: 2, y: 0, z: 0}
 --- !u!114 &786942299824133773
@@ -145,7 +169,52 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 0e1677807b176c340adbf00c90d23a28
-  position: {x: -22.603941, y: 203.05104}
+  position: {x: -409.4582, y: -263.2781}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+  description: 
+  drawGizmos: 0
+  children:
+  - {fileID: 6888871839441604063}
+  - {fileID: 1303730706557833739}
+--- !u!114 &1303730706557833739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61431bba79d7d7843b82bf1de71703f5, type: 3}
+  m_Name: Sequencer
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: cb9e0e40a32e39f49b98fd097c9bfd7d
+  position: {x: -299.7642, y: -41.85894}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+  description: 
+  drawGizmos: 0
+  children:
+  - {fileID: -6038938351507838446}
+--- !u!114 &4719126558277253356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61431bba79d7d7843b82bf1de71703f5, type: 3}
+  m_Name: Sequencer
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: e4a9746625c5aea42872c16de48b3e13
+  position: {x: 323.19992, y: -217.2114}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
   description: 
@@ -153,3 +222,24 @@ MonoBehaviour:
   children:
   - {fileID: -3042683934550056320}
   - {fileID: -3309965330814681434}
+--- !u!114 &6888871839441604063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fafb4e38fe991e0489cb753b552e7bf7, type: 3}
+  m_Name: GolemCheckDistance
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: cab13cb7865120f4484370f34090b945
+  position: {x: -644.6933, y: -70.922424}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+  description: 
+  drawGizmos: 0
+  threasole: 4

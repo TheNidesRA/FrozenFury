@@ -54,6 +54,8 @@ namespace GridSystem
         public int gridWidth = 15;
         public int gridHeight = 9;
         public float cellSize = 10f;
+        
+        
 
         private void OnEnable()
         {

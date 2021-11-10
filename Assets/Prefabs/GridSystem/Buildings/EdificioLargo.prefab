@@ -124,7 +124,7 @@ BoxCollider:
   m_GameObject: {fileID: 1746472939805835103}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -219,7 +219,7 @@ BoxCollider:
   m_GameObject: {fileID: 1974489307119312425}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -636,6 +636,7 @@ GameObject:
   - component: {fileID: 2733734113678329177}
   - component: {fileID: -6276080229888084107}
   - component: {fileID: 1998429661618074081}
+  - component: {fileID: 6952677852241908547}
   m_Layer: 12
   m_Name: EdificioLargo
   m_TagString: Untagged
@@ -695,6 +696,19 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 10, y: 3, z: 5}
   m_TimeToStationary: 0.5
+--- !u!65 &6952677852241908547
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3108128959313281839}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 20.285852, y: 9.70799, z: 10.736411}
+  m_Center: {x: 9.642926, y: 4.353996, z: 4.8682055}
 --- !u!1 &3721780072712943045
 GameObject:
   m_ObjectHideFlags: 0
@@ -1076,7 +1090,7 @@ BoxCollider:
   m_GameObject: {fileID: 5870243158833206179}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -1171,7 +1185,7 @@ BoxCollider:
   m_GameObject: {fileID: 7206821323709332583}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
