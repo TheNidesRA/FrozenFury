@@ -12,6 +12,8 @@ namespace AutoAttackScripts
         public float _fuerzaDisparo = 20;
         Vector3 ajuste;
         GameObject enemyAux;
+        float maxX = 0f;
+        float minX = 0f;
         /*private float lerpTime = 3f;
         private float _timer = 0f;
         public AnimationCurve lerpCurve;
@@ -50,7 +52,6 @@ namespace AutoAttackScripts
             //instantiate bullet
             GameObject currentBullet = Instantiate(bullet, attackPoint.position, Quaternion.identity);
             AssignShooterOfTheBullet(new List<GameObject>() { currentBullet });
-            //currentBullet.GetComponent<Rigidbody>().velocity = result;
 
             //currentBullet.transform.position = Vector3.Lerp(attackPoint.position, enemy.transform.position, lerpRatio);
             //add forces to bullet
@@ -102,27 +103,27 @@ namespace AutoAttackScripts
         {
             if (enemy == null) return;
 
-
+            Vector3 lookVector = enemy.transform.position - player.transform.position;
+            lookVector.y = enemy.transform.position.y;
+            Quaternion rot = Quaternion.LookRotation(lookVector);
+            transform.rotation = Quaternion.Slerp(transform.rotation, rot, 1);
+            /*
             player.transform.LookAt(enemy.transform);
-            //Vector3 lookPosition = new Vector3(0f, enemy.transform.position.y, enemy.transform.position.z);
-
-            //Quaternion.LookRotation(lookPosition);
-
-            /*if (player.transform.rotation.x > 0 || player.transform.rotation.x < 0)
+            player.transform.Rotate(Mathf.Clamp(enemy.transform.rotation.x,minX,maxX), enemy.transform.rotation.y, enemy.transform.rotation.z);
+            Vector3 lookPosition = new Vector3(0f, enemy.transform.position.y, enemy.transform.position.z);
+            Quaternion.LookRotation(lookPosition);
+            if (player.transform.rotation.x > 0 || player.transform.rotation.x < 0)
             {
                  player.transform.Rotate(0, enemy.transform.rotation.y, enemy.transform.rotation.z);
             }else{
                  player.transform.LookAt(enemy.transform);
-            }*/
-
-            //player.transform.Rotate(enemy.transform.rotation.x - 40, 0, 0);
-
-
-
-            /*_objectiveDirection =
+            }
+            player.transform.Rotate(enemy.transform.rotation.x - 40, 0, 0);
+            _objectiveDirection =
                 Quaternion.LookRotation((enemy.transform.position - player.transform.position).normalized);
             player.transform.rotation =
-                Quaternion.Slerp(player.transform.rotation, _objectiveDirection, Time.deltaTime * turnSpeed);*/
+                Quaternion.Slerp(player.transform.rotation, _objectiveDirection, Time.deltaTime * turnSpeed);
+            */
         }
 
         public override void StartStopShooting()
