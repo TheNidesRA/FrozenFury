@@ -20,26 +20,21 @@ namespace Nodes.GolemNodes
         protected override void OnStop()
         {
             Debug.Log("Parando y tal");
+            context.agent.isStopped = true;
+           // context.agent.ResetPath();
         }
 
         protected override State OnUpdate()
         {
-            if (context.agent.hasPath)
+            if (context.agent.destination != new Vector3(-1,-1,-1))
             {
-                Debug.Log("Corriendo");
-                float distance = Vector3.Distance(_objetive, context.transform.position);
-                float diferencia = _enemyGolem.GetPathRemainingDistance() - distance;
-
-                if (diferencia >= 4)
-                {
-                    Debug.Log("HAY QUE RECALCULAR");
-                    return State.Failure;
-                }
-
+                
+                Debug.Log("Moviendonos");
                 return State.Running;
             }
             else
             {
+                Debug.Log("Fracaso??");
                 return State.Failure;
             }
         }

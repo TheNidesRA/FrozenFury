@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Enemies;
 using TheKiwiCoder;
 using UnityEngine;
 
@@ -7,11 +8,16 @@ namespace Nodes.GolemNodes
     public class GolemSearchWall : ActionNode
     {
         private List<PlacedBuild> listaMuros;
+        private EnemyGolem _enemyGolem;
         private LineRenderer lr;
+        public bool debug = false;
+        public float radioSearch = 10f;
 
         protected override void OnStart()
         {
-            lr = context.gameObject.GetComponent<LineRenderer>();
+            if (debug)
+                lr = context.gameObject.GetComponent<LineRenderer>();
+            _enemyGolem = context.gameObject.GetComponent<EnemyGolem>();
         }
 
         protected override void OnStop()
@@ -22,7 +28,7 @@ namespace Nodes.GolemNodes
         protected override State OnUpdate()
         {
             searchWalls();
-            
+
             if (listaMuros.Count > 0)
             {
                 PlacedBuild closest = listaMuros[0];
@@ -37,14 +43,18 @@ namespace Nodes.GolemNodes
                     }
                 }
 
-                Debug.Log("El mas cercano es : " + closest + " Con una distancia de : " + maxDistance + " POSICION :" +
-                          closest.transform.position);
+                //  Debug.Log("El mas cercano es : " + closest + " Con una distancia de : " + maxDistance + " POSICION :" +
+                //           closest.transform.position);
+                if (debug)
+                {
+                    lr.SetPosition(0, new Vector3(context.transform.position.x, 5, context.transform.position.z));
+                    lr.SetPosition(1, closest.transform.position);
+                }
 
-                lr.SetPosition(0, new Vector3(context.transform.position.x, 5, context.transform.position.z));
-                lr.SetPosition(1, closest.transform.position);
+                _enemyGolem.objetive = closest.transform.position;
+                _enemyGolem.buildObjetive = closest;
 
-
-                Debug.DrawLine(context.transform.position, closest.transform.position);
+                // Debug.DrawLine(context.transform.position, closest.transform.position);
                 return State.Success;
             }
 
@@ -55,10 +65,10 @@ namespace Nodes.GolemNodes
         private void searchWalls()
         {
             listaMuros = new List<PlacedBuild>();
-            Collider[] colliderArray = Physics.OverlapSphere(context.transform.position, 30f);
+            Collider[] colliderArray =
+                Physics.OverlapSphere(context.transform.position, radioSearch, LayerMask.GetMask("Muros"));
             foreach (var VARIABLE in colliderArray)
             {
-                
                 if (VARIABLE.TryGetComponent<PlacedBuild>(out PlacedBuild placedBuild))
                 {
                     if (placedBuild.BuildingSo.type == BuildingSO.BuildingType.Wall)

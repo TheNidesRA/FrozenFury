@@ -8,7 +8,7 @@ using UnityEngine.AI;
 public class GolemCheckDistance : ActionNode
 {
     private EnemyGolem _enemyGolem;
-    public float threasole = 4f;
+    public float threasole = 2f;
 
     protected override void OnStart()
     {
@@ -27,7 +27,7 @@ public class GolemCheckDistance : ActionNode
         {
             if (context.agent.pathStatus == NavMeshPathStatus.PathComplete)
             {
-                float realDistance = _enemyGolem.GetPathRemainingDistance();
+                float realDistance = EnemyGolem.GetPathRemainingDistance(context.agent);
                 float manDistance = Vector3.Distance(context.agent.destination, context.transform.position);
                 float difference = realDistance - manDistance;
 

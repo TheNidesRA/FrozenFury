@@ -15,22 +15,24 @@ namespace Enemies
     public class EnemyGolem : Enemy
     {
         private NavMeshPathStatus s;
+        public Vector3 objetive;
+        public PlacedBuild buildObjetive;
         private void Update()
         {
             s = this.NavMeshAgent.pathStatus;
         }
 
-        public float GetPathRemainingDistance()
+        public static float GetPathRemainingDistance(NavMeshAgent navMeshAgent)
         {
-            if (NavMeshAgent.pathPending ||
-                NavMeshAgent.pathStatus == NavMeshPathStatus.PathInvalid ||
-                NavMeshAgent.path.corners.Length == 0)
+            if (navMeshAgent.pathPending ||
+                navMeshAgent.pathStatus == NavMeshPathStatus.PathInvalid ||
+                navMeshAgent.path.corners.Length == 0)
                 return -1f;
 
             float distance = 0.0f;
-            for (int i = 0; i < NavMeshAgent.path.corners.Length - 1; ++i)
+            for (int i = 0; i < navMeshAgent.path.corners.Length - 1; ++i)
             {
-                distance += Vector3.Distance(NavMeshAgent.path.corners[i], NavMeshAgent.path.corners[i + 1]);
+                distance += Vector3.Distance(navMeshAgent.path.corners[i], navMeshAgent.path.corners[i + 1]);
             }
 
             return distance;

@@ -272,7 +272,7 @@ namespace GridSystem
                 if (mouseGridPosition == new Vector2Int(-1, -1))
                     return;
 
-                Debug.Log(mouseGridPosition);
+//                Debug.Log(mouseGridPosition);
 
                 List<Vector2Int> buildingPositions = _buildingSO.GetGridPositionList(mouseGridPosition, _dir);
 
