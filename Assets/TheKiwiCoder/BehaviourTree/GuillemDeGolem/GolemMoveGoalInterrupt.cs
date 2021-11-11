@@ -20,7 +20,7 @@ public class GolemMoveGoalInterrupt : ActionNode
 
         if (diferencia >= 2)
         {
-            Debug.Log("HAY QUE RECALCULAR");
+           // Debug.Log("HAY QUE RECALCULAR");
             return State.Failure;
         }
         

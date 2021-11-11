@@ -24,8 +24,8 @@ public class GolemCheckDistance : ActionNode
 
     protected override State OnUpdate()
     {
-        Debug.Log(name);
-        Debug.Log("aaa?");
+       // Debug.Log(name);
+      //  Debug.Log("aaa?");
         if (context.agent.hasPath)
         {
             if (context.agent.pathStatus == NavMeshPathStatus.PathComplete)
@@ -36,22 +36,22 @@ public class GolemCheckDistance : ActionNode
 
                 if (difference >= threasole)
                 {
-                    Debug.Log("A reventar se ha dixo");
+                   // Debug.Log("A reventar se ha dixo");
                     return State.Success;
                 }
                 else
                 {
-                    Debug.Log("No renta");
+                    //Debug.Log("No renta");
                     return State.Failure;
                 }
             }
 
-           Debug.Log("No es completo");
+           //Debug.Log("No es completo");
             return State.Failure;
         }
         else
         {
-            Debug.Log("No tiene path");
+           // Debug.Log("No tiene path");
             return State.Failure;
         }
     }

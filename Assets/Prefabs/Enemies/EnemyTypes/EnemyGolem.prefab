@@ -3348,8 +3348,8 @@ GameObject:
   - component: {fileID: 6259721114511714890}
   - component: {fileID: 3508815072017628486}
   - component: {fileID: 6568612553291909285}
-  - component: {fileID: 4813426109003400373}
   - component: {fileID: 61202294283004121}
+  - component: {fileID: 7367640920302820748}
   m_Layer: 8
   m_Name: EnemyGolem
   m_TagString: Enemy
@@ -3446,20 +3446,6 @@ MonoBehaviour:
   gold: 1
   objetive: {x: 0, y: 0, z: 0}
   buildObjetive: {fileID: 0}
-  tr: {fileID: 4813426109003400373}
---- !u!114 &4813426109003400373
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7578239022502461647}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58c6f9b140a52a14881ec09eaebb66eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tree: {fileID: 11400000, guid: 28d35462d6e585843a40c2eb2f459ca5, type: 2}
 --- !u!120 &61202294283004121
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -3558,6 +3544,19 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!114 &7367640920302820748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7578239022502461647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58c6f9b140a52a14881ec09eaebb66eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tree: {fileID: 11400000, guid: d018d58eb768dbc4e884db6e0a356b8c, type: 2}
 --- !u!1 &7864356728470800812
 GameObject:
   m_ObjectHideFlags: 0

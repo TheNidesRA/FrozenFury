@@ -27,7 +27,7 @@ namespace Nodes.GolemNodes
 
         protected override State OnUpdate()
         {
-            Debug.Log(name);
+            //Debug.Log(name);
             searchWalls();
 
             if (listaMuros.Count > 0)

@@ -21,7 +21,9 @@ public class GolemHitsTheWall : ActionNode
 
     protected override State OnUpdate()
     {
-        Debug.Log(name);
+        if (ReferenceEquals(_enemyGolem.buildObjetive, null))
+            return State.Success;
+        //Debug.Log(name);
         Collider[] colliders =
             Physics.OverlapSphere(context.transform.position, 10f, LayerMask.GetMask("Muros"));
 
@@ -29,13 +31,14 @@ public class GolemHitsTheWall : ActionNode
         {
             if (VARIABLE.TryGetComponent<PlacedBuild>(out PlacedBuild placedBuild))
             {
-                // if (placedBuild.Equals(_enemyGolem.buildObjetive) )
-                // {
-               // Debug.Log("hit!!!!");
+                 if (placedBuild.Equals(_enemyGolem.buildObjetive) )
+                 {
+                
+                    // Debug.Log("hit al muro bueno!!!!");
+               
+                 }
                 GridBuildingSystem.Instance.RemoveBuild(placedBuild);
-                return State.Success;
-                // }
-
+                return State.Running;
                 Debug.Log("MISS DE HIT :(");
                 return State.Failure;
             }

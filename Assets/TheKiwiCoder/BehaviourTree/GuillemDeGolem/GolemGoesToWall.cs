@@ -63,8 +63,12 @@ public class GolemGoesToWall : ActionNode
 
     protected override State OnUpdate()
     {
-        Debug.Log(name);
-        if (_enemyGolem.buildObjetive == null) return State.Failure;
+        //Debug.Log(name);
+        if (_enemyGolem.buildObjetive == null)
+        {
+            context.agent.ResetPath();
+            return State.Failure;
+        }
         if (Vector3.Distance(context.transform.position, context.agent.destination) < 2f)
         {
            // Debug.Log("Hemos llegao");

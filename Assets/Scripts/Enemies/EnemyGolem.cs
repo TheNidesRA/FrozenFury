@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Nodes;
-using Nodes.GolemNodes;
-using TheKiwiCoder;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 #if UNITY_EDITOR
 using UnityEditor;
@@ -18,7 +13,7 @@ namespace Enemies
         private NavMeshPathStatus s;
         public Vector3 objetive;
         public PlacedBuild buildObjetive;
-        public BehaviourTreeRunner tr;
+        //public BehaviourTreeRunner tr;
         private void Update()
         {
           
@@ -66,15 +61,15 @@ namespace Enemies
                 EditorGUILayout.LabelField("Path status: " + script.NavMeshAgent.pathStatus);
             }
 
-            if (script.tr!=null)
-            {
-                EditorGUILayout.LabelField("Arbol status: " + script.tr.tree.treeState);
-                EditorGUILayout.LabelField("Arbol nombre?: " + script.tr.tree.rootNode.position);
-                EditorGUILayout.LabelField("Arbol Description?: " + script.tr.tree.rootNode.description);
-                EditorGUILayout.LabelField("Arbol asd?: " + script.tr.tree.name);
-                EditorGUILayout.LabelField("Arbol asd?: " + script.tr.tree.rootNode.guid);
-                //script.tr.tree.nodes.Find(n => n.guid ==script.tr.tree.)
-            }
+            // if (script.tr!=null)
+            // {
+            //     EditorGUILayout.LabelField("Arbol status: " + script.tr.tree.treeState);
+            //     EditorGUILayout.LabelField("Arbol nombre?: " + script.tr.tree.rootNode.position);
+            //     EditorGUILayout.LabelField("Arbol Description?: " + script.tr.tree.rootNode.description);
+            //     EditorGUILayout.LabelField("Arbol asd?: " + script.tr.tree.name);
+            //     EditorGUILayout.LabelField("Arbol asd?: " + script.tr.tree.rootNode.guid);
+            //     //script.tr.tree.nodes.Find(n => n.guid ==script.tr.tree.)
+            // }
         }
 
 
