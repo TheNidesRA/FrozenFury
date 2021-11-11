@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -21,6 +22,7 @@ namespace Enemies
         /// </summary>
         public NavMeshAgent NavMeshAgent;
 
+        private bool isAttacking = false;
         public event Action<GameObject> OnEnemyDeath;
 
         public string Id => id;
@@ -32,11 +34,10 @@ namespace Enemies
         public float AtackSpeed;
         public float gold;
 
-      
 
         private void OnEnable()
         {
-            NavMeshAgent.speed=Speed;
+            NavMeshAgent.speed = Speed;
         }
 
         public void UpdateStats(float[] mult)
@@ -82,6 +83,26 @@ namespace Enemies
         {
             Debug.Log("HP: " + Health + " // Dmg: " + Damage + " // Spd: " + Speed + " // Arm: " + Armor +
                       " // AtkSpd: " + AtackSpeed);
+        }
+
+        public void Attack()
+        {
+            if (isAttacking) return;
+            isAttacking = true;
+            Debug.Log("Ataca!");
+            StartCoroutine(nameof(StartAnimation));
+
+        }
+
+        public bool IsAttackFinished()
+        {
+            return !isAttacking;
+        }
+
+        private IEnumerator StartAnimation()
+        {
+            yield return new WaitForSeconds(AtackSpeed);
+            isAttacking = false;
         }
     }
 }

@@ -1,0 +1,402 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9019347321207769009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afb5496e8cd973748a10b3e3ef436ebd, type: 3}
+  m_Name: Repeat
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 264744e8b3478eb4eaa24f28d88d0fcc
+  position: {x: -12, y: 50.19998}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+  description: 
+  drawGizmos: 0
+  child: {fileID: -900547076052648050}
+  restartOnSuccess: 1
+  restartOnFailure: 0
+--- !u!114 &-7361348468732085211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61431bba79d7d7843b82bf1de71703f5, type: 3}
+  m_Name: Sequencer
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 3bc9930a93aa9084e961d38ac5698d53
+  position: {x: 69.59988, y: 731.99994}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+  description: 
+  drawGizmos: 0
+  children:
+  - {fileID: 8799505384476161206}
+  - {fileID: -4331844133695423885}
+--- !u!114 &-4331844133695423885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c67767c7c83ed741ac71dbe70535fbe, type: 3}
+  m_Name: BunnyAttackPlayer
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 3211f8067c48b2a4b9b8f3d20f51db1e
+  position: {x: 220.00008, y: 899.19995}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+  description: 
+  drawGizmos: 0
+--- !u!114 &-1034356941065925362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 193f7fb40c3870645aea8f62d0c69cd6, type: 3}
+  m_Name: BunnyIsPlayerAlive
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: f7c60365cd248ff4c882fc73794fae2f
+  position: {x: -351.99982, y: 576}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+  description: 
+  drawGizmos: 0
+--- !u!114 &-900547076052648050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 460be9e34c566ea45b9e282b1adcb028, type: 3}
+  m_Name: Selector
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: e80ba1f821c553d44b76cbae3bf5b3ab
+  position: {x: -12, y: 205.80002}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+  description: 
+  drawGizmos: 0
+  children:
+  - {fileID: -792351476852250649}
+  - {fileID: 2076284542734779807}
+--- !u!114 &-876023812555478717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77703aca2b0233346b667461715eee55, type: 3}
+  m_Name: BunnyLifeLessThanX
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: c53cf20d8ad718045975ea458973939a
+  position: {x: -463.2, y: 899.19995}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+  description: 
+  drawGizmos: 0
+  percentageLife: 0.2
+--- !u!114 &-792351476852250649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61431bba79d7d7843b82bf1de71703f5, type: 3}
+  m_Name: Sequencer
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: e43f8f1e183fce14f8312b5a48d356db
+  position: {x: -350.8, y: 384.80005}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+  description: 
+  drawGizmos: 0
+  children:
+  - {fileID: 2682079689549906226}
+  - {fileID: -1034356941065925362}
+  - {fileID: 6941726805316169770}
+  - {fileID: -210373949198293718}
+--- !u!114 &-210373949198293718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 460be9e34c566ea45b9e282b1adcb028, type: 3}
+  m_Name: Selector
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: d3a06b1975d8f5f4e80a43eff520774d
+  position: {x: 219.99997, y: 552}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+  description: 
+  drawGizmos: 0
+  children:
+  - {fileID: -7361348468732085211}
+  - {fileID: 1004548836794075895}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d285eb63c2cdd74180de7cfceaa96ad, type: 3}
+  m_Name: BadBunnyTree
+  m_EditorClassIdentifier: 
+  rootNode: {fileID: 6412708531666581814}
+  treeState: 0
+  nodes:
+  - {fileID: 6412708531666581814}
+  - {fileID: -9019347321207769009}
+  - {fileID: -900547076052648050}
+  - {fileID: -792351476852250649}
+  - {fileID: 2682079689549906226}
+  - {fileID: -1034356941065925362}
+  - {fileID: 6941726805316169770}
+  - {fileID: 1211557501217059873}
+  - {fileID: -876023812555478717}
+  - {fileID: 2076284542734779807}
+  - {fileID: -210373949198293718}
+  - {fileID: -7361348468732085211}
+  - {fileID: 1004548836794075895}
+  - {fileID: -4331844133695423885}
+  - {fileID: 8799505384476161206}
+  - {fileID: 2912056284164191956}
+  - {fileID: 4449836003372412428}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+--- !u!114 &1004548836794075895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db7d45cc4692bdb4bbae74513eb89059, type: 3}
+  m_Name: BunnyChasePlayer
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 9ea73732d82a3864dafacaa369163173
+  position: {x: 370.4001, y: 731.1999}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+  description: 
+  drawGizmos: 0
+--- !u!114 &1211557501217059873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61431bba79d7d7843b82bf1de71703f5, type: 3}
+  m_Name: Sequencer
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: ec442231f42f0d6438cf5cccae077f01
+  position: {x: -351.99997, y: 732.7999}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+  description: 
+  drawGizmos: 0
+  children:
+  - {fileID: -876023812555478717}
+  - {fileID: 4449836003372412428}
+--- !u!114 &2076284542734779807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8a26f1c7bf208b4892c093898275d68, type: 3}
+  m_Name: BunnyChaseGoal
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 2ebec48d1fa13924881e4650f25dcd76
+  position: {x: 442.27045, y: 398.46924}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+  description: 
+  drawGizmos: 0
+--- !u!114 &2682079689549906226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dbe00b3fa3028d44abed787e822ded6, type: 3}
+  m_Name: BunnyExistPlayer
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: b76148a43c3682f43be4c091318134b4
+  position: {x: -613, y: 576}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+  description: 
+  drawGizmos: 0
+--- !u!114 &2912056284164191956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49b585454515dcb4a91ee6042019bb4f, type: 3}
+  m_Name: BunnyBuffOff
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 0f6bb0e066a41b14fa02459445314a14
+  position: {x: -132, y: 754.39996}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+  description: 
+  drawGizmos: 0
+--- !u!114 &4449836003372412428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01b2688abe5dea74499a4d020ccf2399, type: 3}
+  m_Name: BunnyBuffOn
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 3d365b41ae0375e4fa157933e8bca512
+  position: {x: -275.60007, y: 899.19995}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+  description: 
+  drawGizmos: 0
+--- !u!114 &6412708531666581814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 163c147d123e4a945b688eddc64e3ea5, type: 3}
+  m_Name: RootNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: ef08bf96a41a07446a86514e6a90c8be
+  position: {x: -12, y: -100}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+  description: 
+  drawGizmos: 0
+  child: {fileID: -9019347321207769009}
+--- !u!114 &6941726805316169770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 460be9e34c566ea45b9e282b1adcb028, type: 3}
+  m_Name: Selector
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 95d9670f9587bb144bae954e1f0a14e7
+  position: {x: -109.51755, y: 552}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+  description: 
+  drawGizmos: 0
+  children:
+  - {fileID: 1211557501217059873}
+  - {fileID: 2912056284164191956}
+--- !u!114 &8799505384476161206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b8c2e583c5070d44bb9eff579c120ad, type: 3}
+  m_Name: BunnyPlayerInAttackRange
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 43ff3ff25d45d3f4782d3b8fe0666b85
+  position: {x: -78.250946, y: 899.19995}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+  description: 
+  drawGizmos: 0
+  threshold: 10

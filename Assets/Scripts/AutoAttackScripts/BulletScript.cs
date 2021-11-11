@@ -37,7 +37,7 @@ namespace AutoAttackScripts
             if (_enemyToRemove == null) return;
             if (_bulletFromPlayer)
             {
-                if (!_enemy.OnHit(PlayerStats._instance.Damage))
+                if (!_enemy.OnHit(0))
                     return;
             }
             else
