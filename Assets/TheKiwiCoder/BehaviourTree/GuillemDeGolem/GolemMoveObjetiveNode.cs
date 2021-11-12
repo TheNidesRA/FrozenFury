@@ -17,8 +17,11 @@ namespace Nodes.GolemNodes
             _objetive = EnemyGoal.instance.getPosition();
             _enemyGolem = context.gameObject.GetComponent<EnemyGolem>();
 
+            context.agent.ResetPath();
+            context.agent.isStopped = false;
             context.agent.SetDestination(EnemyGoal.instance.transform.position); 
             lastPosition = context.agent.transform.position;
+            
         }
 
         protected override void OnStop()
@@ -33,24 +36,11 @@ namespace Nodes.GolemNodes
            // Debug.Log(name);
             if (context.agent.destination != new Vector3(-1, -1, -1))
             {
-                if (lastPosition == context.agent.transform.position)
+                if (Vector3.Distance(context.transform.position, context.agent.destination) < 3f)
                 {
-                    cont++;
-                }
-                else
-                {
-                    lastPosition = context.agent.transform.position;
-                    cont = 0;
+                    return State.Success;
                 }
 
-                if (cont == 20)
-                {
-                    context.agent.ResetPath();
-                    return State.Failure;
-                    Debug.Log("stuck!!");
-                }
-                
-                
                 //Debug.Log("Moviendonos");
                 return State.Running;
             }
