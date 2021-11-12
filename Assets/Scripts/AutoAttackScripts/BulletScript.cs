@@ -7,6 +7,8 @@ namespace AutoAttackScripts
     {
         private GameObject _enemyToRemove;
         private Enemy _enemy;
+        /*public float _force = 700;
+        public float _radius = 5;*/
         private bool _bulletFromPlayer;
         private BuildingSO _buildingInfo;
         public bool BulletFromPlayer
@@ -22,12 +24,15 @@ namespace AutoAttackScripts
         }
         private void OnCollisionEnter(Collision other)
         {
+           
             if (other.gameObject.CompareTag($"Enemy"))
             {
+                //GetComponent<Rigidbody>().AddExplosionForce(_force, transform.position, _radius);
                 _enemyToRemove = other.gameObject;
                 _enemy = _enemyToRemove.GetComponent<Enemy>();
             }
 
+            
             Destroy(gameObject);
         }
 
@@ -35,6 +40,7 @@ namespace AutoAttackScripts
         private void OnDestroy()
         {
             if (_enemyToRemove == null) return;
+
             if (_bulletFromPlayer)
             {
                 if (!_enemy.OnHit(PlayerStats._instance.Damage))
