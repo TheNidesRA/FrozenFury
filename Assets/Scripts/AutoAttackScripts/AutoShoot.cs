@@ -251,6 +251,7 @@ namespace AutoAttackScripts
 
             if (isPlayer)
             {
+               
                 _objectiveDirection =
                     Quaternion.LookRotation((enemy.transform.position - player.transform.position).normalized);
                 player.transform.rotation =
