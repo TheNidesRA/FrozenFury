@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using Nodes;
-using Nodes.GolemNodes;
 using UnityEngine;
 using UnityEngine.AI;
 #if UNITY_EDITOR
@@ -14,45 +11,37 @@ namespace Enemies
 {
     public class EnemyGolem : Enemy
     {
-        private Node topNode;
+        private NavMeshPathStatus s;
+        public Vector3 objetive;
+        public PlacedBuild buildObjetive;
+        //public BehaviourTreeRunner tr;
 
-        public float distancia;
-        public float path;
-        public NavMeshPathStatus PathStatus;
-        
-        
-        void Start()
+        private void Start()
         {
-            //BuildBehaviourTree();
-        }
-
-
-        void BuildBehaviourTree()
-        {
-            // IsGolemAnObjetiveTransform isGolemAnObjetiveTransform =
-            //     new IsGolemAnObjetiveTransform(this, EnemyGoal.instance.transform);
-            // GolemMoveObjetiveNode golemMoveObjetiveNode =
-            //     new GolemMoveObjetiveNode(EnemyGoal.instance.transform, NavMeshAgent);
-            //
-            // Sequence GoToObjetive = new Sequence(new List<Node>
-            //     {isGolemAnObjetiveTransform, golemMoveObjetiveNode});
-            //
-            //
-            // topNode = new Selector(new List<Node> {GoToObjetive});
+            NavMeshAgent.updateRotation = true;
+          //  NavMeshAgent.destination = EnemyGoal.instance.transform.position;
         }
 
         private void Update()
         {
-            distancia = Vector3.Distance(NavMeshAgent.destination, transform.position);
-            if (NavMeshAgent.hasPath)
-                path = NavMeshAgent.remainingDistance;
-            PathStatus = NavMeshAgent.pathStatus;
-            
-            // topNode.Evaluate();
-            // if (topNode.nodeState == NodeState.FAILURE)
-            // {
-            //     Debug.Log("Se ha liao pacooo!!");
-            // }
+          
+            s = this.NavMeshAgent.pathStatus;
+        }
+
+        public static float GetPathRemainingDistance(NavMeshAgent navMeshAgent)
+        {
+            if (navMeshAgent.pathPending ||
+                navMeshAgent.pathStatus == NavMeshPathStatus.PathInvalid ||
+                navMeshAgent.path.corners.Length == 0)
+                return -1f;
+
+            float distance = 0.0f;
+            for (int i = 0; i < navMeshAgent.path.corners.Length - 1; ++i)
+            {
+                distance += Vector3.Distance(navMeshAgent.path.corners[i], navMeshAgent.path.corners[i + 1]);
+            }
+
+            return distance;
         }
     }
 
@@ -75,14 +64,24 @@ namespace Enemies
                                            Vector3.Distance(script.NavMeshAgent.destination, script.transform.position)
                                                .ToString());
 
-                EditorGUILayout.LabelField("Distacia camino: " +GetPathRemainingDistance(script.NavMeshAgent));
+                EditorGUILayout.LabelField("Distacia camino: " + GetPathRemainingDistance(script.NavMeshAgent));
+                EditorGUILayout.LabelField("Distacia ubi: " + script.NavMeshAgent.destination);
+                EditorGUILayout.LabelField("Path status: " + script.NavMeshAgent.pathStatus);
             }
-          
+
+            // if (script.tr!=null)
+            // {
+            //     EditorGUILayout.LabelField("Arbol status: " + script.tr.tree.treeState);
+            //     EditorGUILayout.LabelField("Arbol nombre?: " + script.tr.tree.rootNode.position);
+            //     EditorGUILayout.LabelField("Arbol Description?: " + script.tr.tree.rootNode.description);
+            //     EditorGUILayout.LabelField("Arbol asd?: " + script.tr.tree.name);
+            //     EditorGUILayout.LabelField("Arbol asd?: " + script.tr.tree.rootNode.guid);
+            //     //script.tr.tree.nodes.Find(n => n.guid ==script.tr.tree.)
+            // }
         }
-        
-        
-        
-        public static float GetPathRemainingDistance(NavMeshAgent navMeshAgent)
+
+
+        public float GetPathRemainingDistance(NavMeshAgent navMeshAgent)
         {
             if (navMeshAgent.pathPending ||
                 navMeshAgent.pathStatus == NavMeshPathStatus.PathInvalid ||
@@ -97,14 +96,6 @@ namespace Enemies
 
             return distance;
         }
-        
-        
-        
-        
-        
-        
-        
-        
     }
 #endif
 }
