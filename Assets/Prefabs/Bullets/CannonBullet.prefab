@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 3029858323945925644}
   - component: {fileID: 3529905381738810527}
   - component: {fileID: 6507492696367201192}
-  - component: {fileID: -6033819091613885932}
   - component: {fileID: 4470927310889813395}
+  - component: {fileID: 4084503475369390864}
   m_Layer: 3
   m_Name: CannonBullet
   m_TagString: Untagged
@@ -97,20 +97,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-6033819091613885932
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7040415461391761229}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf71239183597f04ba24fd1a3b140f1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _force: 700
-  _radius: 5
 --- !u!54 &4470927310889813395
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -127,3 +113,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4084503475369390864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7040415461391761229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ee09caa8eaa6d147ab2b341b76345b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _radius: 10

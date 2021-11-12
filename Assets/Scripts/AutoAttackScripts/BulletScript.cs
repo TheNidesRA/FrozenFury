@@ -7,8 +7,6 @@ namespace AutoAttackScripts
     {
         private GameObject _enemyToRemove;
         private Enemy _enemy;
-        /*public float _force = 700;
-        public float _radius = 5;*/
         private bool _bulletFromPlayer;
         private BuildingSO _buildingInfo;
         public bool BulletFromPlayer
@@ -22,7 +20,7 @@ namespace AutoAttackScripts
             get => _buildingInfo;
             set => _buildingInfo = value;
         }
-        private void OnCollisionEnter(Collision other)
+        public virtual void OnCollisionEnter(Collision other)
         {
            
             if (other.gameObject.CompareTag($"Enemy"))

@@ -24,7 +24,7 @@ namespace AutoAttackScripts
         LaunchData CalculateLaunchData(GameObject currentEnemy)
         {
             float displacementY = currentEnemy.transform.position.y - attackPoint.position.y;
-            Vector3 displacementXZ = new Vector3(currentEnemy.transform.position.x + 10 - attackPoint.position.x , 0, currentEnemy.transform.position.z + 10 - attackPoint.position.z);
+            Vector3 displacementXZ = new Vector3(currentEnemy.transform.position.x - attackPoint.position.x , 0, currentEnemy.transform.position.z - attackPoint.position.z);
             float time = Mathf.Sqrt(-2 * h / gravity) + Mathf.Sqrt(2 * (displacementY - h) / gravity);
             Vector3 velocityY = Vector3.up * Mathf.Sqrt(-2 * gravity * h);
             Vector3 velocityXZ = displacementXZ / time;
