@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -51,7 +50,14 @@ public class BuildingSO : ScriptableObject
         Right,
     }
 
+    public enum BuildingType
+    {
+        Turret,
+        Wall
+        
+    }
 
+    
     public int width;
     public int heigth;
     public float damage;
@@ -60,7 +66,7 @@ public class BuildingSO : ScriptableObject
     public Transform visual;
     public Transform canvasVisual;
     public float goldCost = 1;
-    
+    public BuildingType type;
 
     public List<Vector2Int> GetGridPositionList(Vector2Int offset, Dir dir)
     {

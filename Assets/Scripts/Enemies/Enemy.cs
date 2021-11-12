@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Enemies
 {
@@ -18,8 +20,9 @@ namespace Enemies
         /// <summary>
         /// Agente navmesh que moverá al enemigo
         /// </summary>
-        private EnemyIA _ia;
+        public NavMeshAgent NavMeshAgent;
 
+        private bool isAttacking = false;
         public event Action<GameObject> OnEnemyDeath;
 
         public string Id => id;
@@ -31,21 +34,10 @@ namespace Enemies
         public float AtackSpeed;
         public float gold;
 
-        private void Awake()
-        {
-            try
-            {
-                _ia = GetComponent<EnemyIA>();
-            }
-            catch (Exception e)
-            {
-                Debug.Log("You have´t add a EnemyIA component to the enemy prefab");
-            }
-        }
 
         private void OnEnable()
         {
-            _ia.setSpeed(Speed);
+            NavMeshAgent.speed = Speed;
         }
 
         public void UpdateStats(float[] mult)
@@ -57,7 +49,7 @@ namespace Enemies
             AtackSpeed = AtackSpeed * mult[4];
         }
 
-        public void InitializeStats()
+        public virtual void InitializeStats()
         {
             Health = _initStats.initHp;
             Damage = _initStats.initDmg;
@@ -91,6 +83,26 @@ namespace Enemies
         {
             Debug.Log("HP: " + Health + " // Dmg: " + Damage + " // Spd: " + Speed + " // Arm: " + Armor +
                       " // AtkSpd: " + AtackSpeed);
+        }
+
+        public void Attack()
+        {
+            if (isAttacking) return;
+            isAttacking = true;
+            Debug.Log("Ataca!");
+            StartCoroutine(nameof(StartAnimation));
+
+        }
+
+        public bool IsAttackFinished()
+        {
+            return !isAttacking;
+        }
+
+        private IEnumerator StartAnimation()
+        {
+            yield return new WaitForSeconds(AtackSpeed);
+            isAttacking = false;
         }
     }
 }

@@ -20,14 +20,17 @@ namespace AutoAttackScripts
             get => _buildingInfo;
             set => _buildingInfo = value;
         }
-        private void OnCollisionEnter(Collision other)
+        public virtual void OnCollisionEnter(Collision other)
         {
+           
             if (other.gameObject.CompareTag($"Enemy"))
             {
+                //GetComponent<Rigidbody>().AddExplosionForce(_force, transform.position, _radius);
                 _enemyToRemove = other.gameObject;
                 _enemy = _enemyToRemove.GetComponent<Enemy>();
             }
 
+            
             Destroy(gameObject);
         }
 
@@ -35,6 +38,7 @@ namespace AutoAttackScripts
         private void OnDestroy()
         {
             if (_enemyToRemove == null) return;
+
             if (_bulletFromPlayer)
             {
                 if (!_enemy.OnHit(PlayerStats._instance.Damage))

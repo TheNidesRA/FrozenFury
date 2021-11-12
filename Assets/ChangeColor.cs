@@ -35,14 +35,21 @@ public class ChangeColor : MonoBehaviour
 
     public void Cambiar()
     {
-        Debug.Log("Cambiando color");
-
-        foreach (var VARIABLE in Materials)
+        if (Materials.Count > 0)
         {
-            VARIABLE.gameObject.LeanColor(newColor, time).setEase(inEase).setOnComplete(() =>
+            Debug.Log("Cambiando color");
+
+            foreach (var VARIABLE in Materials)
             {
-                VARIABLE.gameObject.LeanColor(originalColor, time).setEase(outEase);
-            });
+                if (VARIABLE.gameObject.activeSelf)
+                {
+                    VARIABLE.gameObject.LeanColor(newColor, time).setEase(inEase).setOnComplete(() =>
+                    {
+                        VARIABLE.gameObject.LeanColor(originalColor, time).setEase(outEase);
+                    });
+                }
+               
+            }
         }
     }
 }

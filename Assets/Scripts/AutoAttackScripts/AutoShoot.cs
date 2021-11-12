@@ -32,11 +32,29 @@ namespace AutoAttackScripts
         /// </summary>
         private float localDistance = 0;
 
+        private Vector3 vectorAb;
+
         private bool shooting = false;
 
         private bool isPlayer;
 
         private GameObject enemyToLook;
+
+        private bool enemySighted = false;
+
+        private Animator characterAnimator;
+
+        #region AnimationVariables
+
+        private bool[] quadrant;
+
+        private bool LeftUp;
+        private bool LeftDown;
+        private bool RightUp;
+        private bool RightDown;
+
+        #endregion
+
         public bool Shooting
         {
             get => shooting;
@@ -99,6 +117,12 @@ namespace AutoAttackScripts
             _enemies = new Dictionary<GameObject, float>();
             StartCoroutine(nameof(AimEnemy));
             isPlayer = transform.parent.gameObject.CompareTag("Player");
+            if (isPlayer){
+                characterAnimator = GetComponentInParent<Animator>();
+                characterAnimator.SetLayerWeight(characterAnimator.GetLayerIndex("Shooting"), 0.0f); //peso de la capa de disparo al inicio
+            }
+                
+            quadrant = new bool[2];
         }
 
 
@@ -107,6 +131,13 @@ namespace AutoAttackScripts
             //You have to check whether your collision is with an enemy or with another object
             if (!other.gameObject.CompareTag($"Enemy")) return;
             _enemies.Remove(other.gameObject);
+            enemySighted = false;
+
+            if (isPlayer)
+                //Enemy out of sight, trigger for animation blend tree
+                characterAnimator.SetBool("EnemySighted", enemySighted);
+
+            Debug.Log("Dejamos de detectar enemigo");
         }
 
 
@@ -116,6 +147,11 @@ namespace AutoAttackScripts
             if (!other.gameObject.CompareTag($"Enemy")) return;
             _enemies.Add(other.gameObject, Vector3.Distance(other.gameObject.transform.position, transform.position));
             other.gameObject.GetComponent<Enemy>().OnEnemyDeath += RemoveEnemy;
+            enemySighted = true;
+
+            if (isPlayer)
+                //Enemy detected, trigger for animation blend tree
+                characterAnimator.SetBool("EnemySighted", enemySighted);
         }
 
         //This method will be used to update the dictionary of enemies
@@ -161,7 +197,11 @@ namespace AutoAttackScripts
                     {
                         if (Shooting) continue;
                         Shooting = true;
-
+                        if (isPlayer)
+                        {
+                            characterAnimator.SetLayerWeight(characterAnimator.GetLayerIndex("Shooting"), 1.0f);
+                            characterAnimator.SetBool("Shoot", Shooting);
+                        }
                         //We retrieve the enemy the player will look to
                         enemyToLook = enemy.Key;
                         //We start shooting the enemy
@@ -172,6 +212,11 @@ namespace AutoAttackScripts
                 //we wait timeBetweenShooting amount of time
                 yield return new WaitForSeconds(timeBetweenShooting);
                 Shooting = false;
+                if (isPlayer)
+                {
+                    characterAnimator.SetLayerWeight(characterAnimator.GetLayerIndex("Shooting"), 0.0f);
+                    characterAnimator.SetBool("Shoot", Shooting);
+                }
             }
         }
 
@@ -196,14 +241,24 @@ namespace AutoAttackScripts
 
         public virtual void RotatePlayerToEnemy(GameObject enemy)
         {
-            if (enemy == null) return;
+            if (enemy == null)
+            {
+                enemySighted = false;
+                if (isPlayer)
+                    characterAnimator.SetBool("EnemySighted", enemySighted);
+                return;
+            }
 
             if (isPlayer)
             {
+               
                 _objectiveDirection =
                     Quaternion.LookRotation((enemy.transform.position - player.transform.position).normalized);
                 player.transform.rotation =
                     Quaternion.Slerp(player.transform.rotation, _objectiveDirection, Time.deltaTime * turnSpeed);
+                vectorAb = enemy.transform.position - transform.position;
+                CheckQuadrant(vectorAb.normalized);
+                PlayerEnemyQuadrant(quadrant);
             }
             else
             {
@@ -342,5 +397,68 @@ namespace AutoAttackScripts
                 }
             }
         }
+
+        #region AnimationQuadrantsMethods
+
+        private void CheckQuadrant(Vector3 vector)
+        {
+            if (vector.x > 0)
+            {
+                quadrant[0] = true;
+            }
+            else
+            {
+                quadrant[0] = false;
+            }
+
+            if (vector.z > 0)
+            {
+                quadrant[1] = true;
+            }
+            else
+
+            {
+                quadrant[1] = false;
+            }
+        }
+
+        private void PlayerEnemyQuadrant(IReadOnlyList<bool> quadrants)
+        {
+            switch (quadrants[0])
+            {
+                case true when quadrants[1]:
+                    LeftDown = true;
+                    LeftUp = false;
+                    RightDown = false;
+                    RightUp = false;
+                    break;
+                case true when !quadrants[1]:
+                    LeftDown = false;
+                    LeftUp = true;
+                    RightDown = false;
+                    RightUp = false;
+                    break;
+                case false when quadrants[1]:
+                    LeftDown = false;
+                    LeftUp = false;
+                    RightDown = true;
+                    RightUp = false;
+                    break;
+                case false when !quadrants[1]:
+                    LeftDown = false;
+                    LeftUp = false;
+                    RightDown = false;
+                    RightUp = true;
+                    break;
+            }
+
+            characterAnimator.SetBool("FirstQuad", LeftUp);
+            characterAnimator.SetBool("SecondQuad", RightUp);
+            characterAnimator.SetBool("ThirdQuad", LeftDown);
+            characterAnimator.SetBool("FourthQuad", RightDown);
+
+        }
+
+        #endregion
     }
 }
