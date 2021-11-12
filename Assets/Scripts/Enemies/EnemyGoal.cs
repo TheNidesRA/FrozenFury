@@ -40,7 +40,7 @@ namespace Enemies
 
         public Vector3 getPosition()
         {
-            return gameObject.GetComponent<Transform>().position;
+            return gameObject.transform.position;
         }
     }
 }
