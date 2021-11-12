@@ -55,6 +55,7 @@ namespace GridSystem
         public int gridHeight = 9;
         public float cellSize = 10f;
 
+
         private void OnEnable()
         {
             _control.Enable();
@@ -155,7 +156,7 @@ namespace GridSystem
 
         public void RemoveBuild(PlacedBuild build)
         {
-            Debug.Log("asd");
+//            Debug.Log("asd");
 
             if (build != null)
             {
@@ -270,7 +271,7 @@ namespace GridSystem
                 if (mouseGridPosition == new Vector2Int(-1, -1))
                     return;
 
-                Debug.Log(mouseGridPosition);
+//                Debug.Log(mouseGridPosition);
 
                 List<Vector2Int> buildingPositions = _buildingSO.GetGridPositionList(mouseGridPosition, _dir);
 
@@ -326,15 +327,15 @@ namespace GridSystem
             {
                 Build(_ActualBuildPosition, buildingPositions);
                 PlayerStats._instance.gold -= _buildingSO.goldCost;
-                
-                
+
+
                 if (_buildingSO.type == BuildingSO.BuildingType.Wall)
                 {
                     SearchWallNeighbour(buildingPositions);
                 }
-                
+
                 RemoveFixedMouse();
-               
+
 
                 if (_destroyOnPlace)
                 {
@@ -423,36 +424,32 @@ namespace GridSystem
 
                     if (buildPosition == _ActualBuildPosition)
                     {
-                        GridObject g3 = _grid.GetObjectValue(buildPosition.x-1, buildPosition.y);
-                        
+                        GridObject g3 = _grid.GetObjectValue(buildPosition.x - 1, buildPosition.y);
+
                         if (g3?.GetPlaceBuild() != null)
                         {
-                            if (g3.GetPlaceBuild().BuildingSo.type == BuildingSO.BuildingType.Wall && 
-                                (g3.GetPlaceBuild().dir !=BuildingSO.Dir.Down && g3.GetPlaceBuild().dir !=BuildingSO.Dir.Up))
+                            if (g3.GetPlaceBuild().BuildingSo.type == BuildingSO.BuildingType.Wall &&
+                                (g3.GetPlaceBuild().dir != BuildingSO.Dir.Down &&
+                                 g3.GetPlaceBuild().dir != BuildingSO.Dir.Up))
                             {
                                 Debug.Log("EHHHH MURITOO Esquina construccion");
                             }
                         }
-                        
-                        
                     }
                     else
                     {
-                        GridObject g3 = _grid.GetObjectValue(buildPosition.x+1, buildPosition.y);
-                        Debug.Log(_ActualBuildPosition +" || " + buildPosition);
+                        GridObject g3 = _grid.GetObjectValue(buildPosition.x + 1, buildPosition.y);
+                        //    Debug.Log(_ActualBuildPosition +" || " + buildPosition);
                         if (g3?.GetPlaceBuild() != null)
                         {
-                            if (g3.GetPlaceBuild().BuildingSo.type == BuildingSO.BuildingType.Wall && 
-                                (g3.GetPlaceBuild().dir !=BuildingSO.Dir.Down && g3.GetPlaceBuild().dir !=BuildingSO.Dir.Up))
+                            if (g3.GetPlaceBuild().BuildingSo.type == BuildingSO.BuildingType.Wall &&
+                                (g3.GetPlaceBuild().dir != BuildingSO.Dir.Down &&
+                                 g3.GetPlaceBuild().dir != BuildingSO.Dir.Up))
                             {
-                                Debug.Log("EHHHH MURITOO Esquina NOOOO construccion");
+                            //    Debug.Log("EHHHH MURITOO Esquina NOOOO construccion");
                             }
                         }
-
                     }
-                    
-                    
-                    
                 }
                 else
                 {
@@ -475,42 +472,36 @@ namespace GridSystem
                             Debug.Log("EHHHH MURITOO A LA IZQUIERDA");
                         }
                     }
-                    
-                    
+
+
                     if (buildPosition == _ActualBuildPosition)
                     {
-                        GridObject g3 = _grid.GetObjectValue(buildPosition.x, buildPosition.y-1);
-                        
+                        GridObject g3 = _grid.GetObjectValue(buildPosition.x, buildPosition.y - 1);
+
                         if (g3?.GetPlaceBuild() != null)
                         {
-                            if (g3.GetPlaceBuild().BuildingSo.type == BuildingSO.BuildingType.Wall && 
-                                (g3.GetPlaceBuild().dir !=BuildingSO.Dir.Right && g3.GetPlaceBuild().dir !=BuildingSO.Dir.Left))
+                            if (g3.GetPlaceBuild().BuildingSo.type == BuildingSO.BuildingType.Wall &&
+                                (g3.GetPlaceBuild().dir != BuildingSO.Dir.Right &&
+                                 g3.GetPlaceBuild().dir != BuildingSO.Dir.Left))
                             {
                                 Debug.Log("EHHHH MURITOO Esquina construccion");
                             }
                         }
-                        
-                        
                     }
                     else
                     {
-                        GridObject g3 = _grid.GetObjectValue(buildPosition.x, buildPosition.y+1);
-                        
+                        GridObject g3 = _grid.GetObjectValue(buildPosition.x, buildPosition.y + 1);
+
                         if (g3?.GetPlaceBuild() != null)
                         {
-                            if (g3.GetPlaceBuild().BuildingSo.type == BuildingSO.BuildingType.Wall && 
-                                (g3.GetPlaceBuild().dir !=BuildingSO.Dir.Right && g3.GetPlaceBuild().dir !=BuildingSO.Dir.Left))
+                            if (g3.GetPlaceBuild().BuildingSo.type == BuildingSO.BuildingType.Wall &&
+                                (g3.GetPlaceBuild().dir != BuildingSO.Dir.Right &&
+                                 g3.GetPlaceBuild().dir != BuildingSO.Dir.Left))
                             {
                                 Debug.Log("EHHHH MURITOO Esquina NOOOO construccion");
                             }
                         }
-
                     }
-                    
-                    
-                    
-                    
-                    
                 }
             }
         }
