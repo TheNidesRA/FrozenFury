@@ -22,12 +22,35 @@ namespace Enemies
         /// <summary>
         /// List with the enemies stats which will be used to keep track of them during the game
         /// </summary>
-        private List<EnemyStats> _enemyStats;
-        
-        
+        private Dictionary<string, EnemyStats> _enemyStats;
 
-        private MultiplierManager _multManager;
+        /// <summary>
+        /// Variable with the global difficulty for the game.
+        /// </summary>
+        private float _globalDiff;
         
+        /// <summary>
+        /// Array containing the different variables which will be taken into account to compute the game difficulty
+        ///     _diffVariables[0] --> EnemyStats
+        ///     _diffVariables[1] --> EnemySpawn
+        ///     _diffVariables[2] --> EnemyGold
+        /// </summary>
+        private float[] _diffVariables = new float[3]{1,1,1};
+        
+        /// <summary>
+        ///Array containing the multipliers for the difficulty variables..
+        ///     _diffVariables[0] --> StatsMult
+        ///     _diffVariables[1] --> SpawnMult
+        ///     _diffVariables[2] --> GoldMult 
+        /// </summary>
+        private float[] _diffMultipliers = new float[3]{1,1,1};
+        
+        /// <summary>
+        /// Class in charged of modifying the different difficulty variables
+        /// </summary>
+        private MultiplierManager _multManager;
+
+        private float _roundMaxHp = 0;
 
         public static DDACalculator instance { get; private set; }
         
@@ -43,22 +66,39 @@ namespace Enemies
             }
 
             _winners = new Stack<WinnerStats>();
-            _enemyStats = new List<EnemyStats>();
+            _enemyStats = new Dictionary<string, EnemyStats>();
+            _multManager = new MultiplierManager();
             
             foreach (var enemy in enemyConfig.enemies)
             {
-                EnemyStats stats = new EnemyStats(enemy.Id, enemy.Health, enemy.Damage, enemy.Speed, enemy.Armor,
-                    enemy.AtackSpeed, enemy.gold);
-                _enemyStats.Add(stats);
+                EnemyStats stats = new EnemyStats(enemy.Id, enemy.health, enemy.damage, enemy.speed, enemy.armor,
+                    enemy.atackSpeed, enemy.gold);
+                _enemyStats.Add(stats.id, stats);
             }
+        }
 
-            WaveController._instance.OnRoundChange += EndRoundFunction
-                ;
+        private void Start()
+        {
+            WaveController._instance.OnRoundChange += EndRoundFunction;
+            WaveController._instance.OnWaveCreated += (sender, f) => { _roundMaxHp = f; };
         }
 
         private void EndRoundFunction(object sender, int e)
         {
-            Debug.Log("Aquí se calcularían los ajustes de dificultad.");
+            float totalBaseDmg = 0;
+            float totalEnemyHp = 0;
+            int winnersCount = _winners.Count;
+            for (int i = 0; i < winnersCount; i++)
+            {
+                WinnerStats stats = _winners.Pop();
+                totalBaseDmg += stats.baseDmg;
+                totalEnemyHp += stats.hp;
+            }
+            _multManager.UpdateWithGlobalHealth(_diffVariables, _diffMultipliers, (int)totalBaseDmg);
+            _multManager.UpdateWithWinnersHealth(_roundMaxHp, totalEnemyHp,
+                                                        _diffMultipliers, ref _globalDiff);
+            Debug.Log("Base damage recived: " + totalBaseDmg + 
+                      " \n Total enemy health: " + totalEnemyHp + " / " + _roundMaxHp);
         }
 
         /// <summary>
@@ -67,7 +107,7 @@ namespace Enemies
         /// <param name="enemy"></param>
         public void AddWinner(Enemy enemy)
         {
-            WinnerStats winner = new WinnerStats(enemy.Id, enemy.Health);
+            WinnerStats winner = new WinnerStats(enemy.Id, enemy.health, enemy.baseDamage);
             _winners.Push(winner);
             Debug.Log(winner.id + " reached the Van with " + winner.hp + " HP.");
         }

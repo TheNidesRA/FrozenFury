@@ -27,6 +27,7 @@ namespace Enemies
         private WaveGenerator _generator;
 
         public event EventHandler<int> OnRoundChange;
+        public event EventHandler<float> OnWaveCreated;
         public int round
         {
             get => _round;
@@ -63,6 +64,12 @@ namespace Enemies
             {
                 SceneController._instance.round = _round;
                 _currentWave = _generator.GenerateWave(_round);
+                float totalHp = 0;
+                foreach (var enemy in _currentWave.Enemies)
+                {
+                    totalHp += enemy.health;
+                }
+                OnWaveCreated?.Invoke(this, totalHp);
                 Spawner.StartRound(_currentWave.Enemies);
                 _enemiesAlive = _currentWave.Enemies.Count;
                 _roundActive = true;
