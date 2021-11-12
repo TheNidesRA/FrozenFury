@@ -117,8 +117,11 @@ namespace AutoAttackScripts
             _enemies = new Dictionary<GameObject, float>();
             StartCoroutine(nameof(AimEnemy));
             isPlayer = transform.parent.gameObject.CompareTag("Player");
-            if (isPlayer)
+            if (isPlayer){
                 characterAnimator = GetComponentInParent<Animator>();
+                characterAnimator.SetLayerWeight(characterAnimator.GetLayerIndex("Shooting"), 0.0f); //peso de la capa de disparo al inicio
+            }
+                
             quadrant = new bool[2];
         }
 
@@ -193,7 +196,9 @@ namespace AutoAttackScripts
                     if (Math.Abs(enemy.Value - minDistance) < 0.001f)
                     {
                         if (Shooting) continue;
-                        Shooting = true;
+                        Shooting = true;                 
+                        characterAnimator.SetLayerWeight(characterAnimator.GetLayerIndex("Shooting"), 1.0f);
+                        characterAnimator.SetBool("Shoot", Shooting);
 
                         //We retrieve the enemy the player will look to
                         enemyToLook = enemy.Key;
@@ -205,6 +210,8 @@ namespace AutoAttackScripts
                 //we wait timeBetweenShooting amount of time
                 yield return new WaitForSeconds(timeBetweenShooting);
                 Shooting = false;
+                characterAnimator.SetLayerWeight(characterAnimator.GetLayerIndex("Shooting"), 0.0f);
+                characterAnimator.SetBool("Shoot", Shooting);
             }
         }
 
