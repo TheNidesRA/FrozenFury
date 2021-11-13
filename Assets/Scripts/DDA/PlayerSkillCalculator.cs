@@ -18,16 +18,7 @@ namespace Enemies
         public int maxValMaxStructLvl = 40;
         public int maxRoundDeaths = 5;
         public int maxRound = 100;
-
-        public int TotalKills
-        {
-            get => TotalKills;
-            set
-            {
-                TotalKills = value;
-                roundKills++;
-            }
-        }
+        
 
         public static PlayerSkillCalculator Instance;
         private void Awake()
@@ -42,7 +33,11 @@ namespace Enemies
             {
                 Instance = this;
             }
+        }
 
+        private void Start()
+        {
+            
             WaveController._instance.OnRoundChange += (sender, i) => { round = i; };
             PlayerStats._instance.OnLvlChanged += (sender, i) => { playerLvl = i; };
             PlayerStats._instance.OnDeathEvent += (sender, b) => { roundDeaths++; };

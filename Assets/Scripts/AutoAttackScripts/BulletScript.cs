@@ -28,7 +28,7 @@ namespace AutoAttackScripts
                 _enemy = _enemyToRemove.GetComponent<Enemy>();
             }
 
-            PlayerSkillCalculator.Instance.TotalKills++;
+            PlayerSkillCalculator.Instance.roundKills++;
 
             Destroy(gameObject);
         }

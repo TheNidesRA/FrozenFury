@@ -51,6 +51,8 @@ namespace Enemies
         /// </summary>
         private MultiplierManager _multManager;
 
+        private StatCalculator _statCalculator;
+
         private float _roundMaxHp = 0;
 
         public static DDACalculator instance { get; private set; }
@@ -71,6 +73,7 @@ namespace Enemies
             _winners = new Stack<WinnerStats>();
             _enemyStats = new Dictionary<string, EnemyStats>();
             _multManager = new MultiplierManager();
+            _statCalculator = new StatCalculator();
             
             foreach (var enemy in enemyConfig.enemies)
             {
@@ -97,10 +100,15 @@ namespace Enemies
                 totalBaseDmg += stats.baseDmg;
                 totalEnemyHp += stats.hp;
             }
-            
+
+            float skill = PlayerSkillCalculator.Instance.ComputeSkill();
             _multManager.UpdateWithGlobalHealth(_diffVariables, _diffMultipliers, (int)totalBaseDmg);
             _multManager.UpdateWithWinnersHealth(_roundMaxHp, totalEnemyHp,
                                                         _diffMultipliers, ref _globalDiff);
+            _multManager.UpdateWIthPlayerSkill(skill, _diffMultipliers);
+            
+            _statCalculator.UpdateVariables(_diffVariables, _diffMultipliers);
+            
             
             Debug.Log("Base damage recived: " + totalBaseDmg + 
                       " \n Total enemy health: " + totalEnemyHp + " / " + _roundMaxHp);
@@ -187,7 +195,7 @@ namespace Enemies
                     {
                         EditorGUILayout.BeginHorizontal("box");
                         EditorGUILayout.LabelField(script.GetPointsTxt(i));
-                        EditorGUILayout.LabelField(script.GetPoints(i).ToString());
+                        EditorGUILayout.LabelField((script.GetPoints(i) / script.GetMults(i)).ToString());
                         EditorGUILayout.EndHorizontal();
                     }
                     
@@ -222,7 +230,7 @@ namespace Enemies
                     {
                         EditorGUILayout.BeginHorizontal("box");
                         EditorGUILayout.LabelField(script.GetPointsTxt(i));
-                        EditorGUILayout.LabelField((script.GetPoints(i) * script.GetMults(i)).ToString());
+                        EditorGUILayout.LabelField(script.GetPoints(i).ToString());
                         EditorGUILayout.EndHorizontal();
                     }
                     
