@@ -9,38 +9,24 @@ public class SpikesTrap : MonoBehaviour
     public float dmg = 5;
     public float slowDown = 1;
 
-
-    // Start is called before the first frame update
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if(other.gameObject.CompareTag($"Enemy"))
+        if (collision.gameObject.CompareTag($"Enemy"))
         {
-
-            other.GetComponent<Enemy>().OnSlow(slowDown);
-            other.GetComponent<Enemy>().OnHitTrap(dmg);
+            Debug.Log("Estoy comprobando");
+            collision.gameObject.GetComponent<Enemy>().OnSlow(slowDown);
+            StartCoroutine(collision.gameObject.GetComponent<Enemy>().OnHitTrap(dmg));
 
         }
-
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.CompareTag($"Enemy"))
-        {
-
-            other.GetComponent<Enemy>().OnHitTrap(dmg);
-
-        }
-
-    }
-
-    private void OnTriggerExit(Collider other)
+    private void OnCollisionExit(Collision collision)
     {
         
-        if (other.gameObject.CompareTag($"Enemy"))
+        if (collision.gameObject.CompareTag($"Enemy"))
         {
-
-            other.GetComponent<Enemy>().OnResetSlow();
+            StopCoroutine(collision.gameObject.GetComponent<Enemy>().OnHitTrap(dmg));
+            collision.gameObject.GetComponent<Enemy>().OnResetSlow();
 
         }
 

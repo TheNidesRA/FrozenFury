@@ -25,7 +25,7 @@ namespace Enemies
         private bool isAttacking = false;
         public event Action<GameObject> OnEnemyDeath;
         private float auxSpeed;
-        
+
 
         public string Id => id;
 
@@ -89,22 +89,15 @@ namespace Enemies
             Speed = auxSpeed;
         }
 
-        public void OnHitTrap(float dmg)
+        public IEnumerator OnHitTrap(float dmg)
         {
-            if(!invencibilidad && Health > 0)
-            {
-                Health -= dmg;
-                StartCoroutine(Invulnerabilidad());
 
-            }
-            
-        }
-        IEnumerator Invulnerabilidad()
-        {
-            invencibilidad = true;
+            Health -= dmg;
             yield return new WaitForSeconds(timeInv);
-            invencibilidad = false;
+
+
         }
+
 
 
 
