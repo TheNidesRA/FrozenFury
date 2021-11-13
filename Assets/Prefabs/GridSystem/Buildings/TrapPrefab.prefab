@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 533271543676294080}
   - component: {fileID: 7086878119064533346}
   - component: {fileID: 1944549683648392534}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Sphere007
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 1167352232983601220}
   - component: {fileID: 4754139868963456361}
   - component: {fileID: 8505862164573160247}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cone002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,7 +173,7 @@ GameObject:
   - component: {fileID: 759047205958685901}
   - component: {fileID: 5378832586304541068}
   - component: {fileID: 5383428529822432384}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Sphere003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -299,7 +299,7 @@ GameObject:
   - component: {fileID: 3024343099542912409}
   - component: {fileID: 1732034968866679499}
   - component: {fileID: 2003453009815703726}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Sphere006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -380,7 +380,7 @@ GameObject:
   - component: {fileID: 2249805343087180851}
   - component: {fileID: 4280195713629042358}
   - component: {fileID: 5972410626189241827}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cone007
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -461,7 +461,7 @@ GameObject:
   - component: {fileID: 2920990245338450986}
   - component: {fileID: 2015393966884501159}
   - component: {fileID: 5009416144281431084}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cone006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -542,7 +542,7 @@ GameObject:
   - component: {fileID: 6242456287901400721}
   - component: {fileID: 4438186421777180466}
   - component: {fileID: 4359735251354144815}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Sphere008
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -623,7 +623,7 @@ GameObject:
   - component: {fileID: 8212900172030635962}
   - component: {fileID: 4244664100930706479}
   - component: {fileID: 8541853278546572191}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Sphere001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -704,7 +704,7 @@ GameObject:
   - component: {fileID: 6944090561904267470}
   - component: {fileID: 6393221254220585794}
   - component: {fileID: 744216236521755109}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Sphere002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -785,7 +785,7 @@ GameObject:
   - component: {fileID: 8004905786369508244}
   - component: {fileID: 1796876685854434364}
   - component: {fileID: 5685786911387047593}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cone003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -866,7 +866,7 @@ GameObject:
   - component: {fileID: 6668556965589035868}
   - component: {fileID: 5994382491801725968}
   - component: {fileID: 2969197457476647388}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cone005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -947,7 +947,7 @@ GameObject:
   - component: {fileID: 5536789573283179021}
   - component: {fileID: 7537712311659185814}
   - component: {fileID: 462384983032141780}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Sphere004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1028,7 +1028,7 @@ GameObject:
   - component: {fileID: 7135213395194120653}
   - component: {fileID: 5699455078843591044}
   - component: {fileID: 7230222480647572807}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Sphere005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1110,7 +1110,8 @@ GameObject:
   - component: {fileID: 6883682155228970624}
   - component: {fileID: 5809242049995663991}
   - component: {fileID: 7612989489126015878}
-  m_Layer: 0
+  - component: {fileID: 8683365604168463762}
+  m_Layer: 11
   m_Name: Spikes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1187,8 +1188,24 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 31.33, y: -35.4, z: 27.63}
-  m_Center: {x: 0.46, y: -2.74, z: -1.35}
+  m_Size: {x: 27.6, y: 35.4, z: 22.4}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &8683365604168463762
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5050111638584574144}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &6566704339391986834
 GameObject:
   m_ObjectHideFlags: 0
@@ -1200,7 +1217,7 @@ GameObject:
   - component: {fileID: 5806412860159461230}
   - component: {fileID: 2303351164110327340}
   - component: {fileID: 5056939529789830331}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cone004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1281,7 +1298,7 @@ GameObject:
   - component: {fileID: 1334496040493495278}
   - component: {fileID: 7234780417670789952}
   - component: {fileID: 4890237605371108105}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cone008
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1362,7 +1379,7 @@ GameObject:
   - component: {fileID: 8061305649473645223}
   - component: {fileID: 2349617479499876686}
   - component: {fileID: 6131605830837031177}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cone001
   m_TagString: Untagged
   m_Icon: {fileID: 0}

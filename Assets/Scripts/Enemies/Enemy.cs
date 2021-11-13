@@ -24,8 +24,7 @@ namespace Enemies
 
         private bool isAttacking = false;
         public event Action<GameObject> OnEnemyDeath;
-        private float auxSpeed;
-
+        private float initSpeed;
 
         public string Id => id;
 
@@ -35,13 +34,14 @@ namespace Enemies
         public float Armor;
         public float AtackSpeed;
         public float gold;
-        public bool invencibilidad;
-        public float timeInv = 1f;
+        public bool invencibilidadTrampa = false;
+        public float tiempoInvencibilidad = 5f;
 
 
 
         private void OnEnable()
         {
+            initSpeed = Speed;
             NavMeshAgent.speed = Speed;
         }
 
@@ -79,23 +79,38 @@ namespace Enemies
 
         public void OnSlow(float slowDown)
         {
-            auxSpeed = Speed;
             Speed = slowDown;
+            NavMeshAgent.speed = Speed;
 
         }
 
         public void OnResetSlow()
         {
-            Speed = auxSpeed;
+            Speed = initSpeed;
+            NavMeshAgent.speed = Speed;
         }
 
-        public IEnumerator OnHitTrap(float dmg)
+        public void OnHitTrap(float dmg)
         {
+            if (!invencibilidadTrampa && Health > 0)
+            {
+                Health -= dmg;
+                StartCoroutine(OnInvencible());
+            }
 
-            Health -= dmg;
-            yield return new WaitForSeconds(timeInv);
 
+            if (Health <= 0)
+            {
+                Die();
+            }
 
+        }
+
+        public IEnumerator OnInvencible()
+        {
+            invencibilidadTrampa = true;
+            yield return new WaitForSeconds(tiempoInvencibilidad);
+            invencibilidadTrampa = false;
         }
 
 
