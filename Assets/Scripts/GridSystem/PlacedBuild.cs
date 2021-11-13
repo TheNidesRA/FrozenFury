@@ -27,8 +27,13 @@ public class PlacedBuild : MonoBehaviour
         PlacedBuild placedBuild = placedBuildTransform.GetComponent<PlacedBuild>();
         placedBuild._buildingSo = building;
         placedBuild._dir = dir;
-        placedBuild._navMeshObstacle = placedBuildTransform.GetComponent<NavMeshObstacle>();
-        placedBuild._navMeshObstacle.enabled = true;
+
+        if(building.type != BuildingSO.BuildingType.Trap)
+        {
+            placedBuild._navMeshObstacle = placedBuildTransform.GetComponent<NavMeshObstacle>();
+            placedBuild._navMeshObstacle.enabled = true;
+        }
+        
        // placedBuild.getValidAttacksPoints();
         return placedBuild;
     }
