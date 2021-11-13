@@ -53,7 +53,8 @@ public class BuildingSO : ScriptableObject
     public enum BuildingType
     {
         Turret,
-        Wall
+        Wall,
+        Trap
         
     }
 
