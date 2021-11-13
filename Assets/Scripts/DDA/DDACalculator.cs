@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 namespace Enemies
@@ -28,7 +29,7 @@ namespace Enemies
         /// Variable with the global difficulty for the game.
         /// </summary>
         private float _globalDiff;
-        
+
         /// <summary>
         /// Array containing the different variables which will be taken into account to compute the game difficulty
         ///     _diffVariables[0] --> EnemyStats
@@ -53,6 +54,8 @@ namespace Enemies
         private float _roundMaxHp = 0;
 
         public static DDACalculator instance { get; private set; }
+
+        public AnimationCurve Curve;
         
         private void Awake()
         {
@@ -94,9 +97,11 @@ namespace Enemies
                 totalBaseDmg += stats.baseDmg;
                 totalEnemyHp += stats.hp;
             }
+            
             _multManager.UpdateWithGlobalHealth(_diffVariables, _diffMultipliers, (int)totalBaseDmg);
             _multManager.UpdateWithWinnersHealth(_roundMaxHp, totalEnemyHp,
                                                         _diffMultipliers, ref _globalDiff);
+            
             Debug.Log("Base damage recived: " + totalBaseDmg + 
                       " \n Total enemy health: " + totalEnemyHp + " / " + _roundMaxHp);
         }
@@ -111,5 +116,126 @@ namespace Enemies
             _winners.Push(winner);
             Debug.Log(winner.id + " reached the Van with " + winner.hp + " HP.");
         }
+
+        public string GetPointsTxt(int idx)
+        {
+            switch (idx)
+            {
+                case 0:
+                    return "Status Points";
+                case 1:
+                    return "Spawn Points";
+                case 2:
+                    return "Gold Points";
+                default:
+                    return "OutOfBounds";
+            }
+        }
+        public float GetPoints(int idx)
+        {
+            return _diffVariables[idx];
+        }
+
+        public string GetMultsTxt(int idx)
+        {
+            switch (idx)
+            {
+                case 0:
+                    return "Status Multipliers";
+                case 1:
+                    return "Spawn Multipliers";
+                case 2:
+                    return "Gold Multipliers";
+                default:
+                    return "OutOfBounds";
+            }
+        }
+        public float GetMults(int idx)
+        {
+            return _diffMultipliers[idx];
+        }
+
+        public float GetGlobalDiff()
+        {
+            return _globalDiff;
+        }
+    }
+    
+    #if UNITY_EDITOR
+    [CustomEditor(typeof(DDACalculator))]
+    class DDAEditor : Editor
+    {
+        private Vector2 scroll;
+        private int current_tab;
+
+        public override void OnInspectorGUI()
+        {
+            base.OnInspectorGUI();
+            var script = (DDACalculator)target;
+            if(script == null) return;
+            
+            EditorGUILayout.Space();
+
+            current_tab = GUILayout.Toolbar(current_tab, new string[] {"pts", "mult", "res"});
+
+            switch (current_tab)
+            {
+                case 0:
+                    scroll = EditorGUILayout.BeginScrollView(scroll, GUILayout.MaxHeight(150));
+                    
+                    for (int i = 0; i < 3; i++)
+                    {
+                        EditorGUILayout.BeginHorizontal("box");
+                        EditorGUILayout.LabelField(script.GetPointsTxt(i));
+                        EditorGUILayout.LabelField(script.GetPoints(i).ToString());
+                        EditorGUILayout.EndHorizontal();
+                    }
+                    
+                    EditorGUILayout.BeginHorizontal("box");
+                    EditorGUILayout.LabelField(nameof(script.GetGlobalDiff));
+                    EditorGUILayout.LabelField(script.GetGlobalDiff().ToString());
+                    EditorGUILayout.EndHorizontal();
+                    
+                    EditorGUILayout.EndScrollView();
+                    
+                    break;
+                    
+                case 1:
+                    scroll = EditorGUILayout.BeginScrollView(scroll, GUILayout.MaxHeight(150));
+                    
+                    for (int i = 0; i < 3; i++)
+                    {
+                        EditorGUILayout.BeginHorizontal("box");
+                        EditorGUILayout.LabelField(script.GetMultsTxt(i));
+                        EditorGUILayout.LabelField(script.GetMults(i).ToString());
+                        EditorGUILayout.EndHorizontal();
+                    }
+                    
+                    EditorGUILayout.EndScrollView();
+                    
+                    break;
+                
+                case 2:
+                    scroll = EditorGUILayout.BeginScrollView(scroll, GUILayout.MaxHeight(150));
+                    
+                    for (int i = 0; i < 3; i++)
+                    {
+                        EditorGUILayout.BeginHorizontal("box");
+                        EditorGUILayout.LabelField(script.GetPointsTxt(i));
+                        EditorGUILayout.LabelField((script.GetPoints(i) * script.GetMults(i)).ToString());
+                        EditorGUILayout.EndHorizontal();
+                    }
+                    
+                    EditorGUILayout.BeginHorizontal("box");
+                    EditorGUILayout.LabelField(nameof(script.GetGlobalDiff));
+                    EditorGUILayout.LabelField(script.GetGlobalDiff().ToString());
+                    EditorGUILayout.EndHorizontal();
+                    
+                    EditorGUILayout.EndScrollView();
+                    
+                    break;
+            }
+        }
     }
 }
+#endif

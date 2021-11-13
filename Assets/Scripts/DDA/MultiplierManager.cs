@@ -83,7 +83,34 @@
             }
 
         }
-        
-        
+
+        public void UpdateWIthPlayerSkill(float skill, float[] mults)
+        {
+            if (skill < 3)
+            {
+                mults[0] += 0.15f;
+                mults[1] += 0.15f;
+                mults[2] += 0.5f;
+            }
+            else if (skill < 5)
+            {
+                mults[0] += 0.25f;
+                mults[1] += 0.25f;
+                mults[2] += 0.4f;
+            }
+            else if (skill < 8)
+            {
+                mults[0] += 0.35f;
+                mults[1] += 0.35f;
+                mults[2] += 0.25f;
+            }
+            else
+            {
+                mults[0] += 0.5f;
+                mults[1] += 0.5f;
+                mults[2] += 0.15f;
+            }
+        }
+
     }
 }
