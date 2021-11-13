@@ -1,5 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
+
+
 using Enemies;
 using UnityEngine;
 using TheKiwiCoder;
@@ -27,7 +27,7 @@ public class GolemMoveGoalInterrupt : ActionNode
         float distance = Vector3.Distance(context.agent.destination, context.transform.position);
         float diferencia = EnemyGolem.GetPathRemainingDistance(context.agent) - distance;
 
-        if (diferencia >= 2)
+        if (diferencia >= 10)
         {
             Debug.Log("HAY QUE RECALCULAR");
             return State.Failure;

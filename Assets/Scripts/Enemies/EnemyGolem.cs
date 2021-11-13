@@ -12,14 +12,12 @@ namespace Enemies
     public class EnemyGolem : Enemy
     {
         private NavMeshPathStatus s;
-        public Vector3 objetive;
-        public PlacedBuild buildObjetive;
-        //public BehaviourTreeRunner tr;
+      
 
         private void Start()
         {
             NavMeshAgent.updateRotation = true;
-          //  NavMeshAgent.destination = EnemyGoal.instance.transform.position;
+            NavMeshAgent.destination = EnemyGoal.instance.transform.position;
         }
 
         private void Update()

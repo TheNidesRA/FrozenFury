@@ -3,6 +3,8 @@ using Enemies;
 using TheKiwiCoder;
 using UnityEngine;
 
+
+
 namespace Nodes.GolemNodes
 {
     public class GolemSearchWall : ActionNode
@@ -17,7 +19,7 @@ namespace Nodes.GolemNodes
         {
             if (debug)
                 lr = context.gameObject.GetComponent<LineRenderer>();
-            _enemyGolem = context.gameObject.GetComponent<EnemyGolem>();
+           
         }
 
         protected override void OnStop()
@@ -54,8 +56,8 @@ namespace Nodes.GolemNodes
                     lr.SetPosition(1, closest.transform.position);
                 }
 
-                _enemyGolem.objetive = closest.transform.position;
-                _enemyGolem.buildObjetive = closest;
+                context.enemy.targetPosition = closest.transform.position;
+                context.enemy.actionTarget = closest.gameObject;
                 
                 // Debug.DrawLine(context.transform.position, closest.transform.position);
                 return State.Success;
@@ -83,3 +85,7 @@ namespace Nodes.GolemNodes
         }
     }
 }
+
+
+
+

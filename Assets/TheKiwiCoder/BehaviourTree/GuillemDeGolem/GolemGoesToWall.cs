@@ -10,12 +10,16 @@ public class GolemGoesToWall : ActionNode
 
     protected override void OnStart()
     {
-        _enemyGolem = context.gameObject.GetComponent<EnemyGolem>();
+       
         //LeanTween.rotate(context.gameObject,new Vector3(_enemyGolem.objetive.x,0,_enemyGolem.objetive.z),2f);
 
         //Debug.Log(_enemyGolem.objetive);
 
-        var l = _enemyGolem.buildObjetive.getValidAttacksPoints();
+        Debug.Log("Vamos a por el murito y tal");
+        
+        PlacedBuild p  = context.enemy.actionTarget.GetComponent<PlacedBuild>();
+        
+        var l = p.getValidAttacksPoints();
 
         Transform s = NearPosition(l);
         if (s != null)
@@ -49,7 +53,7 @@ public class GolemGoesToWall : ActionNode
             //           closest.transform.position);
 
 
-            // Debug.DrawLine(context.transform.position, closest.transform.position);
+           //  Debug.DrawLine(context.transform.position, closest.transform.position);
             return closest;
         }
 
@@ -64,7 +68,7 @@ public class GolemGoesToWall : ActionNode
     protected override State OnUpdate()
     {
         //Debug.Log(name);
-        if (_enemyGolem.buildObjetive == null)
+        if (context.enemy.actionTarget == null)
         {
             context.agent.ResetPath();
             return State.Failure;
@@ -75,9 +79,9 @@ public class GolemGoesToWall : ActionNode
             return State.Success;
         }
 
-        Vector3 targetPostition = new Vector3(_enemyGolem.buildObjetive.transform.position.x,
+        Vector3 targetPostition = new Vector3(context.enemy.actionTarget.transform.position.x,
             context.transform.position.y,
-            _enemyGolem.buildObjetive.transform.position.z);
+            context.enemy.actionTarget.transform.position.z);
         context.transform.LookAt(targetPostition);
 
 

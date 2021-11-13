@@ -34,6 +34,16 @@ namespace Enemies
 
       
 
+        
+        //Cosas añadidads por mi elnidas para lo del bt
+        
+        public Vector3 targetPosition;
+        public GameObject actionTarget;
+        public GameObject auxActionTarget;
+        
+        
+        
+        
         private void OnEnable()
         {
             NavMeshAgent.speed=Speed;
