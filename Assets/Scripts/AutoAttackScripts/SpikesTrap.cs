@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Enemies;
 using UnityEngine;
 
 public class SpikesTrap : MonoBehaviour
@@ -15,24 +16,21 @@ public class SpikesTrap : MonoBehaviour
         if(other.gameObject.CompareTag($"Enemy"))
         {
 
-            StartCoroutine(OnSpikes());
+            other.GetComponent<Enemy>().OnSlow(slowDown);
+            other.GetComponent<Enemy>().OnHitTrap(dmg);
 
         }
-
 
     }
 
-    private IEnumerator OnSpikes()
+    private void OnTriggerStay(Collider other)
     {
-
-        while (true)
+        if (other.gameObject.CompareTag($"Enemy"))
         {
 
-            //LLAMADA A METODO DE DAÑO
-
+            other.GetComponent<Enemy>().OnHitTrap(dmg);
 
         }
-
 
     }
 
@@ -42,7 +40,7 @@ public class SpikesTrap : MonoBehaviour
         if (other.gameObject.CompareTag($"Enemy"))
         {
 
-            StopCoroutine(OnSpikes());
+            other.GetComponent<Enemy>().OnResetSlow();
 
         }
 

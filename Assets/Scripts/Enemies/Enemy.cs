@@ -24,6 +24,8 @@ namespace Enemies
 
         private bool isAttacking = false;
         public event Action<GameObject> OnEnemyDeath;
+        private float auxSpeed;
+        
 
         public string Id => id;
 
@@ -33,6 +35,9 @@ namespace Enemies
         public float Armor;
         public float AtackSpeed;
         public float gold;
+        public bool invencibilidad;
+        public float timeInv = 1f;
+
 
 
         private void OnEnable()
@@ -71,6 +76,37 @@ namespace Enemies
         {
             Destroy(gameObject);
         }
+
+        public void OnSlow(float slowDown)
+        {
+            auxSpeed = Speed;
+            Speed = slowDown;
+
+        }
+
+        public void OnResetSlow()
+        {
+            Speed = auxSpeed;
+        }
+
+        public void OnHitTrap(float dmg)
+        {
+            if(!invencibilidad && Health > 0)
+            {
+                Health -= dmg;
+                StartCoroutine(Invulnerabilidad());
+
+            }
+            
+        }
+        IEnumerator Invulnerabilidad()
+        {
+            invencibilidad = true;
+            yield return new WaitForSeconds(timeInv);
+            invencibilidad = false;
+        }
+
+
 
         private void OnDestroy()
         {
