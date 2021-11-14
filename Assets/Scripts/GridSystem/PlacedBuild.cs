@@ -72,12 +72,15 @@ public class PlacedBuild : MonoBehaviour
         {
             RaycastHit hit;
 
-            if (Physics.Raycast(VARIABLE.transform.position, VARIABLE.forward, out hit, 10f,
-                LayerMask.GetMask("Muros")))
+            if (Physics.Raycast(VARIABLE.transform.position, VARIABLE.forward, out hit, 8f,
+                1 << LayerMask.NameToLayer("Wall") |
+                (1 << LayerMask.NameToLayer("Torreta") | (1 << LayerMask.NameToLayer("Muros"))| (1 << LayerMask.NameToLayer("MuroPlayer")))))
             {
-              //  Debug.Log(VARIABLE.gameObject);
+//                Debug.Log(VARIABLE.gameObject);
 
-                //Debug.Log("Punto blocked");
+  //              Debug.Log("Punto blocked");
+
+                VARIABLE.gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
             }
             else
             {
