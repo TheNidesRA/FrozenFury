@@ -11,20 +11,24 @@ public class GolemHitsTheWall : ActionNode
 
     protected override void OnStart()
     {
-     
+     Debug.Log("Vamos a dar putiasos");
+     context.enemy.NODOACTUAL = "GolemHitsTheWall";
     }
 
     protected override void OnStop()
     {
+        context.agent.isStopped = true;
+        context.enemy.actionTarget = null;
+        context.agent.ResetPath();
     }
 
     protected override State OnUpdate()
     {
-        if (ReferenceEquals(context.enemy.actionTarget, null))
+        if (context.enemy.actionTarget ==null)
             return State.Success;
         //Debug.Log(name);
         Collider[] colliders =
-            Physics.OverlapSphere(context.transform.position, 10f, LayerMask.GetMask("Muros"));
+            Physics.OverlapSphere(context.transform.position, 10f, LayerMask.GetMask("Wall"));
             
         foreach (var VARIABLE in colliders)
         {

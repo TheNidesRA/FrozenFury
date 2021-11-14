@@ -1,4 +1,5 @@
 using System;
+using TheKiwiCoder;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -40,13 +41,22 @@ namespace Enemies
         public Vector3 targetPosition;
         public GameObject actionTarget;
         public GameObject auxActionTarget;
-        
-        
-        
-        
+        public float angleVision;
+        public float radioVision;
+
+        public string NODOACTUAL;
+
+        private void Awake()
+        {
+            actionTarget = null;
+            auxActionTarget = null;
+        }
+
         private void OnEnable()
         {
             NavMeshAgent.speed=Speed;
+          
+            
         }
 
         public void UpdateStats(float[] mult)

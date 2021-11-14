@@ -7,6 +7,8 @@ public class GolemCheckIFWallFrontTurret : ActionNode
 
     protected override void OnStart()
     {
+        context.enemy.NODOACTUAL = "GolemCheckIfWallFrontTurret";
+        Debug.Log("Checkeo si hay muritos delante");
     }
 
     protected override void OnStop()
@@ -19,16 +21,17 @@ public class GolemCheckIFWallFrontTurret : ActionNode
         
         Vector3 directionToTarget = (context.gameObject.transform.position - context.enemy.targetPosition).normalized;
         
-        if (!Physics.Raycast(context.transform.position, directionToTarget,out RaycastHit info,distanceToTarget,targetMask))
+        if (Physics.Raycast(context.transform.position, directionToTarget,out RaycastHit info,distanceToTarget,targetMask))
         {
             if (info.collider.gameObject.TryGetComponent<PlacedBuild>(out PlacedBuild build))
             {
                 context.enemy.auxActionTarget = context.enemy.actionTarget;
                 context.enemy.actionTarget = build.gameObject;
+                Debug.Log("Hay muro delante");
                 return State.Success;
             }
         }
-
+        Debug.Log("No hay muro delante");
         return State.Failure;
     }
 }

@@ -3399,8 +3399,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4.9535065, y: 6.2277775, z: 3.6792355}
-  m_Center: {x: 0.016336918, y: 2.6138887, z: -0.03267342}
+  m_Size: {x: 4.9535065, y: 5.9360323, z: 3.6792355}
+  m_Center: {x: 0.016336918, y: 2.7597635, z: -0.03267336}
 --- !u!195 &3508815072017628486
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -3410,7 +3410,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 7578239022502461647}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 1
+  m_Radius: 0.2
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -3422,7 +3422,7 @@ NavMeshAgent:
   m_Height: 2
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 1
 --- !u!114 &6568612553291909285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3444,8 +3444,12 @@ MonoBehaviour:
   Armor: 1
   AtackSpeed: 1
   gold: 1
-  objetive: {x: 0, y: 0, z: 0}
-  buildObjetive: {fileID: 0}
+  targetPosition: {x: 0, y: 0, z: 0}
+  actionTarget: {fileID: 0}
+  auxActionTarget: {fileID: 0}
+  angleVision: 0
+  radioVision: 0
+  NODOACTUAL: 
 --- !u!120 &61202294283004121
 LineRenderer:
   m_ObjectHideFlags: 0

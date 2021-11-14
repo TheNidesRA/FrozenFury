@@ -11,6 +11,8 @@ public class GolemFOVTurret : ActionNode
 
     protected override void OnStart()
     {
+        context.enemy.NODOACTUAL = "GolemFOVTurret";
+     //   Debug.Log("AQUI MIRANDO ");
     }
 
     protected override void OnStop()
@@ -19,8 +21,12 @@ public class GolemFOVTurret : ActionNode
 
     protected override State OnUpdate()
     {
+      //  Debug.Log("Echando el ojito y tal");
         if (FieldOfViewCheck())
+        {
+            Debug.Log("Exitazo hay torretilla toca salir y tal");
             return State.Failure;
+        }
 
         return State.Success;
     }

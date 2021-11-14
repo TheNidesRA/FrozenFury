@@ -17,7 +17,9 @@ namespace Enemies
         private void Start()
         {
             NavMeshAgent.updateRotation = true;
-            NavMeshAgent.destination = EnemyGoal.instance.transform.position;
+           // targetPosition=EnemyGoal.instance.transform.position;
+           // actionTarget = EnemyGoal.instance.gameObject;
+           // NavMeshAgent.destination = EnemyGoal.instance.transform.position;
         }
 
         private void Update()
@@ -65,6 +67,7 @@ namespace Enemies
                 EditorGUILayout.LabelField("Distacia camino: " + GetPathRemainingDistance(script.NavMeshAgent));
                 EditorGUILayout.LabelField("Distacia ubi: " + script.NavMeshAgent.destination);
                 EditorGUILayout.LabelField("Path status: " + script.NavMeshAgent.pathStatus);
+                EditorGUILayout.LabelField("Path Activo? : " + script.NavMeshAgent.isStopped);
             }
 
             // if (script.tr!=null)

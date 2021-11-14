@@ -8,6 +8,7 @@ public class GolemMoveGoalInterrupt : ActionNode
 {
     protected override void OnStart()
     {
+        context.enemy.NODOACTUAL = "GolemMoveGoalInterrupt";
     }
 
     protected override void OnStop()

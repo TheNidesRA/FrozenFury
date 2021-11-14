@@ -1,29 +1,29 @@
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 using TheKiwiCoder;
+using UnityEngine;
 
-public class GolemGoesToWall : ActionNode
+public class EnemyMoveToBuild : ActionNode
 {
-  
-
     protected override void OnStart()
     {
-        context.enemy.NODOACTUAL = "GolemGoesToWall";
-        //LeanTween.rotate(context.gameObject,new Vector3(_enemyGolem.objetive.x,0,_enemyGolem.objetive.z),2f);
-
-        //Debug.Log(_enemyGolem.objetive);
-
-        Debug.Log("Vamos a por el murito y tal");
         
-        PlacedBuild p  = context.enemy.actionTarget.GetComponent<PlacedBuild>();
+        context.enemy.NODOACTUAL = "EnemyMoveToBuild";
         
+        PlacedBuild p = context.enemy.actionTarget.GetComponent<PlacedBuild>();
+        
+        Debug.Log(p);
         var l = p.getValidAttacksPoints();
 
         Transform s = NearPosition(l);
-        if (s != null)
+        if (!ReferenceEquals(s, null))
         {
             context.agent.SetDestination(s.position);
             context.agent.isStopped = false;
+        }
+        else
+        {
+            Debug.Log("Ha dado null y tal");
+            context.enemy.actionTarget = null;
         }
     }
 
@@ -46,12 +46,12 @@ public class GolemGoesToWall : ActionNode
                 }
             }
 
-          //  Debug.Log("Vamos a por " + closest.gameObject);
+            //  Debug.Log("Vamos a por " + closest.gameObject);
             //  Debug.Log("El mas cercano es : " + closest + " Con una distancia de : " + maxDistance + " POSICION :" +
             //           closest.transform.position);
 
 
-           //  Debug.DrawLine(context.transform.position, closest.transform.position);
+            //  Debug.DrawLine(context.transform.position, closest.transform.position);
             return closest;
         }
 
@@ -61,17 +61,20 @@ public class GolemGoesToWall : ActionNode
 
     protected override void OnStop()
     {
+        context.agent.ResetPath();
+        context.agent.isStopped = true;
     }
 
     protected override State OnUpdate()
     {
-        //Debug.Log(name);
         if (context.enemy.actionTarget == null)
         {
-            Debug.Log("FIN");
             context.agent.ResetPath();
+            context.agent.isStopped = true;
+            Debug.Log("Fracasillo y tal");
             return State.Failure;
         }
+
         if (Vector3.Distance(context.transform.position, context.agent.destination) < 2f)
         {
             Debug.Log("Hemos llegao");
@@ -82,9 +85,8 @@ public class GolemGoesToWall : ActionNode
             context.transform.position.y,
             context.enemy.actionTarget.transform.position.z);
         context.transform.LookAt(targetPostition);
+//        Debug.Log("De camino y tal");
 
-
-       // Debug.Log("DE CAMINO al murito");
         return State.Running;
     }
 }

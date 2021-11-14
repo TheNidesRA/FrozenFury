@@ -5,10 +5,11 @@ using Nodes;
 using TheKiwiCoder;
 using UnityEngine;
 
-public class IsGolemAnObjetiveTransform : ActionNode
+public class GolemHasAnObjetiveTransform : ActionNode
 {
     protected override void OnStart()
     {
+        context.enemy.NODOACTUAL = "GolemHasAnObjetiveTransform";
     }
 
     protected override void OnStop()
@@ -19,7 +20,7 @@ public class IsGolemAnObjetiveTransform : ActionNode
     protected override State OnUpdate()
     {
         
-        if (!ReferenceEquals(EnemyGoal.instance,null))
+        if (EnemyGoal.instance!=null)
         {
             Debug.Log("Existo");
 //            context.agent.destination = EnemyGoal.instance.getPosition();

@@ -14,14 +14,16 @@ namespace Nodes.GolemNodes
 
         protected override void OnStart()
         {
+            context.enemy.NODOACTUAL = "GolemMoveObjetiveNode";
             _objetive = EnemyGoal.instance.getPosition();
             _enemyGolem = context.gameObject.GetComponent<EnemyGolem>();
 
             context.agent.ResetPath();
             context.agent.isStopped = false;
-            context.agent.SetDestination(EnemyGoal.instance.transform.position); 
+            context.agent.SetDestination(EnemyGoal.instance.transform.position);
+            context.enemy.actionTarget = EnemyGoal.instance.gameObject;
+            context.enemy.targetPosition = EnemyGoal.instance.getPosition();
             lastPosition = context.agent.transform.position;
-            
         }
 
         protected override void OnStop()
@@ -33,7 +35,17 @@ namespace Nodes.GolemNodes
 
         protected override State OnUpdate()
         {
-           // Debug.Log(name);
+//            Debug.Log("En pleno movimiento :)");
+            if (lastPosition == context.transform.position)
+                cont++;
+            lastPosition = context.transform.position;
+            if (cont == 3)
+            {
+                Debug.Log("Estas quietesito");
+                context.agent.SetDestination(EnemyGoal.instance.getPosition());
+            }
+
+            // Debug.Log(name);
             if (context.agent.destination != new Vector3(-1, -1, -1))
             {
                 if (Vector3.Distance(context.transform.position, context.agent.destination) < 3f)
@@ -41,7 +53,7 @@ namespace Nodes.GolemNodes
                     return State.Success;
                 }
 
-                //Debug.Log("Moviendonos");
+//                Debug.Log("Moviendonos");
                 return State.Running;
             }
             else
