@@ -196,10 +196,12 @@ namespace AutoAttackScripts
                     if (Math.Abs(enemy.Value - minDistance) < 0.001f)
                     {
                         if (Shooting) continue;
-                        Shooting = true;                 
-                        characterAnimator.SetLayerWeight(characterAnimator.GetLayerIndex("Shooting"), 1.0f);
-                        characterAnimator.SetBool("Shoot", Shooting);
-
+                        Shooting = true;
+                        if (isPlayer)
+                        {
+                            characterAnimator.SetLayerWeight(characterAnimator.GetLayerIndex("Shooting"), 1.0f);
+                            characterAnimator.SetBool("Shoot", Shooting);
+                        }
                         //We retrieve the enemy the player will look to
                         enemyToLook = enemy.Key;
                         //We start shooting the enemy
@@ -210,8 +212,11 @@ namespace AutoAttackScripts
                 //we wait timeBetweenShooting amount of time
                 yield return new WaitForSeconds(timeBetweenShooting);
                 Shooting = false;
-                characterAnimator.SetLayerWeight(characterAnimator.GetLayerIndex("Shooting"), 0.0f);
-                characterAnimator.SetBool("Shoot", Shooting);
+                if (isPlayer)
+                {
+                    characterAnimator.SetLayerWeight(characterAnimator.GetLayerIndex("Shooting"), 0.0f);
+                    characterAnimator.SetBool("Shoot", Shooting);
+                }
             }
         }
 
@@ -246,6 +251,7 @@ namespace AutoAttackScripts
 
             if (isPlayer)
             {
+               
                 _objectiveDirection =
                     Quaternion.LookRotation((enemy.transform.position - player.transform.position).normalized);
                 player.transform.rotation =

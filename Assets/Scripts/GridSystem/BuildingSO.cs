@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -54,7 +53,8 @@ public class BuildingSO : ScriptableObject
     public enum BuildingType
     {
         Turret,
-        Wall
+        Wall,
+        Trap
         
     }
 

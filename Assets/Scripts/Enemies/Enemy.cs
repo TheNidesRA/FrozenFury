@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -21,7 +22,9 @@ namespace Enemies
         /// </summary>
         public NavMeshAgent NavMeshAgent;
 
+        private bool isAttacking = false;
         public event Action<GameObject> OnEnemyDeath;
+        private float initSpeed;
 
         public string Id => id;
 
@@ -31,12 +34,15 @@ namespace Enemies
         public float Armor;
         public float AtackSpeed;
         public float gold;
+        public bool invencibilidadTrampa = false;
+        public float tiempoInvencibilidad = 5f;
 
-      
+
 
         private void OnEnable()
         {
-            NavMeshAgent.speed=Speed;
+            initSpeed = Speed;
+            NavMeshAgent.speed = Speed;
         }
 
         public void UpdateStats(float[] mult)
@@ -71,6 +77,45 @@ namespace Enemies
             Destroy(gameObject);
         }
 
+        public void OnSlow(float slowDown)
+        {
+            Speed = slowDown;
+            NavMeshAgent.speed = Speed;
+
+        }
+
+        public void OnResetSlow()
+        {
+            Speed = initSpeed;
+            NavMeshAgent.speed = Speed;
+        }
+
+        public void OnHitTrap(float dmg)
+        {
+            if (!invencibilidadTrampa && Health > 0)
+            {
+                Health -= dmg;
+                StartCoroutine(OnInvencible());
+            }
+
+
+            if (Health <= 0)
+            {
+                Die();
+            }
+
+        }
+
+        public IEnumerator OnInvencible()
+        {
+            invencibilidadTrampa = true;
+            yield return new WaitForSeconds(tiempoInvencibilidad);
+            invencibilidadTrampa = false;
+        }
+
+
+
+
         private void OnDestroy()
         {
             OnEnemyDeath?.Invoke(gameObject);
@@ -82,6 +127,26 @@ namespace Enemies
         {
             Debug.Log("HP: " + Health + " // Dmg: " + Damage + " // Spd: " + Speed + " // Arm: " + Armor +
                       " // AtkSpd: " + AtackSpeed);
+        }
+
+        public void Attack()
+        {
+            if (isAttacking) return;
+            isAttacking = true;
+            Debug.Log("Ataca!");
+            StartCoroutine(nameof(StartAnimation));
+
+        }
+
+        public bool IsAttackFinished()
+        {
+            return !isAttacking;
+        }
+
+        private IEnumerator StartAnimation()
+        {
+            yield return new WaitForSeconds(AtackSpeed);
+            isAttacking = false;
         }
     }
 }
