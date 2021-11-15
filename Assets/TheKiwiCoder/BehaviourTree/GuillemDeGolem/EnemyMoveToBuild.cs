@@ -4,26 +4,44 @@ using UnityEngine;
 
 public class EnemyMoveToBuild : ActionNode
 {
+    bool fracaso=false;
+
     protected override void OnStart()
     {
-        
         context.enemy.NODOACTUAL = "EnemyMoveToBuild";
-        
-        PlacedBuild p = context.enemy.actionTarget.GetComponent<PlacedBuild>();
-        
-        Debug.Log(p);
-        var l = p.getValidAttacksPoints();
 
-        Transform s = NearPosition(l);
-        if (!ReferenceEquals(s, null))
+        fracaso = false;
+
+        if (context.enemy.actionTarget == null)
         {
-            context.agent.SetDestination(s.position);
-            context.agent.isStopped = false;
+            context.agent.ResetPath();
+            context.agent.isStopped = true;
+            context.enemy.targetPosition = Vector3.negativeInfinity;
+            fracaso = true;
+            Debug.Log("null el target");
+            return;
+        }
+
+        if (context.enemy.actionTarget.TryGetComponent<PlacedBuild>(out PlacedBuild p))
+        {
+            var l = p.getValidAttacksPoints();
+            Debug.Log("Ya no es null de hecho estamos analizandolo XD");
+            Transform s = NearPosition(l);
+            if (!ReferenceEquals(s, null))
+            {
+                context.agent.SetDestination(s.position);
+                context.agent.isStopped = false;
+            }
+            else
+            {
+                Debug.Log("No hay por donde darle");
+                fracaso = true;
+            }
         }
         else
         {
-            Debug.Log("Ha dado null y tal");
-            context.enemy.actionTarget = null;
+            Debug.Log("No es un edificio");
+            fracaso = true;
         }
     }
 
@@ -61,16 +79,18 @@ public class EnemyMoveToBuild : ActionNode
 
     protected override void OnStop()
     {
-        context.agent.ResetPath();
+       // context.agent.ResetPath();
         context.agent.isStopped = true;
+        
     }
 
     protected override State OnUpdate()
     {
-        if (context.enemy.actionTarget == null)
+        if (context.enemy.actionTarget == null || fracaso)
         {
             context.agent.ResetPath();
             context.agent.isStopped = true;
+            Debug.Log(context.enemy.actionTarget);
             Debug.Log("Fracasillo y tal");
             return State.Failure;
         }
