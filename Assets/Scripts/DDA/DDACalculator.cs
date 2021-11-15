@@ -10,6 +10,7 @@ namespace Enemies
     /// </summary>
     public class DDACalculator : MonoBehaviour
     {
+        [SerializeField] public EnemySpawner spawner;
         /// <summary>
         /// Variable used to read the enemies initialStats
         /// </summary>
@@ -23,7 +24,9 @@ namespace Enemies
         /// <summary>
         /// List with the enemies stats which will be used to keep track of them during the game
         /// </summary>
-        private Dictionary<string, EnemyStats> _enemyStats;
+        private List<EnemyStats> _enemyStats;
+
+        private Dictionary<string, EnemyStats> _initStatsMap;
 
         /// <summary>
         /// Variable with the global difficulty for the game.
@@ -71,7 +74,8 @@ namespace Enemies
             }
 
             _winners = new Stack<WinnerStats>();
-            _enemyStats = new Dictionary<string, EnemyStats>();
+            _enemyStats = new List<EnemyStats>();
+            _initStatsMap = new Dictionary<string, EnemyStats>();
             _multManager = new MultiplierManager();
             _statCalculator = new StatCalculator();
             
@@ -79,7 +83,8 @@ namespace Enemies
             {
                 EnemyStats stats = new EnemyStats(enemy.Id, enemy.health, enemy.damage, enemy.speed, enemy.armor,
                     enemy.atackSpeed, enemy.gold);
-                _enemyStats.Add(stats.id, stats);
+                _enemyStats.Add(stats);
+                _initStatsMap.Add(stats.id, stats);
             }
         }
 
@@ -108,10 +113,13 @@ namespace Enemies
             _multManager.UpdateWIthPlayerSkill(skill, _diffMultipliers);
             
             _statCalculator.UpdateVariables(_diffVariables, _diffMultipliers);
+
+            _enemyStats = _statCalculator.UpdateStats(_enemyStats, _initStatsMap, _diffVariables, _globalDiff);
             
+            spawner.UpdateEnemyPrefabs(_enemyStats);
             
-            Debug.Log("Base damage recived: " + totalBaseDmg + 
-                      " \n Total enemy health: " + totalEnemyHp + " / " + _roundMaxHp);
+            // Debug.Log("Base damage recived: " + totalBaseDmg + 
+                      // " \n Total enemy health: " + totalEnemyHp + " / " + _roundMaxHp);
         }
 
         /// <summary>

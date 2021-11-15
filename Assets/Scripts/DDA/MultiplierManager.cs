@@ -37,11 +37,11 @@
             }
             else
             {
-                mults[0] -= 0.12f;
-                mults[1] -= 0.1f;
+                mults[0] -= 0.2f;
+                mults[1] -= 0.16f;
                 mults[2] += 0.15f;
-                vars[0] -= 2;
-                vars[2] -= 2;
+                vars[0] -= 4;
+                vars[2] -= 4;
             }
         }
 

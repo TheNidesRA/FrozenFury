@@ -10,6 +10,7 @@ namespace Enemies
         public float maxStructLvl = 1;
         public float roundDeaths = 0;
         public float round = 1;
+        
         public float rangeMin = 1;
         public float rangeMax = 1;
 

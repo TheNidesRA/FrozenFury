@@ -13,11 +13,17 @@ namespace Enemies
         /// </summary>
         public int minEnemies = 10;
 
+        public float spwnPts;
+
         /// <summary>
         /// Global level difficulty
         /// </summary>
         public int winRound = 2;
-        public int levelDificulty = 10;
+        /// <summary>
+        /// How Enemy increase per round
+        /// </summary>
+        public float spawnProgression = 0.7f;
+        
         private Wave _currentWave;
         private int _round=1;
         private int _enemiesAlive;
@@ -44,7 +50,7 @@ namespace Enemies
 
         private void Awake()
         {
-            _generator = new WaveGenerator(enemiconfig, levelDificulty, minEnemies);
+            _generator = new WaveGenerator(enemiconfig, spawnProgression, minEnemies);
             if (_instance != null && _instance!=this)
             {
                 Destroy(this.gameObject);
@@ -63,7 +69,7 @@ namespace Enemies
             if (_currentWave == null || !_roundActive)
             {
                 SceneController._instance.round = _round;
-                _currentWave = _generator.GenerateWave(_round);
+                _currentWave = _generator.GenerateWave(_round, spwnPts);
                 float totalHp = 0;
                 foreach (var enemy in _currentWave.Enemies)
                 {

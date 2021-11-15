@@ -40,13 +40,15 @@ namespace Enemies
             NavMeshAgent.speed=speed;
         }
 
-        public void UpdateStats(float[] mult)
+        public void UpdateStats(EnemyStats stats)
         {
-            health = health * mult[0];
-            damage = damage * mult[1];
-            speed = speed * mult[2];
-            armor = armor * mult[3];
-            atackSpeed = atackSpeed * mult[4];
+            health = stats.hp;
+            damage = stats.dmg;
+            speed = stats.speed;
+            armor = stats.armor;
+            atackSpeed = stats.atackSpd;
+            
+            PrintStats();
         }
 
         public virtual void InitializeStats()
@@ -82,7 +84,7 @@ namespace Enemies
 
         public void PrintStats()
         {
-            Debug.Log("HP: " + health + " // Dmg: " + damage + " // Spd: " + speed + " // Arm: " + armor +
+            Debug.Log(Id+ "\nHP: " + health + " // Dmg: " + damage + " // Spd: " + speed + " // Arm: " + armor +
                       " // AtkSpd: " + atackSpeed);
         }
     }

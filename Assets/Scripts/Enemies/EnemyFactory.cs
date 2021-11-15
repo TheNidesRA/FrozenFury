@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using Object = UnityEngine.Object;
 
 namespace Enemies
@@ -23,9 +24,9 @@ namespace Enemies
             return Object.Instantiate(enemy, pos, Quaternion.identity);
         }
 
-        public void UpdateEnemyStats(float[]mult)
+        public void UpdateEnemyStats(List<EnemyStats>updatedValues)
         {
-            _enemyConfiguration.UpdatePrefabStats(mult);
+            _enemyConfiguration.UpdatePrefabStats(updatedValues);
         }
     }
 }
