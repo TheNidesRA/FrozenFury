@@ -75,6 +75,7 @@ class LevelSystemEditor : Editor
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
+        
         var script = (LevelSystem) target;
         if (script == null) return;
 
@@ -89,7 +90,7 @@ class LevelSystemEditor : Editor
             case 0:
                 scroll = EditorGUILayout.BeginScrollView(scroll, GUILayout.MaxHeight(300));
 
-                for (int i = 1; i < 15; i++)
+                for (int i = 1; i < 100; i++)
                 {
                     EditorGUILayout.BeginHorizontal("box");
                     EditorGUILayout.LabelField("Level " + (i));

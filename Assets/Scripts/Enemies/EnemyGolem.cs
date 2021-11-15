@@ -12,14 +12,14 @@ namespace Enemies
     public class EnemyGolem : Enemy
     {
         private NavMeshPathStatus s;
-        public Vector3 objetive;
-        public PlacedBuild buildObjetive;
-        //public BehaviourTreeRunner tr;
+      
 
         private void Start()
         {
             NavMeshAgent.updateRotation = true;
-          //  NavMeshAgent.destination = EnemyGoal.instance.transform.position;
+           // targetPosition=EnemyGoal.instance.transform.position;
+           // actionTarget = EnemyGoal.instance.gameObject;
+           // NavMeshAgent.destination = EnemyGoal.instance.transform.position;
         }
 
         private void Update()
@@ -67,6 +67,7 @@ namespace Enemies
                 EditorGUILayout.LabelField("Distacia camino: " + GetPathRemainingDistance(script.NavMeshAgent));
                 EditorGUILayout.LabelField("Distacia ubi: " + script.NavMeshAgent.destination);
                 EditorGUILayout.LabelField("Path status: " + script.NavMeshAgent.pathStatus);
+                EditorGUILayout.LabelField("Path Activo? : " + script.NavMeshAgent.isStopped);
             }
 
             // if (script.tr!=null)
@@ -78,9 +79,39 @@ namespace Enemies
             //     EditorGUILayout.LabelField("Arbol asd?: " + script.tr.tree.rootNode.guid);
             //     //script.tr.tree.nodes.Find(n => n.guid ==script.tr.tree.)
             // }
+            
+            
+             Handles.color = Color.white;
+                    Handles.DrawWireArc(script.transform.position, Vector3.up, Vector3.forward, 360, script.radioVision);
+            
+                    Vector3 viewAngle01 = DirectionFromAngle(script.transform.eulerAngles.y, -script.angleVision / 2);
+                    Vector3 viewAngle02 = DirectionFromAngle(script.transform.eulerAngles.y, script.angleVision / 2);
+            
+                    Handles.color = Color.yellow;
+                    Handles.DrawLine(script.transform.position, script.transform.position + viewAngle01 * script.radioVision);
+                    Handles.DrawLine(script.transform.position, script.transform.position + viewAngle02 * script.radioVision);
+            
+                    if (script.actionTarget!=null)
+                    {
+                        Handles.color = Color.green;
+                        Handles.DrawLine(script.transform.position, script.actionTarget.transform.position);
+                    }
+            
+            
+            
+            
+            
         }
 
 
+        
+        private Vector3 DirectionFromAngle(float eulerY, float angleInDegrees)
+        {
+            angleInDegrees += eulerY;
+
+            return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
+        }
+        
         public float GetPathRemainingDistance(NavMeshAgent navMeshAgent)
         {
             if (navMeshAgent.pathPending ||

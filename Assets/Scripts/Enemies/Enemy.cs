@@ -1,4 +1,5 @@
 using System;
+using TheKiwiCoder;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
@@ -38,6 +39,22 @@ namespace Enemies
         public float tiempoInvencibilidad = 5f;
 
 
+        
+        //Cosas añadidads por mi elnidas para lo del bt
+        
+        public Vector3 targetPosition;
+        public GameObject actionTarget;
+        public GameObject auxActionTarget;
+        public float angleVision;
+        public float radioVision;
+
+        public string NODOACTUAL;
+
+        private void Awake()
+        {
+            actionTarget = null;
+            auxActionTarget = null;
+        }
 
         private void OnEnable()
         {
