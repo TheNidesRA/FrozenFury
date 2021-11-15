@@ -18,6 +18,7 @@ namespace AutoAttackScripts
     public class AutoShoot : MonoBehaviour
     {
         [Header("Choose type of shooting")] public ShootingStyle typeOfShooting = ShootingStyle.Normal;
+        [Header("Which enemy to Aim")] public WhoToShoot enemyToShoot = WhoToShoot.ClosestToPlayer;
         [Header("Time to destroy bullet")] public float bulletTimeAlive = 4.0f;
 
         /// <summary>
@@ -61,6 +62,13 @@ namespace AutoAttackScripts
             set => shooting = value;
         }
 
+        public enum WhoToShoot
+        {
+            FirstInRange,
+            LowestHealth,
+            ClosestToPlayer
+        }
+
         public enum ShootingStyle
         {
             Normal,
@@ -71,7 +79,11 @@ namespace AutoAttackScripts
         /// <summary>
         /// Dictionary to store the enemies that are inside of the "Hit Area"
         /// </summary>
-        private Dictionary<GameObject, float> _enemies;
+        private Dictionary<GameObject, float> _closestEnemies;
+
+        private List<GameObject> _enemiesInRange;
+
+        private Dictionary<GameObject, float> _enemiesHealth;
 
         [Header("The GameObject which will be shot")]
         public GameObject bullet;
@@ -114,14 +126,18 @@ namespace AutoAttackScripts
 
         private void Start()
         {
-            _enemies = new Dictionary<GameObject, float>();
+            _closestEnemies = new Dictionary<GameObject, float>();
+            _enemiesInRange = new List<GameObject>();
+            _enemiesHealth = new Dictionary<GameObject, float>();
             StartCoroutine(nameof(AimEnemy));
             isPlayer = transform.parent.gameObject.CompareTag("Player");
-            if (isPlayer){
+            if (isPlayer)
+            {
                 characterAnimator = GetComponentInParent<Animator>();
-                characterAnimator.SetLayerWeight(characterAnimator.GetLayerIndex("Shooting"), 0.0f); //peso de la capa de disparo al inicio
+                characterAnimator.SetLayerWeight(characterAnimator.GetLayerIndex("Shooting"),
+                    0.0f); //peso de la capa de disparo al inicio
             }
-                
+
             quadrant = new bool[2];
         }
 
@@ -130,7 +146,9 @@ namespace AutoAttackScripts
         {
             //You have to check whether your collision is with an enemy or with another object
             if (!other.gameObject.CompareTag($"Enemy")) return;
-            _enemies.Remove(other.gameObject);
+            _closestEnemies.Remove(other.gameObject);
+            _enemiesHealth.Remove(other.gameObject);
+            _enemiesInRange.Remove(other.gameObject);
             enemySighted = false;
 
             if (isPlayer)
@@ -145,8 +163,13 @@ namespace AutoAttackScripts
         {
             //Check what object is making the collision
             if (!other.gameObject.CompareTag($"Enemy")) return;
-            _enemies.Add(other.gameObject, Vector3.Distance(other.gameObject.transform.position, transform.position));
+            _closestEnemies.Add(other.gameObject,
+                Vector3.Distance(other.gameObject.transform.position, transform.position));
+            _enemiesInRange.Add(other.gameObject);
+            if (!_enemiesHealth.ContainsKey(other.gameObject))
+                _enemiesHealth.Add(other.gameObject, other.gameObject.GetComponent<Enemy>().Health);
             other.gameObject.GetComponent<Enemy>().OnEnemyDeath += RemoveEnemy;
+            other.gameObject.GetComponent<Enemy>().OnHealthChanged += CheckHealth;
             enemySighted = true;
 
             if (isPlayer)
@@ -164,7 +187,7 @@ namespace AutoAttackScripts
             localDistance = Vector3.Distance(other.gameObject.transform.position, transform.position);
 
             //assign the distance to the enemy
-            _enemies[other.gameObject] = localDistance;
+            _closestEnemies[other.gameObject] = localDistance;
             //When there's enemy inside the shooting area, we'll rotate to the closest one
             RotatePlayerToEnemy(enemyToLook);
         }
@@ -173,40 +196,32 @@ namespace AutoAttackScripts
         {
             while (true)
             {
-                if (_enemies.Count == 0)
+                if (_closestEnemies.Count == 0)
                 {
                     nuevoPlayerMovement.controlMovimiento = true;
                 }
 
                 //we wait until there's enemies in the dictionary
-                if (!(_enemies.Count > 0))
+                if (!(_closestEnemies.Count > 0))
                 {
-                    yield return new WaitUntil(() => _enemies.Count > 0);
+                    yield return new WaitUntil(() => _closestEnemies.Count > 0);
                     if (isPlayer)
                         nuevoPlayerMovement.controlMovimiento = false;
                 }
 
-                //we retrieve the minimum distance of the dictionary
-                var minDistance = _enemies.Min(distance => distance.Value);
-
-                foreach (var enemy in _enemies)
+                switch (enemyToShoot)
                 {
-                    //when searching for equals using floats, there could be little difference (1.444444 != 1.444445), that's
-                    //why whe check if the subtraction is less than 0.1 -> Abs(1.444444 - 1.444445) = 0.000001 and that's true
-                    if (Math.Abs(enemy.Value - minDistance) < 0.001f)
-                    {
-                        if (Shooting) continue;
-                        Shooting = true;
-                        if (isPlayer)
-                        {
-                            characterAnimator.SetLayerWeight(characterAnimator.GetLayerIndex("Shooting"), 1.0f);
-                            characterAnimator.SetBool("Shoot", Shooting);
-                        }
-                        //We retrieve the enemy the player will look to
-                        enemyToLook = enemy.Key;
-                        //We start shooting the enemy
-                        ShootEnemy(enemy.Key);
-                    }
+                    case WhoToShoot.FirstInRange:
+                        ShootFirstInRangeEnemy();
+                        break;
+                    case WhoToShoot.LowestHealth:
+                        ShootLowestHealthEnemy();
+                        break;
+                    case WhoToShoot.ClosestToPlayer:
+                        ShootLowestDistanceEnemy();
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
                 }
 
                 //we wait timeBetweenShooting amount of time
@@ -239,6 +254,75 @@ namespace AutoAttackScripts
             }
         }
 
+        private void ShootLowestDistanceEnemy()
+        {
+            //we retrieve the minimum distance of the dictionary
+            var minDistance = _closestEnemies.Min(distance => distance.Value);
+
+            foreach (var enemy in _closestEnemies)
+            {
+                //when searching for equals using floats, there could be little difference (1.444444 != 1.444445), that's
+                //why whe check if the subtraction is less than 0.1 -> Abs(1.444444 - 1.444445) = 0.000001 and that's true
+                if (Math.Abs(enemy.Value - minDistance) < 0.001f)
+                {
+                    if (Shooting) continue;
+                    Shooting = true;
+                    if (isPlayer)
+                    {
+                        characterAnimator.SetLayerWeight(characterAnimator.GetLayerIndex("Shooting"), 1.0f);
+                        characterAnimator.SetBool("Shoot", Shooting);
+                    }
+
+                    //We retrieve the enemy the player will look to
+                    enemyToLook = enemy.Key;
+                    //We start shooting the enemy
+                    ShootEnemy(enemy.Key);
+                }
+            }
+        }
+
+        private void ShootLowestHealthEnemy()
+        {
+            //We retrieve the enemy the player will look to
+            var minHealth = _enemiesHealth.Min(health => health.Value);
+            foreach (var enemy in _enemiesHealth)
+            {
+                //when searching for equals using floats, there could be little difference (1.444444 != 1.444445), that's
+                //why whe check if the subtraction is less than 0.1 -> Abs(1.444444 - 1.444445) = 0.000001 and that's true
+                if (Math.Abs(enemy.Value - minHealth) < 0.001f)
+                {
+                    if (Shooting) continue;
+                    Shooting = true;
+                    if (isPlayer)
+                    {
+                        characterAnimator.SetLayerWeight(characterAnimator.GetLayerIndex("Shooting"), 1.0f);
+                        characterAnimator.SetBool("Shoot", Shooting);
+                    }
+
+                    //We retrieve the enemy the player will look to
+                    enemyToLook = enemy.Key;
+                    //We start shooting the enemy
+                    ShootEnemy(enemy.Key);
+                }
+            }
+        }
+
+        private void ShootFirstInRangeEnemy()
+        {
+            if (Shooting) return;
+            Shooting = true;
+            if (isPlayer)
+            {
+                characterAnimator.SetLayerWeight(characterAnimator.GetLayerIndex("Shooting"), 1.0f);
+                characterAnimator.SetBool("Shoot", Shooting);
+            }
+
+            //We retrieve the enemy the player will look to
+            enemyToLook = _enemiesInRange[0];
+            //We start shooting the enemy
+            ShootEnemy(_enemiesInRange[0]);
+        }
+
         public virtual void RotatePlayerToEnemy(GameObject enemy)
         {
             if (enemy == null)
@@ -251,7 +335,6 @@ namespace AutoAttackScripts
 
             if (isPlayer)
             {
-               
                 _objectiveDirection =
                     Quaternion.LookRotation((enemy.transform.position - player.transform.position).normalized);
                 player.transform.rotation =
@@ -268,8 +351,16 @@ namespace AutoAttackScripts
 
         private void RemoveEnemy(GameObject enemy)
         {
-            _enemies.Remove(enemy);
+            _closestEnemies.Remove(enemy);
+            _enemiesInRange.Remove(enemy);
+            _enemiesHealth.Remove(enemy);
             enemy.GetComponent<Enemy>().OnEnemyDeath -= RemoveEnemy;
+            enemy.GetComponent<Enemy>().OnHealthChanged -= CheckHealth;
+        }
+
+        private void CheckHealth(GameObject enemy)
+        {
+            _enemiesHealth[enemy] = enemy.GetComponent<Enemy>().Health;
         }
 
         protected IEnumerator WaitToShootBulletBurst(GameObject enemy)
@@ -319,7 +410,7 @@ namespace AutoAttackScripts
 
         protected void ClearEnemies()
         {
-            _enemies.Clear();
+            _closestEnemies.Clear();
         }
 
         private void ShootingNormal(GameObject enemy)
@@ -456,7 +547,6 @@ namespace AutoAttackScripts
             characterAnimator.SetBool("SecondQuad", RightUp);
             characterAnimator.SetBool("ThirdQuad", LeftDown);
             characterAnimator.SetBool("FourthQuad", RightDown);
-
         }
 
         #endregion

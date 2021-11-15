@@ -24,7 +24,14 @@ namespace Enemies
         public NavMeshAgent NavMeshAgent;
 
         private bool isAttacking = false;
+
+        #region EventosBossy
+
         public event Action<GameObject> OnEnemyDeath;
+        public event Action<GameObject> OnHealthChanged;
+
+        #endregion
+
         private float initSpeed;
 
         public string Id => id;
@@ -41,9 +48,9 @@ namespace Enemies
 
         public bool afecctedTrap = false;
 
-        
+
         //Cosas añadidads por mi elnidas para lo del bt
-        
+
         public Vector3 targetPosition;
         public GameObject actionTarget;
         public GameObject auxActionTarget;
@@ -87,7 +94,7 @@ namespace Enemies
         public bool OnHit(float dmg)
         {
             Health -= dmg;
-
+            OnHealthChanged?.Invoke(gameObject);
             return Health <= 0;
         }
 
@@ -103,7 +110,7 @@ namespace Enemies
                 Speed = Speed * slowDown;
                 NavMeshAgent.speed = Speed;
             }
-            
+
             afecctedTrap = true;
         }
 
@@ -127,7 +134,6 @@ namespace Enemies
             {
                 Die();
             }
-
         }
 
         public IEnumerator OnInvencible()
@@ -136,8 +142,6 @@ namespace Enemies
             yield return new WaitForSeconds(tiempoInvencibilidad);
             invencibilidadTrampa = false;
         }
-
-
 
 
         private void OnDestroy()
@@ -159,7 +163,6 @@ namespace Enemies
             isAttacking = true;
             Debug.Log("Ataca!");
             StartCoroutine(nameof(StartAnimation));
-
         }
 
         public bool IsAttackFinished()
