@@ -1,16 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class isOnDevice : MonoBehaviour
 {
-    public GameObject mobileCanva;
+    public GameObject mobileCanvas;
 
     // Start is called before the first frame update
 
     bool isMobile;
-
 #if !UNITY_EDITOR && UNITY_WEBGL
     [System.Runtime.InteropServices.DllImport("__Internal")]
     static extern bool IsMobile();
@@ -20,31 +16,16 @@ public class isOnDevice : MonoBehaviour
     {
 #if !UNITY_EDITOR && UNITY_WEBGL
             isMobile = IsMobile();
-            if(isMobile == true)
-                mobileCanva.SetActive(true);
-            else
-                mobileCanva.SetActive(false);
+        if (isMobile == true)
+            mobileCanvas.SetActive(true);
+        else
+            mobileCanvas.SetActive(false);
 #endif
     }
 
 
     private void Awake()
     {
-        //CheckIfMobile();
-       
+        CheckIfMobile();
     }
-
-
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-
 }

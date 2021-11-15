@@ -1,21 +1,23 @@
-using System.Collections;
 using System.Collections.Generic;
-using Enemies;
 using UnityEngine;
 using TheKiwiCoder;
 
 public class GolemGoesToWall : ActionNode
 {
-    private EnemyGolem _enemyGolem;
+  
 
     protected override void OnStart()
     {
-        _enemyGolem = context.gameObject.GetComponent<EnemyGolem>();
+        context.enemy.NODOACTUAL = "GolemGoesToWall";
         //LeanTween.rotate(context.gameObject,new Vector3(_enemyGolem.objetive.x,0,_enemyGolem.objetive.z),2f);
 
         //Debug.Log(_enemyGolem.objetive);
 
-        var l = _enemyGolem.buildObjetive.getValidAttacksPoints();
+        Debug.Log("Vamos a por el murito y tal");
+        
+        PlacedBuild p  = context.enemy.actionTarget.GetComponent<PlacedBuild>();
+        
+        var l = p.getValidAttacksPoints();
 
         Transform s = NearPosition(l);
         if (s != null)
@@ -49,7 +51,7 @@ public class GolemGoesToWall : ActionNode
             //           closest.transform.position);
 
 
-            // Debug.DrawLine(context.transform.position, closest.transform.position);
+           //  Debug.DrawLine(context.transform.position, closest.transform.position);
             return closest;
         }
 
@@ -64,24 +66,25 @@ public class GolemGoesToWall : ActionNode
     protected override State OnUpdate()
     {
         //Debug.Log(name);
-        if (_enemyGolem.buildObjetive == null)
+        if (context.enemy.actionTarget == null)
         {
+            Debug.Log("FIN");
             context.agent.ResetPath();
             return State.Failure;
         }
         if (Vector3.Distance(context.transform.position, context.agent.destination) < 2f)
         {
-           // Debug.Log("Hemos llegao");
+            Debug.Log("Hemos llegao");
             return State.Success;
         }
 
-        Vector3 targetPostition = new Vector3(_enemyGolem.buildObjetive.transform.position.x,
+        Vector3 targetPostition = new Vector3(context.enemy.actionTarget.transform.position.x,
             context.transform.position.y,
-            _enemyGolem.buildObjetive.transform.position.z);
+            context.enemy.actionTarget.transform.position.z);
         context.transform.LookAt(targetPostition);
 
 
-       // Debug.Log("A por el murito y tal");
+       // Debug.Log("DE CAMINO al murito");
         return State.Running;
     }
 }
