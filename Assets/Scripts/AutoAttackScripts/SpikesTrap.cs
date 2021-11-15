@@ -3,11 +3,21 @@ using System.Collections.Generic;
 using Enemies;
 using UnityEngine;
 
-public class SpikesTrap : MonoBehaviour
+public class SpikesTrap : PlacedBuild
 {
 
-    public float dmg = 5;
-    public float slowDown = 2;
+    public float dmg;
+    public float health_;
+
+
+    [Range(0f, 1f)]
+    public float slowDown = 0.5f;
+
+    private void Awake()
+    {
+        dmg = this.BuildingSo.damage;
+        health_ = this.BuildingSo.health;
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
