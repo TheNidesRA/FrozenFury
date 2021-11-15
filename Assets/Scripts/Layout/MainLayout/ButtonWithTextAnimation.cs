@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -17,16 +18,25 @@ public class ButtonWithTextAnimation : MonoBehaviour,IPointerEnterHandler, IPoin
     private TextMeshProUGUI _text;
     private Vector2 _initialSize;
     private LTDescr _animation;
-    
-    void Start()
-    {   
+
+    private void Awake()
+    {
         if(text!=null)
-        _text = text.GetComponent<TextMeshProUGUI>();
+            _text = text.GetComponent<TextMeshProUGUI>();
         _rcTransform = GetComponent<RectTransform>();
         _initialSize = new Vector2(_rcTransform.rect.width, _rcTransform.rect.height);
     }
 
 
+    private void OnEnable()
+    {
+        _rcTransform.sizeDelta = _initialSize;
+    }
+
+    private void OnDisable()
+    {
+        _rcTransform.sizeDelta = _initialSize;
+    }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
