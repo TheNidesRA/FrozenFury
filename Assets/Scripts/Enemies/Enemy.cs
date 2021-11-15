@@ -39,6 +39,8 @@ namespace Enemies
         public float tiempoInvencibilidad = 5f;
 
 
+        public bool afecctedTrap = false;
+
         
         //Cosas añadidads por mi elnidas para lo del bt
         
@@ -96,15 +98,20 @@ namespace Enemies
 
         public void OnSlow(float slowDown)
         {
-            Speed = slowDown;
-            NavMeshAgent.speed = Speed;
-
+            if (!afecctedTrap)
+            {
+                Speed = Speed * slowDown;
+                NavMeshAgent.speed = Speed;
+            }
+            
+            afecctedTrap = true;
         }
 
         public void OnResetSlow()
         {
             Speed = initSpeed;
             NavMeshAgent.speed = Speed;
+            afecctedTrap = false;
         }
 
         public void OnHitTrap(float dmg)
