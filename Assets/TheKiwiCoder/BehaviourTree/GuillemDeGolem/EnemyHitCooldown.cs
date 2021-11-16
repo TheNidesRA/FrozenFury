@@ -10,7 +10,7 @@ public class EnemyHitCooldown : ActionNode
 
     protected override void OnStart()
     {
-        duration = 1/context.enemy.AtackSpeed;
+        duration = 1/context.enemy.attackSpeed;
         startTime = Time.time;
         Debug.Log("Hay que esperar : "+ duration);
     }

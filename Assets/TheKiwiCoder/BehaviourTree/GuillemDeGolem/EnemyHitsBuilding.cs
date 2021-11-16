@@ -41,7 +41,7 @@ public class EnemyHitsBuilding : ActionNode
                 }
                 
                // if (placedBuild.BuildingSo.type == BuildingSO.BuildingType.Turret)
-                placedBuild.health -= context.enemy.Damage;
+                placedBuild.health -= context.enemy.damage;
                 Debug.Log(placedBuild.BuildingSo.name+" Vida : "+ placedBuild.health);
                 //return State.Running;
                 //Debug.Log("MISS DE HIT :(");

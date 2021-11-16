@@ -18,19 +18,12 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private float _health = 10;
     
     private bool _isAlive = true;
-
-    [SerializeField] private float health = 0;
+    
 
     public float Damage
     {
         get => damage;
         set => damage = value;
-    }
-
-    public float Health
-    {
-        get => health;
-        set => health = value;
     }
 
     public float gold

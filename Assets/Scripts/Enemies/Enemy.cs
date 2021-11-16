@@ -68,8 +68,8 @@ namespace Enemies
 
         private void OnEnable()
         {
-            initSpeed = Speed;
-            NavMeshAgent.speed = Speed;
+            initSpeed = speed;
+            NavMeshAgent.speed = speed;
         }
 
         public void UpdateStats(EnemyStats stats)
@@ -97,9 +97,9 @@ namespace Enemies
 
         public bool OnHit(float dmg)
         {
-            Health -= dmg;
+            health -= dmg;
             OnHealthChanged?.Invoke(gameObject);
-            return Health <= 0;
+            return health <= 0;
         }
 
         public void Die()
@@ -111,8 +111,8 @@ namespace Enemies
         {
             if (!afecctedTrap)
             {
-                Speed = Speed * slowDown;
-                NavMeshAgent.speed = Speed;
+                speed = speed * slowDown;
+                NavMeshAgent.speed = speed;
             }
 
             afecctedTrap = true;
@@ -120,21 +120,21 @@ namespace Enemies
 
         public void OnResetSlow()
         {
-            Speed = initSpeed;
-            NavMeshAgent.speed = Speed;
+            speed = initSpeed;
+            NavMeshAgent.speed = speed;
             afecctedTrap = false;
         }
 
         public void OnHitTrap(float dmg)
         {
-            if (!invencibilidadTrampa && Health > 0)
+            if (!invencibilidadTrampa && health > 0)
             {
-                Health -= dmg;
+                health -= dmg;
                 StartCoroutine(OnInvencible());
             }
 
 
-            if (Health <= 0)
+            if (health <= 0)
             {
                 Die();
             }
@@ -176,7 +176,7 @@ namespace Enemies
 
         private IEnumerator StartAnimation()
         {
-            yield return new WaitForSeconds(AtackSpeed);
+            yield return new WaitForSeconds(attackSpeed);
             isAttacking = false;
         }
     }
