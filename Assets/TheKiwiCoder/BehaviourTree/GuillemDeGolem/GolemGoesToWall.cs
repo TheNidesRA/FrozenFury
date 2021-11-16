@@ -4,8 +4,7 @@ using TheKiwiCoder;
 
 public class GolemGoesToWall : ActionNode
 {
-  
-
+    private bool fracaso = false;
     protected override void OnStart()
     {
         context.enemy.NODOACTUAL = "GolemGoesToWall";
@@ -14,17 +13,37 @@ public class GolemGoesToWall : ActionNode
         //Debug.Log(_enemyGolem.objetive);
 
         Debug.Log("Vamos a por el murito y tal");
-        
-        PlacedBuild p  = context.enemy.actionTarget.GetComponent<PlacedBuild>();
-        
-        var l = p.getValidAttacksPoints();
-
-        Transform s = NearPosition(l);
-        if (s != null)
+        if (context.enemy.actionTarget == null)
         {
-            context.agent.SetDestination(s.position);
-            context.agent.isStopped = false;
+            context.agent.ResetPath();
+            context.agent.isStopped = true;
+            context.enemy.targetPosition= Vector3.negativeInfinity;
+            fracaso = true;
+            return;
         }
+
+        if (context.enemy.actionTarget.TryGetComponent<PlacedBuild>( out PlacedBuild p))
+        {
+            var l = p.getValidAttacksPoints();
+
+            Transform s = NearPosition(l);
+            if (!ReferenceEquals(s,null))
+            {
+                context.agent.SetDestination(s.position);
+                context.agent.isStopped = false;
+            }
+            else
+            {
+                fracaso = true;
+            }
+        }
+        else
+        {
+            fracaso = true;
+        }
+         
+        
+        
     }
 
 
@@ -66,7 +85,7 @@ public class GolemGoesToWall : ActionNode
     protected override State OnUpdate()
     {
         //Debug.Log(name);
-        if (context.enemy.actionTarget == null)
+        if (context.enemy.actionTarget == null || fracaso)
         {
             Debug.Log("FIN");
             context.agent.ResetPath();

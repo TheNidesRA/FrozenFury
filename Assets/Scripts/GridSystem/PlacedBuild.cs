@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using GridSystem;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -15,6 +16,44 @@ public class PlacedBuild : MonoBehaviour
 
     public List<Transform> attactPoints;
 
+    private float _damage;
+
+
+   [SerializeField] private float _health;
+   
+
+
+
+    public float damage
+    {
+        get
+        {
+            return _damage;
+        }set
+        {
+            _damage = value;
+        }
+    }
+
+    public float health
+    {
+        get
+        {
+            return _health;
+        }set
+        {
+
+            if (value <= 0)
+            {
+                _health = 0;
+                GridBuildingSystem.Instance.RemoveBuild(this);
+            }
+           
+            _health = value;
+            Debug.Log(_buildingSo.name+" vida restante : "+ _health );
+        }
+    }
+
 
     public static PlacedBuild Create(Vector3 worldPosition, Vector2Int origin, BuildingSO.Dir dir, BuildingSO building)
     {
@@ -28,13 +67,17 @@ public class PlacedBuild : MonoBehaviour
         placedBuild._buildingSo = building;
         placedBuild._dir = dir;
 
-        if(building.type != BuildingSO.BuildingType.Trap)
+        if (building.type != BuildingSO.BuildingType.Trap)
         {
             placedBuild._navMeshObstacle = placedBuildTransform.GetComponent<NavMeshObstacle>();
             placedBuild._navMeshObstacle.enabled = true;
         }
+
+
+        placedBuild._damage = building.damage;
+        placedBuild._health = building.health;
         
-       // placedBuild.getValidAttacksPoints();
+        // placedBuild.getValidAttacksPoints();
         return placedBuild;
     }
 
@@ -74,11 +117,12 @@ public class PlacedBuild : MonoBehaviour
 
             if (Physics.Raycast(VARIABLE.transform.position, VARIABLE.forward, out hit, 8f,
                 1 << LayerMask.NameToLayer("Wall") |
-                (1 << LayerMask.NameToLayer("Torreta") | (1 << LayerMask.NameToLayer("Muros"))| (1 << LayerMask.NameToLayer("MuroPlayer")))))
+                (1 << LayerMask.NameToLayer("Torreta") | (1 << LayerMask.NameToLayer("Muros")) |
+                 (1 << LayerMask.NameToLayer("MuroPlayer")))))
             {
 //                Debug.Log(VARIABLE.gameObject);
 
-  //              Debug.Log("Punto blocked");
+                //              Debug.Log("Punto blocked");
 
                 VARIABLE.gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
             }
