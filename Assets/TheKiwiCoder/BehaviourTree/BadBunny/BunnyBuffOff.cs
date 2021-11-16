@@ -20,7 +20,7 @@ public class BunnyBuffOff : ActionNode
 
     protected override State OnUpdate()
     {
-        Debug.Log("OFF");
+//        Debug.Log("OFF");
         _enemyPascual.boost.SetActive(false);
         return State.Success;
     }
