@@ -3440,14 +3440,15 @@ MonoBehaviour:
   NavMeshAgent: {fileID: 3508815072017628486}
   Health: 50
   Damage: 1
-  Speed: 5
+  _speed: 0
+  _acceleration: 0
   Armor: 1
   AtackSpeed: 1
-  gold: 1
+  Gold: 0
+  AttackRange: 5
   invencibilidadTrampa: 0
   tiempoInvencibilidad: 5
-  objetive: {x: 0, y: 0, z: 0}
-  buildObjetive: {fileID: 0}
+  afecctedTrap: 0
   targetPosition: {x: 0, y: 0, z: 0}
   actionTarget: {fileID: 0}
   auxActionTarget: {fileID: 0}

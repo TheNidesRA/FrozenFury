@@ -27,7 +27,7 @@ public class EnemyHitsBuilding : ActionNode
         }
         
         Collider[] colliders =
-            Physics.OverlapSphere(context.transform.position, 10f, buildingMask);
+            Physics.OverlapSphere(context.transform.position, context.enemy.AttackRange*2, buildingMask);
         
         foreach (var VARIABLE in colliders)
         {

@@ -48,7 +48,7 @@ namespace Enemies
             foreach (var enemy in enemyConfig.enemies)
             {
                 EnemyStats stats = new EnemyStats(enemy.Id, enemy.Health, enemy.Damage, enemy.Speed, enemy.Armor,
-                    enemy.AtackSpeed, enemy.gold);
+                    enemy.AtackSpeed, enemy.Gold);
                 _enemyStats.Add(stats);
             }
 

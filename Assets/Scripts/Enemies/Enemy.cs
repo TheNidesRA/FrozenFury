@@ -1,8 +1,10 @@
 using System;
 using TheKiwiCoder;
 using System.Collections;
+using TMPro.EditorUtilities;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
 
 namespace Enemies
 {
@@ -33,15 +35,43 @@ namespace Enemies
         #endregion
 
         private float initSpeed;
+        private float initAcceleration;
 
         public string Id => id;
 
         public float Health;
         public float Damage;
-        public float Speed;
+
+        [SerializeField] private float _speed;
+        [SerializeField] private float _acceleration;
+
+        public float Speed
+        {
+            get => _speed;
+            set
+            {
+                NavMeshAgent.speed = value;
+                _speed = value;
+                Debug.Log("Velociada cambiaadaa: " + _speed);
+            }
+        }
+
+        public float Acceleration {
+            get => _acceleration;
+            set
+            {
+                NavMeshAgent.acceleration = value;
+                _acceleration = value;
+                Debug.Log("Aceleracion cambiaadaa: " + _acceleration);
+            }
+        }
+        
+        
+        
         public float Armor;
         public float AtackSpeed;
-        public float gold;
+        public float Gold;
+        public float AttackRange;
         public bool invencibilidadTrampa = false;
         public float tiempoInvencibilidad = 5f;
 
@@ -63,13 +93,15 @@ namespace Enemies
         {
             actionTarget = null;
             auxActionTarget = null;
+            NavMeshAgent.speed = _speed;
+            NavMeshAgent.acceleration = Acceleration;
         }
 
-        private void OnEnable()
-        {
-            initSpeed = Speed;
-            NavMeshAgent.speed = Speed;
-        }
+        // private void OnEnable()
+        // {
+        //     initSpeed = Speed;
+        //     NavMeshAgent.speed = Speed;
+        // }
 
         public void UpdateStats(float[] mult)
         {
@@ -78,6 +110,11 @@ namespace Enemies
             Speed = Speed * mult[2];
             Armor = Armor * mult[3];
             AtackSpeed = AtackSpeed * mult[4];
+
+
+            Debug.Log("init :_ +" + initSpeed);
+            initSpeed = Speed; //AUX PARA LOS SLOWS Y SPEEDS
+            
         }
 
         public virtual void InitializeStats()
@@ -87,7 +124,11 @@ namespace Enemies
             Speed = _initStats.initSpd;
             Armor = _initStats.initArm;
             AtackSpeed = _initStats.initAtkSpd;
-            gold = _initStats.gold;
+            Gold = _initStats.gold;
+            
+            Debug.Log("init :_ +" + initSpeed);
+            initSpeed = Speed; //AUX PARA LOS SLOWS Y SPEEDS
+            initAcceleration = Acceleration;
         }
 
 
@@ -108,16 +149,24 @@ namespace Enemies
             if (!afecctedTrap)
             {
                 Speed = Speed * slowDown;
-                NavMeshAgent.speed = Speed;
             }
 
             afecctedTrap = true;
         }
 
+        public void OnSpedUp(float speedUp)
+        {
+            Speed = Speed * speedUp;
+            Acceleration = Acceleration * speedUp;
+            Debug.Log("Speed up");
+        }
+
         public void OnResetSlow()
         {
             Speed = initSpeed;
-            NavMeshAgent.speed = Speed;
+            Debug.Log("Velocidad inicial!!!!");
+            Acceleration = initAcceleration;
+            
             afecctedTrap = false;
         }
 
@@ -136,6 +185,7 @@ namespace Enemies
             }
         }
 
+
         public IEnumerator OnInvencible()
         {
             invencibilidadTrampa = true;
@@ -147,7 +197,7 @@ namespace Enemies
         private void OnDestroy()
         {
             OnEnemyDeath?.Invoke(gameObject);
-            PlayerStats._instance.gold += gold;
+            PlayerStats._instance.gold += Gold;
             WaveController._instance.EnemyDeath();
         }
 

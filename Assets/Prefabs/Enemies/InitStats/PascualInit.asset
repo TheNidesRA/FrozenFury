@@ -7,10 +7,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ed7eec420f548cca6d1f19df1cfcd98, type: 3}
-  m_Name: Enemy Configuration
+  m_Script: {fileID: 11500000, guid: 09fefc247bd24db7b6a479439006ce6b, type: 3}
+  m_Name: PascualInit
   m_EditorClassIdentifier: 
-  enemies:
-  - {fileID: 5222653681175729326, guid: 2665adbc14b7038438f2891e3ab5bca7, type: 3}
+  initHp: 20
+  initDmg: 1
+  initSpd: 15
+  initArm: 1
+  initAtkSpd: 1
+  gold: 1

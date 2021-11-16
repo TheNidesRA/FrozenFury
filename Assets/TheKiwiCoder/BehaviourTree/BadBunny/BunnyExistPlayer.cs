@@ -7,6 +7,8 @@ public class BunnyExistPlayer : ActionNode
 
     protected override void OnStart()
     {
+        
+     
         player = PlayerStats._instance;
     }
 
