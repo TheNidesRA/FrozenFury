@@ -150,6 +150,9 @@ namespace GridSystem
                 {
                     _grid.GetObjectValue(buildPosition.x, buildPosition.y).ClearPlacedBuild();
                 }
+                
+                BuildStats stats = new BuildStats(placedBuild.level, placedBuild.BuildingSo.type);
+                WorldController.Instance.RemoveStruct(stats);
             }
         }
 
@@ -168,6 +171,9 @@ namespace GridSystem
                 {
                     _grid.GetObjectValue(buildPosition.x, buildPosition.y).ClearPlacedBuild();
                 }
+                
+                BuildStats stats = new BuildStats(build.level, build.BuildingSo.type);
+                WorldController.Instance.RemoveStruct(stats);
             }
         }
 
@@ -379,6 +385,7 @@ namespace GridSystem
 
             PlacedBuild placedBuild =
                 PlacedBuild.Create(placedBuildWorldPosition, buildPosition, _dir, _buildingSO);
+            Debug.Log("Se ha construido un edificio tipo: "  + placedBuild.BuildingSo.type);
 
 
             foreach (var buildingPosition in buildingPositions)
@@ -386,6 +393,10 @@ namespace GridSystem
                 _grid.GetObjectValue(buildingPosition.x, buildingPosition.y).SetPlacedBuild(placedBuild);
             }
 
+            // placedBuild.BuildingSo.type.
+            BuildStats stats = new BuildStats(placedBuild.level, placedBuild.BuildingSo.type);
+            
+            WorldController.Instance.AddStruct(stats);
             //callback
             OnObjectPlaced?.Invoke(this, EventArgs.Empty);
         }

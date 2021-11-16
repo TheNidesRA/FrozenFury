@@ -19,11 +19,21 @@ public class PlacedBuild : MonoBehaviour
     private float _damage;
 
 
-   [SerializeField] private float _health;
-   
+   [SerializeField] private float _health ;
+   [SerializeField] private int _level;
 
 
 
+   public int level
+   {
+       get => _level;
+       set
+       {
+           _level = value;
+           BuildStats stats = new BuildStats(_level, _buildingSo.type);
+           WorldController.Instance.LevelUpgrade(stats);
+       }
+   }
     public float damage
     {
         get
@@ -54,6 +64,11 @@ public class PlacedBuild : MonoBehaviour
         }
     }
 
+
+    private void Start()
+    {
+        level = 1;
+    }
 
     public static PlacedBuild Create(Vector3 worldPosition, Vector2Int origin, BuildingSO.Dir dir, BuildingSO building)
     {
@@ -133,5 +148,11 @@ public class PlacedBuild : MonoBehaviour
         }
 
         return valid;
+    }
+
+    [ContextMenu("Subir nivel")]
+    public void UpdateLevel()
+    {
+        level++;
     }
 }
