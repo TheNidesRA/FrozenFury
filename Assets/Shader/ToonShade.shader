@@ -5,7 +5,7 @@ Shader "ToonShade" {
     
     // Levels
       _SpecularColor ("SPECULAR", Color) = (1,1,1,1)
-      _Specular      ("    Specular size", Range(0.5,1)) = 0.72
+      _Specular      ("    Specular size", Range(0.5,1)) = 1
       _FadeSpecular  ("    Specular blur", Range(0,1)) = 0
 
       _DiffuseColor  ("DIFFUSE", Color) = (0.5,0.5,0.5,1) 
