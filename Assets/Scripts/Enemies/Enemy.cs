@@ -36,11 +36,12 @@ namespace Enemies
 
         public string Id => id;
 
-        public float Health;
-        public float Damage;
-        public float Speed;
-        public float Armor;
-        public float AtackSpeed;
+        public float health;
+        public float damage;
+        public float speed;
+        public float armor;
+        public float attackSpeed;
+        public float baseDamage;
         public float gold;
         public bool invencibilidadTrampa = false;
         public float tiempoInvencibilidad = 5f;
@@ -71,22 +72,25 @@ namespace Enemies
             NavMeshAgent.speed = Speed;
         }
 
-        public void UpdateStats(float[] mult)
+        public void UpdateStats(EnemyStats stats)
         {
-            Health = Health * mult[0];
-            Damage = Damage * mult[1];
-            Speed = Speed * mult[2];
-            Armor = Armor * mult[3];
-            AtackSpeed = AtackSpeed * mult[4];
+            health = stats.hp;
+            damage = stats.dmg;
+            speed = stats.speed;
+            armor = stats.armor;
+            attackSpeed = stats.atackSpd;
+            
+            PrintStats();
         }
 
-        public virtual void InitializeStats()
+        public void InitializeStats()
         {
-            Health = _initStats.initHp;
-            Damage = _initStats.initDmg;
-            Speed = _initStats.initSpd;
-            Armor = _initStats.initArm;
-            AtackSpeed = _initStats.initAtkSpd;
+            health = _initStats.initHp;
+            damage = _initStats.initDmg;
+            speed = _initStats.initSpd;
+            armor = _initStats.initArm;
+            attackSpeed = _initStats.initAtkSpd;
+            baseDamage = _initStats.initBaseDamage;
             gold = _initStats.gold;
         }
 
@@ -153,8 +157,8 @@ namespace Enemies
 
         public void PrintStats()
         {
-            Debug.Log("HP: " + Health + " // Dmg: " + Damage + " // Spd: " + Speed + " // Arm: " + Armor +
-                      " // AtkSpd: " + AtackSpeed);
+            Debug.Log(Id+ "\nHP: " + health + " // Dmg: " + damage + " // Spd: " + speed + " // Arm: " + armor +
+                      " // AtkSpd: " + attackSpeed);
         }
 
         public void Attack()

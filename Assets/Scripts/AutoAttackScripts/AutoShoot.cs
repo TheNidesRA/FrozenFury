@@ -438,7 +438,7 @@ namespace AutoAttackScripts
 
         private void ShootingShotgun(GameObject enemy)
         {
-            PlayerStats._instance.Damage = 5;
+            PlayerStats._instance.Damage = 10;
             var enemyPos = enemy.transform.position;
             var position = attackPoint.position;
 

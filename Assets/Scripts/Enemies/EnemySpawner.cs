@@ -27,9 +27,9 @@ namespace Enemies
             StartCoroutine(SpawnWave(enemies));
         }
 
-        public void UpdateEnemyPrefabs()
+        public void UpdateEnemyPrefabs(List<EnemyStats> updatedValues)
         {
-            
+            _enemyFactory.UpdateEnemyStats(updatedValues);
         }
 
 

@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3306927050871327790}
   - component: {fileID: 3306927050871327791}
+  - component: {fileID: 6526087785502107153}
+  - component: {fileID: 31165231083025803}
   m_Layer: 0
   m_Name: WaveController
   m_TagString: Untagged
@@ -45,5 +47,67 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Spawner: {fileID: 0}
   minEnemies: 10
+  winRound: 2
   levelDificulty: 10
   enemiconfig: {fileID: 11400000, guid: abadacf5ee166c5449de88ce6a81cc7b, type: 2}
+--- !u!114 &6526087785502107153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3306927050871327776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 077dbb613421431ea7976004817acf1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roundKills: 0
+  playerLvl: 1
+  maxStructLvl: 1
+  roundDeaths: 0
+  round: 1
+  rangeMin: 1
+  rangeMax: 1
+  maxRoundKills: 100
+  maxPlayerLvl: 50
+  maxValMaxStructLvl: 40
+  maxRoundDeaths: 5
+  maxRound: 100
+--- !u!114 &31165231083025803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3306927050871327776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19c593cfeb364d66bcca2b27e7da046e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyConfig: {fileID: 11400000, guid: abadacf5ee166c5449de88ce6a81cc7b, type: 2}
+  Curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.03869629
+      value: 0.539093
+      inSlope: 0.68882304
+      outSlope: 0.68882304
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.18559588
+    - serializedVersion: 3
+      time: 0.8125
+      value: 2.197525
+      inSlope: -2.2900856
+      outSlope: -2.2900856
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.23134936
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
