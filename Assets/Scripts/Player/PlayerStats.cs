@@ -75,4 +75,9 @@ public class PlayerStats : MonoBehaviour
             _instance = this;
         }
     }
+
+    public bool IsPlayerAlive()
+    {
+        return _health > 0;
+    }
 }
