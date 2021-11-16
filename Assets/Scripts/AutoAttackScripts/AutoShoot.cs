@@ -167,7 +167,7 @@ namespace AutoAttackScripts
                 Vector3.Distance(other.gameObject.transform.position, transform.position));
             _enemiesInRange.Add(other.gameObject);
             if (!_enemiesHealth.ContainsKey(other.gameObject))
-                _enemiesHealth.Add(other.gameObject, other.gameObject.GetComponent<Enemy>().Health);
+                _enemiesHealth.Add(other.gameObject, other.gameObject.GetComponent<Enemy>().health);
             other.gameObject.GetComponent<Enemy>().OnEnemyDeath += RemoveEnemy;
             other.gameObject.GetComponent<Enemy>().OnHealthChanged += CheckHealth;
             enemySighted = true;
@@ -360,7 +360,7 @@ namespace AutoAttackScripts
 
         private void CheckHealth(GameObject enemy)
         {
-            _enemiesHealth[enemy] = enemy.GetComponent<Enemy>().Health;
+            _enemiesHealth[enemy] = enemy.GetComponent<Enemy>().health;
         }
 
         protected IEnumerator WaitToShootBulletBurst(GameObject enemy)
@@ -438,7 +438,7 @@ namespace AutoAttackScripts
 
         private void ShootingShotgun(GameObject enemy)
         {
-            PlayerStats._instance.Damage = 5;
+            PlayerStats._instance.Damage = 10;
             var enemyPos = enemy.transform.position;
             var position = attackPoint.position;
 

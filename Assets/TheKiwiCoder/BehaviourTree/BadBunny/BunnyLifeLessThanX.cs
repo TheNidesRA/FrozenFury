@@ -10,7 +10,7 @@ public class BunnyLifeLessThanX : ActionNode
     protected override void OnStart()
     {
         _enemy = context.agent.GetComponent<Enemy>();
-        _threshold = _enemy.Health * percentageLife;
+        _threshold = _enemy.health * percentageLife;
     }
 
     protected override void OnStop()
@@ -19,6 +19,6 @@ public class BunnyLifeLessThanX : ActionNode
 
     protected override State OnUpdate()
     {
-        return _enemy.Health < _threshold ? State.Success : State.Failure;
+        return _enemy.health < _threshold ? State.Success : State.Failure;
     }
 }

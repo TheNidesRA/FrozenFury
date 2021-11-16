@@ -23,6 +23,7 @@ namespace Enemies
                 enemy.InitializeStats();
                 _idToEnemy.Add(enemy.Id, enemy);
             }
+
         }
 
 
@@ -43,11 +44,16 @@ namespace Enemies
         /// <summary>
         /// Update the prefab stats using the introduced multipliers
         /// </summary>
-        public void UpdatePrefabStats(float[]mult)
+        public void UpdatePrefabStats(List<EnemyStats> updatedValues)
         {
-            foreach (var pair in _idToEnemy)
+            foreach (var stats in updatedValues)
             {
-                pair.Value.UpdateStats(mult);
+                if (!_idToEnemy.TryGetValue(stats.id, out var enemy))
+                {
+                    Debug.LogError("Not matching Id found while updating the enemy stats.");
+                    break;
+                }
+                enemy.UpdateStats(stats);
             }
         }
     }

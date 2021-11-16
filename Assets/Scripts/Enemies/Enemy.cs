@@ -36,11 +36,12 @@ namespace Enemies
 
         public string Id => id;
 
-        public float Health;
-        public float Damage;
-        public float Speed;
-        public float Armor;
-        public float AtackSpeed;
+        public float health;
+        public float damage;
+        public float speed;
+        public float armor;
+        public float attackSpeed;
+        public float baseDamage;
         public float gold;
         public bool invencibilidadTrampa = false;
         public float tiempoInvencibilidad = 5f;
@@ -67,35 +68,38 @@ namespace Enemies
 
         private void OnEnable()
         {
-            initSpeed = Speed;
-            NavMeshAgent.speed = Speed;
+            initSpeed = speed;
+            NavMeshAgent.speed = speed;
         }
 
-        public void UpdateStats(float[] mult)
+        public void UpdateStats(EnemyStats stats)
         {
-            Health = Health * mult[0];
-            Damage = Damage * mult[1];
-            Speed = Speed * mult[2];
-            Armor = Armor * mult[3];
-            AtackSpeed = AtackSpeed * mult[4];
+            health = stats.hp;
+            damage = stats.dmg;
+            speed = stats.speed;
+            armor = stats.armor;
+            attackSpeed = stats.atackSpd;
+            
+            PrintStats();
         }
 
-        public virtual void InitializeStats()
+        public void InitializeStats()
         {
-            Health = _initStats.initHp;
-            Damage = _initStats.initDmg;
-            Speed = _initStats.initSpd;
-            Armor = _initStats.initArm;
-            AtackSpeed = _initStats.initAtkSpd;
+            health = _initStats.initHp;
+            damage = _initStats.initDmg;
+            speed = _initStats.initSpd;
+            armor = _initStats.initArm;
+            attackSpeed = _initStats.initAtkSpd;
+            baseDamage = _initStats.initBaseDamage;
             gold = _initStats.gold;
         }
 
 
         public bool OnHit(float dmg)
         {
-            Health -= dmg;
+            health -= dmg;
             OnHealthChanged?.Invoke(gameObject);
-            return Health <= 0;
+            return health <= 0;
         }
 
         public void Die()
@@ -107,8 +111,8 @@ namespace Enemies
         {
             if (!afecctedTrap)
             {
-                Speed = Speed * slowDown;
-                NavMeshAgent.speed = Speed;
+                speed = speed * slowDown;
+                NavMeshAgent.speed = speed;
             }
 
             afecctedTrap = true;
@@ -116,21 +120,21 @@ namespace Enemies
 
         public void OnResetSlow()
         {
-            Speed = initSpeed;
-            NavMeshAgent.speed = Speed;
+            speed = initSpeed;
+            NavMeshAgent.speed = speed;
             afecctedTrap = false;
         }
 
         public void OnHitTrap(float dmg)
         {
-            if (!invencibilidadTrampa && Health > 0)
+            if (!invencibilidadTrampa && health > 0)
             {
-                Health -= dmg;
+                health -= dmg;
                 StartCoroutine(OnInvencible());
             }
 
 
-            if (Health <= 0)
+            if (health <= 0)
             {
                 Die();
             }
@@ -153,8 +157,8 @@ namespace Enemies
 
         public void PrintStats()
         {
-            Debug.Log("HP: " + Health + " // Dmg: " + Damage + " // Spd: " + Speed + " // Arm: " + Armor +
-                      " // AtkSpd: " + AtackSpeed);
+            Debug.Log(Id+ "\nHP: " + health + " // Dmg: " + damage + " // Spd: " + speed + " // Arm: " + armor +
+                      " // AtkSpd: " + attackSpeed);
         }
 
         public void Attack()
@@ -172,7 +176,7 @@ namespace Enemies
 
         private IEnumerator StartAnimation()
         {
-            yield return new WaitForSeconds(AtackSpeed);
+            yield return new WaitForSeconds(attackSpeed);
             isAttacking = false;
         }
     }
