@@ -29,7 +29,7 @@ namespace Enemies
         public float damage;
         public float speed;
         public float armor;
-        public float atackSpeed;
+        public float attackSpeed;
         public float baseDamage;
         public float gold;
 
@@ -46,18 +46,18 @@ namespace Enemies
             damage = stats.dmg;
             speed = stats.speed;
             armor = stats.armor;
-            atackSpeed = stats.atackSpd;
+            attackSpeed = stats.atackSpd;
             
             PrintStats();
         }
 
-        public virtual void InitializeStats()
+        public void InitializeStats()
         {
             health = _initStats.initHp;
             damage = _initStats.initDmg;
             speed = _initStats.initSpd;
             armor = _initStats.initArm;
-            atackSpeed = _initStats.initAtkSpd;
+            attackSpeed = _initStats.initAtkSpd;
             baseDamage = _initStats.initBaseDamage;
             gold = _initStats.gold;
         }
@@ -85,7 +85,7 @@ namespace Enemies
         public void PrintStats()
         {
             Debug.Log(Id+ "\nHP: " + health + " // Dmg: " + damage + " // Spd: " + speed + " // Arm: " + armor +
-                      " // AtkSpd: " + atackSpeed);
+                      " // AtkSpd: " + attackSpeed);
         }
     }
 }

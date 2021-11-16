@@ -1,4 +1,6 @@
-﻿namespace Enemies
+﻿using UnityEngine;
+
+namespace Enemies
 {
     public class MultiplierManager
     {
@@ -86,6 +88,7 @@
 
         public void UpdateWIthPlayerSkill(float skill, float[] mults)
         {
+            
             if (skill < 3)
             {
                 mults[0] += 0.15f;

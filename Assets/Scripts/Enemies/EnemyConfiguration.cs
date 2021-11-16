@@ -23,6 +23,7 @@ namespace Enemies
                 enemy.InitializeStats();
                 _idToEnemy.Add(enemy.Id, enemy);
             }
+
         }
 
 

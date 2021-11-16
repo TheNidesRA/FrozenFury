@@ -27,7 +27,9 @@ namespace Enemies
                     break;
                 }
 
-                var enemyStats = stats;
+                // var enemyStats = stats;
+                //Calculate the new states using the difficulty variables over the initial enemy stats.
+                var enemyStats = init;
                 
                 enemyStats.hp = init.hp * vars[0] + diff * 2;
                 enemyStats.dmg = init.dmg * vars[0] + diff * 0.1f;

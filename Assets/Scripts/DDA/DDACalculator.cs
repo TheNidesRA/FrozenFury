@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEditor;
 using UnityEngine;
 
@@ -11,11 +12,12 @@ namespace Enemies
     public class DDACalculator : MonoBehaviour
     {
         [SerializeField] public EnemySpawner spawner;
+
         /// <summary>
         /// Variable used to read the enemies initialStats
         /// </summary>
         public EnemyConfiguration enemyConfig;
-        
+
         /// <summary>
         /// This stack will dynamically store those enemies who reach their goal.
         /// </summary>
@@ -39,16 +41,16 @@ namespace Enemies
         ///     _diffVariables[1] --> EnemySpawn
         ///     _diffVariables[2] --> EnemyGold
         /// </summary>
-        private float[] _diffVariables = new float[3]{1,1,1};
-        
+        private float[] _diffVariables = new float[3] {1, 1, 1};
+
         /// <summary>
         ///Array containing the multipliers for the difficulty variables..
         ///     _diffVariables[0] --> StatsMult
         ///     _diffVariables[1] --> SpawnMult
         ///     _diffVariables[2] --> GoldMult 
         /// </summary>
-        private float[] _diffMultipliers = new float[3]{1,1,1};
-        
+        private float[] _diffMultipliers = new float[3] {1, 1, 1};
+
         /// <summary>
         /// Class in charged of modifying the different difficulty variables
         /// </summary>
@@ -60,8 +62,8 @@ namespace Enemies
 
         public static DDACalculator instance { get; private set; }
 
-        public AnimationCurve Curve;
-        
+        public AnimationCurve testCurve;
+
         private void Awake()
         {
             if (instance != null && instance != this)
@@ -78,20 +80,20 @@ namespace Enemies
             _initStatsMap = new Dictionary<string, EnemyStats>();
             _multManager = new MultiplierManager();
             _statCalculator = new StatCalculator();
-            
-            foreach (var enemy in enemyConfig.enemies)
-            {
-                EnemyStats stats = new EnemyStats(enemy.Id, enemy.health, enemy.damage, enemy.speed, enemy.armor,
-                    enemy.atackSpeed, enemy.gold);
-                _enemyStats.Add(stats);
-                _initStatsMap.Add(stats.id, stats);
-            }
         }
 
         private void Start()
         {
             WaveController._instance.OnRoundChange += EndRoundFunction;
             WaveController._instance.OnWaveCreated += (sender, f) => { _roundMaxHp = f; };
+            
+            foreach (var enemy in enemyConfig.enemies)
+            {
+                EnemyStats stats = new EnemyStats(enemy.Id, enemy.health, enemy.damage, enemy.speed, enemy.armor,
+                    enemy.attackSpeed, enemy.gold);
+                _enemyStats.Add(stats);
+                _initStatsMap.Add(stats.id, stats);
+            }
         }
 
         private void EndRoundFunction(object sender, int e)
@@ -107,19 +109,19 @@ namespace Enemies
             }
 
             float skill = PlayerSkillCalculator.Instance.ComputeSkill();
-            _multManager.UpdateWithGlobalHealth(_diffVariables, _diffMultipliers, (int)totalBaseDmg);
+            _multManager.UpdateWithGlobalHealth(_diffVariables, _diffMultipliers, (int) totalBaseDmg);
             _multManager.UpdateWithWinnersHealth(_roundMaxHp, totalEnemyHp,
-                                                        _diffMultipliers, ref _globalDiff);
+                _diffMultipliers, ref _globalDiff);
             _multManager.UpdateWIthPlayerSkill(skill, _diffMultipliers);
-            
+
             _statCalculator.UpdateVariables(_diffVariables, _diffMultipliers);
 
             _enemyStats = _statCalculator.UpdateStats(_enemyStats, _initStatsMap, _diffVariables, _globalDiff);
-            
+
             spawner.UpdateEnemyPrefabs(_enemyStats);
-            
+
             // Debug.Log("Base damage recived: " + totalBaseDmg + 
-                      // " \n Total enemy health: " + totalEnemyHp + " / " + _roundMaxHp);
+            // " \n Total enemy health: " + totalEnemyHp + " / " + _roundMaxHp);
         }
 
         /// <summary>
@@ -147,6 +149,7 @@ namespace Enemies
                     return "OutOfBounds";
             }
         }
+
         public float GetPoints(int idx)
         {
             return _diffVariables[idx];
@@ -166,6 +169,7 @@ namespace Enemies
                     return "OutOfBounds";
             }
         }
+
         public float GetMults(int idx)
         {
             return _diffMultipliers[idx];
@@ -176,8 +180,8 @@ namespace Enemies
             return _globalDiff;
         }
     }
-    
-    #if UNITY_EDITOR
+
+#if UNITY_EDITOR
     [CustomEditor(typeof(DDACalculator))]
     class DDAEditor : Editor
     {
@@ -187,9 +191,9 @@ namespace Enemies
         public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();
-            var script = (DDACalculator)target;
-            if(script == null) return;
-            
+            var script = (DDACalculator) target;
+            if (script == null) return;
+
             EditorGUILayout.Space();
 
             current_tab = GUILayout.Toolbar(current_tab, new string[] {"pts", "mult", "res"});
@@ -198,7 +202,7 @@ namespace Enemies
             {
                 case 0:
                     scroll = EditorGUILayout.BeginScrollView(scroll, GUILayout.MaxHeight(150));
-                    
+
                     for (int i = 0; i < 3; i++)
                     {
                         EditorGUILayout.BeginHorizontal("box");
@@ -206,19 +210,19 @@ namespace Enemies
                         EditorGUILayout.LabelField((script.GetPoints(i) / script.GetMults(i)).ToString());
                         EditorGUILayout.EndHorizontal();
                     }
-                    
+
                     EditorGUILayout.BeginHorizontal("box");
                     EditorGUILayout.LabelField(nameof(script.GetGlobalDiff));
                     EditorGUILayout.LabelField(script.GetGlobalDiff().ToString());
                     EditorGUILayout.EndHorizontal();
-                    
+
                     EditorGUILayout.EndScrollView();
-                    
+
                     break;
-                    
+
                 case 1:
                     scroll = EditorGUILayout.BeginScrollView(scroll, GUILayout.MaxHeight(150));
-                    
+
                     for (int i = 0; i < 3; i++)
                     {
                         EditorGUILayout.BeginHorizontal("box");
@@ -226,14 +230,14 @@ namespace Enemies
                         EditorGUILayout.LabelField(script.GetMults(i).ToString());
                         EditorGUILayout.EndHorizontal();
                     }
-                    
+
                     EditorGUILayout.EndScrollView();
-                    
+
                     break;
-                
+
                 case 2:
                     scroll = EditorGUILayout.BeginScrollView(scroll, GUILayout.MaxHeight(150));
-                    
+
                     for (int i = 0; i < 3; i++)
                     {
                         EditorGUILayout.BeginHorizontal("box");
@@ -241,14 +245,14 @@ namespace Enemies
                         EditorGUILayout.LabelField(script.GetPoints(i).ToString());
                         EditorGUILayout.EndHorizontal();
                     }
-                    
+
                     EditorGUILayout.BeginHorizontal("box");
                     EditorGUILayout.LabelField(nameof(script.GetGlobalDiff));
                     EditorGUILayout.LabelField(script.GetGlobalDiff().ToString());
                     EditorGUILayout.EndHorizontal();
-                    
+
                     EditorGUILayout.EndScrollView();
-                    
+
                     break;
             }
         }
