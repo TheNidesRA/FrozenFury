@@ -7,6 +7,7 @@ using UnityEngine;
 public class BoomfingExplode : ActionNode
 {
     public LayerMask targetsLayers;
+    public Transform boomffinPrefabParts;
 
     protected override void OnStart()
     {
@@ -33,7 +34,18 @@ public class BoomfingExplode : ActionNode
 
             }
         }
+        Vector3 offsetPos = new Vector3(context.transform.position.x, context.transform.position.y + 20, context.transform.position.z);
+        Transform explosionTransform=Instantiate(boomffinPrefabParts, offsetPos, context.transform.rotation);        
+        foreach(Transform child in boomffinPrefabParts)
+        {
+            if(child.TryGetComponent<Rigidbody>(out Rigidbody childRb))
+            {
+                childRb.AddExplosionForce(500f, offsetPos, 8f);
+            }
+        }
+        
         Destroy(context.gameObject);
+        
         return State.Success;
     }
 }
