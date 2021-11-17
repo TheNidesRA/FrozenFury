@@ -59,7 +59,7 @@ namespace Enemies
             {
                 NavMeshAgent.speed = value;
                 _speed = value;
-                Debug.Log("Velociada cambiaadaa: " + _speed);
+                // Debug.Log("Velociada cambiaadaa: " + _speed);
             }
         }
 

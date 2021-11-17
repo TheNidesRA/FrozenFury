@@ -21,7 +21,7 @@ public class EnemyFOV : ActionNode
     {
         bool avistado = FieldOfViewCheck();
 
-        Debug.Log(avistado);
+        // Debug.Log(avistado);
         if (!avistado)
         {
             //Debug.Log("Exitazo Player Detected");

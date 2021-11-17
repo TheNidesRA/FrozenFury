@@ -22,13 +22,13 @@ public class GolemHasAnObjetiveTransform : ActionNode
         
         if (EnemyGoal.instance!=null)
         {
-            Debug.Log("Existo");
+            // Debug.Log("Existo");
 //            context.agent.destination = EnemyGoal.instance.getPosition();
             return State.Success;
         }
         else
         {
-            Debug.Log("fasllo");
+            // Debug.Log("fasllo");
             return State.Failure;
         }
     }

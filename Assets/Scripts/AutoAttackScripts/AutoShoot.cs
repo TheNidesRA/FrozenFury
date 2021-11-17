@@ -415,7 +415,7 @@ namespace AutoAttackScripts
 
         private void ShootingNormal(GameObject enemy)
         {
-            PlayerStats._instance.Damage = 3;
+            PlayerStats._instance.Damage = 35;
             //calculate direction from the attackpoint to the enemy
             var position = attackPoint.position;
             Vector3 directionShoot = enemy.transform.position - position;

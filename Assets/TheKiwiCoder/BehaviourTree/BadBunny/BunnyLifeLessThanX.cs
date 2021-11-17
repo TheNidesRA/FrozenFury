@@ -14,7 +14,7 @@ public class BunnyLifeLessThanX : ActionNode
     {
         if (primera)
         {
-            Debug.Log("asda");
+            // Debug.Log("asda");
             _threshold = context.enemy.health * percentageLife;
             primera = false;
         }
@@ -26,7 +26,7 @@ public class BunnyLifeLessThanX : ActionNode
 
     protected override State OnUpdate()
     {
-        Debug.Log("Vida : "+context.enemy.health+" con el tal "+ _threshold );
+        // Debug.Log("Vida : "+context.enemy.health+" con el tal "+ _threshold );
 //        Debug.Log((context.enemy.Health < _threshold));
         return context.enemy.health < _threshold ? State.Success : State.Failure;
     }

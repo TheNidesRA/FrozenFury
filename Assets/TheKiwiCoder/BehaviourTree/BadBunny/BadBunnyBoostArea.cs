@@ -12,7 +12,7 @@ public class BadBunnyBoostArea : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        Debug.Log("Saltaa eventop");
+        // Debug.Log("Saltaa eventop");
         if (other.gameObject.tag == TAG)
             if (other.gameObject.TryGetComponent(out Enemy enemy))
             {
@@ -22,7 +22,7 @@ public class BadBunnyBoostArea : MonoBehaviour
 
     private void OnCollisionExit(Collision other)
     {
-        Debug.Log("Salee eventop");
+        // Debug.Log("Salee eventop");
         if (other.gameObject.tag == TAG)
             if (other.gameObject.TryGetComponent(out Enemy enemy))
             {

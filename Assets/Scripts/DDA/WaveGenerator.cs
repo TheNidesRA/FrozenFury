@@ -35,7 +35,7 @@ namespace Enemies
             {
                 switch (_enemies[i].Id)
                 {
-                    case "Demon":
+                    case "Diablillo":
                         for (int j = 0; j < numDemons; j++)
                         {
                             Enemy enemyToAdd = _enemies[i];
@@ -53,7 +53,7 @@ namespace Enemies
                         }
                         break;
                     
-                    case "Bunny":
+                    case "Pascual":
                         for (int j = 0; j < numBunnys; j++)
                         {
                             Enemy enemyToAdd = _enemies[i];
@@ -62,7 +62,7 @@ namespace Enemies
                         }
                         break;
                     
-                    case "Boomffin":
+                    case "Boomffing":
                         for (int j = 0; j < numBoomfins; j++)
                         {
                             Enemy enemyToAdd = _enemies[i];
