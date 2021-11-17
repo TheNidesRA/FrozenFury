@@ -20,14 +20,14 @@ public class EnemyMoveToBuild : ActionNode
             context.agent.isStopped = true;
             context.enemy.targetPosition = Vector3.negativeInfinity;
             fracaso = true;
-            Debug.Log("null el target");
+            // Debug.Log("null el target");
             return;
         }
 
         if (context.enemy.actionTarget.TryGetComponent<PlacedBuild>(out PlacedBuild p))
         {
             var l = p.getValidAttacksPoints();
-            Debug.Log("Ya no es null de hecho estamos analizandolo XD");
+            // Debug.Log("Ya no es null de hecho estamos analizandolo XD");
             Transform s = NearPosition(l);
             if (!ReferenceEquals(s, null))
             {
@@ -36,13 +36,13 @@ public class EnemyMoveToBuild : ActionNode
             }
             else
             {
-                Debug.Log("No hay por donde darle");
+                // Debug.Log("No hay por donde darle");
                 fracaso = true;
             }
         }
         else
         {
-            Debug.Log("No es un edificio");
+            // Debug.Log("No es un edificio");
             fracaso = true;
         }
     }
@@ -93,13 +93,13 @@ public class EnemyMoveToBuild : ActionNode
             context.agent.ResetPath();
             context.agent.isStopped = true;
             Debug.Log(context.enemy.actionTarget);
-            Debug.Log("Fracasillo y tal");
+            // Debug.Log("Fracasillo y tal");
             return State.Failure;
         }
 
         if (Vector3.Distance(context.transform.position, context.agent.destination) < 2f)
         {
-            Debug.Log("Hemos llegao");
+            // Debug.Log("Hemos llegao");
             return State.Success;
         }
 

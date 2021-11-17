@@ -6,21 +6,21 @@ using UnityEngine.AI;
 
 public class PlacedBuild : MonoBehaviour
 {
-    private NavMeshObstacle _navMeshObstacle;
-    private BuildingSO _buildingSo;
+    protected NavMeshObstacle _navMeshObstacle;
+    protected BuildingSO _buildingSo;
     public BuildingSO BuildingSo => _buildingSo;
     public Vector2Int origin => _origin;
     public BuildingSO.Dir dir => _dir;
-    private Vector2Int _origin;
-    private BuildingSO.Dir _dir;
+    protected Vector2Int _origin;
+    protected BuildingSO.Dir _dir;
 
     public List<Transform> attactPoints;
 
-    private float _damage;
+    protected float _damage;
 
 
-   [SerializeField] private float _health ;
-   [SerializeField] private int _level;
+   [SerializeField] protected float _health ;
+   [SerializeField] protected int _level;
 
 
 

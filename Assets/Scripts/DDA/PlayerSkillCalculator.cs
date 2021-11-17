@@ -55,5 +55,11 @@ namespace Enemies
             
             return convertedSkill;
         }
+
+        public void ResetVlues()
+        {
+            roundKills = 0;
+            roundDeaths = 0;
+        }
     }
 }

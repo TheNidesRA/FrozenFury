@@ -37,25 +37,25 @@ public class GolemCheckDistance : ActionNode
 
                 if (difference >= threasole)
                 {
-                     Debug.Log("A reventar se ha dixo");
+                     // Debug.Log("A reventar se ha dixo");
                     return State.Success;
                 }
 
-                Debug.Log("No renta");
+                // Debug.Log("No renta");
                 return State.Failure;
             }
 
             if (context.enemy.actionTarget == EnemyGoal.instance.gameObject && context.agent.pathStatus==NavMeshPathStatus.PathPartial)
             {
-                Debug.Log("No es completo");
+                // Debug.Log("No es completo");
                 return State.Success;
             }
-            Debug.Log("No es pero tampoco es al objetivo que esta pasando ??");
+            // Debug.Log("No es pero tampoco es al objetivo que esta pasando ??");
             return State.Failure;
            
         }
 
-         Debug.Log("No tiene path");
+         // Debug.Log("No tiene path");
         return State.Failure;
     }
 }

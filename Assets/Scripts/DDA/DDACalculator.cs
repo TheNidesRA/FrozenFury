@@ -115,13 +115,16 @@ namespace Enemies
             _multManager.UpdateWithGlobalHealth(_diffVariables, _diffMultipliers, (int) totalBaseDmg);
             _multManager.UpdateWithWinnersHealth(_roundMaxHp, totalEnemyHp,
                 _diffMultipliers, ref _globalDiff);
-            _multManager.UpdateWIthPlayerSkill(skill, _diffMultipliers);
+            _multManager.UpdateWIthPlayerSkill(skill, _diffMultipliers, testCurve);
 
             _statCalculator.UpdateVariables(_diffVariables, _diffMultipliers);
 
             _enemyStats = _statCalculator.UpdateStats(_enemyStats, _initStatsMap, _diffVariables, _globalDiff);
 
             spawner.UpdateEnemyPrefabs(_enemyStats);
+            
+            //We reset the PlayerSkillCalculator round variables
+            PlayerSkillCalculator.Instance.ResetVlues();
 
             // Debug.Log("Base damage recived: " + totalBaseDmg + 
             // " \n Total enemy health: " + totalEnemyHp + " / " + _roundMaxHp);

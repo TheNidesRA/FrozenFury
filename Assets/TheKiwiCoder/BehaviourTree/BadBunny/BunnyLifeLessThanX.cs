@@ -14,7 +14,7 @@ public class BunnyLifeLessThanX : ActionNode
     {
         if (primera)
         {
-            Debug.Log("asda");
+            // Debug.Log("asda");
             _threshold = context.enemy.health * percentageLife;
             primera = false;
         }

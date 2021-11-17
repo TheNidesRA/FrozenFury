@@ -193,7 +193,7 @@ namespace GridSystem
             if (PlayerStats._instance.gold >= targetBuild.goldCost)
             {
                 _buildingSO = targetBuild;
-                Debug.Log(_buildingSO.ToString());
+                // Debug.Log(_buildingSO.ToString());
                 RefreshSelectedObjectType();
             }
         }
@@ -204,7 +204,7 @@ namespace GridSystem
             if (PlayerStats._instance.gold >= targetBuild.goldCost)
             {
                 _buildingSO = targetBuild;
-                Debug.Log(_buildingSO.ToString());
+                // Debug.Log(_buildingSO.ToString());
                 RefreshSelectedObjectType();
             }
         }
@@ -243,7 +243,7 @@ namespace GridSystem
 
         private void SearchBuilding(InputAction.CallbackContext callbackContext)
         {
-            Debug.Log("Buscando y talll");
+            // Debug.Log("Buscando y talll");
             if (_buildingSO != null && !buildMenu)
             {
             }
@@ -256,7 +256,7 @@ namespace GridSystem
                     PlacedBuild placedBuild = gridObject.GetPlaceBuild();
                     if (placedBuild != null)
                     {
-                        Debug.Log("Cogiendo el aux");
+                        // Debug.Log("Cogiendo el aux");
                         OnBuildSelected?.Invoke(this, placedBuild);
                     }
                     else
@@ -289,7 +289,7 @@ namespace GridSystem
                 else
                 {
                     OnMissSetPosition?.Invoke(this, EventArgs.Empty);
-                    Debug.Log("No se puede !!! :)");
+                    // Debug.Log("No se puede !!! :)");
                 }
             }
         }
@@ -321,7 +321,7 @@ namespace GridSystem
             else
             {
                 OnMissSetPosition?.Invoke(this, EventArgs.Empty);
-                Debug.Log("No se puede !!! :)");
+                // Debug.Log("No se puede !!! :)");
             }
         }
 
@@ -353,7 +353,7 @@ namespace GridSystem
             else
             {
                 OnMissSetPosition?.Invoke(this, EventArgs.Empty);
-                Debug.Log("No se puede !!! :)");
+                // Debug.Log("No se puede !!! :)");
             }
         }
 
@@ -385,7 +385,7 @@ namespace GridSystem
 
             PlacedBuild placedBuild =
                 PlacedBuild.Create(placedBuildWorldPosition, buildPosition, _dir, _buildingSO);
-            Debug.Log("Se ha construido un edificio tipo: "  + placedBuild.BuildingSo.type);
+            // Debug.Log("Se ha construido un edificio tipo: "  + placedBuild.BuildingSo.type);
 
             foreach (var buildingPosition in buildingPositions)
             {
@@ -403,7 +403,7 @@ namespace GridSystem
 
         private void SearchWallNeighbour(List<Vector2Int> buildingPositions)
         {
-            Debug.Log(_dir);
+            // Debug.Log(_dir);
             foreach (var buildPosition in buildingPositions)
             {
                 if (_dir == BuildingSO.Dir.Down || _dir == BuildingSO.Dir.Up)
@@ -412,14 +412,14 @@ namespace GridSystem
                     GridObject g2 = _grid.GetObjectValue(buildPosition.x, buildPosition.y - 1);
 
 
-                    Debug.Log(g1);
-                    Debug.Log(g2);
+                    // Debug.Log(g1);
+                    // Debug.Log(g2);
 
                     if (g1?.GetPlaceBuild() != null)
                     {
                         if (g1.GetPlaceBuild().BuildingSo.type == BuildingSO.BuildingType.Wall)
                         {
-                            Debug.Log("EHHHH MURITOO A LA DERECHA");
+                            // Debug.Log("EHHHH MURITOO A LA DERECHA");
                         }
                     }
 
@@ -427,7 +427,7 @@ namespace GridSystem
                     {
                         if (g2.GetPlaceBuild().BuildingSo.type == BuildingSO.BuildingType.Wall)
                         {
-                            Debug.Log("EHHHH MURITOO A LA IZQUIERDA");
+                            // Debug.Log("EHHHH MURITOO A LA IZQUIERDA");
                         }
                     }
 
@@ -442,7 +442,7 @@ namespace GridSystem
                                 (g3.GetPlaceBuild().dir != BuildingSO.Dir.Down &&
                                  g3.GetPlaceBuild().dir != BuildingSO.Dir.Up))
                             {
-                                Debug.Log("EHHHH MURITOO Esquina construccion");
+                                // Debug.Log("EHHHH MURITOO Esquina construccion");
                             }
                         }
                     }
@@ -471,7 +471,7 @@ namespace GridSystem
                     {
                         if (g1.GetPlaceBuild().BuildingSo.type == BuildingSO.BuildingType.Wall)
                         {
-                            Debug.Log("EHHHH MURITOO A LA DERECHA");
+                            // Debug.Log("EHHHH MURITOO A LA DERECHA");
                         }
                     }
 
@@ -479,7 +479,7 @@ namespace GridSystem
                     {
                         if (g2.GetPlaceBuild().BuildingSo.type == BuildingSO.BuildingType.Wall)
                         {
-                            Debug.Log("EHHHH MURITOO A LA IZQUIERDA");
+                            // Debug.Log("EHHHH MURITOO A LA IZQUIERDA");
                         }
                     }
 
@@ -494,7 +494,7 @@ namespace GridSystem
                                 (g3.GetPlaceBuild().dir != BuildingSO.Dir.Right &&
                                  g3.GetPlaceBuild().dir != BuildingSO.Dir.Left))
                             {
-                                Debug.Log("EHHHH MURITOO Esquina construccion");
+                                // Debug.Log("EHHHH MURITOO Esquina construccion");
                             }
                         }
                     }
@@ -508,7 +508,7 @@ namespace GridSystem
                                 (g3.GetPlaceBuild().dir != BuildingSO.Dir.Right &&
                                  g3.GetPlaceBuild().dir != BuildingSO.Dir.Left))
                             {
-                                Debug.Log("EHHHH MURITOO Esquina NOOOO construccion");
+                                // Debug.Log("EHHHH MURITOO Esquina NOOOO construccion");
                             }
                         }
                     }
@@ -523,7 +523,7 @@ namespace GridSystem
 
             _grid.GetXZ(playerPosition, out int x, out int z);
 
-            Debug.Log("X: " + x + " Y: " + z);
+            // Debug.Log("X: " + x + " Y: " + z);
 
             foreach (var buildPosition in buildingPositions)
             {

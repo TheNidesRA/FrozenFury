@@ -39,7 +39,7 @@ namespace Enemies
             {
                 yield return new WaitForSeconds(spawnDelay);
                 _enemyFactory.Create(enemy.Id, SpawnPoint);
-                Debug.Log("Enemigo creado");
+                // Debug.Log("Enemigo creado");
             }
         }
     }

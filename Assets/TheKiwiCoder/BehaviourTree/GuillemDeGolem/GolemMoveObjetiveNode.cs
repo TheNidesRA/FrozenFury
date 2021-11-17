@@ -41,7 +41,7 @@ namespace Nodes.GolemNodes
             lastPosition = context.transform.position;
             if (cont == 3)
             {
-                Debug.Log("Estas quietesito");
+                // Debug.Log("Estas quietesito");
                 context.agent.SetDestination(EnemyGoal.instance.getPosition());
             }
 

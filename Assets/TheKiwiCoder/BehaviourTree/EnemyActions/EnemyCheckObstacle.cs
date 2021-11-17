@@ -31,12 +31,11 @@ public class EnemyCheckObstacle : ActionNode
         {
             if (info.collider.gameObject.TryGetComponent<PlacedBuild>(out PlacedBuild build))
             {
-                Debug.Log("Hay algo en medio");
+               // Debug.Log("Hay algo en medio");
                 return State.Failure;
             }
         }
-
-        Debug.Log("No hay muro delante");
+        // Debug.Log("No hay muro delante");
         return State.Success;
     }
 }

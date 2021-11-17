@@ -25,10 +25,10 @@ public class EnemyTargetCompleted : ActionNode
     {
         if ( context.agent.pathStatus==NavMeshPathStatus.PathComplete)
         {
-          Debug.Log("Perfecto");
+          // Debug.Log("Perfecto");
             return State.Success;
         }
-        Debug.Log("No es completo");
+        // Debug.Log("No es completo");
         return State.Failure;
     }
 }
