@@ -15,8 +15,8 @@ namespace Enemies
                 mults[0] += 0.07f;
                 mults[1] += 0.05f;
                 mults[2] -= 0.05f;
-                vars[0] += 1;
-                vars[2] += 1;
+                // vars[0] += 1;
+                vars[1] += 1;
             }else if (healthLoss < 5)
             {
                 mults[0] -= 0.1f;
@@ -27,23 +27,23 @@ namespace Enemies
                 mults[0] -= 0.12f;
                 mults[1] -= 0.1f;
                 mults[2] += 0.09f;
-                vars[0] -= 2;
-                vars[2] -= 2;
+                // vars[0] -= 2;
+                vars[1] -= 2;
             }else if (healthLoss < 15)
             {
                 mults[0] -= 0.17f;
                 mults[1] -= 0.14f;
                 mults[2] += 0.12f;
-                vars[0] -= 3;
-                vars[2] -= 3;
+                // vars[0] -= 3;
+                vars[1] -= 3;
             }
             else
             {
                 mults[0] -= 0.2f;
                 mults[1] -= 0.16f;
                 mults[2] += 0.15f;
-                vars[0] -= 4;
-                vars[2] -= 4;
+                // vars[0] -= 4;
+                vars[1] -= 4;
             }
         }
 
@@ -86,33 +86,37 @@ namespace Enemies
 
         }
 
-        public void UpdateWIthPlayerSkill(float skill, float[] mults)
+        public void UpdateWIthPlayerSkill(float skill, float[] mults, AnimationCurve curve)
         {
-            
-            if (skill < 3)
-            {
-                mults[0] += 0.15f;
-                mults[1] += 0.15f;
-                mults[2] += 0.5f;
-            }
-            else if (skill < 5)
-            {
-                mults[0] += 0.25f;
-                mults[1] += 0.25f;
-                mults[2] += 0.4f;
-            }
-            else if (skill < 8)
-            {
-                mults[0] += 0.35f;
-                mults[1] += 0.35f;
-                mults[2] += 0.25f;
-            }
-            else
-            {
-                mults[0] += 0.5f;
-                mults[1] += 0.5f;
-                mults[2] += 0.15f;
-            }
+            float val = curve.Evaluate(skill / 10);
+            mults[0] += val;
+            mults[1] += val;
+            mults[2] += val;
+
+            // if (skill < 3)
+            // {
+            //     mults[0] += 0.15f;
+            //     mults[1] += 0.15f;
+            //     mults[2] += 0.5f;
+            // }
+            // else if (skill < 5)
+            // {
+            //     mults[0] += 0.25f;
+            //     mults[1] += 0.25f;
+            //     mults[2] += 0.4f;
+            // }
+            // else if (skill < 8)
+            // {
+            //     mults[0] += 0.35f;
+            //     mults[1] += 0.35f;
+            //     mults[2] += 0.25f;
+            // }
+            // else
+            // {
+            //     mults[0] += 0.5f;
+            //     mults[1] += 0.5f;
+            //     mults[2] += 0.15f;
+            // }
         }
 
     }

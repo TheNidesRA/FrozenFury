@@ -13,7 +13,7 @@ public class EnemyHitCooldown : ActionNode
         context.enemy.NODOACTUAL = "EnemyHitCooldown";
         duration = 1/context.enemy.attackSpeed;
         startTime = Time.time;
-        Debug.Log("Hay que esperar : "+ duration);
+        // Debug.Log("Hay que esperar : "+ duration);
     }
 
     protected override void OnStop() {

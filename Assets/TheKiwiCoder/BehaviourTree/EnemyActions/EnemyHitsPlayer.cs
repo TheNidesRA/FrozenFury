@@ -34,7 +34,7 @@ public class EnemyHitsPlayer : ActionNode
         }
         else
         {
-            Debug.Log("Fracaso absoluto");
+            // Debug.Log("Fracaso absoluto");
         }
       
         

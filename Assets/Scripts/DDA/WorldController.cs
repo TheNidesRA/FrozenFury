@@ -160,6 +160,7 @@ public class WorldController : MonoBehaviour
     public void UpdateWeights()
     {
         _weights = new float[] {0.2f, 0.2f, 0.2f, 0.2f, 0.2f};
+        
         float skillCorrection = playerSkillCurve.Evaluate(_playerSkill / 10);
         _weights[0] -= skillCorrection;
         _weights[2] += skillCorrection;

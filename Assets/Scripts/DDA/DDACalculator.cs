@@ -115,7 +115,7 @@ namespace Enemies
             _multManager.UpdateWithGlobalHealth(_diffVariables, _diffMultipliers, (int) totalBaseDmg);
             _multManager.UpdateWithWinnersHealth(_roundMaxHp, totalEnemyHp,
                 _diffMultipliers, ref _globalDiff);
-            _multManager.UpdateWIthPlayerSkill(skill, _diffMultipliers);
+            _multManager.UpdateWIthPlayerSkill(skill, _diffMultipliers, testCurve);
 
             _statCalculator.UpdateVariables(_diffVariables, _diffMultipliers);
 
