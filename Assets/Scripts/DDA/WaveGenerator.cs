@@ -24,6 +24,13 @@ namespace Enemies
             //Compute the amount of enemies int this wave
             float enemyAmount = _minEnemies + (round * _roundProgression) + spwnPts;
 
+            float[] weights = WorldController.Instance.GetWeights();
+
+            float numDemons = enemyAmount * weights[0];
+            float numGolems = enemyAmount * weights[1];
+            float numBunnys = enemyAmount * weights[2];
+            float numBoomfins = enemyAmount * weights[3];
+            float numDragons = enemyAmount * weights[4];
             for (int i = 0; i < Math.Round(enemyAmount); i++)
             {
                 Enemy enemyToAdd = _enemies[Random.Range(0, _enemies.Length)];

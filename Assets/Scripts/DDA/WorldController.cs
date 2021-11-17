@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Enemies;
 using GridSystem;
 using UnityEditor;
 using UnityEngine;
@@ -46,6 +47,17 @@ public class WorldController : MonoBehaviour
     /// </summary>
     private List<BuildStats> _structs;
 
+    /// <summary>
+    /// Amount of rounds gone without any base damage.
+    /// </summary>
+    private int _streak = 0;
+
+    public AnimationCurve playerSkillCurve;
+    public AnimationCurve diffDistCurve;
+    public AnimationCurve turretTypesCurve;
+    public AnimationCurve streakCurve;
+
+
     public NavMeshAgent refAgent;
 
     public static WorldController Instance;
@@ -55,6 +67,16 @@ public class WorldController : MonoBehaviour
         if (_structs != null)
             return _structs.Count.ToString();
         return "Not initialized";
+    }
+
+    public float[] GetWeights()
+    {
+        return _weights;
+    }
+
+    public void SetPlayerSkill(float skill)
+    {
+        this._playerSkill = skill;
     }
 
     private void Awake()
@@ -126,6 +148,79 @@ public class WorldController : MonoBehaviour
                 break;
         }
     }
+
+    /// <summary>
+    /// Function in charge of modifying the different enemy weights:
+    /// _weights[0] --> DonDiablo
+    /// _weights[1] --> Golem
+    /// _weights[2] --> BadBunny
+    /// _weights[3] --> Boomfinn
+    /// _weights[4] --> Dragon
+    /// </summary>
+    public void UpdateWeights()
+    {
+        _weights = new float[] {0.2f, 0.2f, 0.2f, 0.2f, 0.2f};
+        float skillCorrection = playerSkillCurve.Evaluate(_playerSkill / 10);
+        _weights[0] -= skillCorrection;
+        _weights[2] += skillCorrection;
+
+        CheckDists();
+        float distCorrection = diffDistCurve.Evaluate((_distReal - _distManh) / 100);
+        _weights[1] += distCorrection / 2;
+        _weights[3] += distCorrection / 2;
+        for (int i = 0; i < _weights.Length; i++)
+        {
+            if (i != 3 && i != 1)
+            {
+                _weights[i] -= distCorrection / 3;
+            }
+        }
+
+        float structCorrection = turretTypesCurve.Evaluate(_numTurrets - _numWalls);
+        _weights[1] += structCorrection;
+        _weights[3] -= structCorrection;
+
+        float streakCorrection = streakCurve.Evaluate(_streak);
+
+        _weights[4] += streakCorrection;
+        for (int i = 0; i < _weights.Length; i++)
+        {
+            if (i != 4)
+            {
+                _weights[i] -= streakCorrection / 4;
+            }
+        }
+    }
+
+    public void CheckDists()
+    {
+        _distReal = refAgent.remainingDistance;
+        _distManh = Vector3.Distance(EnemyGoal.instance.getPosition(), refAgent.transform.position);
+    }
+
+    public void UpdtateStreake(bool streak)
+    {
+        if (streak)
+        {
+            _streak++;
+        }
+        else
+        {
+            _streak = 0;
+        }
+    }
+
+    public string GetWeight(int idx)
+    {
+        try
+        {
+            return _weights[idx].ToString();
+        }
+        catch
+        {
+            return "Not initialized";
+        }
+    }
 }
 
 
@@ -144,28 +239,64 @@ class WorldControllerEditor : Editor
 
         EditorGUILayout.Space();
 
+        current_tab = GUILayout.Toolbar(current_tab, new string[] {"Structs", "Weights"});
 
-        scroll = EditorGUILayout.BeginScrollView(scroll, GUILayout.MaxHeight(150));
+        switch (current_tab)
+        {
+            case 0:
+                scroll = EditorGUILayout.BeginScrollView(scroll, GUILayout.MaxHeight(150));
 
-        EditorGUILayout.BeginHorizontal("box");
-        EditorGUILayout.LabelField("Num Walls");
-        EditorGUILayout.LabelField(script._numWalls.ToString());
-        EditorGUILayout.EndHorizontal();
+                EditorGUILayout.BeginHorizontal("box");
+                EditorGUILayout.LabelField("Num Walls");
+                EditorGUILayout.LabelField(script._numWalls.ToString());
+                EditorGUILayout.EndHorizontal();
 
-        EditorGUILayout.BeginHorizontal("box");
-        EditorGUILayout.LabelField("Num Traps");
-        EditorGUILayout.LabelField(script._numTraps.ToString());
-        EditorGUILayout.EndHorizontal();
+                EditorGUILayout.BeginHorizontal("box");
+                EditorGUILayout.LabelField("Num Traps");
+                EditorGUILayout.LabelField(script._numTraps.ToString());
+                EditorGUILayout.EndHorizontal();
 
-        EditorGUILayout.BeginHorizontal("box");
-        EditorGUILayout.LabelField("Num Turrets");
-        EditorGUILayout.LabelField(script._numTurrets.ToString());
-        EditorGUILayout.EndHorizontal();
+                EditorGUILayout.BeginHorizontal("box");
+                EditorGUILayout.LabelField("Num Turrets");
+                EditorGUILayout.LabelField(script._numTurrets.ToString());
+                EditorGUILayout.EndHorizontal();
 
-        EditorGUILayout.BeginHorizontal("box");
-        EditorGUILayout.LabelField("TotalStructs");
-        EditorGUILayout.LabelField(script.GetTotalStructs());
-        EditorGUILayout.EndHorizontal();
+                EditorGUILayout.BeginHorizontal("box");
+                EditorGUILayout.LabelField("TotalStructs");
+                EditorGUILayout.LabelField(script.GetTotalStructs());
+                EditorGUILayout.EndHorizontal();
+                break;
+            case 1:
+                scroll = EditorGUILayout.BeginScrollView(scroll, GUILayout.MaxHeight(170));
+                
+                EditorGUILayout.BeginHorizontal("box");
+                EditorGUILayout.LabelField("Diablos");
+                EditorGUILayout.LabelField(script.GetWeight(0));
+                EditorGUILayout.EndHorizontal();
+                
+                EditorGUILayout.BeginHorizontal("box");
+                EditorGUILayout.LabelField("Golems");
+                EditorGUILayout.LabelField(script.GetWeight(1));
+                EditorGUILayout.EndHorizontal();
+                
+                EditorGUILayout.BeginHorizontal("box");
+                EditorGUILayout.LabelField("BadBunny");
+                EditorGUILayout.LabelField(script.GetWeight(2));
+                EditorGUILayout.EndHorizontal();
+                
+                EditorGUILayout.BeginHorizontal("box");
+                EditorGUILayout.LabelField("BoomFins");
+                EditorGUILayout.LabelField(script.GetWeight(3));
+                EditorGUILayout.EndHorizontal();
+                
+                EditorGUILayout.BeginHorizontal("box");
+                EditorGUILayout.LabelField("Dragons");
+                EditorGUILayout.LabelField(script.GetWeight(4));
+                EditorGUILayout.EndHorizontal();
+                break;
+        }
+
+        
 
         EditorGUILayout.EndScrollView();
     }

@@ -101,6 +101,7 @@ namespace Enemies
             float totalBaseDmg = 0;
             float totalEnemyHp = 0;
             int winnersCount = _winners.Count;
+            WorldController.Instance.UpdtateStreake(winnersCount == 0);
             for (int i = 0; i < winnersCount; i++)
             {
                 WinnerStats stats = _winners.Pop();
@@ -109,6 +110,8 @@ namespace Enemies
             }
 
             float skill = PlayerSkillCalculator.Instance.ComputeSkill();
+            WorldController.Instance.SetPlayerSkill(skill);
+            
             _multManager.UpdateWithGlobalHealth(_diffVariables, _diffMultipliers, (int) totalBaseDmg);
             _multManager.UpdateWithWinnersHealth(_roundMaxHp, totalEnemyHp,
                 _diffMultipliers, ref _globalDiff);
