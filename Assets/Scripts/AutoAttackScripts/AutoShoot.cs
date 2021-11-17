@@ -348,11 +348,17 @@ namespace AutoAttackScripts
 
             if (isPlayer)
             {
-                _objectiveDirection =
-                    Quaternion.LookRotation((enemy.transform.position - player.transform.position).normalized);
+                // _objectiveDirection =
+                //     Quaternion.LookRotation((enemy.transform.position - player.transform.position).normalized);
+                // player.transform.rotation =
+                //     Quaternion.Slerp(player.transform.rotation, _objectiveDirection, Time.deltaTime * turnSpeed);
+                var enemyPos = enemy.transform.position;
+                var lookPos = (enemyPos - player.transform.position).normalized;
+                lookPos.y = 0;
+                var rotation = Quaternion.LookRotation(lookPos);
                 player.transform.rotation =
-                    Quaternion.Slerp(player.transform.rotation, _objectiveDirection, Time.deltaTime * turnSpeed);
-                vectorAb = enemy.transform.position - transform.position;
+                    Quaternion.Slerp(player.transform.rotation, rotation, Time.deltaTime * turnSpeed);
+                vectorAb = enemyPos - transform.position;
                 CheckQuadrant(vectorAb.normalized);
                 PlayerEnemyQuadrant(quadrant);
             }
