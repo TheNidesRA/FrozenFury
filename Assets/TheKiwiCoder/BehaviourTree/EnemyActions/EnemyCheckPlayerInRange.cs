@@ -17,7 +17,7 @@ public class EnemyCheckPlayerInRange : ActionNode
 
     protected override State OnUpdate() {
 //        Debug.Log((Vector3.Distance(context.agent.transform.position, PlayerStats._instance.transform.position) < context.enemy.AttackRange));
-        return Vector3.Distance(context.agent.transform.position, PlayerStats._instance.transform.position) < context.enemy.AttackRange
+        return Vector3.Distance(context.agent.transform.position, PlayerStats._instance.transform.position) < context.enemy.attackRange
             ? State.Success
             : State.Failure;
     }

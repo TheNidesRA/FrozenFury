@@ -23,13 +23,13 @@ public class EnemyHitsPlayer : ActionNode
         // }
 
         Collider[] colliders =
-            Physics.OverlapSphere(context.transform.position, context.enemy.AttackRange * 2,
+            Physics.OverlapSphere(context.transform.position, context.enemy.attackRange ,
                 LayerMask.GetMask("Player"));
 
         if (colliders.Length > 0)
         {
             
-            PlayerStats._instance.Health -= context.enemy.Damage;
+            PlayerStats._instance.Health -= context.enemy.damage;
             Debug.Log(" Vida : " +  PlayerStats._instance.Health);
         }
         else

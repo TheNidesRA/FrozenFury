@@ -603,7 +603,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58c6f9b140a52a14881ec09eaebb66eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tree: {fileID: 11400000, guid: 24676e2dcc4047641925e6b4dbeee7ad, type: 2}
+  tree: {fileID: 11400000, guid: dbfa71b854a5877419a3bf6e26e5c355, type: 2}
 --- !u!114 &5222653681175729326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -619,14 +619,15 @@ MonoBehaviour:
   id: Pascual
   _initStats: {fileID: 11400000, guid: 56e096d9efdee324bacd3a341fb1c76c, type: 2}
   NavMeshAgent: {fileID: 359232541473908656}
-  Health: 20
-  Damage: 1
+  health: 0
+  damage: 0
   _speed: 15
   _acceleration: 0
-  Armor: 1
-  AtackSpeed: 1
-  Gold: 1
-  AttackRange: 0
+  armor: 0
+  attackSpeed: 0
+  gold: 0
+  attackRange: 0
+  baseDamage: 0
   invencibilidadTrampa: 0
   tiempoInvencibilidad: 5
   afecctedTrap: 0

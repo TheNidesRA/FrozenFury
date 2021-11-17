@@ -19,7 +19,7 @@ public class BoomfingExplode : ActionNode
 
     protected override State OnUpdate()
     {
-        Collider[] buildings = Physics.OverlapSphere(context.gameObject.transform.position, context.enemy.AttackRange, targetsLayers);
+        Collider[] buildings = Physics.OverlapSphere(context.gameObject.transform.position, context.enemy.attackRange, targetsLayers);
 
         foreach (var buildCollider in buildings)
         {
@@ -27,7 +27,7 @@ public class BoomfingExplode : ActionNode
             {
                 
                 Debug.Log(build.name+" Dañado");
-                build.health -= context.enemy.Damage;
+                build.health -= context.enemy.damage;
 
 
             }

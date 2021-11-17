@@ -11,7 +11,7 @@ public class EnemyHitCooldown : ActionNode
     protected override void OnStart()
     {
         context.enemy.NODOACTUAL = "EnemyHitCooldown";
-        duration = 1/context.enemy.AtackSpeed;
+        duration = 1/context.enemy.attackSpeed;
         startTime = Time.time;
         Debug.Log("Hay que esperar : "+ duration);
     }

@@ -46,13 +46,13 @@ namespace Enemies
 
         public string Id => id;
 
-        public float Health;
-        public float Damage;
+        public float health;
+        public float damage;
 
         [SerializeField] private float _speed;
         [SerializeField] private float _acceleration;
 
-        public float Speed
+        public float speed
         {
             get => _speed;
             set
@@ -63,7 +63,7 @@ namespace Enemies
             }
         }
 
-        public float Acceleration
+        public float acceleration
         {
             get => _acceleration;
             set
@@ -75,10 +75,11 @@ namespace Enemies
         }
 
 
-        public float Armor;
-        public float AtackSpeed;
-        public float Gold;
-        public float AttackRange;
+        public float armor;
+        public float attackSpeed;
+        public float gold;
+        public float attackRange;
+        public float baseDamage;
         public bool invencibilidadTrampa = false;
         public float tiempoInvencibilidad = 5f;
 
@@ -101,13 +102,13 @@ namespace Enemies
             actionTarget = null;
             auxActionTarget = null;
             NavMeshAgent.speed = _speed;
-            NavMeshAgent.acceleration = Acceleration;
+            NavMeshAgent.acceleration = acceleration;
         }
 
         private void OnEnable()
         {
-            initSpeed = Speed;
-            NavMeshAgent.speed = Speed;
+            initSpeed = speed;
+            NavMeshAgent.speed = speed;
         }
 
         public void UpdateStats(EnemyStats stats)
@@ -120,7 +121,7 @@ namespace Enemies
             
             PrintStats();
             Debug.Log("init :_ +" + initSpeed);
-            initSpeed = Speed; //AUX PARA LOS SLOWS Y SPEEDS
+            initSpeed = speed; //AUX PARA LOS SLOWS Y SPEEDS
         }
 
         public void InitializeStats()
@@ -132,8 +133,8 @@ namespace Enemies
             attackSpeed = _initStats.initAtkSpd;
             baseDamage = _initStats.initBaseDamage;
             gold = _initStats.gold;
-            initSpeed = Speed; //AUX PARA LOS SLOWS Y SPEEDS
-            initAcceleration = Acceleration;
+            initSpeed = speed; //AUX PARA LOS SLOWS Y SPEEDS
+            initAcceleration = acceleration;
         }
 
 
@@ -153,7 +154,7 @@ namespace Enemies
         {
             if (!afecctedTrap)
             {
-                Speed = Speed * slowDown;
+                speed = speed * slowDown;
             }
 
             afecctedTrap = true;
@@ -161,16 +162,16 @@ namespace Enemies
 
         public void OnSpedUp(float speedUp)
         {
-            Speed = Speed * speedUp;
-            Acceleration = Acceleration * speedUp;
+            speed = speed * speedUp;
+            acceleration = acceleration * speedUp;
             Debug.Log("Speed up");
         }
 
         public void OnResetSlow()
         {
-            Speed = initSpeed;
+            speed = initSpeed;
             Debug.Log("Velocidad inicial!!!!");
-            Acceleration = initAcceleration;
+            acceleration = initAcceleration;
 
             afecctedTrap = false;
         }
@@ -202,7 +203,7 @@ namespace Enemies
         private void OnDestroy()
         {
             OnEnemyDeath?.Invoke(gameObject);
-            PlayerStats._instance.gold += Gold;
+            PlayerStats._instance.gold += gold;
             WaveController._instance.EnemyDeath();
         }
 

@@ -19,12 +19,7 @@ public class EnemyHitsBuilding : ActionNode
     }
     
     
-    void OnDrawGizmosSelected()
-    {
-        // Draw a yellow sphere at the transform's position
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawSphere(context.transform.position, context.enemy.AttackRange*2);
-    }
+    
     
 
     protected override State OnUpdate()
@@ -36,7 +31,7 @@ public class EnemyHitsBuilding : ActionNode
         }
         
         Collider[] colliders =
-            Physics.OverlapSphere(context.transform.position, context.enemy.AttackRange*2, buildingMask);
+            Physics.OverlapSphere(context.transform.position, context.enemy.attackRange, buildingMask);
         
         foreach (var VARIABLE in colliders)
         {

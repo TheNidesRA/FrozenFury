@@ -21,7 +21,7 @@ public class EnemyChasePlayer : ActionNode
         context.enemy.actionTarget = PlayerStats._instance.gameObject;
         context.agent.SetDestination(context.enemy.actionTarget.transform.position);
         float distancia = Vector3.Distance(context.transform.position, context.agent.destination);
-        if (distancia <= context.enemy.AttackRange)
+        if (distancia <= context.enemy.attackRange)
         {
             Debug.Log("Hemos llegao");
             return State.Success;
