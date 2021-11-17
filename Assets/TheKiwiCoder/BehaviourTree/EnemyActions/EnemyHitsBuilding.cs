@@ -11,6 +11,7 @@ public class EnemyHitsBuilding : ActionNode
     protected override void OnStart()
     {
         context.enemy.NODOACTUAL = "EnemiHitBuilding";
+        //context.animator.SetBool("Attack", true);
     }
 
     protected override void OnStop()

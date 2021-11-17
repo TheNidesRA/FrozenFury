@@ -11,6 +11,7 @@ public class BoomfingExplode : ActionNode
     protected override void OnStart()
     {
         context.enemy.NODOACTUAL = "BoomfingExplode";
+        context.animator.SetBool("Attack", true);
     }
 
     protected override void OnStop()

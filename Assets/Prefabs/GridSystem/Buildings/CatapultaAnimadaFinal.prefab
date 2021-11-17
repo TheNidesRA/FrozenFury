@@ -960,7 +960,8 @@ MonoBehaviour:
   enemyToShoot: 2
   bulletTimeAlive: 4
   shootForce: 200
-  bullet: {fileID: 7040415461391761229, guid: db32f131587bd4a4eaaba662368c36fd, type: 3}
+  _damagePerBullet: 0
+  bullet: {fileID: 1583443553209784321, guid: 3bc87ee2223760f4790068a9abc4374b, type: 3}
   timeBetweenShooting: 1
   timeToShootBulletBurst: 0.2
   shotgunBulletSeparation: 40
@@ -1529,6 +1530,7 @@ GameObject:
   - component: {fileID: 8170423956023631237}
   - component: {fileID: 6270298821097650187}
   - component: {fileID: 4175193948676087547}
+  - component: {fileID: 3513368739766301616}
   m_Layer: 11
   m_Name: CatapultaAnimadaFinal
   m_TagString: Untagged
@@ -1610,6 +1612,25 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 5, y: 5, z: 5}
   m_TimeToStationary: 0.5
+--- !u!95 &3513368739766301616
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7564296665959639916}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b930619f1a2e3684ca1da0f4a1c01cdc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7806047998347015171
 GameObject:
   m_ObjectHideFlags: 0

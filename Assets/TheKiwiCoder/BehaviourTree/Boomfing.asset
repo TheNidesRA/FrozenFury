@@ -67,6 +67,7 @@ MonoBehaviour:
   children:
   - {fileID: 57830365828115540}
   - {fileID: -7476606846626816713}
+  - {fileID: 8918754146266518873}
   - {fileID: -2092769246178143905}
 --- !u!114 &-5252699315665190779
 MonoBehaviour:
@@ -188,7 +189,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 98ac4f8232df0054d83bc844000acf39
-  position: {x: 1088.52, y: 1387.2}
+  position: {x: 1286.9601, y: 1387.2}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
   description: 
@@ -299,6 +300,7 @@ MonoBehaviour:
   - {fileID: -5252699315665190779}
   - {fileID: -533191816504215365}
   - {fileID: 1288475619031448408}
+  - {fileID: 8918754146266518873}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &57830365828115540
@@ -454,3 +456,23 @@ MonoBehaviour:
   child: {fileID: -180638368519636703}
   restartOnSuccess: 1
   restartOnFailure: 1
+--- !u!114 &8918754146266518873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 092e22d5d09ea454f8e504304b3cf01e, type: 3}
+  m_Name: EnemyHitCooldown
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: a4dec6b5eafefb64791f2ba1ceb7e81c
+  position: {x: 1062.4, y: 1397.6}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+  description: 
+  drawGizmos: 0

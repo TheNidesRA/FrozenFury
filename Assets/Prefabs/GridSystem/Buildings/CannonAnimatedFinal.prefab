@@ -90,7 +90,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3821340226023910819}
-  m_Layer: 11
+  m_Layer: 14
   m_Name: CATRigHub002Bone002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -201,7 +201,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7128423515665679271}
-  m_Layer: 11
+  m_Layer: 14
   m_Name: CATRigHub002Bone005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -313,7 +313,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3087763999820171799}
   - component: {fileID: 5848688793677561550}
-  m_Layer: 11
+  m_Layer: 14
   m_Name: Cylinder001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -404,7 +404,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1693664469571626811}
   - component: {fileID: 6086002681784846853}
-  m_Layer: 11
+  m_Layer: 14
   m_Name: Circle001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -534,8 +534,8 @@ GameObject:
   - component: {fileID: 6342906225691553538}
   - component: {fileID: 5771568438036504366}
   - component: {fileID: 8776063655713293491}
-  - component: {fileID: 7440739181288239463}
-  m_Layer: 11
+  - component: {fileID: 5310296724027504569}
+  m_Layer: 14
   m_Name: PivoteCannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -569,7 +569,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 16
+  m_Radius: 50
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &8776063655713293491
 Rigidbody:
@@ -587,7 +587,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &7440739181288239463
+--- !u!114 &5310296724027504569
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -596,23 +596,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 2748072239263992977}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5fb7df239d6a174985c710cd7cfb584, type: 3}
+  m_Script: {fileID: 11500000, guid: 97140db3a5378884d9054ae15cf3590e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   typeOfShooting: 0
   enemyToShoot: 2
   bulletTimeAlive: 4
-  shootForce: 200
-  bullet: {fileID: 7040415461391761229, guid: db32f131587bd4a4eaaba662368c36fd, type: 3}
-  timeBetweenShooting: 1
+  shootForce: 40
+  _damagePerBullet: 10
+  bullet: {fileID: 4157635100947287243, guid: 2659b93fd09e2dd4696fc901ede0c626, type: 3}
+  timeBetweenShooting: 0.5
   timeToShootBulletBurst: 0.2
   shotgunBulletSeparation: 40
   attackPoint: {fileID: 5628392880671506317}
   player: {fileID: 6342906225691553538}
-  turnSpeed: 1000
-  buildinginfo: {fileID: 11400000, guid: aaeeb991aee2b0c45a688584dcccf4ac, type: 2}
-  h: 25
-  gravity: -18
+  turnSpeed: 100
+  buildinginfo: {fileID: 11400000, guid: 9c7eaeeee6fbbbd4989a527674418ce7, type: 2}
 --- !u!1 &2937412190747152848
 GameObject:
   m_ObjectHideFlags: 0
@@ -622,7 +621,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6996115410899222326}
-  m_Layer: 11
+  m_Layer: 14
   m_Name: CATRigHub002Bone004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -733,7 +732,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 50510718002823536}
-  m_Layer: 11
+  m_Layer: 14
   m_Name: CATRigHub002Bone001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -925,7 +924,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 574396241731647141}
-  m_Layer: 11
+  m_Layer: 14
   m_Name: Cannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1038,7 +1037,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 346227976238994567}
-  m_Layer: 11
+  m_Layer: 14
   m_Name: CATRigHub002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1154,7 +1153,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6464684805099572751}
-  m_Layer: 11
+  m_Layer: 14
   m_Name: CATRigHub002Bone003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1268,6 +1267,7 @@ GameObject:
   - component: {fileID: 6342526639433811158}
   - component: {fileID: 4847998598757534599}
   - component: {fileID: 5925548995872559183}
+  - component: {fileID: 3976223840551526114}
   m_Layer: 11
   m_Name: CannonAnimatedFinal
   m_TagString: Untagged
@@ -1348,6 +1348,25 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 5, y: 5, z: 5}
   m_TimeToStationary: 0.5
+--- !u!95 &3976223840551526114
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7010075945510423874}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3da451bf43402da42957a3c6da847e72, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7487548947488944681
 GameObject:
   m_ObjectHideFlags: 0
@@ -1439,7 +1458,7 @@ GameObject:
   m_Component:
   - component: {fileID: 210164502471756639}
   - component: {fileID: 4992932939183245193}
-  m_Layer: 11
+  m_Layer: 14
   m_Name: Circle002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1687,7 +1706,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5628392880671506317}
-  m_Layer: 11
+  m_Layer: 14
   m_Name: AttackPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1702,7 +1721,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8252868100692890244}
   m_LocalRotation: {x: -0, y: -0, z: 7.503331e-12, w: 1}
-  m_LocalPosition: {x: 0, y: 3.6446471, z: 6.576766}
+  m_LocalPosition: {x: -0, y: 4.82, z: 9.03}
   m_LocalScale: {x: 1.8223236, y: 1.8223236, z: 1.8223236}
   m_Children: []
   m_Father: {fileID: 6342906225691553538}
