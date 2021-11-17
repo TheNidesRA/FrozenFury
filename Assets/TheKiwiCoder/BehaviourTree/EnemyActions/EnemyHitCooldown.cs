@@ -23,7 +23,7 @@ public class EnemyHitCooldown : ActionNode
 
     protected override State OnUpdate() {
         if (Time.time - startTime > duration) {
-            Debug.Log("Trigger attack false");
+//            Debug.Log("Trigger attack false");
             context.animator.SetBool("Attack", false);
             return State.Success;
         }
