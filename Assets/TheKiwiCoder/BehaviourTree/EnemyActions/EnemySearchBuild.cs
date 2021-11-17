@@ -7,7 +7,7 @@ using TheKiwiCoder;
 public class EnemySearchBuild : ActionNode
 {
     public LayerMask buildLayer;
-    public PlacedBuild targetBuild;
+    private PlacedBuild targetBuild;
 
     protected override void OnStart()
     {

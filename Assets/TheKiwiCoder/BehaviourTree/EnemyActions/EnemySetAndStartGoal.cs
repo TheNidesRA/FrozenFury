@@ -1,5 +1,6 @@
 using Enemies;
 using TheKiwiCoder;
+using UnityEngine;
 
 public class EnemySetAndStartGoal : ActionNode
 {
@@ -7,6 +8,7 @@ public class EnemySetAndStartGoal : ActionNode
     {
         context.enemy.actionTarget = EnemyGoal.instance.gameObject;
         context.agent.SetDestination(context.enemy.actionTarget.transform.position);
+        context.agent.isStopped = false;
     }
 
     protected override void OnStop()
@@ -16,6 +18,7 @@ public class EnemySetAndStartGoal : ActionNode
 
     protected override State OnUpdate()
     {
+        Debug.Log("Via libre a x la salida");
         return State.Success;
     }
 }
