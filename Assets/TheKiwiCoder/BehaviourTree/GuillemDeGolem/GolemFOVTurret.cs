@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class GolemFOVTurret : ActionNode
 {
-    public float radius;
-    [Range(0, 360)] public float angle;
+
     public LayerMask targetMask;
 
 
@@ -33,14 +32,14 @@ public class GolemFOVTurret : ActionNode
 
     private bool FieldOfViewCheck()
     {
-        Collider[] rangeChecks = Physics.OverlapSphere(context.transform.position, radius, targetMask);
+        Collider[] rangeChecks = Physics.OverlapSphere(context.transform.position, context.enemy.radioVision, targetMask);
 
         if (rangeChecks.Length != 0)
         {
             Transform target = rangeChecks[0].transform;
             // Vector3 directionToTarget = (target.position - context.transform.position).normalized;
             Vector3 directionToTarget = (context.agent.destination - context.transform.position).normalized;
-            if (Vector3.Angle(context.transform.forward, directionToTarget) < angle / 2)
+            if (Vector3.Angle(context.transform.forward, directionToTarget) < context.enemy.radioVision / 2)
             {
                 Debug.Log("Torretilla en vision");
                 //float distanceToTarget = Vector3.Distance(context.transform.position, target.position);

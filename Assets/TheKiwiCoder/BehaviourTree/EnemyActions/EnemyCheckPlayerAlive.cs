@@ -15,7 +15,7 @@ public class EnemyCheckPlayerAlive:ActionNode
 
         protected override State OnUpdate()
         {
-            Debug.Log("Vida: "+(PlayerStats._instance.Health > 0));
+          //  Debug.Log("Vida: "+(PlayerStats._instance.Health > 0));
             return PlayerStats._instance.Health > 0 ? State.Success : State.Failure;
         }
     }
