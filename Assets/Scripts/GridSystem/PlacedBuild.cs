@@ -30,8 +30,8 @@ public class PlacedBuild : MonoBehaviour
        set
        {
            _level = value;
-           BuildStats stats = new BuildStats(_level, _buildingSo.type);
-           WorldController.Instance.LevelUpgrade(stats);
+          // BuildStats stats = new BuildStats(_level, _buildingSo.type);
+          // WorldController.Instance.LevelUpgrade(stats);
        }
    }
     public float damage
@@ -83,9 +83,9 @@ public class PlacedBuild : MonoBehaviour
         placedBuild._dir = dir;
 
         if (building.type != BuildingSO.BuildingType.Trap)
-        {
-            placedBuild._navMeshObstacle = placedBuildTransform.GetComponent<NavMeshObstacle>();
-            placedBuild._navMeshObstacle.enabled = true;
+        { 
+            // placedBuild._navMeshObstacle = placedBuildTransform.GetComponent<NavMeshObstacle>();
+            // placedBuild._navMeshObstacle.enabled = true;
         }
 
 
