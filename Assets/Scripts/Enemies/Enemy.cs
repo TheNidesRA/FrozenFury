@@ -1,10 +1,8 @@
 using System;
-using TheKiwiCoder;
 using System.Collections;
-using TMPro.EditorUtilities;
+
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Serialization;
 
 #if UNITY_EDITOR
 using UnityEditor;

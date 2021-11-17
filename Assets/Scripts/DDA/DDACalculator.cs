@@ -260,5 +260,5 @@ namespace Enemies
             }
         }
     }
-}
 #endif
+}
