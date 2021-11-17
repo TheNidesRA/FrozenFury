@@ -28,6 +28,7 @@ public class EnemyGoesToGoal : ActionNode
         if(context.agent.hasPath)
         return State.Success;
         //Debug.Log("ENga pal cochesito");
+   
         return State.Running;
     }
 }

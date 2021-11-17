@@ -58,12 +58,12 @@ public class SpikesTrap : PlacedBuild
 
     }
     
-    private void hitTrap(float daño, Collision collision)
+    private void hitTrap(float daÃ±o, Collision collision)
     {
 
         if (!invencibilidadTrampa && health_ > 0)
         {
-            health_ = health_ - daño;
+            health_ = health_ - daÃ±o;
             StartCoroutine(OnEnableTrap());
         }
        

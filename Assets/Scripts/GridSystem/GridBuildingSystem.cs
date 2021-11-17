@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -379,7 +379,7 @@ namespace GridSystem
 
             PlacedBuild placedBuild =
                 PlacedBuild.Create(placedBuildWorldPosition, buildPosition, _dir, _buildingSO);
-
+            
 
             foreach (var buildingPosition in buildingPositions)
             {

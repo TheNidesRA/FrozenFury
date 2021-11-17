@@ -7,13 +7,13 @@ using UnityEngine.AI;
 
 public class GolemCheckDistance : ActionNode
 {
-    private EnemyGolem _enemyGolem;
+
     public float threasole = 2f;
 
     protected override void OnStart()
     {
         context.enemy.NODOACTUAL = "GolemCheckDistance";
-        _enemyGolem = context.gameObject.GetComponent<EnemyGolem>();
+        
         //throw new System.NotImplementedException();
     }
 
@@ -31,7 +31,7 @@ public class GolemCheckDistance : ActionNode
             // Debug.Log("Cositas");
             if (context.agent.pathStatus == NavMeshPathStatus.PathComplete)
             {
-                float realDistance = EnemyGolem.GetPathRemainingDistance(context.agent);
+                float realDistance = Enemy.GetPathRemainingDistance(context.agent);
                 float manDistance = Vector3.Distance(context.agent.destination, context.transform.position);
                 float difference = realDistance - manDistance;
 

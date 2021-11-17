@@ -1219,6 +1219,7 @@ GameObject:
   - component: {fileID: 2384283337393057040}
   - component: {fileID: 4025121914769462109}
   - component: {fileID: 2851629651342779712}
+  - component: {fileID: 7080433459105634448}
   m_Layer: 10
   m_Name: HeladeroAnimated(Clone)
   m_TagString: Player
@@ -1312,6 +1313,20 @@ MonoBehaviour:
   v_movement_z: 0
   v_movement_x: 0
   moveSpeed: 0
+--- !u!136 &7080433459105634448
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6520741841822035003}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6563614870469558092
 GameObject:
   m_ObjectHideFlags: 0
