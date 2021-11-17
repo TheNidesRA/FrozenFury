@@ -7,7 +7,7 @@ namespace Enemies
     {
         private void Start()
         {
-            NavMeshAgent.destination = EnemyGoal.instance.getPosition();
+            NavMeshAgent.SetDestination(EnemyGoal.instance.getPosition());
         }
     }
 }

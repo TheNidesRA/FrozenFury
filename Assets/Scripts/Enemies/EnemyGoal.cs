@@ -26,14 +26,28 @@ namespace Enemies
             if (!other.gameObject.CompareTag("Enemy")) return;
             
             //Bajamos la vida global
-            try{GlobalHealth.instance.DecreaseHealth();}
-            catch{Debug.Log("Bro, you need to introduce a globalHealth controller.");}
-
+            try
+            {
+                GlobalHealth.instance.DecreaseHealth();
+            }
+            catch
+            {
+                Debug.Log("Bro, you need to introduce a globalHealth controller.");
+            }
             
             Enemy enemy = other.gameObject.GetComponent<Enemy>();
             
             //Add the enemy remaining stats to the DDA
-            //DDACalculator.instance.AddWinner(enemy);
+            try
+            {
+                DDACalculator.instance.AddWinner(enemy);
+            }
+            catch
+            {
+                Debug.LogError("Instance of DDACalculator missing");
+                
+            }
+            
             //Destroy the enemy 
             enemy.Die();
         }

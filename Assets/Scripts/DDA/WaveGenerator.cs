@@ -1,34 +1,87 @@
-﻿using UnityEngine;
+﻿using System;
+using Random = UnityEngine.Random;
 
 namespace Enemies
 {
     public class WaveGenerator
     {
-        private int levelDificulty;
+        private float _roundProgression;
         private int _minEnemies;
         private Enemy[] _enemies;
-        
 
-        public WaveGenerator(EnemyConfiguration config, int lvlDif, int min)
+        public WaveGenerator(EnemyConfiguration config, float lvlDif, int min)
         {
             _minEnemies = min;
-            levelDificulty = lvlDif;
+            _roundProgression = lvlDif;
             _enemies = config.enemies;
         }
 
-        public Wave GenerateWave(int round)
+        public Wave GenerateWave(int round, float spwnPts)
         {
             //Generate the wave
             Wave wave = new Wave();
             
             //Compute the amount of enemies int this wave
-            int enemyAmount = _minEnemies + (round * levelDificulty * 30)/100;
+            float enemyAmount = _minEnemies + (round * _roundProgression) + spwnPts;
 
-            for (int i = 0; i < enemyAmount; i++)
+            float[] weights = WorldController.Instance.GetWeights();
+
+            float numDemons = enemyAmount * weights[0];
+            float numGolems = enemyAmount * weights[1];
+            float numBunnys = enemyAmount * weights[2];
+            float numBoomfins = enemyAmount * weights[3];
+            float numDragons = enemyAmount * weights[4];
+            for (int i = 0; i < _enemies.Length; i++)
             {
-                Enemy enemyToAdd = _enemies[Random.Range(0, _enemies.Length)];
-                enemyToAdd.PrintStats();
-                wave.Enemies.Add(enemyToAdd);
+                switch (_enemies[i].Id)
+                {
+                    case "Demon":
+                        for (int j = 0; j < numDemons; j++)
+                        {
+                            Enemy enemyToAdd = _enemies[i];
+                            // enemyToAdd.PrintStats();
+                            wave.Enemies.Add(enemyToAdd);
+                        }
+                        break;
+                        
+                    case "Golem":
+                        for (int j = 0; j < numGolems; j++)
+                        {
+                            Enemy enemyToAdd = _enemies[i];
+                            // enemyToAdd.PrintStats();
+                            wave.Enemies.Add(enemyToAdd);
+                        }
+                        break;
+                    
+                    case "Bunny":
+                        for (int j = 0; j < numBunnys; j++)
+                        {
+                            Enemy enemyToAdd = _enemies[i];
+                            // enemyToAdd.PrintStats();
+                            wave.Enemies.Add(enemyToAdd);
+                        }
+                        break;
+                    
+                    case "Boomffin":
+                        for (int j = 0; j < numBoomfins; j++)
+                        {
+                            Enemy enemyToAdd = _enemies[i];
+                            // enemyToAdd.PrintStats();
+                            wave.Enemies.Add(enemyToAdd);
+                        }
+                        break;
+                        
+                    case "Dragon":
+                        for (int j = 0; j < numDragons; j++)
+                        {
+                            Enemy enemyToAdd = _enemies[i];
+                            // enemyToAdd.PrintStats();
+                            wave.Enemies.Add(enemyToAdd);
+                        }
+                        break;
+
+                }
+                
             }
             return wave;
         }

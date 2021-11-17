@@ -33,6 +33,9 @@ namespace AutoAttackScripts
         /// </summary>
         private float localDistance = 0;
 
+        [Header("Change this to set a new Damage to the player")] [SerializeField]
+        private float _damagePerBullet;
+
         private Vector3 vectorAb;
 
         private bool shooting = false;
@@ -60,6 +63,12 @@ namespace AutoAttackScripts
         {
             get => shooting;
             set => shooting = value;
+        }
+
+        public float DamagePerBullet
+        {
+            get => _damagePerBullet;
+            set { _damagePerBullet = value; }
         }
 
         public enum WhoToShoot
@@ -141,6 +150,10 @@ namespace AutoAttackScripts
             quadrant = new bool[2];
         }
 
+        private void Update()
+        {
+            PlayerStats._instance.Damage = DamagePerBullet;
+        }
 
         private void OnCollisionExit(Collision other)
         {
@@ -167,7 +180,7 @@ namespace AutoAttackScripts
                 Vector3.Distance(other.gameObject.transform.position, transform.position));
             _enemiesInRange.Add(other.gameObject);
             if (!_enemiesHealth.ContainsKey(other.gameObject))
-                _enemiesHealth.Add(other.gameObject, other.gameObject.GetComponent<Enemy>().Health);
+                _enemiesHealth.Add(other.gameObject, other.gameObject.GetComponent<Enemy>().health);
             other.gameObject.GetComponent<Enemy>().OnEnemyDeath += RemoveEnemy;
             other.gameObject.GetComponent<Enemy>().OnHealthChanged += CheckHealth;
             enemySighted = true;
@@ -360,7 +373,7 @@ namespace AutoAttackScripts
 
         private void CheckHealth(GameObject enemy)
         {
-            _enemiesHealth[enemy] = enemy.GetComponent<Enemy>().Health;
+            _enemiesHealth[enemy] = enemy.GetComponent<Enemy>().health;
         }
 
         protected IEnumerator WaitToShootBulletBurst(GameObject enemy)
@@ -415,7 +428,7 @@ namespace AutoAttackScripts
 
         private void ShootingNormal(GameObject enemy)
         {
-            PlayerStats._instance.Damage = 3;
+            //PlayerStats._instance.Damage = 3;
             //calculate direction from the attackpoint to the enemy
             var position = attackPoint.position;
             Vector3 directionShoot = enemy.transform.position - position;
@@ -431,14 +444,14 @@ namespace AutoAttackScripts
 
         private void ShootingBurst(GameObject enemy)
         {
-            PlayerStats._instance.Damage = 2;
+            //PlayerStats._instance.Damage = 2;
             ShootBulletBurst(enemy);
             StartCoroutine(nameof(WaitToShootBulletBurst), enemy);
         }
 
         private void ShootingShotgun(GameObject enemy)
         {
-            PlayerStats._instance.Damage = 5;
+            //PlayerStats._instance.Damage = 10;
             var enemyPos = enemy.transform.position;
             var position = attackPoint.position;
 

@@ -11,6 +11,7 @@ namespace Enemies
         public float initSpd = 1;
         public float initArm = 1;
         public float initAtkSpd = 1;
+        public float initBaseDamage = 1;
         public float gold = 1;
     }
 }
