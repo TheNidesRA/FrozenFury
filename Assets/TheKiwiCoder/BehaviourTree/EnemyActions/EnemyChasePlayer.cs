@@ -8,6 +8,7 @@ public class EnemyChasePlayer : ActionNode
     protected override void OnStart()
     {
         context.enemy.NODOACTUAL = "EnemyChasePlayer";
+        context.animator.SetBool("Run", true);
         
 
     }

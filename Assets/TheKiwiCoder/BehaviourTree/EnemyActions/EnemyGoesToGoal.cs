@@ -13,6 +13,7 @@ public class EnemyGoesToGoal : ActionNode
         context.enemy.targetPosition = EnemyGoal.instance.getPosition();
         context.enemy.actionTarget = EnemyGoal.instance.gameObject;
         context.agent.SetDestination(EnemyGoal.instance.getPosition());
+        context.animator.SetBool("Run", true);
     }
 
     protected override void OnStop()

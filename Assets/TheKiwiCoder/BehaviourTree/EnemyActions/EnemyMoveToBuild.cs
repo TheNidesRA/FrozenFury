@@ -10,6 +10,8 @@ public class EnemyMoveToBuild : ActionNode
     {
         context.enemy.NODOACTUAL = "EnemyMoveToBuild";
 
+        context.animator.SetBool("Run", true); //Run animation trigger
+
         fracaso = false;
 
         if (context.enemy.actionTarget == null)

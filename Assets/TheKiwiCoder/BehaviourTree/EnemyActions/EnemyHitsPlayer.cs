@@ -8,6 +8,7 @@ public class EnemyHitsPlayer : ActionNode
     protected override void OnStart()
     {
         context.enemy.NODOACTUAL = "EnemyHitsPlayer";
+        
     }
 
     protected override void OnStop()
