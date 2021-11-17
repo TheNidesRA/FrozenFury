@@ -19,9 +19,9 @@ public class EnemyCheckObstacle : ActionNode
 
     protected override State OnUpdate()
     {
-        float distanceToTarget = Vector3.Distance(context.transform.position, context.enemy.targetPosition);
+        float distanceToTarget = Vector3.Distance(context.transform.position, context.enemy.actionTarget.transform.position);
         
-        Vector3 directionToTarget = (context.gameObject.transform.position - context.enemy.targetPosition).normalized;
+        Vector3 directionToTarget = (context.gameObject.transform.position - context.enemy.actionTarget.transform.position).normalized;
         
         if (Physics.Raycast(context.transform.position, directionToTarget,out RaycastHit info,distanceToTarget,obstacles))
         {

@@ -21,6 +21,7 @@ namespace TheKiwiCoder {
         public CapsuleCollider capsuleCollider;
         public CharacterController characterController;
         public Enemy enemy;
+        public Rigidbody rigidbody;
         // Add other game specific systems here
 
         public static Context CreateFromGameObject(GameObject gameObject) {
@@ -39,6 +40,11 @@ namespace TheKiwiCoder {
             // Add whatever else you need here...
 
             context.enemy=gameObject.GetComponent<Enemy>();
+            if(gameObject.TryGetComponent<Rigidbody>(out Rigidbody rb))
+            {
+                context.rigidbody = rb;
+            }
+            
 
             
             
