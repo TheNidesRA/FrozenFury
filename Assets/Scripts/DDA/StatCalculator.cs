@@ -33,7 +33,8 @@ namespace Enemies
                 
                 enemyStats.hp = init.hp * vars[0] + diff * 2;
                 enemyStats.dmg = init.dmg * vars[0] + diff * 0.1f;
-                enemyStats.atackSpd = init.atackSpd + (vars[0] * diff * 0.05f);
+                // enemyStats.atackSpd = init.atackSpd + (vars[0] * diff * 0.05f);
+                enemyStats.gold = init.gold * vars[2] - diff * 0.2f;
                 returnList.Add(enemyStats);
             }
 

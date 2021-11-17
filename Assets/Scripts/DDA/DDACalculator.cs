@@ -122,6 +122,9 @@ namespace Enemies
             _enemyStats = _statCalculator.UpdateStats(_enemyStats, _initStatsMap, _diffVariables, _globalDiff);
 
             spawner.UpdateEnemyPrefabs(_enemyStats);
+            
+            //We reset the PlayerSkillCalculator round variables
+            PlayerSkillCalculator.Instance.ResetVlues();
 
             // Debug.Log("Base damage recived: " + totalBaseDmg + 
             // " \n Total enemy health: " + totalEnemyHp + " / " + _roundMaxHp);
