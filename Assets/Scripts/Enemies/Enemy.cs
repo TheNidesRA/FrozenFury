@@ -111,6 +111,12 @@ namespace Enemies
             NavMeshAgent.speed = speed;
         }
 
+        [ContextMenu("calcula distancia")]
+        public void CalcDist()
+        {
+            Debug.Log("La distancia es de " + Vector3.Distance(EnemyGoal.instance.getPosition(), transform.position));
+        }
+        
         public void UpdateStats(EnemyStats stats)
         {
             health = stats.hp;

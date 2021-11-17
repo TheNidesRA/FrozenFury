@@ -69,6 +69,7 @@ namespace Enemies
             if (_currentWave == null || !_roundActive)
             {
                 SceneController._instance.round = _round;
+                WorldController.Instance.UpdateWeights();
                 _currentWave = _generator.GenerateWave(_round, spwnPts);
                 float totalHp = 0;
                 foreach (var enemy in _currentWave.Enemies)

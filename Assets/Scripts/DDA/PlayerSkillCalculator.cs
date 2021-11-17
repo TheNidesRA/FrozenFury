@@ -50,6 +50,7 @@ namespace Enemies
 
             skill = (playerLvl + maxStructLvl + roundKills) / (round * (1 + (roundDeaths * 0.7f)));
 
+            //This formula converts the skill value into a range between 0 and 10
             float convertedSkill = (skill - rangeMin) * 10 / (rangeMax - rangeMin);
             
             return convertedSkill;
