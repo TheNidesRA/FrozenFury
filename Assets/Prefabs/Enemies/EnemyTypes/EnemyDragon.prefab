@@ -2957,12 +2957,24 @@ MonoBehaviour:
   id: Dragon
   _initStats: {fileID: 11400000, guid: 68681b477c7602b4b8483500b5067551, type: 2}
   NavMeshAgent: {fileID: 6936126059404462845}
-  Health: 5
-  Damage: 1
-  Speed: 15
-  Armor: 1
-  AtackSpeed: 1
+  health: 59.199997
+  damage: 2.96
+  _speed: 15
+  _acceleration: 15
+  armor: 1
+  attackSpeed: 1.512
   gold: 1
+  attackRange: 0
+  baseDamage: 1
+  invencibilidadTrampa: 0
+  tiempoInvencibilidad: 5
+  afecctedTrap: 0
+  targetPosition: {x: 0, y: 0, z: 0}
+  actionTarget: {fileID: 0}
+  auxActionTarget: {fileID: 0}
+  angleVision: 0
+  radioVision: 0
+  NODOACTUAL: 
 --- !u!195 &6936126059404462845
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2973,7 +2985,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.2
-  m_Speed: 3.5
+  m_Speed: 15
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
