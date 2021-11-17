@@ -2,18 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using Enemies;
 using UnityEngine;
-
-public class EnemyBoomfin : Enemy
+namespace Enemies
 {
-    // Start is called before the first frame update
-    void Start()
+    public class EnemyBoomfin : Enemy
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

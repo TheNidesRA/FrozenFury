@@ -31,11 +31,57 @@ namespace Enemies
             float numBunnys = enemyAmount * weights[2];
             float numBoomfins = enemyAmount * weights[3];
             float numDragons = enemyAmount * weights[4];
-            for (int i = 0; i < Math.Round(enemyAmount); i++)
+            for (int i = 0; i < _enemies.Length; i++)
             {
-                Enemy enemyToAdd = _enemies[Random.Range(0, _enemies.Length)];
-                // enemyToAdd.PrintStats();
-                wave.Enemies.Add(enemyToAdd);
+                switch (_enemies[i].Id)
+                {
+                    case "Demon":
+                        for (int j = 0; j < numDemons; j++)
+                        {
+                            Enemy enemyToAdd = _enemies[i];
+                            // enemyToAdd.PrintStats();
+                            wave.Enemies.Add(enemyToAdd);
+                        }
+                        break;
+                        
+                    case "Golem":
+                        for (int j = 0; j < numGolems; j++)
+                        {
+                            Enemy enemyToAdd = _enemies[i];
+                            // enemyToAdd.PrintStats();
+                            wave.Enemies.Add(enemyToAdd);
+                        }
+                        break;
+                    
+                    case "Bunny":
+                        for (int j = 0; j < numBunnys; j++)
+                        {
+                            Enemy enemyToAdd = _enemies[i];
+                            // enemyToAdd.PrintStats();
+                            wave.Enemies.Add(enemyToAdd);
+                        }
+                        break;
+                    
+                    case "Boomffin":
+                        for (int j = 0; j < numBoomfins; j++)
+                        {
+                            Enemy enemyToAdd = _enemies[i];
+                            // enemyToAdd.PrintStats();
+                            wave.Enemies.Add(enemyToAdd);
+                        }
+                        break;
+                        
+                    case "Dragon":
+                        for (int j = 0; j < numDragons; j++)
+                        {
+                            Enemy enemyToAdd = _enemies[i];
+                            // enemyToAdd.PrintStats();
+                            wave.Enemies.Add(enemyToAdd);
+                        }
+                        break;
+
+                }
+                
             }
             return wave;
         }
