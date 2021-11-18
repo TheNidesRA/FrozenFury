@@ -787,14 +787,14 @@ MonoBehaviour:
   id: Pascual
   _initStats: {fileID: 11400000, guid: 56e096d9efdee324bacd3a341fb1c76c, type: 2}
   NavMeshAgent: {fileID: 7247611405744484929}
-  health: 20
+  health: 75
   damage: 15
-  _speed: 15
-  _acceleration: 7
+  _speed: 80
+  _acceleration: 60
   armor: 1
   attackSpeed: 1
   gold: 20
-  attackRange: 10
+  attackRange: 20
   baseDamage: 1
   invencibilidadTrampa: 0
   tiempoInvencibilidad: 5
@@ -802,8 +802,8 @@ MonoBehaviour:
   targetPosition: {x: 0, y: 0, z: 0}
   actionTarget: {fileID: 0}
   auxActionTarget: {fileID: 0}
-  angleVision: 0
-  radioVision: 0
+  angleVision: 200
+  radioVision: 70
   NODOACTUAL: 
   boost: {fileID: 5841497910665411850}
 --- !u!195 &7247611405744484929
@@ -816,8 +816,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 15
-  m_Acceleration: 8
+  m_Speed: 80
+  m_Acceleration: 60
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
