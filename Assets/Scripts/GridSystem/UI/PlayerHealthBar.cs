@@ -21,10 +21,15 @@ namespace GridSystem.UI
 
             
             // fixedRotation = gameObject.transform.rotation.y;
-            gameObject.transform.LookAt(Camera.main.transform.position);
+            Vector3 initPos = gameObject.transform.position;
+            Vector3 aux = initPos;
+            Vector3 camPos = Camera.main.transform.position;
+            aux.x = camPos.x;
             
+            gameObject.transform.position = aux;
+            gameObject.transform.LookAt(camPos);
             fixedrot = gameObject.transform.rotation;
-
+            gameObject.transform.position = initPos;
         }
 
         private void Update()

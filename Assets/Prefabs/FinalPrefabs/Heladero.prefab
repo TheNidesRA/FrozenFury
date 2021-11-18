@@ -476,7 +476,6 @@ GameObject:
   - component: {fileID: 6590222473231746378}
   - component: {fileID: 8327109378022159847}
   - component: {fileID: 3472811452424521924}
-  - component: {fileID: 415810721512194752}
   m_Layer: 10
   m_Name: ForeGround
   m_TagString: Untagged
@@ -541,19 +540,6 @@ MonoBehaviour:
   m_FillOrigin: 1
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &415810721512194752
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1744328535239388639}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b12175a9421a4f45935179725aee538b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healtBar: {fileID: 3472811452424521924}
 --- !u!1 &1747741417553259927
 GameObject:
   m_ObjectHideFlags: 0
@@ -741,6 +727,7 @@ GameObject:
   - component: {fileID: 510974214055741743}
   - component: {fileID: 5701608893664463321}
   - component: {fileID: 3385631652755828429}
+  - component: {fileID: 191815499833315058}
   m_Layer: 10
   m_Name: Canvas
   m_TagString: Untagged
@@ -830,6 +817,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &191815499833315058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2380422706786703872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b12175a9421a4f45935179725aee538b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healtBar: {fileID: 3472811452424521924}
 --- !u!1 &2984743930451356519
 GameObject:
   m_ObjectHideFlags: 0
@@ -2494,6 +2494,8 @@ MonoBehaviour:
   _level: 1
   _health: 100
   _maxHealth: 100
+  _respawnTime: 10
+  Shoot: {fileID: 7404674681142564414}
   Animator: {fileID: 0}
 --- !u!114 &7404674682971163780
 MonoBehaviour:
