@@ -24,11 +24,11 @@ public class EnemyFOV : ActionNode
         // Debug.Log(avistado);
         if (!avistado)
         {
-            Debug.Log("Exitazo Player Detected");
+            // Debug.Log("Exitazo Player Detected");
             return State.Failure;
         }
 
-        Debug.Log("Exitazo Player Detected");
+        // Debug.Log("Exitazo Player Detected");
         return State.Success;
     }
 

@@ -202,7 +202,7 @@ namespace Enemies
 
             EditorGUILayout.Space();
 
-            current_tab = GUILayout.Toolbar(current_tab, new string[] {"pts", "mult", "res", "Health", "Damage", "Gold"});
+            current_tab = GUILayout.Toolbar(current_tab, new string[] {"pts", "mult", "res", "Hp", "Dmg", "Gold"});
 
             switch (current_tab)
             {

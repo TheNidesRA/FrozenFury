@@ -40,6 +40,7 @@ public class WorldController : MonoBehaviour
     /// <summary>
     /// Variables will take into account the amount of each structure type.
     /// </summary>
+    [HideInInspector]
     public float _numWalls, _numTurrets, _numTraps;
 
     /// <summary>
