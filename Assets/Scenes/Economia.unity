@@ -412,6 +412,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1987355451}
     - target: {fileID: 31165231083025803, guid: 7a8ebdf61a0993d4992176b39d202ee0, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 31165231083025803, guid: 7a8ebdf61a0993d4992176b39d202ee0, type: 3}
       propertyPath: Curve.m_Curve.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -9949,7 +9953,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3457746348872793108, guid: 14c31cfa01ab5d64d96c4e0ea54b7aa0, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3457746348872793108, guid: 14c31cfa01ab5d64d96c4e0ea54b7aa0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10046,7 +10050,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6989764034201318010, guid: 9862c31ad81f34746920ae9be66a484b, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6989764034201318010, guid: 9862c31ad81f34746920ae9be66a484b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10098,7 +10102,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7659340899241863360, guid: 9862c31ad81f34746920ae9be66a484b, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7659340899241863365, guid: 9862c31ad81f34746920ae9be66a484b, type: 3}
       propertyPath: m_Size.y
@@ -14001,6 +14005,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pascual (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3663394931353185443, guid: 14c31cfa01ab5d64d96c4e0ea54b7aa0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7247611405744484929, guid: 14c31cfa01ab5d64d96c4e0ea54b7aa0, type: 3}
       propertyPath: m_BaseOffset
       value: 6
@@ -14020,6 +14028,10 @@ PrefabInstance:
     - target: {fileID: 7956182126718149147, guid: 14c31cfa01ab5d64d96c4e0ea54b7aa0, type: 3}
       propertyPath: health
       value: 5000
+      objectReference: {fileID: 0}
+    - target: {fileID: 7956182126718149147, guid: 14c31cfa01ab5d64d96c4e0ea54b7aa0, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7956182126718149147, guid: 14c31cfa01ab5d64d96c4e0ea54b7aa0, type: 3}
       propertyPath: attackRange
@@ -18966,6 +18978,10 @@ PrefabInstance:
       value: 5000
       objectReference: {fileID: 0}
     - target: {fileID: 4025121914769462109, guid: 0f7f07d9e078d614fabde9ed45e7f5a3, type: 3}
+      propertyPath: damage
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 4025121914769462109, guid: 0f7f07d9e078d614fabde9ed45e7f5a3, type: 3}
       propertyPath: health
       value: 10
       objectReference: {fileID: 0}
@@ -18995,7 +19011,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5569838057298794959, guid: 0f7f07d9e078d614fabde9ed45e7f5a3, type: 3}
       propertyPath: _damagePerBullet
-      value: 10
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 7080433459105634448, guid: 0f7f07d9e078d614fabde9ed45e7f5a3, type: 3}
       propertyPath: m_Height
