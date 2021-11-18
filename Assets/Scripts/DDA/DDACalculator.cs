@@ -26,7 +26,7 @@ namespace Enemies
         /// <summary>
         /// List with the enemies stats which will be used to keep track of them during the game
         /// </summary>
-        private List<EnemyStats> _enemyStats;
+        public List<EnemyStats> _enemyStats;
 
         private Dictionary<string, EnemyStats> _initStatsMap;
 
@@ -86,7 +86,7 @@ namespace Enemies
         {
             WaveController._instance.OnRoundChange += EndRoundFunction;
             WaveController._instance.OnWaveCreated += (sender, f) => { _roundMaxHp = f; };
-            
+
             foreach (var enemy in enemyConfig.enemies)
             {
                 EnemyStats stats = new EnemyStats(enemy.Id, enemy.health, enemy.damage, enemy.speed, enemy.armor,
@@ -111,7 +111,7 @@ namespace Enemies
 
             float skill = PlayerSkillCalculator.Instance.ComputeSkill();
             WorldController.Instance.SetPlayerSkill(skill);
-            
+
             _multManager.UpdateWithGlobalHealth(_diffVariables, _diffMultipliers, (int) totalBaseDmg);
             _multManager.UpdateWithWinnersHealth(_roundMaxHp, totalEnemyHp,
                 _diffMultipliers, ref _globalDiff);
@@ -122,7 +122,7 @@ namespace Enemies
             _enemyStats = _statCalculator.UpdateStats(_enemyStats, _initStatsMap, _diffVariables, _globalDiff);
 
             spawner.UpdateEnemyPrefabs(_enemyStats);
-            
+
             //We reset the PlayerSkillCalculator round variables
             PlayerSkillCalculator.Instance.ResetVlues();
 
@@ -202,7 +202,7 @@ namespace Enemies
 
             EditorGUILayout.Space();
 
-            current_tab = GUILayout.Toolbar(current_tab, new string[] {"pts", "mult", "res"});
+            current_tab = GUILayout.Toolbar(current_tab, new string[] {"pts", "mult", "res", "Health", "Damage", "Gold"});
 
             switch (current_tab)
             {
@@ -259,6 +259,61 @@ namespace Enemies
 
                     EditorGUILayout.EndScrollView();
 
+                    break;
+                case 3:
+                    scroll = EditorGUILayout.BeginScrollView(scroll, GUILayout.MaxHeight(200));
+
+                    if (script._enemyStats == null)
+                    {
+                        EditorGUILayout.EndScrollView();
+                        break;
+                    }
+                    for (int i = 0; i < 5; i++)
+                    {
+                        EditorGUILayout.BeginHorizontal("box");
+                        EditorGUILayout.LabelField(script._enemyStats[i].id);
+                        EditorGUILayout.LabelField(script._enemyStats[i].hp.ToString());
+                        EditorGUILayout.EndHorizontal();
+                    }
+
+                    EditorGUILayout.EndScrollView();
+                    break;
+                case 4:
+                    scroll = EditorGUILayout.BeginScrollView(scroll, GUILayout.MaxHeight(200));
+                    if (script._enemyStats == null)
+                    {
+                        EditorGUILayout.EndScrollView();
+                        break;
+                    }
+
+                    for (int i = 0; i < 5; i++)
+                    {
+                        EditorGUILayout.BeginHorizontal("box");
+                        EditorGUILayout.LabelField(script._enemyStats[i].id);
+                        EditorGUILayout.LabelField(script._enemyStats[i].dmg.ToString());
+                        EditorGUILayout.EndHorizontal();
+                    }
+
+                    EditorGUILayout.EndScrollView();
+                    break;
+                case 5:
+                    scroll = EditorGUILayout.BeginScrollView(scroll, GUILayout.MaxHeight(200));
+
+                    if (script._enemyStats == null)
+                    {
+                        EditorGUILayout.EndScrollView();
+                        break;
+                    }
+                    
+                    for (int i = 0; i < 5; i++)
+                    {
+                        EditorGUILayout.BeginHorizontal("box");
+                        EditorGUILayout.LabelField(script._enemyStats[i].id);
+                        EditorGUILayout.LabelField(script._enemyStats[i].gold.ToString());
+                        EditorGUILayout.EndHorizontal();
+                    }
+
+                    EditorGUILayout.EndScrollView();
                     break;
             }
         }
