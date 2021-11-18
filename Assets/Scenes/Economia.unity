@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.39147684, g: 0.33730993, b: 0.32296032, a: 1}
+  m_IndirectSpecularColor: {r: 0.3914782, g: 0.33731088, b: 0.32296085, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -20232,7 +20232,7 @@ GameObject:
   - component: {fileID: 1720582570859512854}
   - component: {fileID: 1720582570859512852}
   - component: {fileID: 1720582570859512853}
-  - component: {fileID: 1720582570859512859}
+  - component: {fileID: 1720582570859512856}
   m_Layer: 5
   m_Name: stick
   m_TagString: Untagged
@@ -20240,7 +20240,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1720582570859512859
+--- !u!114 &1720582570859512856
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20249,11 +20249,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1720582570859512855}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9d677f1681015749b15c436eec6d880, type: 3}
+  m_Script: {fileID: 11500000, guid: b7113b6f85294df4caf4a7751ab50f51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_MovementRange: 175
   m_ControlPath: <Gamepad>/leftStick
+  bgStick: {fileID: 1720582569165668814}
+  smallStick: {fileID: 1720582570859512855}
 --- !u!224 &1826406004235155165
 RectTransform:
   m_ObjectHideFlags: 0
