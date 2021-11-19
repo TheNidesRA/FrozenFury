@@ -20,7 +20,6 @@ public class DynamicJoystick : Joystick
     {
         background.anchoredPosition = ScreenPointToAnchoredPosition(eventData.position);
         background.gameObject.SetActive(true);
-        
         base.OnPointerDown(eventData);
     }
 

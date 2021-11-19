@@ -36,6 +36,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
     [SerializeField] private RectTransform handle = null;
     private RectTransform baseRect = null;
 
+    Vector2 position;
     private Canvas canvas;
     private Camera cam;
 
@@ -60,6 +61,10 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
 
     public virtual void OnPointerDown(PointerEventData eventData)
     {
+       
+        /*position = eventData.position;
+        background.position = eventData.position;
+        handle.anchoredPosition = Vector2.zero;*/
         OnDrag(eventData);
     }
 
@@ -68,13 +73,23 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         cam = null;
         if (canvas.renderMode == RenderMode.ScreenSpaceCamera)
             cam = canvas.worldCamera;
-
-        Vector2 position = RectTransformUtility.WorldToScreenPoint(cam, background.position);
+        
+        position = RectTransformUtility.WorldToScreenPoint(cam, background.position);
         Vector2 radius = background.sizeDelta / 2;
         input = (eventData.position - position) / (radius * canvas.scaleFactor);
         FormatInput();
         HandleInput(input.magnitude, input.normalized, radius, cam);
         handle.anchoredPosition = input * radius * handleRange;
+
+        /*Vector2 direction = eventData.position - position;
+        input = (direction.magnitude > background.sizeDelta.x / 2) ? direction.normalized : direction / (background.sizeDelta.x / 2f);
+
+        if (axisOptions == AxisOptions.Horizontal)
+            input = new Vector2(input.x, 0f);
+        if (axisOptions == AxisOptions.Vertical)
+            input = new Vector2(0f, input.y);
+        handle.anchoredPosition = (input * background.sizeDelta / 2) * handleRange;*/
+
     }
 
     protected virtual void HandleInput(float magnitude, Vector2 normalised, Vector2 radius, Camera cam)
