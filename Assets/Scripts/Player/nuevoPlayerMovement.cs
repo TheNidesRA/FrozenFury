@@ -19,6 +19,7 @@ public class nuevoPlayerMovement : MonoBehaviour
     public float moveSpeed;
     private float gravity;
     private int rotationSpeed;
+    public Joystick joystickDynamic;
 
     public static bool controlMovimiento;
     // Start is called before the first frame update
@@ -38,14 +39,14 @@ public class nuevoPlayerMovement : MonoBehaviour
         //inputPlayer.PlayerMain.Movement.performed += Movement_performed;
     }
 
-  /*  private void Movement_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
-    {
-        inputMovement = obj.ReadValue<Vector2>();
-    }
-   */
+    /*  private void Movement_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+      {
+          inputMovement = obj.ReadValue<Vector2>();
+      }
+     */
     void Start()
     {
-        
+
     }
 
     private void OnEnable()
@@ -60,8 +61,19 @@ public class nuevoPlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //inputPlayer.PlayerMain.Movement.performed += Movement_performed;
-       inputMovement = inputPlayer.PlayerMain.Movement.ReadValue<Vector2>();
+
+
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+        {
+            inputMovement = inputPlayer.PlayerMain.Movement.ReadValue<Vector2>();
+        }
+        else
+        {
+            inputMovement = new Vector2(joystickDynamic.Horizontal, joystickDynamic.Vertical);
+        }
+
+
+
 
 
     }
@@ -90,22 +102,22 @@ public class nuevoPlayerMovement : MonoBehaviour
 
         if (inputMovement == Vector2.zero)
         {
-           
+
         }
         else
         {
-            
+
             if (controlMovimiento)
             {
                 //Debug.Log("No debería de haber enemigos");
                 Quaternion toRotation = Quaternion.LookRotation(v_movement, Vector3.up);
                 _characterController.transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
-                
+
             }
 
             _characterController.Move(v_movement * moveSpeed * Time.deltaTime);
             _characterController.Move(v_velocity);
         }
-        
+
     }
 }
