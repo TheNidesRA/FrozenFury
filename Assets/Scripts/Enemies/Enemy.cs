@@ -244,8 +244,20 @@ namespace Enemies
             Vector3 rightRayDirection = rightRayRotation * transform.forward;
             Gizmos.DrawRay(transform.position, leftRayDirection * radioVision);
             Gizmos.DrawRay(transform.position, rightRayDirection * radioVision);
+
+            if (NavMeshAgent.hasPath)
+            {
+                for (int i = 0; i < NavMeshAgent.path.corners.Length-1 ; i++)
+                {
+                    Handles.color=Color.red;
+                    Handles.DrawLine(NavMeshAgent.path.corners[i],NavMeshAgent.path.corners[i+1]);
+                }
+            }
+            
+            
             // Gizmos.DrawSphere(transform.position,AttackRange);
         }
+
 
 
         public static float GetPathRemainingDistance(NavMeshAgent navMeshAgent)
