@@ -7,20 +7,19 @@ public class AudioManager : MonoBehaviour
     public Sound[] randomHits;
     public Sound[] randomConstruction;
     public Sound[] randomDeath;
-    public static AudioManager instance;
+    public static AudioManager Instance { get; private set; }
 
 
     // Start is called before the first frame update
     private void Awake()
     {
-        if (instance == null || instance != this)
+        if (Instance != null && Instance != this)
         {
-            instance = this;
+            Destroy(this.gameObject);
         }
         else
         {
-            Destroy(gameObject);
-            return;
+            Instance = this;
         }
 
         DontDestroyOnLoad(gameObject);

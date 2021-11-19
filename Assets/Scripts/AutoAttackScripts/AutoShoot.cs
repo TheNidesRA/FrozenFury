@@ -266,7 +266,7 @@ namespace AutoAttackScripts
                     throw new ArgumentOutOfRangeException("typeofShooting", "Invalid type of shooting");
             }
 
-            FindObjectOfType<AudioManager>().PlayRandomHitSound();
+            AudioManager.Instance.PlayRandomHitSound();
         }
 
         private void ShootLowestDistanceEnemy()
