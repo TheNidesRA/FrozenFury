@@ -35,6 +35,7 @@ public class GolemHitsTheWall : ActionNode
                 if (placedBuild.gameObject.Equals(context.enemy.actionTarget))
                 {
                     Debug.Log("hit al muro bueno!!!!");
+                    AudioManager.Instance.Play("Golpe Furgoneta");
                 }
 
                 if (placedBuild.BuildingSo.type == BuildingSO.BuildingType.Wall)

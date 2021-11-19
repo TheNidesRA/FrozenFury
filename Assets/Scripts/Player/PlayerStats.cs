@@ -101,6 +101,7 @@ public class PlayerStats : MonoBehaviour
         Animator.SetLayerWeight(Animator.GetLayerIndex("Base Layer"), 0f);
         Animator.SetLayerWeight(Animator.GetLayerIndex("Shooting"), 0f);
         Animator.SetBool("Dead", true);
+        AudioManager.Instance.PlayRandomDeath();
         StartCoroutine(Respawn(_respawnTime));
     }
 
