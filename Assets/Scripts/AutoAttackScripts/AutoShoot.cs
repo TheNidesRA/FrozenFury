@@ -244,7 +244,7 @@ namespace AutoAttackScripts
                 Shooting = false;
                 if (isPlayer)
                 {
-                    characterAnimator.SetLayerWeight(characterAnimator.GetLayerIndex("Shooting"), 0.0f);
+                    characterAnimator.SetLayerWeight(characterAnimator.GetLayerIndex("Shooting"), 1f);
                     characterAnimator.SetBool("Shoot", Shooting);
                 }
             }
@@ -379,6 +379,15 @@ namespace AutoAttackScripts
             _enemiesHealth.Remove(enemy);
             enemy.GetComponent<Enemy>().OnEnemyDeath -= RemoveEnemy;
             enemy.GetComponent<Enemy>().OnHealthChanged -= CheckHealth;
+            enemySighted = false;
+
+            if (isPlayer)
+            {
+                //Enemy out of sight, trigger for animation blend tree
+                characterAnimator.SetBool("EnemySighted", enemySighted);
+                characterAnimator.SetBool("Shoot", false);
+            }
+                
         }
 
         private void CheckHealth(GameObject enemy)
