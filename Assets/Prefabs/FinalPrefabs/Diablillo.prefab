@@ -827,8 +827,8 @@ MonoBehaviour:
   NavMeshAgent: {fileID: 6987965381564869950}
   health: 75
   damage: 20
-  _speed: 25
-  _acceleration: 10
+  _speed: 15
+  _acceleration: 25
   armor: 1
   attackSpeed: 1
   gold: 20
@@ -840,7 +840,7 @@ MonoBehaviour:
   targetPosition: {x: 0, y: 0, z: 0}
   actionTarget: {fileID: 0}
   auxActionTarget: {fileID: 0}
-  angleVision: 200
+  angleVision: 220
   radioVision: 70
   NODOACTUAL: 
   s: 0
@@ -854,10 +854,10 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 25
-  m_Acceleration: 10
+  m_Speed: 15
+  m_Acceleration: 25
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 3000
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
