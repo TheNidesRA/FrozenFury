@@ -8,6 +8,7 @@ namespace Enemies
     public class WaveController : MonoBehaviour
     {
         public EnemySpawner Spawner;
+
         /// <summary>
         /// Minimmun enemies per round
         /// </summary>
@@ -19,21 +20,38 @@ namespace Enemies
         /// Global level difficulty
         /// </summary>
         public int winRound = 2;
+
         /// <summary>
         /// How Enemy increase per round
         /// </summary>
         public float spawnProgression = 0.7f;
-        
+
         private Wave _currentWave;
-        private int _round=1;
+        private int _round = 1;
         private int _enemiesAlive;
-        private bool _roundActive;
+
+
+        private bool _roundActiveAux;
+        private bool _roundActive
+        {
+            get => _roundActiveAux;
+            set
+            {
+                _roundActiveAux = value;
+                
+                OnRoundActive?.Invoke(this,_roundActive);
+            }
+        }
+
+
         [SerializeField] public EnemyConfiguration enemiconfig;
-        
+
         private WaveGenerator _generator;
 
         public event EventHandler<int> OnRoundChange;
         public event EventHandler<float> OnWaveCreated;
+        public event EventHandler<bool> OnRoundActive;
+
         public int round
         {
             get => _round;
@@ -43,15 +61,15 @@ namespace Enemies
                 OnRoundChange?.Invoke(this, _round);
             }
         }
-        
-        
+
+
         //Lo hacemos singletone
         public static WaveController _instance { get; private set; }
 
         private void Awake()
         {
             _generator = new WaveGenerator(enemiconfig, spawnProgression, minEnemies);
-            if (_instance != null && _instance!=this)
+            if (_instance != null && _instance != this)
             {
                 Destroy(this.gameObject);
             }
@@ -60,12 +78,11 @@ namespace Enemies
                 _instance = this;
             }
         }
-        
+
 
         [ContextMenu("Comenzar la ronda")]
         public void StartWave()
         {
-            
             if (_currentWave == null || !_roundActive)
             {
                 SceneController._instance.round = _round;
@@ -76,6 +93,7 @@ namespace Enemies
                 {
                     totalHp += enemy.health;
                 }
+
                 OnWaveCreated?.Invoke(this, totalHp);
                 Spawner.StartRound(_currentWave.Enemies);
                 _enemiesAlive = _currentWave.Enemies.Count;
@@ -96,8 +114,12 @@ namespace Enemies
         {
             _roundActive = false;
             round++;
-            if(_round == winRound){SceneController._instance.GoToWinScene();}
-            Debug.Log("Fin de la ronda. \n" +
+            if (_round == winRound)
+            {
+                SceneController._instance.GoToWinScene();
+            }
+
+            Debug.Log("Fin de la rondaAAAAAAAAAAA. \n" +
                       "round:  " + _round);
         }
     }
