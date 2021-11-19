@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,14 +10,13 @@ namespace Enemies
     /// This class will be the consumer of the Factory pattern and will contain both
     /// the EnemyFactory and the EnemyConfiguation
     /// </summary>
-    public class EnemySpawner : MonoBehaviour
+    public class EnemySpawner:MonoBehaviour
     {
+        
         [SerializeField] private EnemyConfiguration enemyConfiguration;
         private EnemyFactory _enemyFactory;
         public Vector3 SpawnPoint;
-        public Vector3 AirSapwnPoint;
         public float spawnDelay = 2.0f;
-
         private void Awake()
         {
             _enemyFactory = new EnemyFactory(Instantiate(enemyConfiguration));
@@ -40,15 +38,7 @@ namespace Enemies
             foreach (var enemy in enemies)
             {
                 yield return new WaitForSeconds(spawnDelay);
-                if (enemy.Id.Equals("Dragon") || enemy.Id.Equals("Pascual"))
-                {
-                    _enemyFactory.Create(enemy.Id, AirSapwnPoint);
-                }
-                else
-                {
-                    _enemyFactory.Create(enemy.Id, SpawnPoint);
-                }
-
+                _enemyFactory.Create(enemy.Id, SpawnPoint);
                 // Debug.Log("Enemigo creado");
             }
         }

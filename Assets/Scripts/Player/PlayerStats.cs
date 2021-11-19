@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using AutoAttackScripts;
 using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
@@ -9,9 +7,7 @@ public class PlayerStats : MonoBehaviour
 
     public event EventHandler<float> OnGoldChanged;
     public event EventHandler<int> OnLvlChanged;
-    public event EventHandler<float> OnDeathEvent;
-
-    public event EventHandler<float> OnHealthChanged;
+    public event EventHandler<bool> OnDeathEvent;
 
     [SerializeField] private float _gold;
 
@@ -20,17 +16,8 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private int _level = 1;
 
     [SerializeField] private float _health = 10;
-
-    [SerializeField] private float _maxHealth = 100;
-    
-    [SerializeField] private float _respawnTime = 5;
-
-    public AutoShoot Shoot;
     
     private bool _isAlive = true;
-
-    public Animator Animator;
-    
     
 
     public float Damage
@@ -65,13 +52,11 @@ public class PlayerStats : MonoBehaviour
         set
         {
             _health = value;
-            OnHealthChanged?.Invoke(this, _health);
             if (_health <= 0)
             {
                 if (_isAlive)
                 {
-                    OnDeathEvent?.Invoke(this, _respawnTime);
-                    Dead();
+                    OnDeathEvent?.Invoke(this, _isAlive);
                 }
                 _isAlive = false;
             }
@@ -89,51 +74,10 @@ public class PlayerStats : MonoBehaviour
         {
             _instance = this;
         }
-
-        Animator = gameObject.GetComponent<Animator>();
     }
 
-    public void Dead()
-    {
-        GetComponent<nuevoPlayerMovement>().enabled = false;
-        Shoot.StartStopShooting();
-        Animator.SetLayerWeight(Animator.GetLayerIndex("Dead"), 1f);
-        Animator.SetLayerWeight(Animator.GetLayerIndex("Base Layer"), 0f);
-        Animator.SetLayerWeight(Animator.GetLayerIndex("Shooting"), 0f);
-        Animator.SetBool("Dead", true);
-        StartCoroutine(Respawn(_respawnTime));
-    }
-
-    public IEnumerator Respawn(float secs)
-    {
-        yield return new WaitForSeconds(secs);
-        Revive();
-    }
-        
-    [ContextMenu("Revivir papa")]
-    public void Revive()
-    {
-        Animator.SetLayerWeight(Animator.GetLayerIndex("Base Layer"), 1f);
-        Animator.SetBool("Dead", false);
-        GetComponent<nuevoPlayerMovement>().enabled = true;
-        Shoot.StartStopShooting();
-        Health = _maxHealth;
-        _isAlive = true;
-    }
-    
     public bool IsPlayerAlive()
     {
         return _health > 0;
-    }
-
-    public float GetMaxHealth()
-    {
-        return _maxHealth;
-    }
-
-    [ContextMenu("DamagePlayer")]
-    public void DamagePlayer()
-    {
-        Health -= 10;
     }
 }

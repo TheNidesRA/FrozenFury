@@ -130,7 +130,7 @@ public class ComunicacionGridCanvas : MonoBehaviour
             build = Instantiate(placedObjectTypeSO.canvasVisual, Vector3.zero, Quaternion.identity,
                 buildPlaceVisual.transform);
 
-            build.localPosition = new Vector3(0, 0, -150);
+            build.localPosition = new Vector3(0, 0, -60);
             build.localEulerAngles = placedObjectTypeSO.canvasVisual.rotation.eulerAngles;
             SetLayerRecursive(build.gameObject, 5);
             _texto.text = placedObjectTypeSO.name;

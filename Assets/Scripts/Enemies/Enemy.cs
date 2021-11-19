@@ -1,11 +1,14 @@
 using System;
 using System.Collections;
+
 using UnityEngine;
 using UnityEngine.AI;
+
 #if UNITY_EDITOR
 using UnityEditor;
 
 #endif
+
 
 
 namespace Enemies
@@ -54,7 +57,7 @@ namespace Enemies
             {
                 NavMeshAgent.speed = value;
                 _speed = value;
-                 Debug.Log("Velociada cambiaadaa: " + _speed);
+                // Debug.Log("Velociada cambiaadaa: " + _speed);
             }
         }
 
@@ -100,14 +103,18 @@ namespace Enemies
             NavMeshAgent.acceleration = acceleration;
         }
 
-        
+        private void OnEnable()
+        {
+            initSpeed = speed;
+            NavMeshAgent.speed = speed;
+        }
 
         [ContextMenu("calcula distancia")]
         public void CalcDist()
         {
             Debug.Log("La distancia es de " + Vector3.Distance(EnemyGoal.instance.getPosition(), transform.position));
         }
-
+        
         public void UpdateStats(EnemyStats stats)
         {
             health = stats.hp;
@@ -115,7 +122,7 @@ namespace Enemies
             speed = stats.speed;
             armor = stats.armor;
             attackSpeed = stats.atackSpd;
-
+            
             PrintStats();
             Debug.Log("init :_ +" + initSpeed);
             initSpeed = speed; //AUX PARA LOS SLOWS Y SPEEDS
@@ -130,12 +137,8 @@ namespace Enemies
             attackSpeed = _initStats.initAtkSpd;
             baseDamage = _initStats.initBaseDamage;
             gold = _initStats.gold;
-            initSpeed = _initStats.initSpd;
-            initAcceleration = _initStats.initAcceleration;
-            attackRange = _initStats.initattackRange;
-            angleVision = _initStats.initangleVision;
-            radioVision = _initStats.initradioVision;
-            acceleration = _initStats.initAcceleration;
+            initSpeed = speed; //AUX PARA LOS SLOWS Y SPEEDS
+            initAcceleration = acceleration;
         }
 
 
@@ -153,7 +156,6 @@ namespace Enemies
 
         public void OnSlow(float slowDown)
         {
-            Debug.Log("Slowwww");
             if (!afecctedTrap)
             {
                 speed = speed * slowDown;
@@ -211,7 +213,7 @@ namespace Enemies
 
         public void PrintStats()
         {
-            Debug.Log(Id + "\nHP: " + health + " // Dmg: " + damage + " // Spd: " + speed + " // Arm: " + armor +
+            Debug.Log(Id+ "\nHP: " + health + " // Dmg: " + damage + " // Spd: " + speed + " // Arm: " + armor +
                       " // AtkSpd: " + attackSpeed);
         }
 
@@ -233,33 +235,22 @@ namespace Enemies
             yield return new WaitForSeconds(attackSpeed);
             isAttacking = false;
         }
-
-
+        
+        
         void OnDrawGizmosSelected()
         {
+       
             float halfFOV = angleVision / 2.0f;
-            Quaternion leftRayRotation = Quaternion.AngleAxis(-halfFOV, Vector3.up);
-            Quaternion rightRayRotation = Quaternion.AngleAxis(halfFOV, Vector3.up);
+            Quaternion leftRayRotation = Quaternion.AngleAxis( -halfFOV, Vector3.up );
+            Quaternion rightRayRotation = Quaternion.AngleAxis( halfFOV, Vector3.up );
             Vector3 leftRayDirection = leftRayRotation * transform.forward;
             Vector3 rightRayDirection = rightRayRotation * transform.forward;
-            Gizmos.DrawRay(transform.position, leftRayDirection * radioVision);
-            Gizmos.DrawRay(transform.position, rightRayDirection * radioVision);
-
-            if (NavMeshAgent.hasPath)
-            {
-                for (int i = 0; i < NavMeshAgent.path.corners.Length-1 ; i++)
-                {
-                    Handles.color=Color.red;
-                    Handles.DrawLine(NavMeshAgent.path.corners[i],NavMeshAgent.path.corners[i+1]);
-                }
-            }
-            
-            
+            Gizmos.DrawRay( transform.position, leftRayDirection * radioVision );
+            Gizmos.DrawRay( transform.position, rightRayDirection * radioVision );
             // Gizmos.DrawSphere(transform.position,AttackRange);
         }
-
-
-
+        
+        
         public static float GetPathRemainingDistance(NavMeshAgent navMeshAgent)
         {
             if (navMeshAgent.pathPending ||
@@ -275,10 +266,14 @@ namespace Enemies
 
             return distance;
         }
+        
+        
+        
+        
     }
-
-
-#if UNITY_EDITOR
+    
+    
+    #if UNITY_EDITOR
     [CustomEditor(typeof(Enemy))]
     class EnemyGolemEditor : Editor
     {
@@ -311,33 +306,39 @@ namespace Enemies
             //     EditorGUILayout.LabelField("Arbol asd?: " + script.tr.tree.rootNode.guid);
             //     //script.tr.tree.nodes.Find(n => n.guid ==script.tr.tree.)
             // }
-
-
-            Handles.color = Color.white;
-            Handles.DrawWireArc(script.transform.position, Vector3.up, Vector3.forward, 360, script.radioVision);
-
-            Vector3 viewAngle01 = DirectionFromAngle(script.transform.eulerAngles.y, -script.angleVision / 2);
-            Vector3 viewAngle02 = DirectionFromAngle(script.transform.eulerAngles.y, script.angleVision / 2);
-
-            Handles.color = Color.yellow;
-            Handles.DrawLine(script.transform.position, script.transform.position + viewAngle01 * script.radioVision);
-            Handles.DrawLine(script.transform.position, script.transform.position + viewAngle02 * script.radioVision);
-
-            if (script.actionTarget != null)
-            {
-                Handles.color = Color.green;
-                Handles.DrawLine(script.transform.position, script.actionTarget.transform.position);
-            }
+            
+            
+             Handles.color = Color.white;
+                    Handles.DrawWireArc(script.transform.position, Vector3.up, Vector3.forward, 360, script.radioVision);
+            
+                    Vector3 viewAngle01 = DirectionFromAngle(script.transform.eulerAngles.y, -script.angleVision / 2);
+                    Vector3 viewAngle02 = DirectionFromAngle(script.transform.eulerAngles.y, script.angleVision / 2);
+            
+                    Handles.color = Color.yellow;
+                    Handles.DrawLine(script.transform.position, script.transform.position + viewAngle01 * script.radioVision);
+                    Handles.DrawLine(script.transform.position, script.transform.position + viewAngle02 * script.radioVision);
+            
+                    if (script.actionTarget!=null)
+                    {
+                        Handles.color = Color.green;
+                        Handles.DrawLine(script.transform.position, script.actionTarget.transform.position);
+                    }
+            
+            
+            
+            
+            
         }
 
 
+        
         private Vector3 DirectionFromAngle(float eulerY, float angleInDegrees)
         {
             angleInDegrees += eulerY;
 
             return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
         }
-
+        
         public float GetPathRemainingDistance(NavMeshAgent navMeshAgent)
         {
             if (navMeshAgent.pathPending ||
@@ -356,3 +357,8 @@ namespace Enemies
     }
 #endif
 }
+    
+    
+    
+
+

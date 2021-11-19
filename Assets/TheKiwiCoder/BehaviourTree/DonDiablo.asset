@@ -63,26 +63,6 @@ MonoBehaviour:
   children:
   - {fileID: 5771109691029141277}
   - {fileID: -5652257187477542752}
---- !u!114 &-7728701121300124541
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74c43d45e86a405c9ddc18cd0032e4ab, type: 3}
-  m_Name: EnemyCheckPlayerAlive
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: 79a492146622cbf4695abe07684023e2
-  position: {x: 0, y: 0}
-  blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
-  description: 
-  drawGizmos: 0
 --- !u!114 &-7047509288948723775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,7 +216,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: a2d8185f8bcecd342a30d9d95ac83423
-  position: {x: -2072, y: 758.3999}
+  position: {x: -1922.4, y: 758.4}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
   description: 
@@ -343,7 +323,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: d5a531c0a7a166b41ac8b9a373c821f3
-  position: {x: -1892.8, y: 758.3999}
+  position: {x: -1743.2001, y: 758.4}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
   description: 
@@ -437,7 +417,6 @@ MonoBehaviour:
   - {fileID: 6137404799109691610}
   - {fileID: 2561756674308108690}
   - {fileID: -5652257187477542752}
-  - {fileID: -7728701121300124541}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &847186591144087801
@@ -543,7 +522,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: e62cc78cf7dcffe4ca02b9d998077c23
-  position: {x: -1318.4972, y: 1186.4}
+  position: {x: -1428, y: 1186.4}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
   description: 

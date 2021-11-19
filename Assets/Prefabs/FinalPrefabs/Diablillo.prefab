@@ -823,16 +823,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: Diablillo
-  _initStats: {fileID: 11400000, guid: d35925fb47f1fb24ba70eafa65bfc0bb, type: 2}
+  _initStats: {fileID: 11400000, guid: 56e096d9efdee324bacd3a341fb1c76c, type: 2}
   NavMeshAgent: {fileID: 6987965381564869950}
-  health: 48.052113
-  damage: 16.280563
-  _speed: 25
-  _acceleration: 12
+  health: 75
+  damage: 15
+  _speed: 80
+  _acceleration: 6
   armor: 1
   attackSpeed: 1
   gold: 20
-  attackRange: 10
+  attackRange: 3
   baseDamage: 1
   invencibilidadTrampa: 0
   tiempoInvencibilidad: 5
@@ -840,8 +840,8 @@ MonoBehaviour:
   targetPosition: {x: 0, y: 0, z: 0}
   actionTarget: {fileID: 0}
   auxActionTarget: {fileID: 0}
-  angleVision: 220
-  radioVision: 70
+  angleVision: 0
+  radioVision: 0
   NODOACTUAL: 
   s: 0
 --- !u!195 &6987965381564869950
@@ -854,10 +854,10 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 25
-  m_Acceleration: 12
+  m_Speed: 80
+  m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 3000
+  m_AngularSpeed: 120
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1

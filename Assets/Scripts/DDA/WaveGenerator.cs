@@ -62,7 +62,7 @@ namespace Enemies
                         }
                         break;
                     
-                    case "Boomfing":
+                    case "Boomffing":
                         for (int j = 0; j < numBoomfins; j++)
                         {
                             Enemy enemyToAdd = _enemies[i];

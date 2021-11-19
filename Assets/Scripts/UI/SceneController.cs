@@ -30,11 +30,6 @@ public class SceneController : MonoBehaviour
     {
         SceneManager.LoadScene("WinScreen");
     }
-    
-    public void GoToMainMenu()
-    {
-        SceneManager.LoadScene("MainMenuScene");
-    }
 
     public void GoToGameScene()
     {
