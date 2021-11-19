@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.39147684, g: 0.33730993, b: 0.32296032, a: 1}
+  m_IndirectSpecularColor: {r: 0.3914782, g: 0.33731088, b: 0.32296085, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2793,7 +2793,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 450.00024, y: 0}
+  m_AnchoredPosition: {x: 450.00018, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!1 &258451091
@@ -18575,6 +18575,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 164961917958392610, guid: cab6d7c4a4db7254fbce28a0f9ce6c51, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 164961917958392610, guid: cab6d7c4a4db7254fbce28a0f9ce6c51, type: 3}
       propertyPath: moveThreshold
       value: 1
       objectReference: {fileID: 0}
@@ -22393,6 +22397,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 832964684}
     - target: {fileID: 7404674682971163780, guid: 3b8c832514c06074e9eb8800dd8d29a5, type: 3}
+      propertyPath: work
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7404674682971163780, guid: 3b8c832514c06074e9eb8800dd8d29a5, type: 3}
       propertyPath: joystickDynamic
       value: 
       objectReference: {fileID: 1422452560}
@@ -24466,7 +24474,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 450.00024, y: 0}
+  m_AnchoredPosition: {x: 450.00018, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!1 &2097101921

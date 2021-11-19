@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using GridSystem;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -20,6 +21,8 @@ public class nuevoPlayerMovement : MonoBehaviour
     private float gravity;
     private int rotationSpeed;
     public Joystick joystickDynamic;
+
+    public bool work = true;
 
     public static bool controlMovimiento;
     // Start is called before the first frame update
@@ -46,6 +49,18 @@ public class nuevoPlayerMovement : MonoBehaviour
      */
     void Start()
     {
+        GridBuildingSystem.Instance.OnSelectedChanged += (a, b) =>
+        {
+            if (GridBuildingSystem.Instance.buildingSo != null)
+            {
+                work = false;
+            }
+            
+            
+            Debug.Log("HOLLAAA");
+            
+        };
+        GridBuildingSystem.Instance.OnObjectPlaced += (a,b)=>{ work = true; } ;
 
     }
 
@@ -61,7 +76,12 @@ public class nuevoPlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
+        if (!work)
+        {
+            inputMovement = new Vector2(0, 0);
+            return;
+        }
 
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
         {
