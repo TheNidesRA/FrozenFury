@@ -19,7 +19,6 @@ public class nuevoPlayerMovement : MonoBehaviour
     public float moveSpeed;
     private float gravity;
     private int rotationSpeed;
-    public Joystick joystickDynamic;
 
     public static bool controlMovimiento;
     // Start is called before the first frame update
@@ -61,19 +60,8 @@ public class nuevoPlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
-        {
-            inputMovement = inputPlayer.PlayerMain.Movement.ReadValue<Vector2>();
-        }
-        else
-        {
-            inputMovement = new Vector2(joystickDynamic.Horizontal, joystickDynamic.Vertical);
-        }
-
-        
-        
+        //inputPlayer.PlayerMain.Movement.performed += Movement_performed;
+       inputMovement = inputPlayer.PlayerMain.Movement.ReadValue<Vector2>();
 
 
     }
