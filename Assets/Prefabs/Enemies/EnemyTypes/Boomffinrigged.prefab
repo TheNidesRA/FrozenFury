@@ -65,14 +65,14 @@ MonoBehaviour:
   id: Boomfing
   _initStats: {fileID: 11400000, guid: c9a9df8c9c8a6e34b989aeca94cdb3a1, type: 2}
   NavMeshAgent: {fileID: 2347627266026304246}
-  health: 10.559999
-  damage: 2.96
-  _speed: 1
-  _acceleration: 20
+  health: 23.208595
+  damage: 175.44298
+  _speed: 40
+  _acceleration: 25
   armor: 1
-  attackSpeed: 1.512
-  gold: 1
-  attackRange: 0
+  attackSpeed: 1
+  gold: 10
+  attackRange: 10
   baseDamage: 1
   invencibilidadTrampa: 0
   tiempoInvencibilidad: 5
@@ -80,8 +80,8 @@ MonoBehaviour:
   targetPosition: {x: 0, y: 0, z: 0}
   actionTarget: {fileID: 0}
   auxActionTarget: {fileID: 0}
-  angleVision: 0
-  radioVision: 0
+  angleVision: 80
+  radioVision: 50
   NODOACTUAL: 
 --- !u!114 &2347627266026304247
 MonoBehaviour:
@@ -106,8 +106,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 1
-  m_Acceleration: 8
+  m_Speed: 40
+  m_Acceleration: 25
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
