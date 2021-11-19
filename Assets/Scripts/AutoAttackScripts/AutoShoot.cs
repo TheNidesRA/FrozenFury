@@ -142,9 +142,11 @@ namespace AutoAttackScripts
             isPlayer = transform.parent.gameObject.CompareTag("Player");
             if (isPlayer)
             {
+                
                 characterAnimator = GetComponentInParent<Animator>();
                 characterAnimator.SetLayerWeight(characterAnimator.GetLayerIndex("Shooting"),
                     0.0f); //peso de la capa de disparo al inicio
+                //characterAnimator.SetFloat("speedMult", 0.5f);
             }
 
             quadrant = new bool[2];

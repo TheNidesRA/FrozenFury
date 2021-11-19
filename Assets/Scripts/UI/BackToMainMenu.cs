@@ -14,6 +14,6 @@ public class BackToMainMenu : MonoBehaviour
     IEnumerator CountDouwn()
     {
         yield return new WaitForSeconds(timerSecs);
-        SceneManager.LoadScene("Layout");
+        SceneManager.LoadScene("MainMenuScene");
     }
 }
