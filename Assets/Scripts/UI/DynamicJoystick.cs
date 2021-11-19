@@ -17,10 +17,11 @@ public class DynamicJoystick : Joystick
             if (GridBuildingSystem.Instance.buildingSo != null)
             {
                 work = false;
+                background.gameObject.SetActive(false);
             }
             
             
-            Debug.Log("HOLLAAA");
+           
             
         };
        

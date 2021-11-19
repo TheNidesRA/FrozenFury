@@ -28,6 +28,7 @@ public class nuevoPlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
+        work = true;
         inputPlayer = new InputPlayer();
         _characterController = GetComponent<CharacterController>();
         v_movement_z = v_movement.z;
