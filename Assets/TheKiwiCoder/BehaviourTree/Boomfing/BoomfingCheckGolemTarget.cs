@@ -24,15 +24,19 @@ public class BoomfingCheckGolemTarget : ActionNode
         {
             if (golem.TryGetComponent(out EnemyGolem enemyGolem))
             {
-                if (enemyGolem.actionTarget.TryGetComponent(out PlacedBuild build))
+                if (enemyGolem.actionTarget != null)
                 {
-                    if (build != null)
+                    if (enemyGolem.actionTarget.TryGetComponent(out PlacedBuild build))
                     {
-                        context.enemy.actionTarget = build.gameObject;
-                        Debug.Log("Vamos a ayudar al pana golem: "+ build.name);
-                        return State.Success;
+                        if (build != null)
+                        {
+                            context.enemy.actionTarget = build.gameObject;
+                            Debug.Log("Vamos a ayudar al pana golem: "+ build.name);
+                            return State.Success;
+                        }
                     }
                 }
+                
             }
         }
         Debug.Log("Fracaso no hay golem con target");

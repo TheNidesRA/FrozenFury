@@ -170,7 +170,7 @@ namespace GridSystem
         {
             if (value)
             {
-                _currentPlaceBuild = null;
+             
                 _buildingSO = null;
                 buildMenu = false;
                 enableBuildMove = false;
@@ -179,7 +179,7 @@ namespace GridSystem
             }
             else
             {
-                buildMenu = true;
+                buildMenu = false;
                 enableBuildMove = true;
                 _enableBuild = true;
                 RefreshSelectedObjectType();
