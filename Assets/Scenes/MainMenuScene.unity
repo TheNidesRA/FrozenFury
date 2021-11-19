@@ -10961,6 +10961,18 @@ MonoBehaviour:
           m_StringArgument: Menu Principal
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1744362537}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Partida
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1553089453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13165,6 +13177,100 @@ MonoBehaviour:
   - name: Boton Jugar Helado
     output: {fileID: 24300002, guid: b0ef6460782205b439bbf0cda037b862, type: 2}
     clip: {fileID: 8300000, guid: 33b5d9189246ec6429efc60852bee366, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Partida
+    output: {fileID: 24300002, guid: d9061f2ab73a6dc44a37388daf7be5b8, type: 2}
+    clip: {fileID: 8300000, guid: 0cc4d48376ad09143ba7af130eff8b08, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Destruir Estructura
+    output: {fileID: 24300002, guid: b0ef6460782205b439bbf0cda037b862, type: 2}
+    clip: {fileID: 8300000, guid: 2b12072ae08817143896f61a55f05d60, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Explosion Furgoneta
+    output: {fileID: 24300002, guid: b0ef6460782205b439bbf0cda037b862, type: 2}
+    clip: {fileID: 8300000, guid: 4673c5e49ef723849b466ee6badf529b, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Golpe Furgoneta
+    output: {fileID: 24300002, guid: b0ef6460782205b439bbf0cda037b862, type: 2}
+    clip: {fileID: 8300000, guid: 2de88f1ea8727f64496767ba74721306, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Pincho Cucurucho
+    output: {fileID: 24300002, guid: b0ef6460782205b439bbf0cda037b862, type: 2}
+    clip: {fileID: 8300000, guid: 2ef1781b6af261e4597e358b418f7c20, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  randomHits:
+  - name: Hit1
+    output: {fileID: 24300002, guid: b0ef6460782205b439bbf0cda037b862, type: 2}
+    clip: {fileID: 8300000, guid: 74e783bdc9b6d2244a7da7f13b2caa51, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Hit2
+    output: {fileID: 24300002, guid: b0ef6460782205b439bbf0cda037b862, type: 2}
+    clip: {fileID: 8300000, guid: e200ff2122d49d241ae3bdc6629abdc3, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Hit3
+    output: {fileID: 24300002, guid: b0ef6460782205b439bbf0cda037b862, type: 2}
+    clip: {fileID: 8300000, guid: 28e5d0b88b0bcfe49b7ab6e83ed801c8, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Hit4
+    output: {fileID: 24300002, guid: b0ef6460782205b439bbf0cda037b862, type: 2}
+    clip: {fileID: 8300000, guid: 50db19aa13ff9f14394513c6094c8727, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  randomConstruction:
+  - name: Construccion1
+    output: {fileID: 24300002, guid: b0ef6460782205b439bbf0cda037b862, type: 2}
+    clip: {fileID: 8300000, guid: 92552aacc2eadca4f828cd837832076c, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Construccion2
+    output: {fileID: 24300002, guid: b0ef6460782205b439bbf0cda037b862, type: 2}
+    clip: {fileID: 8300000, guid: 92552aacc2eadca4f828cd837832076c, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  randomDeath:
+  - name: Muerte1
+    output: {fileID: 24300002, guid: b0ef6460782205b439bbf0cda037b862, type: 2}
+    clip: {fileID: 8300000, guid: 1462ccd2032b2a94788124943ad9070d, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Muerte2
+    output: {fileID: 24300002, guid: b0ef6460782205b439bbf0cda037b862, type: 2}
+    clip: {fileID: 8300000, guid: 37ba6f9d2f9443045a18d12504cc341e, type: 3}
     volume: 0.3
     pitch: 1
     loop: 0
