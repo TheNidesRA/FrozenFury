@@ -160,7 +160,7 @@ public class ComunicacionGridCanvas : MonoBehaviour
             tween = LeanTween.move(_rectTransformEditBuild, outsidePosition, transitionTime).setEaseOutCubic()
                 .setOnComplete(() => { EditBuild.SetActive(false); });
            // BuildButton.SetActive(true);
-         
+         if(GridBuildingSystem.Instance.buildMenu)
             BuildButtonActions.returnInside();
         }
     }
@@ -192,15 +192,21 @@ public class ComunicacionGridCanvas : MonoBehaviour
         {
             tween = LeanTween.move(_rectTransformBuildUpdate, outsidePosition, transitionTime).setEaseOutCubic()
                 .setOnComplete(() => { _buildUpdateConteiner.SetActive(false); });
-             BuildButton.SetActive(true);
+             //BuildButton.SetActive(true);
+             if(GridBuildingSystem.Instance.buildMenu)
             BuildButtonActions.returnInside();
         }
     }
+    
 
 
     private void RoundStarted()
     {
-        if (EditBuild.activeSelf) return;
+        if (EditBuild.activeSelf)
+        {
+            Debug.Log("Hello");
+            return;
+        }
         BuildButtonActions.outBuildPosition();
         // BuildButton.SetActive(false);
         // EditBuild.SetActive(false);

@@ -59,6 +59,10 @@ public class SideBarButtonActions : MonoBehaviour
         }
     }
 
+    public void setOutOfSceen()
+    {
+        rect.anchoredPosition = new Vector2(100, 0);
+    }
 
     public void outBuildPosition()
     {
