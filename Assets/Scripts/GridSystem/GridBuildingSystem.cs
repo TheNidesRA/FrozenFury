@@ -180,7 +180,7 @@ namespace GridSystem
             else
             {
                 buildMenu = true;
-                enableBuildMove = false;
+                enableBuildMove = true;
                 _enableBuild = true;
                 RefreshSelectedObjectType();
             }
