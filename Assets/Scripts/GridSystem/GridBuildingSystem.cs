@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Enemies;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
@@ -50,6 +51,10 @@ namespace GridSystem
 
         private PlacedBuild _currentPlaceBuild;
         private Vector2Int _ActualBuildPosition;
+
+
+        private bool _enableBuild = true;
+
 
         public int gridWidth = 15;
         public int gridHeight = 9;
@@ -133,6 +138,10 @@ namespace GridSystem
             }
         }
 
+        private void Start()
+        {
+            WaveController._instance.OnRoundActive += Instance_OnRoundActive;
+        }
 
         private void RemoveBuild(InputAction.CallbackContext callbackContext)
         {
@@ -150,9 +159,30 @@ namespace GridSystem
                 {
                     _grid.GetObjectValue(buildPosition.x, buildPosition.y).ClearPlacedBuild();
                 }
-                
+
                 BuildStats stats = new BuildStats(placedBuild.level, placedBuild.BuildingSo.type);
                 WorldController.Instance.RemoveStruct(stats);
+            }
+        }
+
+
+        private void Instance_OnRoundActive(object sender, bool value)
+        {
+            if (value)
+            {
+                _currentPlaceBuild = null;
+                _buildingSO = null;
+                buildMenu = false;
+                enableBuildMove = false;
+                _enableBuild = false;
+                RefreshSelectedObjectType();
+            }
+            else
+            {
+                buildMenu = true;
+                enableBuildMove = false;
+                _enableBuild = true;
+                RefreshSelectedObjectType();
             }
         }
 
@@ -171,7 +201,7 @@ namespace GridSystem
                 {
                     _grid.GetObjectValue(buildPosition.x, buildPosition.y).ClearPlacedBuild();
                 }
-                
+
                 BuildStats stats = new BuildStats(build.level, build.BuildingSo.type);
                 WorldController.Instance.RemoveStruct(stats);
             }
@@ -187,6 +217,8 @@ namespace GridSystem
         {
             //Debug.Log("Bot: "+callbackContext.control.displayName);
 
+            if (!_enableBuild) return;
+
             int i = int.Parse(callbackContext.control.displayName);
             i = i - 1;
             BuildingSO targetBuild = _buildingsList[i];
@@ -200,6 +232,8 @@ namespace GridSystem
 
         public void changeBuild(int build)
         {
+            if (!_enableBuild) return;
+            
             BuildingSO targetBuild = _buildingsList[build];
             if (PlayerStats._instance.gold >= targetBuild.goldCost)
             {
@@ -394,7 +428,7 @@ namespace GridSystem
 
             // placedBuild.BuildingSo.type.
             BuildStats stats = new BuildStats(placedBuild.level, placedBuild.BuildingSo.type);
-            
+
             WorldController.Instance.AddStruct(stats);
             //callback
             OnObjectPlaced?.Invoke(this, EventArgs.Empty);
@@ -456,7 +490,7 @@ namespace GridSystem
                                 (g3.GetPlaceBuild().dir != BuildingSO.Dir.Down &&
                                  g3.GetPlaceBuild().dir != BuildingSO.Dir.Up))
                             {
-                            //    Debug.Log("EHHHH MURITOO Esquina NOOOO construccion");
+                                //    Debug.Log("EHHHH MURITOO Esquina NOOOO construccion");
                             }
                         }
                     }

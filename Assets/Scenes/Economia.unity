@@ -1906,7 +1906,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 204964344}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -17739,7 +17739,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1510668790}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -18995,6 +18995,7 @@ MonoBehaviour:
   easeType: 38
   startPosition: 0
   endPosition: -590
+  outPosition: 100
   rect: {fileID: 2095842784}
   arrowHead: {fileID: 547548426}
 --- !u!114 &1606638717
@@ -23704,7 +23705,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1991903735}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -26106,7 +26107,9 @@ MonoBehaviour:
   _texto: {fileID: 2120750473}
   insidePosition: {x: -29, y: 0, z: 0}
   outsidePosition: {x: 450, y: 0, z: 0}
-  transitionTime: 0
+  outOfCanvasPosition: {x: 100, y: 0, z: 0}
+  transitionTime: 0.5
+  BuildButtonActions: {fileID: 4187756188834162473}
   _buildUpdateText: {fileID: 1924692532}
   _buildUpdateObjectPlace: {fileID: 1249421651}
   _buildUpdateConteiner: {fileID: 254824237}
@@ -26401,6 +26404,7 @@ MonoBehaviour:
   easeType: 38
   startPosition: 0
   endPosition: -505
+  outPosition: 100
   rect: {fileID: 4187756188512522819}
   arrowHead: {fileID: 4187756188834162474}
 --- !u!224 &4187756188834162474
