@@ -10,8 +10,8 @@ public class ButtonWithTextAnimation : MonoBehaviour,IPointerEnterHandler, IPoin
 {
 
     private RectTransform _rcTransform;
-    public float increase;
-    public float time;
+    public float increase=1.2f;
+    public float time=0.3f;
     public GameObject text;
     public string description;
 

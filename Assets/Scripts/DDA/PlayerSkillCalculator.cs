@@ -24,8 +24,8 @@ namespace Enemies
         public static PlayerSkillCalculator Instance;
         private void Awake()
         {
-            rangeMin = (playerLvl + maxStructLvl + roundKills) / (round * (1 + (roundDeaths * 0.7f)));
-            rangeMax = (maxPlayerLvl + maxValMaxStructLvl + maxRoundKills) / (maxRound * (1 + (maxRoundDeaths * 0.7f)));
+            rangeMin = (playerLvl + maxStructLvl + roundKills) / (maxRound * (1 + (maxRoundDeaths * 0.7f)));
+            rangeMax = (maxPlayerLvl + maxValMaxStructLvl + maxRoundKills) / (round * (1 + (roundDeaths * 0.7f)));
             if (Instance != null && Instance != this)
             {
                 Destroy(gameObject);
@@ -53,6 +53,7 @@ namespace Enemies
             //This formula converts the skill value into a range between 0 and 10
             float convertedSkill = (skill - rangeMin) * 10 / (rangeMax - rangeMin);
             
+            Debug.Log("PlayerSkill = " + convertedSkill);
             return convertedSkill;
         }
 
