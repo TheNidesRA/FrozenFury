@@ -156,7 +156,7 @@ namespace AutoAttackScripts
         private void Update()
         {
             PlayerStats._instance.Damage = DamagePerBullet;
-            Debug.Log("Shooting: " + Shooting);
+//            Debug.Log("Shooting: " + Shooting);
         }
 
         private void OnCollisionExit(Collision other)

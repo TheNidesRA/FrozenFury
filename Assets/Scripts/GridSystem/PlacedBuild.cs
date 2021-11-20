@@ -67,6 +67,11 @@ public class PlacedBuild : MonoBehaviour
         set { _damage = value; }
     }
 
+    public float attackSpeed
+    {
+        get => _attackSpeed;
+    }
+
     public float health
     {
         get { return _health; }
