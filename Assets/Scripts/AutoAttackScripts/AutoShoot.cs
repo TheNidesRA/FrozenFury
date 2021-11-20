@@ -33,7 +33,8 @@ namespace AutoAttackScripts
         /// </summary>
         private float localDistance = 0;
 
-        [Header("Change this to set a new Damage to the player")] [SerializeField]
+        [Header("Change this to set a new Damage to the player")]
+        [SerializeField]
         private float _damagePerBullet;
 
         private Vector3 vectorAb;
@@ -148,7 +149,7 @@ namespace AutoAttackScripts
                     0.0f); //peso de la capa de disparo al inicio
                 //characterAnimator.SetFloat("speedMult", 0.5f);
             }
-            
+
 
             quadrant = new bool[2];
         }
@@ -180,7 +181,8 @@ namespace AutoAttackScripts
         {
             //Check what object is making the collision
             if (!other.gameObject.CompareTag($"Enemy")) return;
-            _closestEnemies.Add(other.gameObject,
+            if (!_closestEnemies.ContainsKey(other.gameObject))
+                _closestEnemies.Add(other.gameObject,
                 Vector3.Distance(other.gameObject.transform.position, transform.position));
             _enemiesInRange.Add(other.gameObject);
             if (!_enemiesHealth.ContainsKey(other.gameObject))
@@ -241,7 +243,7 @@ namespace AutoAttackScripts
                         throw new ArgumentOutOfRangeException();
                 }
 
-                
+
 
                 //we wait timeBetweenShooting amount of time
                 yield return new WaitForSeconds(timeBetweenShooting);
@@ -447,6 +449,8 @@ namespace AutoAttackScripts
         protected void ClearEnemies()
         {
             _closestEnemies.Clear();
+            _enemiesHealth.Clear();
+            _closestEnemies.Clear();
         }
 
         private void ShootingNormal(GameObject enemy)
@@ -463,7 +467,7 @@ namespace AutoAttackScripts
 
             //add forces to bullet
             currentBullet.GetComponent<Rigidbody>().AddForce(directionShoot.normalized * shootForce, ForceMode.Impulse);
-            
+
         }
 
         private void ShootingBurst(GameObject enemy)
