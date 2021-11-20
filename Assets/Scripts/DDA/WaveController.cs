@@ -80,6 +80,10 @@ namespace Enemies
                 Spawner.StartRound(_currentWave.Enemies);
                 _enemiesAlive = _currentWave.Enemies.Count;
                 _roundActive = true;
+                
+                //We reset the PlayerSkillCalculator round variables
+                PlayerSkillCalculator.Instance.ResetVlues();
+
             }
         }
 

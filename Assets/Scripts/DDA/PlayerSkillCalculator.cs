@@ -62,5 +62,10 @@ namespace Enemies
             roundKills = 0;
             roundDeaths = 0;
         }
+
+        public void UpdateRoundKills()
+        {
+            roundKills++;
+        }
     }
 }
