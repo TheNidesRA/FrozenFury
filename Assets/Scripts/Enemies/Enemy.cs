@@ -245,14 +245,14 @@ namespace Enemies
             Gizmos.DrawRay(transform.position, leftRayDirection * radioVision);
             Gizmos.DrawRay(transform.position, rightRayDirection * radioVision);
 
-            if (NavMeshAgent.hasPath)
+           /* if (NavMeshAgent.hasPath)
             {
                 for (int i = 0; i < NavMeshAgent.path.corners.Length-1 ; i++)
                 {
                     Handles.color=Color.red;
                     Handles.DrawLine(NavMeshAgent.path.corners[i],NavMeshAgent.path.corners[i+1]);
                 }
-            }
+            }*/
             
             
             // Gizmos.DrawSphere(transform.position,AttackRange);
