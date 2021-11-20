@@ -8,6 +8,9 @@ public class CharacterSelected : MonoBehaviour
     public GameObject torrine;
     public GameObject coneman;
 
+    public GameObject[] characters;
+
+
     public bool heladeroSelected =  true;
     public bool torrineSelected = false;
     public bool conemanSelected = false;
@@ -15,10 +18,28 @@ public class CharacterSelected : MonoBehaviour
 
     void Start()
     {
-        heladero.SetActive(heladeroSelected);
-        torrine.SetActive(torrineSelected);
-        coneman.SetActive(conemanSelected);
-        PlayerPrefs.SetInt("selectedCharacter", 0);
+        /* characters[0].SetActive(false);
+         characters[1].SetActive(false);
+         characters[2].SetActive(false);*/
+        
+        if (PlayerPrefs.GetInt("selectedCharacter") >= 0 && PlayerPrefs.GetInt("selectedCharacter") <= 2)
+        {
+            int character = PlayerPrefs.GetInt("selectedCharacter");
+            characters[character].SetActive(true);
+            Debug.Log("HOLA");
+            
+        }
+       /* else
+        {
+            Debug.Log("ELSE");
+            heladero.SetActive(heladeroSelected);
+            torrine.SetActive(torrineSelected);
+            coneman.SetActive(conemanSelected);
+            PlayerPrefs.SetInt("selectedCharacter", 0);
+        }*/
+       
+
+        
 
     }
     public void OnSelectedBefore()
