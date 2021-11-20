@@ -16,6 +16,8 @@ namespace AutoAttackScripts
         {
             Physics.gravity = Vector3.up * gravity;
             currentBullet.GetComponent<Rigidbody>().useGravity = true;
+            Vector3 data = CalculateLaunchData(currentEnemy).initialVelocity;
+            if (data.x is Single.NaN) { return; }
             currentBullet.GetComponent<Rigidbody>().velocity = CalculateLaunchData(currentEnemy).initialVelocity;
             AudioManager.Instance?.PlayRandomHitSound();
                  
