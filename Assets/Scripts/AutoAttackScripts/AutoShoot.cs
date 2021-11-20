@@ -416,7 +416,7 @@ namespace AutoAttackScripts
             }
             else
             {
-                characterAnimator.SetBool("Shoot", false);
+                //characterAnimator.SetBool("Shoot", false);
             }
         }
 
