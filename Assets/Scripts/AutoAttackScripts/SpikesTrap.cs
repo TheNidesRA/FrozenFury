@@ -7,7 +7,6 @@ using UnityEngine;
 public class SpikesTrap : PlacedBuild
 {
     public bool invencibilidadTrampa = false;
-    public float tiempoInv = 1f;
 
 
     [Range(0f, 1f)] public float slowDown = 0.2f;
@@ -43,7 +42,7 @@ public class SpikesTrap : PlacedBuild
     {
         if (!invencibilidadTrampa && _health > 0)
         {
-            _health = _health - daño;
+            _health = _health - 1;
             StartCoroutine(OnEnableTrap());
         }
 
@@ -57,7 +56,7 @@ public class SpikesTrap : PlacedBuild
     public IEnumerator OnEnableTrap()
     {
         invencibilidadTrampa = true;
-        yield return new WaitForSeconds(tiempoInv);
+        yield return new WaitForSeconds(1/attackSpeed);
         invencibilidadTrampa = false;
     }
 
