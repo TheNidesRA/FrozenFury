@@ -27,7 +27,7 @@ public class EnemyBunnyHitsPlayer : ActionNode
             Debug.Log("Se entro");
             bullet.GetComponent<ChasePlayerBullet>().bulletDamage = context.enemy.damage;
             var bulletBunny = Instantiate(bullet, context.transform.position, Quaternion.identity);
-            Destroy(bulletBunny, 4);
+            Destroy(bulletBunny, 2);
         }
 
         return State.Success;

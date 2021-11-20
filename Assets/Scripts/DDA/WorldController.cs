@@ -213,9 +213,9 @@ public class WorldController : MonoBehaviour
         _weights[1] += distCorrection;
         for (int i = 0; i < _weights.Length; i++)
         {
-            if (i != 3 && i != 1)
+            if (i != 3 && i != 1 && i != 4)
             {
-                _weights[i] -= distCorrection / 3;
+                _weights[i] -= distCorrection / 2;
                 CheckIfNegative(ref _weights[i], ref _weights[1]);
             }
         }
@@ -229,9 +229,9 @@ public class WorldController : MonoBehaviour
         }
         for (int i = 0; i < _weights.Length; i++)
         {
-            if (i != 3 && i != 1)
+            if (i != 3 && i != 1 && i != 4)
             {
-                _weights[i] -= structCorrection / 3;
+                _weights[i] -= structCorrection / 2;
                 CheckIfNegative(ref _weights[i], ref _weights[1]);
             }
         }
@@ -243,6 +243,12 @@ public class WorldController : MonoBehaviour
         _weights[2] -= streakCorrection / 2;
         CheckIfNegative(ref _weights[2], ref _weights[4]);
 
+
+        if (_weights[1] > 0.35f)
+        {
+            _weights[3] = _weights[1] - 0.35f;
+            _weights[1] = 0.35f;
+        }
         if (round < 5)
         {
             _weights[0] += _weights[2];
