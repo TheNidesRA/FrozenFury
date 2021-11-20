@@ -8,8 +8,8 @@ public class CharacterSelected : MonoBehaviour
     public GameObject torrine;
     public GameObject coneman;
 
-    public  bool heladeroSelected =  true;
-    public  bool torrineSelected = false;
+    public bool heladeroSelected =  true;
+    public bool torrineSelected = false;
     public bool conemanSelected = false;
 
 
@@ -18,9 +18,9 @@ public class CharacterSelected : MonoBehaviour
         heladero.SetActive(heladeroSelected);
         torrine.SetActive(torrineSelected);
         coneman.SetActive(conemanSelected);
+        PlayerPrefs.SetInt("selectedCharacter", 0);
 
     }
-
     public void OnSelectedBefore()
     {
         heladero.SetActive(heladeroSelected);
@@ -37,6 +37,9 @@ public class CharacterSelected : MonoBehaviour
         heladero.SetActive(heladeroSelected);
         torrine.SetActive(torrineSelected);
         coneman.SetActive(conemanSelected);
+
+        PlayerPrefs.SetInt("selectedCharacter", 0);
+
     }
     public void OnClickSelectedTorrine()
     {
@@ -47,6 +50,8 @@ public class CharacterSelected : MonoBehaviour
         heladero.SetActive(heladeroSelected);
         torrine.SetActive(torrineSelected);
         coneman.SetActive(conemanSelected);
+
+        PlayerPrefs.SetInt("selectedCharacter", 1);
     }
     public void OnClickSelectedConeman()
     {
@@ -57,5 +62,7 @@ public class CharacterSelected : MonoBehaviour
         heladero.SetActive(heladeroSelected);
         torrine.SetActive(torrineSelected);
         coneman.SetActive(conemanSelected);
+
+        PlayerPrefs.SetInt("selectedCharacter", 2);
     }
 }
