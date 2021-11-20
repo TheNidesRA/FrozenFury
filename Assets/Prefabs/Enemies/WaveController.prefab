@@ -47,8 +47,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Spawner: {fileID: 0}
   minEnemies: 10
+  spwnPts: 0
   winRound: 2
-  levelDificulty: 10
+  spawnProgression: 0.7
   enemiconfig: {fileID: 11400000, guid: abadacf5ee166c5449de88ce6a81cc7b, type: 2}
 --- !u!114 &6526087785502107153
 MonoBehaviour:
@@ -62,18 +63,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 077dbb613421431ea7976004817acf1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roundKills: 0
+  kills: 0
   playerLvl: 1
-  maxStructLvl: 1
-  roundDeaths: 0
-  round: 1
+  stucts: 1
+  playerDeaths: 0
   rangeMin: 1
   rangeMax: 1
-  maxRoundKills: 100
+  maxKills: 1000
   maxPlayerLvl: 50
-  maxValMaxStructLvl: 40
-  maxRoundDeaths: 5
-  maxRound: 100
+  maxStructs: 40
+  maxDeaths: 50
 --- !u!114 &31165231083025803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -86,28 +85,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19c593cfeb364d66bcca2b27e7da046e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawner: {fileID: 0}
   enemyConfig: {fileID: 11400000, guid: abadacf5ee166c5449de88ce6a81cc7b, type: 2}
-  Curve:
+  testCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0.03869629
-      value: 0.539093
-      inSlope: 0.68882304
-      outSlope: 0.68882304
-      tangentMode: 0
+      time: 0
+      value: 0.05
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
       weightedMode: 0
-      inWeight: 0
-      outWeight: 0.18559588
+      inWeight: 0.33333334
+      outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.8125
-      value: 2.197525
-      inSlope: -2.2900856
-      outSlope: -2.2900856
-      tangentMode: 0
+      time: 0.7959722
+      value: 0.11005494
+      inSlope: 0.15
+      outSlope: 0.15
+      tangentMode: 136
       weightedMode: 0
-      inWeight: 0.23134936
-      outWeight: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0.2
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4

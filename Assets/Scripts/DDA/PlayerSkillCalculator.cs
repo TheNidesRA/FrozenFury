@@ -5,27 +5,27 @@ namespace Enemies
 {
     public class PlayerSkillCalculator : MonoBehaviour 
     {
-        public float roundKills = 0;
+        public float kills = 0;
         public float playerLvl = 1;
-        public float maxStructLvl = 1;
-        public float roundDeaths = 0;
-        public float round = 1;
+        public float stucts = 0;
+        public float playerDeaths = 0;
         
         public float rangeMin = 1;
         public float rangeMax = 1;
 
-        public int maxRoundKills = 100;
+        public int maxKills = 1000;
         public int maxPlayerLvl = 50;
-        public int maxValMaxStructLvl = 40;
-        public int maxRoundDeaths = 5;
-        public int maxRound = 100;
+        public int maxStructs = 50;
+        public int maxDeaths = 50;
+
+        private int round = 1;
         
 
         public static PlayerSkillCalculator Instance;
         private void Awake()
         {
-            rangeMin = (playerLvl + maxStructLvl + roundKills) / (maxRound * (1 + (maxRoundDeaths * 0.7f)));
-            rangeMax = (maxPlayerLvl + maxValMaxStructLvl + maxRoundKills) / (round * (1 + (roundDeaths * 0.7f)));
+            rangeMin = (playerLvl + stucts + kills) / (1 + maxDeaths);
+            rangeMax = (maxPlayerLvl + maxStructs + maxKills) / (1 + playerDeaths);
             if (Instance != null && Instance != this)
             {
                 Destroy(gameObject);
@@ -38,17 +38,17 @@ namespace Enemies
 
         private void Start()
         {
-            
+            WorldController.Instance.OnStructChanged += (sender, f) => { stucts = f; };
             WaveController._instance.OnRoundChange += (sender, i) => { round = i; };
             PlayerStats._instance.OnLvlChanged += (sender, i) => { playerLvl = i; };
-            PlayerStats._instance.OnDeathEvent += (sender, b) => { roundDeaths++; };
+            PlayerStats._instance.OnDeathEvent += (sender, b) => { playerDeaths++; };
         }
 
         public float ComputeSkill()
         {
             float skill = 0;
 
-            skill = (playerLvl + maxStructLvl + roundKills) / (round * (1 + (roundDeaths * 0.7f)));
+            skill = (playerLvl + stucts + kills) / (1 + playerDeaths);
 
             //This formula converts the skill value into a range between 0 and 10
             float convertedSkill = (skill - rangeMin) * 10 / (rangeMax - rangeMin);
@@ -57,15 +57,11 @@ namespace Enemies
             return convertedSkill;
         }
 
-        public void ResetVlues()
-        {
-            roundKills = 0;
-            roundDeaths = 0;
-        }
+        
 
         public void UpdateRoundKills()
         {
-            roundKills++;
+            kills++;
         }
     }
 }

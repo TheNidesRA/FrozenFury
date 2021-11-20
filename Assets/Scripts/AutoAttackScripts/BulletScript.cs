@@ -31,7 +31,7 @@ namespace AutoAttackScripts
                 _enemy = _enemyToRemove.GetComponent<Enemy>();
             }
 
-            PlayerSkillCalculator.Instance.roundKills++;
+            PlayerSkillCalculator.Instance.kills++;
 
             Destroy(gameObject);
         }
@@ -46,7 +46,7 @@ namespace AutoAttackScripts
                 if (!_enemy.OnHit(PlayerStats._instance.Damage))
                     return;
                 
-                PlayerSkillCalculator.Instance.roundKills++;
+                PlayerSkillCalculator.Instance.kills++;
             }
             else
             {
