@@ -898,7 +898,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &90403004
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2889,10 +2889,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 90403003}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 775554527}
+        m_TargetAssemblyTypeName: AudioAuxFunctions, Assembly-CSharp
+        m_MethodName: NormalClick
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2901,9 +2901,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 775554527}
-        m_TargetAssemblyTypeName: AudioAuxFunctions, Assembly-CSharp
-        m_MethodName: NormalClick
+      - m_Target: {fileID: 2087918826}
+        m_TargetAssemblyTypeName: CharacterSelected, Assembly-CSharp
+        m_MethodName: OnSelectedBefore
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -18269,6 +18269,13 @@ MonoBehaviour:
   heladero: {fileID: 90403003}
   torrine: {fileID: 1878327608}
   coneman: {fileID: 574848297}
+  characters:
+  - {fileID: 1557468093}
+  - {fileID: 1878327608}
+  - {fileID: 574848297}
+  heladeroSelected: 0
+  torrineSelected: 0
+  conemanSelected: 0
 --- !u!1 &2109678175
 GameObject:
   m_ObjectHideFlags: 0
