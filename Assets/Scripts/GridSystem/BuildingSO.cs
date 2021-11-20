@@ -61,8 +61,15 @@ public class BuildingSO : ScriptableObject
     
     public int width;
     public int heigth;
-    public float damage;
-    public float health;
+    public float initDamage;
+    public float initHealth;
+    public float initAttackSpeed=1;
+    public int initGoldCostLevel;
+    public int GoldCostRepair;
+    public int MAXHEALT;
+    public int MAXDAMAGE;
+    public float MAXATTACKSPEED;
+    public int MAXGOLDCOSTLEVEL;
     public string name;
     public Transform prefab;
     public Transform visual;

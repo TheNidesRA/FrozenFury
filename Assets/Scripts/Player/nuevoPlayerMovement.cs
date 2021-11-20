@@ -56,6 +56,10 @@ public class nuevoPlayerMovement : MonoBehaviour
             {
                 work = false;
             }
+            else
+            {
+                work = true;
+            }
             
             
             Debug.Log("HOLLAAA");

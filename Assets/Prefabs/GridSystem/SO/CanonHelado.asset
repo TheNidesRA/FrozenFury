@@ -14,9 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: 1
   heigth: 1
-  damage: 30
-  health: 150
-  name: "Ca\xF1\xF3n helado"
+  initDamage: 10
+  initHealth: 80
+  initAttackSpeed: 1
+  initGoldCostLevel: 10
+  GoldCostRepair: 5
+  MAXHEALT: 200
+  MAXDAMAGE: 200
+  MAXATTACKSPEED: 2.5
+  MAXGOLDCOSTLEVEL: 100
+  name: FrozenCannon
   prefab: {fileID: 7638978267715246072, guid: a1a1359beeda98d4c950b3d736cd91e7, type: 3}
   visual: {fileID: 101429908263137707, guid: be253fddf7bd141438b2ab81289b932c, type: 3}
   canvasVisual: {fileID: 9040980739992282383, guid: f355ac0a8466c96459dcb30921927342, type: 3}

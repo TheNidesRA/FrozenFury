@@ -22,8 +22,6 @@ public class ComunicacionGridCanvas : MonoBehaviour
     public Vector3 outOfCanvasPosition;
     
     public float transitionTime;
-
-
     public SideBarButtonActions BuildButtonActions;
     private LTDescr tween;
 
@@ -33,9 +31,15 @@ public class ComunicacionGridCanvas : MonoBehaviour
     public TextMeshProUGUI _buildUpdateText;
     public GameObject _buildUpdateObjectPlace;
     public GameObject _buildUpdateConteiner;
+    public BuildManagement buildManagement;
     private Transform buildUpdate;
     private PlacedBuild _placedBuild;
     private RectTransform _rectTransformBuildUpdate;
+    
+    public PlacedBuild ExposedPlacedBuild
+    {
+        get { return _placedBuild; }
+    }
 
 
     private void Start()
@@ -75,10 +79,10 @@ public class ComunicacionGridCanvas : MonoBehaviour
 
     private void Instance_OnBuildSelected(object sender, PlacedBuild eventArgs)
     {
-        _buildUpdateConteiner.SetActive(true);
         RefreshVisualUpdateBuild(eventArgs);
+        _buildUpdateConteiner.SetActive(true);
+        buildManagement.CheckIfInteractable();
         tween = LeanTween.move(_rectTransformBuildUpdate, insidePosition, transitionTime).setEaseInCubic();
-       // BuildButton.SetActive(false);
         BuildButtonActions.outBuildPosition();
     }
 
@@ -160,7 +164,7 @@ public class ComunicacionGridCanvas : MonoBehaviour
             tween = LeanTween.move(_rectTransformEditBuild, outsidePosition, transitionTime).setEaseOutCubic()
                 .setOnComplete(() => { EditBuild.SetActive(false); });
            // BuildButton.SetActive(true);
-         if(GridBuildingSystem.Instance.buildMenu)
+         if(!GridBuildingSystem.Instance.buildMenu)
             BuildButtonActions.returnInside();
         }
     }
@@ -193,7 +197,7 @@ public class ComunicacionGridCanvas : MonoBehaviour
             tween = LeanTween.move(_rectTransformBuildUpdate, outsidePosition, transitionTime).setEaseOutCubic()
                 .setOnComplete(() => { _buildUpdateConteiner.SetActive(false); });
              //BuildButton.SetActive(true);
-             if(GridBuildingSystem.Instance.buildMenu)
+             if(!GridBuildingSystem.Instance.buildMenu)
             BuildButtonActions.returnInside();
         }
     }
