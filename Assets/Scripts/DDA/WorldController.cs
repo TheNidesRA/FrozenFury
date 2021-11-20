@@ -40,8 +40,37 @@ public class WorldController : MonoBehaviour
     /// <summary>
     /// Variables will take into account the amount of each structure type.
     /// </summary>
+    private float _numWalls;
+    [HideInInspector] public float NumWalls
+    {
+        get => _numWalls;
+        set
+        {
+            _numWalls = value;
+            float total = _numWalls + _numTurrets;
+            OnStructChanged?.Invoke(this, total);
+        }
+    }
+
+    private float _numTurrets;
+    [HideInInspector] public float NumTurrets
+    {
+        get => _numTurrets;
+        set
+        {
+            _numTurrets = value;
+            float total = _numWalls + _numTurrets;
+            OnStructChanged?.Invoke(this, total);
+        }
+    }
+    [HideInInspector] public float _numTraps;
+    
     [HideInInspector]
-    public float _numWalls, _numTurrets, _numTraps;
+    public int _realNumWalls, _realNumTurrets, _realNumTraps;
+
+    private int round = 1;
+
+    public event EventHandler<float> OnStructChanged; 
 
     /// <summary>
     /// List of all the in-game structures.
@@ -55,13 +84,15 @@ public class WorldController : MonoBehaviour
 
     public AnimationCurve playerSkillCurve;
     public AnimationCurve diffDistCurve;
-    public AnimationCurve turretTypesCurve;
+    public AnimationCurve structsCorrection;
     public AnimationCurve streakCurve;
 
 
     public NavMeshAgent refAgent;
 
     public static WorldController Instance;
+    
+    
 
     public String GetTotalStructs()
     {
@@ -94,6 +125,11 @@ public class WorldController : MonoBehaviour
         _structs = new List<BuildStats>();
     }
 
+    private void Start()
+    {
+        WaveController._instance.OnRoundChange += (sender, i) => { round = i; };
+    }
+
     public void LevelUpgrade(BuildStats stats)
     {
         BuildStats aux = new BuildStats(-1);
@@ -122,13 +158,16 @@ public class WorldController : MonoBehaviour
         switch (stats.type)
         {
             case BuildingSO.BuildingType.Wall:
-                _numWalls += 1 + (stats.lvl - 1) * 0.5f;
+                NumWalls += 1 + (stats.lvl - 1) * 0.5f;
+                _realNumWalls++;
                 break;
             case BuildingSO.BuildingType.Trap:
                 _numTraps += 1 + (stats.lvl - 1) * 0.5f;
+                _realNumTraps++;
                 break;
             case BuildingSO.BuildingType.Turret:
-                _numTurrets += 1 + (stats.lvl - 1) * 0.5f;
+                NumTurrets += 1 + (stats.lvl - 1) * 0.5f;
+                _realNumTurrets++;
                 break;
         }
     }
@@ -139,13 +178,16 @@ public class WorldController : MonoBehaviour
         switch (stats.type)
         {
             case BuildingSO.BuildingType.Wall:
-                _numWalls -= 1 + (stats.lvl - 1) * 0.5f;
+                NumWalls -= 1 + (stats.lvl - 1) * 0.5f;
+                _realNumWalls--;
                 break;
             case BuildingSO.BuildingType.Trap:
                 _numTraps -= 1 + (stats.lvl - 1) * 0.5f;
+                _realNumTraps--;
                 break;
             case BuildingSO.BuildingType.Turret:
-                _numTurrets -= 1 + (stats.lvl - 1) * 0.5f;
+                NumTurrets -= 1 + (stats.lvl - 1) * 0.5f;
+                _realNumTurrets--;
                 break;
         }
     }
@@ -160,7 +202,7 @@ public class WorldController : MonoBehaviour
     /// </summary>
     public void UpdateWeights()
     {
-        _weights = new float[] {0.2f, 0.2f, 0.2f, 0.2f, 0.2f};
+        _weights = new float[] {0.6f, 0.2f, 0.1f, 0.0f, 0.1f};
         
         float skillCorrection = playerSkillCurve.Evaluate(_playerSkill / 10);
         _weights[0] -= skillCorrection;
@@ -168,29 +210,52 @@ public class WorldController : MonoBehaviour
 
         CheckDists();
         float distCorrection = diffDistCurve.Evaluate((_distReal - _distManh) / 100);
-        _weights[1] += distCorrection / 2;
-        _weights[3] += distCorrection / 2;
+        _weights[1] += distCorrection;
         for (int i = 0; i < _weights.Length; i++)
         {
             if (i != 3 && i != 1)
             {
                 _weights[i] -= distCorrection / 3;
+                CheckIfNegative(ref _weights[i], ref _weights[1]);
             }
         }
 
-        float structCorrection = turretTypesCurve.Evaluate(_numTurrets - _numWalls);
+        float structCorrection = structsCorrection.Evaluate((float)(_realNumTurrets + _realNumWalls) / 10);
         _weights[1] += structCorrection;
-        _weights[3] -= structCorrection;
-
-        float streakCorrection = streakCurve.Evaluate(_streak);
-
-        _weights[4] += streakCorrection;
+        if (_weights[1] < 0)
+        {
+            structCorrection += Math.Abs(_weights[1]);
+            _weights[1] = 0;
+        }
         for (int i = 0; i < _weights.Length; i++)
         {
-            if (i != 4)
+            if (i != 3 && i != 1)
             {
-                _weights[i] -= streakCorrection / 4;
+                _weights[i] -= structCorrection / 3;
+                CheckIfNegative(ref _weights[i], ref _weights[1]);
             }
+        }
+
+        float streakCorrection = streakCurve.Evaluate(_streak);
+        _weights[4] += streakCorrection;
+        _weights[0] -= streakCorrection / 2;
+        CheckIfNegative(ref _weights[0], ref _weights[4]);
+        _weights[2] -= streakCorrection / 2;
+        CheckIfNegative(ref _weights[2], ref _weights[4]);
+
+        if (round < 5)
+        {
+            _weights[0] += _weights[2];
+            _weights[2] = 0;
+        }
+    }
+
+    private void CheckIfNegative(ref float val1, ref float val2)
+    {
+        if (val1 < -0.00000001f)
+        {
+            val2 += val1;
+            val1 = 0;
         }
     }
 
@@ -250,7 +315,7 @@ class WorldControllerEditor : Editor
 
                 EditorGUILayout.BeginHorizontal("box");
                 EditorGUILayout.LabelField("Num Walls");
-                EditorGUILayout.LabelField(script._numWalls.ToString());
+                EditorGUILayout.LabelField(script.NumWalls.ToString());
                 EditorGUILayout.EndHorizontal();
 
                 EditorGUILayout.BeginHorizontal("box");
@@ -260,7 +325,22 @@ class WorldControllerEditor : Editor
 
                 EditorGUILayout.BeginHorizontal("box");
                 EditorGUILayout.LabelField("Num Turrets");
-                EditorGUILayout.LabelField(script._numTurrets.ToString());
+                EditorGUILayout.LabelField(script.NumTurrets.ToString());
+                EditorGUILayout.EndHorizontal();
+
+                EditorGUILayout.BeginHorizontal("box");
+                EditorGUILayout.LabelField("Real Walls");
+                EditorGUILayout.LabelField(script._realNumWalls.ToString());
+                EditorGUILayout.EndHorizontal();
+
+                EditorGUILayout.BeginHorizontal("box");
+                EditorGUILayout.LabelField("Real Traps");
+                EditorGUILayout.LabelField(script._realNumTraps.ToString());
+                EditorGUILayout.EndHorizontal();
+
+                EditorGUILayout.BeginHorizontal("box");
+                EditorGUILayout.LabelField("Real Turrets");
+                EditorGUILayout.LabelField(script._realNumTurrets.ToString());
                 EditorGUILayout.EndHorizontal();
 
                 EditorGUILayout.BeginHorizontal("box");

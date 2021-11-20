@@ -56,8 +56,8 @@ public class PlacedBuild : MonoBehaviour
         {
             _level = value;
             Evaluate();
-            // BuildStats stats = new BuildStats(_level, _buildingSo.type);
-            // WorldController.Instance.LevelUpgrade(stats);
+            BuildStats stats = new BuildStats(_level, _buildingSo.type);
+            WorldController.Instance.LevelUpgrade(stats);
         }
     }
 
