@@ -248,8 +248,9 @@ namespace AutoAttackScripts
                 Shooting = false;
                 if (isPlayer)
                 {
-                    characterAnimator.SetLayerWeight(characterAnimator.GetLayerIndex("Shooting"), 0.0f);
-                    characterAnimator.SetBool("Shoot", Shooting);
+                    characterAnimator.SetBool("Shoot", false);
+                    //characterAnimator.SetLayerWeight(characterAnimator.GetLayerIndex("Shooting"), 0.0f);
+                    
                 }
             }
         }
@@ -291,7 +292,7 @@ namespace AutoAttackScripts
                     if (isPlayer)
                     {
                         characterAnimator.SetLayerWeight(characterAnimator.GetLayerIndex("Shooting"), 1.0f);
-                        characterAnimator.SetBool("Shoot", Shooting);
+                        characterAnimator.SetBool("Shoot", true);
                     }
 
                     //We retrieve the enemy the player will look to
@@ -317,7 +318,7 @@ namespace AutoAttackScripts
                     if (isPlayer)
                     {
                         characterAnimator.SetLayerWeight(characterAnimator.GetLayerIndex("Shooting"), 1.0f);
-                        characterAnimator.SetBool("Shoot", Shooting);
+                        characterAnimator.SetBool("Shoot", true);
                     }
 
                     //We retrieve the enemy the player will look to
@@ -335,7 +336,7 @@ namespace AutoAttackScripts
             if (isPlayer)
             {
                 characterAnimator.SetLayerWeight(characterAnimator.GetLayerIndex("Shooting"), 1.0f);
-                characterAnimator.SetBool("Shoot", Shooting);
+                characterAnimator.SetBool("Shoot", true);
             }
 
             //We retrieve the enemy the player will look to
@@ -404,6 +405,8 @@ namespace AutoAttackScripts
             ShootBulletBurst(enemy);
             yield return new WaitForSeconds(timeToShootBulletBurst);
             ShootBulletBurst(enemy);
+            if(isPlayer)
+                characterAnimator.SetBool("Shoot", false);
         }
 
 
