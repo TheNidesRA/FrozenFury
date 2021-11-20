@@ -8,30 +8,54 @@ public class CharacterSelected : MonoBehaviour
     public GameObject torrine;
     public GameObject coneman;
 
-    // Start is called before the first frame update
+    public  bool heladeroSelected =  true;
+    public  bool torrineSelected = false;
+    public bool conemanSelected = false;
+
+
     void Start()
     {
-        heladero.SetActive(true);
-        torrine.SetActive(false);
-        coneman.SetActive(false);
+        heladero.SetActive(heladeroSelected);
+        torrine.SetActive(torrineSelected);
+        coneman.SetActive(conemanSelected);
 
     }
+
+    public void OnSelectedBefore()
+    {
+        heladero.SetActive(heladeroSelected);
+        torrine.SetActive(torrineSelected);
+        coneman.SetActive(conemanSelected);
+    }
+
     public void OnClickSelectedHeladero()
     {
-        heladero.SetActive(true);
-        torrine.SetActive(false);
-        coneman.SetActive(false);
+        heladeroSelected = true;
+        torrineSelected = false;
+        conemanSelected = false;
+
+        heladero.SetActive(heladeroSelected);
+        torrine.SetActive(torrineSelected);
+        coneman.SetActive(conemanSelected);
     }
     public void OnClickSelectedTorrine()
     {
-        heladero.SetActive(false);
-        torrine.SetActive(true);
-        coneman.SetActive(false);
+        heladeroSelected = false;
+        torrineSelected = true;
+        conemanSelected = false;
+
+        heladero.SetActive(heladeroSelected);
+        torrine.SetActive(torrineSelected);
+        coneman.SetActive(conemanSelected);
     }
     public void OnClickSelectedConeman()
     {
-        heladero.SetActive(false);
-        torrine.SetActive(false);
-        coneman.SetActive(true);
+        heladeroSelected = false;
+        torrineSelected = false;
+        conemanSelected = true;
+
+        heladero.SetActive(heladeroSelected);
+        torrine.SetActive(torrineSelected);
+        coneman.SetActive(conemanSelected);
     }
 }
