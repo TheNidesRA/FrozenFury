@@ -142,7 +142,6 @@ namespace AutoAttackScripts
             isPlayer = transform.parent.gameObject.CompareTag("Player");
             if (isPlayer)
             {
-                
                 characterAnimator = GetComponentInParent<Animator>();
                 characterAnimator.SetLayerWeight(characterAnimator.GetLayerIndex("Shooting"),
                     0.0f); //peso de la capa de disparo al inicio
@@ -244,7 +243,7 @@ namespace AutoAttackScripts
                 Shooting = false;
                 if (isPlayer)
                 {
-                    characterAnimator.SetLayerWeight(characterAnimator.GetLayerIndex("Shooting"), 1f);
+                    characterAnimator.SetLayerWeight(characterAnimator.GetLayerIndex("Shooting"), 0f);
                     characterAnimator.SetBool("Shoot", Shooting);
                 }
             }
@@ -268,7 +267,7 @@ namespace AutoAttackScripts
                     throw new ArgumentOutOfRangeException("typeofShooting", "Invalid type of shooting");
             }
 
-            AudioManager.Instance.PlayRandomHitSound();
+            AudioManager.Instance?.PlayRandomHitSound();
         }
 
         private void ShootLowestDistanceEnemy()
@@ -387,7 +386,6 @@ namespace AutoAttackScripts
                 characterAnimator.SetBool("EnemySighted", enemySighted);
                 characterAnimator.SetBool("Shoot", false);
             }
-                
         }
 
         private void CheckHealth(GameObject enemy)

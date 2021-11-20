@@ -296,6 +296,7 @@ MonoBehaviour:
   enemyToShoot: 2
   bulletTimeAlive: 4
   shootForce: 200
+  _damagePerBullet: 0
   bullet: {fileID: 7679035201997218491, guid: 9714aadc40251f74ebfdcf2ff13c7bb1, type: 3}
   timeBetweenShooting: 1.59
   timeToShootBulletBurst: 0.2
@@ -2102,6 +2103,8 @@ MonoBehaviour:
   v_movement_z: 0
   v_movement_x: 0
   moveSpeed: 0
+  joystickDynamic: {fileID: 0}
+  work: 1
 --- !u!114 &8684365058311800486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2116,7 +2119,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gold: 0
   damage: 0
-  health: 0
+  _level: 1
+  _health: 10
+  _maxHealth: 100
+  _respawnTime: 5
+  Shoot: {fileID: 0}
+  Animator: {fileID: 0}
 --- !u!1 &6034881741388671131
 GameObject:
   m_ObjectHideFlags: 0
@@ -2188,9 +2196,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7373652546243524532}
   - component: {fileID: 5269459291300339932}
-  m_Layer: 10
+  - component: {fileID: 2759425684452530658}
+  m_Layer: 20
   m_Name: Body
-  m_TagString: Untagged
+  m_TagString: ChasingPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2284,6 +2293,19 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.13920224, y: -0.037543893, z: -0.0023989677}
     m_Extent: {x: 1.2073325, y: 0.6390175, z: 1.7515191}
   m_DirtyAABB: 0
+--- !u!65 &2759425684452530658
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6291727790021220838}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.655949, y: 1.7377748, z: 4.3969827}
+  m_Center: {x: 0, y: -0.00000001354179, z: 0.9570051}
 --- !u!1 &6360953899037053296
 GameObject:
   m_ObjectHideFlags: 0
