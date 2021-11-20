@@ -72,6 +72,16 @@ public class PlacedBuild : MonoBehaviour
         get => _attackSpeed;
     }
 
+    public int goldCostUpgrade
+    {
+        get => _goldCostLevel;
+    }
+    
+    public int goldcostRepair
+    {
+        get => _goldCostRepair;
+    }
+
     public float health
     {
         get { return _health; }
