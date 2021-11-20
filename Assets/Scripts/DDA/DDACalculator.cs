@@ -122,10 +122,6 @@ namespace Enemies
             _enemyStats = _statCalculator.UpdateStats(_enemyStats, _initStatsMap, _diffVariables, _globalDiff);
 
             spawner.UpdateEnemyPrefabs(_enemyStats);
-
-            //We reset the PlayerSkillCalculator round variables
-            PlayerSkillCalculator.Instance.ResetVlues();
-
             // Debug.Log("Base damage recived: " + totalBaseDmg + 
             // " \n Total enemy health: " + totalEnemyHp + " / " + _roundMaxHp);
         }
@@ -222,6 +218,19 @@ namespace Enemies
                     EditorGUILayout.LabelField(script.GetGlobalDiff().ToString());
                     EditorGUILayout.EndHorizontal();
 
+                    EditorGUILayout.BeginHorizontal("box");
+                    EditorGUILayout.LabelField("PlayerSkill");
+                    try
+                    {
+                        EditorGUILayout.LabelField(PlayerSkillCalculator.Instance.ComputeSkill().ToString());
+                    }
+                    catch
+                    {
+                        EditorGUILayout.LabelField("Not Computed");
+                    }
+
+                    EditorGUILayout.EndHorizontal();
+
                     EditorGUILayout.EndScrollView();
 
                     break;
@@ -268,6 +277,7 @@ namespace Enemies
                         EditorGUILayout.EndScrollView();
                         break;
                     }
+
                     for (int i = 0; i < 5; i++)
                     {
                         EditorGUILayout.BeginHorizontal("box");
@@ -304,7 +314,7 @@ namespace Enemies
                         EditorGUILayout.EndScrollView();
                         break;
                     }
-                    
+
                     for (int i = 0; i < 5; i++)
                     {
                         EditorGUILayout.BeginHorizontal("box");

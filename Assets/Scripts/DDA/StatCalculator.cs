@@ -10,7 +10,17 @@ namespace Enemies
         {
             for (int i = 0; i < vars.Length; i++)
             {
+                if (vars[i] <= 0)
+                {
+                    vars[i] = 0.1f;
+                }
+
+                if (mults[i] <= 0)
+                {
+                    mults[i] = 0.1f;
+                }
                 vars[i] *= mults[i];
+                
             }
         }
 

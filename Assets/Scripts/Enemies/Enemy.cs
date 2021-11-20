@@ -153,7 +153,7 @@ namespace Enemies
 
         public void OnSlow(float slowDown)
         {
-            Debug.Log("Slowwww");
+            // Debug.Log("Slowwww");
             if (!afecctedTrap)
             {
                 speed = speed * slowDown;

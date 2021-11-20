@@ -28,6 +28,7 @@ namespace AutoAttackScripts
                 {
                     if (enemy.OnHit(BuildingInfo.initDamage))
                     {
+                        PlayerSkillCalculator.Instance.UpdateRoundKills();
                         enemy.Die();
                     }
 
