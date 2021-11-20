@@ -148,6 +148,10 @@ namespace AutoAttackScripts
                     0.0f); //peso de la capa de disparo al inicio
                 //characterAnimator.SetFloat("speedMult", 0.5f);
             }
+            else
+            {
+                characterAnimator = gameObject.GetComponentInParent<Animator>();
+            }
 
 
             quadrant = new bool[2];
@@ -250,7 +254,11 @@ namespace AutoAttackScripts
                 {
                     characterAnimator.SetBool("Shoot", false);
                     //characterAnimator.SetLayerWeight(characterAnimator.GetLayerIndex("Shooting"), 0.0f);
-                    
+
+                }
+                else
+                {
+                    characterAnimator.SetBool("Shoot", false);
                 }
             }
         }
@@ -294,6 +302,10 @@ namespace AutoAttackScripts
                         characterAnimator.SetLayerWeight(characterAnimator.GetLayerIndex("Shooting"), 1.0f);
                         characterAnimator.SetBool("Shoot", true);
                     }
+                    else
+                    {
+                        characterAnimator.SetBool("Shoot", true);
+                    }
 
                     //We retrieve the enemy the player will look to
                     enemyToLook = enemy.Key;
@@ -320,6 +332,10 @@ namespace AutoAttackScripts
                         characterAnimator.SetLayerWeight(characterAnimator.GetLayerIndex("Shooting"), 1.0f);
                         characterAnimator.SetBool("Shoot", true);
                     }
+                    else
+                    {
+                        characterAnimator.SetBool("Shoot", true);
+                    }
 
                     //We retrieve the enemy the player will look to
                     enemyToLook = enemy.Key;
@@ -336,6 +352,10 @@ namespace AutoAttackScripts
             if (isPlayer)
             {
                 characterAnimator.SetLayerWeight(characterAnimator.GetLayerIndex("Shooting"), 1.0f);
+                characterAnimator.SetBool("Shoot", true);
+            }
+            else
+            {
                 characterAnimator.SetBool("Shoot", true);
             }
 
@@ -390,6 +410,10 @@ namespace AutoAttackScripts
             {
                 //Enemy out of sight, trigger for animation blend tree
                 characterAnimator.SetBool("EnemySighted", enemySighted);
+                characterAnimator.SetBool("Shoot", false);
+            }
+            else
+            {
                 characterAnimator.SetBool("Shoot", false);
             }
         }

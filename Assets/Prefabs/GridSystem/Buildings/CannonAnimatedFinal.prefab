@@ -1321,10 +1321,10 @@ MonoBehaviour:
   _initAttackSpeed: 0
   _initHealth: 0
   _initGoldCostLevel: 0
-  _initGoldCostRepair: 0
   _damage: 0
   _attackSpeed: 0
   _health: 0
+  currentMaxHealth: 0
   _level: 0
   _goldCostLevel: 0
   _goldCostRepair: 0
@@ -1466,8 +1466,8 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7010075945510423874}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3da451bf43402da42957a3c6da847e72, type: 2}
+  m_Avatar: {fileID: 9000000, guid: bbcdcb8df67c28d4c9b35e131d4e3163, type: 3}
+  m_Controller: {fileID: 9100000, guid: c103c7ee216d66a4cb91ba327f7f9ccd, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
