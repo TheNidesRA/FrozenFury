@@ -701,20 +701,34 @@ Al incluir sonido en el juego, es necesario que el usuario pueda modificar los v
 ## **MENÚ DE CONSTRUCCIÓN Y ESTRUCTURAS**
 En cuanto a las opciones que tiene el usuario para defender el objetivo principal, se han añadido dos nuevos edificables ya mencionados en el apartado de mecánicas del documento; una potente **catapulta** que inflige daño en área y una **trampa de pinchos** que ralentiza e inflige daño continuado a los enemigos mientras están sobre ella.
 
+# **14. Actualizaciones post-beta release (20/11/2021)**
+En este apartado se citarán un listado de cambios conocidos que se aplicarán al juego en adición a la retroalimentación recibida en la fase de beta testing:
 
-# **14. Hoja de ruta de desarrollo**
+- **Implementación funcional de la tienda**: Para la fase beta, debido a la falta de tiempo y a una mayor prioridad de otras tareas del proyecto o correcciones de código, se ha implementado una tienda con placeholders para que el usuario pueda ver su funcionamiento de cara a posteriores versiones del juego. En versiones futuras, la divisa del juego (tanto de pago como gratuita) será funcional (sin emplearse dinero real, se simularán transacciones) y se podrá emplear para comprar cosméticos.
+
+- **Selección de cosméticos en inventario de personaje**: Como tal, actualmente el juego cuenta con cosméticos funcionales y sus correspondientes modelos 3D, pero no se han incluido todavía dentro de él. Junto a las funcionalidades añadidas en la tienda, se incluirá esta nueva.
+
+- **Ajuste de dificultad**: El juego está en sus primeras fases de desarrollo y faltan todavía muchas pruebas; tanto pruebas de juego del equipo de desarrollo como pruebas de juego con usuarios testers. De cara a posteriores entregas se ajustará y refinará más el algoritmo de ajuste de dificultad dinámica implementado para los enemigos del juego.
+
+- **Aspecto visual**: Para la fase Alpha se incluyó una versión aproximada del aspecto visual del que se quería dotar al juego con un toon shader basado en colores planos y outlines de personajes y objetos de la escena. En esta versión beta, no se ha podido desarrollar una mejor versión del mismo, pero de cara a futuras versiones, se aplicará un Asset de unity que mejorará el aspecto visual final del videojuego.
+
+- **Tweaks y timing de animaciones**: Actualmente, todos los modelos exceptuando algunos casos por errores internos, cuentan con animaciones que aportan dinamismo al videojuego respecto a la anterior entrega. A pesar de ello, todavía falta por modificar y calcular correctamente los tiempos de las animaciones de los personajes y de las estructuras para una mayor fluidez visual
+
+
+
+# **15. Hoja de ruta de desarrollo**
 
 Como se ha mencionado previamente en el documento, se ha establecido un total de 3 hitos fundamentales en el desarrollo del producto. Se deben cumplir en los plazos indicados y se estructuran de manera jerárquica, es decir, el comienzo de unos hitos dependen el cumplimiento de otros
-## **13.1. Hito 1**
+## **15.1. Hito 1**
 El primer hito que el equipo de desarrollo debe terminar es una Fase Alpha del producto. En esta etapa se mostrarán las funcionalidades básicas del mismo, y se podrá terminar una partida entera, dejando ver al usuario el desarrollo completo del flujo principal de eventos en el juego. Existe la posibilidad de fallos en el producto durante esta fase, modelos 3d sin animaciones o texturas… que de cara a fases posteriores, se irán completando y mejorando.
 
-## **13.2. Hito 2**
+## **15.2. Hito 2**
 El segundo hito que el equipo de desarrollo deberá completar es la Fase Beta del producto. Es de gran importancia que durante esta fase, se vea un producto prácticamente terminado. Los principales fallos de programación y aspectos que falten de arte se deberán completar y solventar debido a que el resultado de esta fase se pasará a un equipo de testing para evaluar el producto. Con ello, se recibirá la retroalimentación correspondiente para terminar de refinar el producto de cara a la fase final de su desarrollo.
 
-## **13.3. Hito 3**
+## **15.3. Hito 3**
 La retroalimentación recibida sobre aquellos aspectos más importantes en el juego a modificar o mejorar es importante llevarla a cabo porque, una vez terminados los cambios, se deberá presentar el producto final a un Jurado de expertos que lo evaluarán en sus distintos aspectos de uso (mecánicas, jugabilidad, arte, gameplay design etc…). La fase final o Gold Master, es el hito previo al lanzamiento del producto al mercado.
 
-## **13.4. Fecha de lanzamiento**
+## **15.4. Fecha de lanzamiento**
 El lanzamiento del producto está previsto para el 22 de Diciembre del 2021
 
 
