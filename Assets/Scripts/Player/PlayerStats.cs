@@ -22,16 +22,15 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private float _health = 10;
 
     [SerializeField] private float _maxHealth = 100;
-    
+
     [SerializeField] private float _respawnTime = 5;
 
     public AutoShoot Shoot;
-    
+
     private bool _isAlive = true;
 
     public Animator Animator;
-    
-    
+
 
     public float Damage
     {
@@ -48,7 +47,7 @@ public class PlayerStats : MonoBehaviour
             OnGoldChanged?.Invoke(this, _gold);
         }
     }
-    
+
     public int Level
     {
         get => _level;
@@ -58,7 +57,7 @@ public class PlayerStats : MonoBehaviour
             OnLvlChanged?.Invoke(this, _level);
         }
     }
-    
+
     public float Health
     {
         get => _health;
@@ -73,6 +72,7 @@ public class PlayerStats : MonoBehaviour
                     OnDeathEvent?.Invoke(this, _respawnTime);
                     Dead();
                 }
+
                 _isAlive = false;
             }
         }
@@ -101,7 +101,7 @@ public class PlayerStats : MonoBehaviour
         Animator.SetLayerWeight(Animator.GetLayerIndex("Base Layer"), 0f);
         Animator.SetLayerWeight(Animator.GetLayerIndex("Shooting"), 0f);
         Animator.SetBool("Dead", true);
-        AudioManager.Instance.PlayRandomDeath();
+        AudioManager.Instance?.PlayRandomDeath();
         StartCoroutine(Respawn(_respawnTime));
     }
 
@@ -110,7 +110,7 @@ public class PlayerStats : MonoBehaviour
         yield return new WaitForSeconds(secs);
         Revive();
     }
-        
+
     [ContextMenu("Revivir papa")]
     public void Revive()
     {
@@ -121,7 +121,7 @@ public class PlayerStats : MonoBehaviour
         Health = _maxHealth;
         _isAlive = true;
     }
-    
+
     public bool IsPlayerAlive()
     {
         return _health > 0;

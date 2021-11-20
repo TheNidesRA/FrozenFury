@@ -33,8 +33,7 @@ namespace AutoAttackScripts
         /// </summary>
         private float localDistance = 0;
 
-        [Header("Change this to set a new Damage to the player")]
-        [SerializeField]
+        [Header("Change this to set a new Damage to the player")] [SerializeField]
         private float _damagePerBullet;
 
         private Vector3 vectorAb;
@@ -183,7 +182,7 @@ namespace AutoAttackScripts
             if (!other.gameObject.CompareTag($"Enemy")) return;
             if (!_closestEnemies.ContainsKey(other.gameObject))
                 _closestEnemies.Add(other.gameObject,
-                Vector3.Distance(other.gameObject.transform.position, transform.position));
+                    Vector3.Distance(other.gameObject.transform.position, transform.position));
             _enemiesInRange.Add(other.gameObject);
             if (!_enemiesHealth.ContainsKey(other.gameObject))
                 _enemiesHealth.Add(other.gameObject, other.gameObject.GetComponent<Enemy>().health);
@@ -244,7 +243,6 @@ namespace AutoAttackScripts
                 }
 
 
-
                 //we wait timeBetweenShooting amount of time
                 yield return new WaitForSeconds(timeBetweenShooting);
                 Shooting = false;
@@ -253,13 +251,12 @@ namespace AutoAttackScripts
                     characterAnimator.SetLayerWeight(characterAnimator.GetLayerIndex("Shooting"), 0.0f);
                     characterAnimator.SetBool("Shoot", Shooting);
                 }
-
             }
         }
 
         protected virtual void ShootEnemy(GameObject enemy)
         {
-            if (enemy == null) return;
+            if (enemy == null || !IsShootingEnabled()) return;
             switch (typeOfShooting)
             {
                 case ShootingStyle.Normal:
@@ -467,7 +464,6 @@ namespace AutoAttackScripts
 
             //add forces to bullet
             currentBullet.GetComponent<Rigidbody>().AddForce(directionShoot.normalized * shootForce, ForceMode.Impulse);
-
         }
 
         private void ShootingBurst(GameObject enemy)
