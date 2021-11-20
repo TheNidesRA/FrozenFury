@@ -17,7 +17,7 @@ namespace AutoAttackScripts
             Vector3 explosionPos = this.transform.position;
             Collider[] colliders = Physics.OverlapSphere(explosionPos, _radius);
 
-            //CODIGO DE VFX DE LA EXPLOSIÓN
+            //CODIGO DE VFX DE LA EXPLOSIÃ“N
             /*GameObject explosion = Instantiate(_vfxExplode, transform.position, Quaternion.identity);
             explosion.transform.parent = this.transform;*/
 
@@ -26,7 +26,7 @@ namespace AutoAttackScripts
 
                 if (hit.gameObject.TryGetComponent<Enemy>(out Enemy enemy))
                 {
-                    if (enemy.OnHit(BuildingInfo.damage))
+                    if (enemy.OnHit(BuildingInfo.initDamage))
                     {
                         enemy.Die();
                     }

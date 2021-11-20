@@ -1421,13 +1421,48 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attactPoints: []
+  _initDamage: 0
+  _initAttackSpeed: 0
+  _initHealth: 0
+  _initGoldCostLevel: 0
+  _initGoldCostRepair: 0
+  _damage: 0
+  _attackSpeed: 0
   _health: 0
   _level: 0
-  dmg: 5
-  health_: 0
+  _goldCostLevel: 0
+  _goldCostRepair: 0
+  CurveHealth:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  CurveDamage:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  CurveAttackSpeed:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  CurveGoldLevelCost:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  MAXHEALTH: 0
+  MAXDAMAGE: 0
+  MAXATTACKSPEED: 0
+  MAXGOLDCOSTLEVEL: 0
   invencibilidadTrampa: 0
   tiempoInv: 1
-  slowDown: 0.5
+  slowDown: 0.2
 --- !u!65 &4446173152226383912
 BoxCollider:
   m_ObjectHideFlags: 0

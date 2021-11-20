@@ -6,30 +6,18 @@ using UnityEngine;
 
 public class SpikesTrap : PlacedBuild
 {
-
-    public float dmg;
-    public float health_;
     public bool invencibilidadTrampa = false;
     public float tiempoInv = 1f;
 
 
-    [Range(0f, 1f)]
-    public float slowDown = 0.5f;
+    [Range(0f, 1f)] public float slowDown = 0.2f;
 
-    private void Start()
-    {
-        dmg = this.BuildingSo.damage;
-        health_ = this.BuildingSo.health;
-    }
 
     private void OnCollisionEnter(Collision collision)
     {
-        
         if (collision.gameObject.CompareTag($"Enemy"))
         {
             collision.gameObject.GetComponent<Enemy>().OnSlow(slowDown);
-            
-
         }
     }
 
@@ -37,37 +25,29 @@ public class SpikesTrap : PlacedBuild
     {
         if (collision.gameObject.CompareTag($"Enemy"))
         {
-
-            collision.gameObject.GetComponent<Enemy>().OnHitTrap(dmg);
-            hitTrap(dmg, collision);
-            
-            
-
-
+            collision.gameObject.GetComponent<Enemy>().OnHitTrap(_damage);
+            hitTrap(_damage, collision);
         }
     }
 
 
     private void OnCollisionExit(Collision collision)
     {
-        
         if (collision.gameObject.CompareTag($"Enemy"))
         {
             collision.gameObject.GetComponent<Enemy>().OnResetSlow();
         }
-
     }
-    
+
     private void hitTrap(float daño, Collision collision)
     {
-
-        if (!invencibilidadTrampa && health_ > 0)
+        if (!invencibilidadTrampa && _health > 0)
         {
-            health_ = health_ - daño;
+            _health = _health - daño;
             StartCoroutine(OnEnableTrap());
         }
-       
-        if (health_ <= 0)
+
+        if (_health <= 0)
         {
             destroySpikes();
             collision.gameObject.GetComponent<Enemy>().OnResetSlow();
@@ -85,6 +65,4 @@ public class SpikesTrap : PlacedBuild
     {
         GridBuildingSystem.Instance.RemoveBuild(this);
     }
-
-
 }

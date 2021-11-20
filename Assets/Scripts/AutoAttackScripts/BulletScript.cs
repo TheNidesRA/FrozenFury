@@ -47,7 +47,7 @@ namespace AutoAttackScripts
             }
             else
             {
-                if (!_enemy.OnHit(BuildingInfo.damage))
+                if (!_enemy.OnHit(BuildingInfo.initDamage))
                     return;
             }
 

@@ -18,7 +18,11 @@ public class DynamicJoystick : Joystick
             {
                 work = false;
                 background.gameObject.SetActive(false);
+            } else
+            {
+                work = true;
             }
+
             
             
            
