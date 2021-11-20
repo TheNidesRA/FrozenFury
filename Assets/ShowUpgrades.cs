@@ -2,6 +2,7 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class ShowUpgrades : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler, IPointerExitHandler
 {
@@ -9,11 +10,25 @@ public class ShowUpgrades : MonoBehaviour, IPointerEnterHandler, IPointerClickHa
     public TextMeshProUGUI DamageUpgrade;
     public TextMeshProUGUI AttackSpeedUpgrade;
 
+    public Image Health;
+    public Image Damage;
+    public Image AttackSpeed;
+
+    public Sprite SBasicHealth;
+    public Sprite SUpgradeHealth;
+    public Sprite SBasicDamage;
+    public Sprite SUpgradeDamage;
+    public Sprite SBasicAttackSpeed;
+    public Sprite SUpgradeAttackSpeed;
+    
+    
+
     public ComunicacionGridCanvas cgc;
 
     public void OnPointerEnter(PointerEventData eventData)
     {
         ShowUpgrade();
+        
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -44,6 +59,16 @@ public class ShowUpgrades : MonoBehaviour, IPointerEnterHandler, IPointerClickHa
             cgc.ExposedPlacedBuild.CurveAttackSpeed.Evaluate(cgc.ExposedPlacedBuild.level + 1) -
             cgc.ExposedPlacedBuild.attackSpeed, 2).ToString();
         AttackSpeedUpgrade.text = "+ " + mejoraAttackSpeed;
+
+
+        Health.sprite = SUpgradeHealth;
+        Damage.sprite = SUpgradeDamage;
+        AttackSpeed.sprite = SUpgradeAttackSpeed;
+
+
+
+
+
     }
 
 
@@ -52,5 +77,9 @@ public class ShowUpgrades : MonoBehaviour, IPointerEnterHandler, IPointerClickHa
         HealthUpgrade.enabled = false;
         DamageUpgrade.enabled = false;
         AttackSpeedUpgrade.enabled = false;
+        
+        Health.sprite = SBasicHealth;
+        Damage.sprite = SBasicDamage;
+        AttackSpeed.sprite = SBasicAttackSpeed;
     }
 }
