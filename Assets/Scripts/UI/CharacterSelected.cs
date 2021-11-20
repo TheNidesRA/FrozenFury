@@ -8,6 +8,16 @@ public class CharacterSelected : MonoBehaviour
     public GameObject torrine;
     public GameObject coneman;
 
+    public GameObject AudioManager;
+
+    public GameObject heladeroChosen;
+    public GameObject torrineChosen;
+    public GameObject conemanChosen;
+
+    private Animator characterAnimatorHeladero;
+    private Animator characterAnimatorConeman;
+    private Animator characterAnimatorTorrine;
+
     public GameObject[] characters;
 
 
@@ -43,9 +53,13 @@ public class CharacterSelected : MonoBehaviour
                 torrine.SetActive(torrineSelected);
                 coneman.SetActive(conemanSelected);
             }
+
+            characterAnimatorHeladero = heladeroChosen.GetComponent<Animator>();
+            characterAnimatorConeman = conemanChosen.GetComponent<Animator>();
+            characterAnimatorTorrine = torrineChosen.GetComponent<Animator>();
             //characters[character].SetActive(true);
-            
-            
+
+
         }
        /* else
         {
@@ -79,7 +93,38 @@ public class CharacterSelected : MonoBehaviour
 
         PlayerPrefs.SetInt("selectedCharacter", 0);
 
+        Debug.Log("Hacemos la animacion de celebracion");
+
+        MonoBehaviour mono = AudioManager.GetComponent<MonoBehaviour>();
+        mono.StartCoroutine(celebrationHeladero());
+
+
+
+
     }
+
+    public IEnumerator celebrationHeladero()
+    {
+        characterAnimatorHeladero.SetBool("Celebrate", true);
+        yield return new WaitForSeconds(1.13f);
+        characterAnimatorHeladero.SetBool("Celebrate", false);
+    }
+
+    public IEnumerator celebrationTorrine()
+    {
+        characterAnimatorTorrine.SetBool("Celebrate", true);
+        yield return new WaitForSeconds(2f);
+        characterAnimatorTorrine.SetBool("Celebrate", false);
+    }
+
+    public IEnumerator celebrationConeman()
+    {
+        characterAnimatorConeman.SetBool("Celebrate", true);
+        yield return new WaitForSeconds(1.20f);
+        characterAnimatorConeman.SetBool("Celebrate", false);
+    }
+
+
     public void OnClickSelectedTorrine()
     {
         heladeroSelected = false;
@@ -91,6 +136,8 @@ public class CharacterSelected : MonoBehaviour
         coneman.SetActive(conemanSelected);
 
         PlayerPrefs.SetInt("selectedCharacter", 1);
+        MonoBehaviour mono = AudioManager.GetComponent<MonoBehaviour>();
+        mono.StartCoroutine(celebrationTorrine());
     }
     public void OnClickSelectedConeman()
     {
@@ -103,5 +150,8 @@ public class CharacterSelected : MonoBehaviour
         coneman.SetActive(conemanSelected);
 
         PlayerPrefs.SetInt("selectedCharacter", 2);
+
+        MonoBehaviour mono = AudioManager.GetComponent<MonoBehaviour>();
+        mono.StartCoroutine(celebrationConeman());
     }
 }
