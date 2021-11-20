@@ -29,7 +29,7 @@ Plantilla de GDD por Alberto Blanco, Cosmic Works Studios.
 
 
 
-# ` `**1.  Introducción**
+# **1.  Introducción**
 
 ## **1.1           Descripción breve del concepto**
 
@@ -60,7 +60,7 @@ Se dirige a un público casual debido a que las partidas no tienen una duración
 
 El juego está desarrollado para plataformas de distribución digitales como Steam o Play Store, y plataformas de distribución digitales web como Itch.io. Las plataformas físicas objetivo del videojuego son el ordenador y el teléfono móvil.
 
-# ` `**2.  Monetización**
+# **2.  Monetización**
 
 ## **2.1 	Tipo de modelo de monetización**
 
@@ -96,7 +96,7 @@ La divisa de pago del juego se podrá emplear para **desbloquear personajes, com
 ![Productos](https://user-images.githubusercontent.com/93185865/142622382-e3150c84-bfb8-4c7a-a70f-058fc67609aa.jpg)
 
 # **3.  Planificación y costes**
-## ` 	`**3.1           Equipo Humano**
+## **3.1           Equipo Humano**
 
 
 Frozen Fury no se trata de un proyecto de gran envergadura. Es por ello que no cuenta con una infraestructura que demande la participación de una gran cantidad profesionales técnicos y artísticos muy capacitados que supongan un coste superior a los ingresos que se generarán en un principio con el producto.
@@ -111,7 +111,7 @@ El equipo de trabajo de la empresa se compone de los siguientes miembros, los cu
 
 
 
-- ` `**Bozhidar Petrov Valchev**: Pertenece al área técnica del proyecto. Lead programmer que coordina al equipo técnico de programación y comunica y asigna las distintas tareas a los distintos miembros del mismo. Adicionalmente, participará en la programación de la jugabilidad y las mecánicas del producto, además de desenvolverse adecuadamente en el área de creación de agentes e inteligencia artificial para el videojuego.
+- **Bozhidar Petrov Valchev**: Pertenece al área técnica del proyecto. Lead programmer que coordina al equipo técnico de programación y comunica y asigna las distintas tareas a los distintos miembros del mismo. Adicionalmente, participará en la programación de la jugabilidad y las mecánicas del producto, además de desenvolverse adecuadamente en el área de creación de agentes e inteligencia artificial para el videojuego.
 - **Daniel Sánchez Cánovas**: Pertenece a las áreas técnica y de diseño del proyecto. Se encarga junto a otro miembro del equipo, del *Diseño del Gameplay* del producto, que involucra el planteamiento de las mecánicas y la jugabilidad del mismo, además de la programación de estas dos facetas.
 - **Miguel Vidal de la Plaza:** Pertenece al área técnica del proyecto. Se encarga de la programación de las distintas herramientas del producto, además de la programación de mecánicas y jugabilidad junto al resto del equipo técnico.
 - **Jorge Galiano García:** Pertenece a las áreas técnica y de diseño del proyecto, especializado en el área técnica mayoritariamente. Se encarga de la programación de mecánicas y jugabilidad y es flexible y polivalente respecto al apartado artístico, pudiendo asumir cargos y tareas de animación 3D de los modelos del videojuego.
@@ -145,11 +145,18 @@ Debido a que se trata del primer proyecto como estudio indie, la infraestructura
 
 
 
-Se ha establecido una planificación de costes asociados al mantenimiento, modificación o aumento de contenido del producto de cara a dos años después del lanzamiento del mismo.
+Se ha establecido una planificación de trabajo necesario para poder acometer el correcto mantenimiento, modificación o aumento de contenido del producto de cara a dos años después del lanzamiento del mismo.
 
 
 
 Esta planificación está desglosada por semestres y en ella se establecen tres posibles escenarios a partir de los cuales se tomarán decisiones que cambiarán de una forma u otra el producto resultante. Cada escenario dependerá del grado de cumplimiento de los objetivos de trabajo establecidos.
+
+![horas](https://user-images.githubusercontent.com/73243869/142696804-50af619f-829a-4d40-be22-6453e5cf63cc.jpg)
+
+![horasobj](https://user-images.githubusercontent.com/73243869/142696944-aaeee4f5-0aec-4584-9bf7-0e4b288c2a2b.jpg)
+
+
+
 
 
 
@@ -163,21 +170,11 @@ Para poder valorar si los escenarios planteados son pesimistas, normales u optim
 
 Así, una vez conocidas la cantidad de horas invertidas y objetivadas la cantidad de horas ideales, se podrá valorar si los resultados son los esperados o no.
 
+![pesimista](https://user-images.githubusercontent.com/73243869/142697041-9a8fc347-4fd6-425c-82c9-79f515986033.jpg)
 
+![normal](https://user-images.githubusercontent.com/73243869/142697128-98d27d8c-70d8-4cec-b9e1-43a6ca6e2c87.jpg)
 
-
-
-![](Aspose.Words.e5d21510-996a-46bf-886c-cab87dacb366.002.png)
-
-` `Aclaración de gastos
-
-s/ ventas → Sobre las ventas
-
-![](Aspose.Words.e5d21510-996a-46bf-886c-cab87dacb366.003.png)
-
-![](Aspose.Words.e5d21510-996a-46bf-886c-cab87dacb366.004.png)
-
-![](Aspose.Words.e5d21510-996a-46bf-886c-cab87dacb366.005.png)
+![optimista](https://user-images.githubusercontent.com/73243869/142697181-48122fba-8e51-491d-b42d-4e9b0a310cfe.jpg)
 
 
 
@@ -186,7 +183,12 @@ s/ ventas → Sobre las ventas
 
 
 
-# ` `**4.    Mecánicas de Juego y Elementos de Juego**
+
+
+
+
+
+# **4.    Mecánicas de Juego y Elementos de Juego**
 
 ## **4.1	Descripción detallada del concepto de juego**
 
@@ -392,7 +394,7 @@ La música mencionada en al apartado anterior estará acompañada de diversos ef
 También se han incluido efectos de sonido para la partida, tales como la muerte del jugador, sonidos y efectos de disparo o construcción…
 
 
-# ` `**7.    Interfaz**
+# **7.    Interfaz**
 ## **7.1. Pantallas de juego**	
 ![Menu](https://user-images.githubusercontent.com/93185865/142622695-d65f0eb1-17c0-4b4b-b110-14e08d9f86fc.jpg)
 Menú principal
@@ -703,16 +705,16 @@ En cuanto a las opciones que tiene el usuario para defender el objetivo principa
 # **14. Hoja de ruta de desarrollo**
 
 Como se ha mencionado previamente en el documento, se ha establecido un total de 3 hitos fundamentales en el desarrollo del producto. Se deben cumplir en los plazos indicados y se estructuran de manera jerárquica, es decir, el comienzo de unos hitos dependen el cumplimiento de otros
-## `	`**13.1. Hito 1**
+## **13.1. Hito 1**
 El primer hito que el equipo de desarrollo debe terminar es una Fase Alpha del producto. En esta etapa se mostrarán las funcionalidades básicas del mismo, y se podrá terminar una partida entera, dejando ver al usuario el desarrollo completo del flujo principal de eventos en el juego. Existe la posibilidad de fallos en el producto durante esta fase, modelos 3d sin animaciones o texturas… que de cara a fases posteriores, se irán completando y mejorando.
 
-## `	`**13.2. Hito 2**
+## **13.2. Hito 2**
 El segundo hito que el equipo de desarrollo deberá completar es la Fase Beta del producto. Es de gran importancia que durante esta fase, se vea un producto prácticamente terminado. Los principales fallos de programación y aspectos que falten de arte se deberán completar y solventar debido a que el resultado de esta fase se pasará a un equipo de testing para evaluar el producto. Con ello, se recibirá la retroalimentación correspondiente para terminar de refinar el producto de cara a la fase final de su desarrollo.
 
-## `	`**13.3. Hito 3**
+## **13.3. Hito 3**
 La retroalimentación recibida sobre aquellos aspectos más importantes en el juego a modificar o mejorar es importante llevarla a cabo porque, una vez terminados los cambios, se deberá presentar el producto final a un Jurado de expertos que lo evaluarán en sus distintos aspectos de uso (mecánicas, jugabilidad, arte, gameplay design etc…). La fase final o Gold Master, es el hito previo al lanzamiento del producto al mercado.
 
-## `	`**13.4. Fecha de lanzamiento**
+## **13.4. Fecha de lanzamiento**
 El lanzamiento del producto está previsto para el 22 de Diciembre del 2021
 
 

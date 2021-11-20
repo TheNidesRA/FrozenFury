@@ -18,7 +18,7 @@ public class BuildingButtons : MonoBehaviour
     public void Confirm()
     {
         GridBuildingSystem.Instance.Confirm();
-        AudioManager.Instance.PlayRandomConstruction();
+        AudioManager.Instance?.PlayRandomConstruction();
     }
 
     public void UndoSelection()
