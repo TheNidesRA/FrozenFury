@@ -154,26 +154,6 @@ MonoBehaviour:
   children:
   - {fileID: -1092957734142099792}
   - {fileID: 2427354320825057431}
---- !u!114 &-4729132517612120328
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c773c1e6185b9d44bbdc7c03d4ff38e, type: 3}
-  m_Name: EnemyHitsPlayer
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: 4e47c70264299444694ea0338055b391
-  position: {x: 451.1999, y: 1693.6001}
-  blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
-  description: 
-  drawGizmos: 0
 --- !u!114 &-3899012685806188763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -310,11 +290,11 @@ MonoBehaviour:
   - {fileID: 639786286476511405}
   - {fileID: 7847257715440899501}
   - {fileID: -3224131368668218954}
-  - {fileID: -4729132517612120328}
   - {fileID: 2427354320825057431}
   - {fileID: 8289682364708698394}
   - {fileID: -6341396795341669328}
   - {fileID: -3899012685806188763}
+  - {fileID: 539701857471554996}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &314883946749480680
@@ -338,6 +318,27 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   child: {fileID: -5565180425105379915}
+--- !u!114 &539701857471554996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3787b13f86643f4399c613fd0eb1a51, type: 3}
+  m_Name: EnemyBunnyHitsPlayer
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 6ee8c23663839e04493a140fde8a3b47
+  position: {x: 461.8, y: 1693.6}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+  description: 
+  drawGizmos: 0
+  bullet: {fileID: 7040415461391761229, guid: 1a54109b718f5b54086fdb097435c6a8, type: 3}
 --- !u!114 &589690773984246472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -381,7 +382,7 @@ MonoBehaviour:
   children:
   - {fileID: 7847257715440899501}
   - {fileID: -3224131368668218954}
-  - {fileID: -4729132517612120328}
+  - {fileID: 539701857471554996}
 --- !u!114 &1980453045742275882
 MonoBehaviour:
   m_ObjectHideFlags: 0

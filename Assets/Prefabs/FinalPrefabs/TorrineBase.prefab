@@ -1226,9 +1226,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8508546885230174958}
   - component: {fileID: 6122916590722979974}
-  m_Layer: 10
+  - component: {fileID: 251157176505622919}
+  m_Layer: 20
   m_Name: TorrineBody
-  m_TagString: Untagged
+  m_TagString: ChasingPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1359,6 +1360,19 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.7097772, y: 0.056419253, z: 0.03346759}
     m_Extent: {x: 1.3936155, y: 0.7652067, z: 0.7461919}
   m_DirtyAABB: 0
+--- !u!65 &251157176505622919
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2408972002876977289}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10.488012, y: 8.718338, z: 12.358083}
+  m_Center: {x: 0.33076805, y: -0.042274013, z: 2.2404587}
 --- !u!1 &2519429678933989642
 GameObject:
   m_ObjectHideFlags: 0
@@ -1944,6 +1958,7 @@ MonoBehaviour:
   v_movement_x: 0
   moveSpeed: 0
   joystickDynamic: {fileID: 164961917958392610, guid: cab6d7c4a4db7254fbce28a0f9ce6c51, type: 3}
+  work: 1
 --- !u!1 &3866180997400233519
 GameObject:
   m_ObjectHideFlags: 0
