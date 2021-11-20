@@ -36,8 +36,8 @@ namespace Enemies
 
         #endregion
 
-        private float initSpeed;
-        private float initAcceleration;
+        public float initSpeed;
+        public float initAcceleration;
 
         public string Id => id;
 
