@@ -74,7 +74,7 @@ public class BuildingSO : ScriptableObject
     public Transform prefab;
     public Transform visual;
     public Transform canvasVisual;
-    public float goldCost = 1;
+    public int goldCost = 1;
     public BuildingType type;
 
     public List<Vector2Int> GetGridPositionList(Vector2Int offset, Dir dir)

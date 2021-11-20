@@ -26,4 +26,6 @@ public class UpdateUIStats : MonoBehaviour
         GoldUpgrade.text = "x"+build.goldCostUpgrade.ToString();
         GoldRepair.text = "x"+build.goldcostRepair.ToString();
     }
+
+   
 }

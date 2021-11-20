@@ -3,6 +3,7 @@ using System.Collections;
 using AutoAttackScripts;
 using UnityEngine;
 
+[DefaultExecutionOrder(-1)]
 public class PlayerStats : MonoBehaviour
 {
     public static PlayerStats _instance { get; private set; }
@@ -13,18 +14,40 @@ public class PlayerStats : MonoBehaviour
 
     public event EventHandler<float> OnHealthChanged;
 
-    [SerializeField] private float _gold;
+    public PlayerStatsSO PlayerStatsSo;
 
-    [SerializeField] private float damage = 0;
+    [SerializeField] private int _gold;
+
+
+    [SerializeField] private float _damage = 0;
+
+    public const int MAXLEVEL = 15;
+
+    [SerializeField] protected float _initDamage;
+    [SerializeField] protected float _initAttackSpeed;
+    [SerializeField] protected float _initHealth;
+    [SerializeField] protected int _initGoldCostLevel;
+
 
     [SerializeField] private int _level = 1;
-
     [SerializeField] private float _health = 10;
+    [SerializeField] public float _maxHealth { get; private set; }
+    [SerializeField] private float _attackSpeed;
+    [SerializeField] private int _goldLevelCost;
 
-    [SerializeField] private float _maxHealth = 100;
+
+    public AnimationCurve CurveHealth;
+    public AnimationCurve CurveDamage;
+    public AnimationCurve CurveAttackSpeed;
+    public AnimationCurve CurveGoldLevelCost;
+
+    public float MAXHEALTH;
+    public float MAXDAMAGE;
+    public float MAXATTACKSPEED;
+    public int MAXGOLDCOSTLEVEL;
+
 
     [SerializeField] private float _respawnTime = 5;
-
     public AutoShoot Shoot;
 
     private bool _isAlive = true;
@@ -34,11 +57,11 @@ public class PlayerStats : MonoBehaviour
 
     public float Damage
     {
-        get => damage;
-        set => damage = value;
+        get => _damage;
+        set => _damage = value;
     }
 
-    public float gold
+    public int gold
     {
         get => _gold;
         set
@@ -54,9 +77,16 @@ public class PlayerStats : MonoBehaviour
         set
         {
             _level = value;
+            Evaluate();
             OnLvlChanged?.Invoke(this, _level);
         }
     }
+
+    public float attackSpeed
+    {
+        get => _attackSpeed;
+    }
+
 
     public float Health
     {
@@ -91,7 +121,38 @@ public class PlayerStats : MonoBehaviour
         }
 
         Animator = gameObject.GetComponent<Animator>();
+
+        InitStats();
     }
+
+
+    private void Start()
+    {
+        CurveHealth = AnimationCurve.EaseInOut(1, _initHealth, MAXLEVEL, MAXHEALTH);
+        CurveDamage = AnimationCurve.EaseInOut(1, _initDamage, MAXLEVEL, MAXDAMAGE);
+        CurveAttackSpeed = AnimationCurve.EaseInOut(1, _initAttackSpeed, MAXLEVEL, MAXATTACKSPEED);
+        CurveGoldLevelCost = AnimationCurve.EaseInOut(1, _initGoldCostLevel, MAXLEVEL, MAXGOLDCOSTLEVEL);
+
+        Level = 1;
+    }
+
+
+    private void InitStats()
+    {
+        _gold = PlayerStatsSo.initGold;
+
+        _initDamage = PlayerStatsSo.initDamage;
+        _initHealth = PlayerStatsSo.initHealth;
+        _initAttackSpeed = PlayerStatsSo.initAttackSpeed;
+        _initGoldCostLevel = PlayerStatsSo.initUpgradeCostGold;
+
+
+        MAXDAMAGE = PlayerStatsSo.MAXDAMAGE;
+        MAXHEALTH = PlayerStatsSo.MAXHEALTH;
+        MAXATTACKSPEED = PlayerStatsSo.MAXATTACKSPEED;
+        MAXGOLDCOSTLEVEL = PlayerStatsSo.MAXGOLDUPGRADECOST;
+    }
+
 
     public void Dead()
     {
@@ -131,6 +192,27 @@ public class PlayerStats : MonoBehaviour
     {
         return _maxHealth;
     }
+
+
+    public void LevelingUp()
+    {
+        if (!(_gold >= _goldLevelCost)) return;
+        gold -= _goldLevelCost;
+        Level++;
+    }
+
+    private void Evaluate()
+    {
+        _damage = CurveDamage.Evaluate(Level);
+        _attackSpeed = CurveAttackSpeed.Evaluate(Level);
+        _health = CurveHealth.Evaluate(Level);
+        _goldLevelCost = (int) CurveGoldLevelCost.Evaluate(Level);
+        _maxHealth = CurveHealth.Evaluate(Level);
+
+        Debug.Log("Player subido");
+        
+    }
+
 
     [ContextMenu("DamagePlayer")]
     public void DamagePlayer()
