@@ -450,7 +450,7 @@ namespace AutoAttackScripts
         {
             _closestEnemies.Clear();
             _enemiesHealth.Clear();
-            _closestEnemies.Clear();
+            _enemiesInRange.Clear();
         }
 
         private void ShootingNormal(GameObject enemy)
