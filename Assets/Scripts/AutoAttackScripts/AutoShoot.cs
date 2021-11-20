@@ -103,6 +103,8 @@ namespace AutoAttackScripts
         [Header("Time to wait until the Shoot() method is executed")]
         public float timeBetweenShooting = 0.5f;
 
+        [Header("Shoots per second")] public float shootsPerSecond = 1;
+
         /// <summary>
         /// Time between you shoot the second bullet of the Shoot() method, this is only used in AutoTwoShoots.
         /// </summary>
@@ -246,15 +248,15 @@ namespace AutoAttackScripts
                         throw new ArgumentOutOfRangeException();
                 }
 
-
                 //we wait timeBetweenShooting amount of time
-                yield return new WaitForSeconds(timeBetweenShooting);
+                // yield return new WaitForSeconds(timeBetweenShooting);
+                //we wait timeBetweenShooting amount of time
+                yield return new WaitForSeconds(1.0f / shootsPerSecond);
                 Shooting = false;
                 if (isPlayer)
                 {
                     characterAnimator.SetBool("Shoot", false);
                     //characterAnimator.SetLayerWeight(characterAnimator.GetLayerIndex("Shooting"), 0.0f);
-
                 }
                 else
                 {
@@ -429,7 +431,7 @@ namespace AutoAttackScripts
             ShootBulletBurst(enemy);
             yield return new WaitForSeconds(timeToShootBulletBurst);
             ShootBulletBurst(enemy);
-            if(isPlayer)
+            if (isPlayer)
                 characterAnimator.SetBool("Shoot", false);
         }
 
