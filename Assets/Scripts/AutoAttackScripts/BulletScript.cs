@@ -8,8 +8,9 @@ namespace AutoAttackScripts
         private GameObject _enemyToRemove;
         private Enemy _enemy;
         private bool _bulletFromPlayer;
+        public float bulletDamage;
         private BuildingSO _buildingInfo;
-
+        
         public bool BulletFromPlayer
         {
             get => _bulletFromPlayer;
@@ -43,7 +44,7 @@ namespace AutoAttackScripts
 
             if (_bulletFromPlayer)
             {
-                if (!_enemy.OnHit(PlayerStats._instance.Damage))
+                if (!_enemy.OnHit(bulletDamage))
                     return;
                 
                 PlayerSkillCalculator.Instance.kills++;

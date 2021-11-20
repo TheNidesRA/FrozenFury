@@ -58,7 +58,11 @@ public class PlayerStats : MonoBehaviour
     public float Damage
     {
         get => _damage;
-        set => _damage = value;
+        set
+        {
+            Shoot.DamagePerBullet = value;
+            _damage = value;
+        }
     }
 
     public int gold
@@ -85,6 +89,11 @@ public class PlayerStats : MonoBehaviour
     public float attackSpeed
     {
         get => _attackSpeed;
+        set
+        {
+            Shoot.shootsPerSecond = value;
+            _attackSpeed = value;
+        }
     }
 
 
@@ -146,6 +155,10 @@ public class PlayerStats : MonoBehaviour
         _initAttackSpeed = PlayerStatsSo.initAttackSpeed;
         _initGoldCostLevel = PlayerStatsSo.initUpgradeCostGold;
 
+        Damage = _initDamage;
+        Health = _initHealth;
+        attackSpeed = _initAttackSpeed;
+
 
         MAXDAMAGE = PlayerStatsSo.MAXDAMAGE;
         MAXHEALTH = PlayerStatsSo.MAXHEALTH;
@@ -203,14 +216,13 @@ public class PlayerStats : MonoBehaviour
 
     private void Evaluate()
     {
-        _damage = CurveDamage.Evaluate(Level);
-        _attackSpeed = CurveAttackSpeed.Evaluate(Level);
-        _health = CurveHealth.Evaluate(Level);
+        Damage = CurveDamage.Evaluate(Level);
+        attackSpeed = CurveAttackSpeed.Evaluate(Level);
+        Health = CurveHealth.Evaluate(Level);
         _goldLevelCost = (int) CurveGoldLevelCost.Evaluate(Level);
         _maxHealth = CurveHealth.Evaluate(Level);
 
         Debug.Log("Player subido");
-        
     }
 
 
