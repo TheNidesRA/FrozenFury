@@ -116,12 +116,15 @@ namespace AutoAttackScripts
         public void RotatePlayerToEnemy(GameObject enemy)
         {
             if (enemy == null) return;
-       
 
-            Vector3 lookVector = enemy.transform.position - player.transform.position;
-            lookVector.y = enemy.transform.position.y;
+
+            Vector3 lookVector = (enemy.transform.position - player.transform.position).normalized;
+            lookVector.y = 0;// enemy.transform.position.y;
+            //lookVector.x = 0;
+            //lookVector.z = 0;
             Quaternion rot = Quaternion.LookRotation(lookVector);
-            transform.rotation = Quaternion.Slerp(transform.rotation, rot, 1);
+            player.transform.rotation = Quaternion.Slerp(player.transform.rotation, rot, Time.deltaTime * turnSpeed);
+
 
 
             /*
