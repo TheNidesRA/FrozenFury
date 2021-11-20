@@ -174,7 +174,7 @@ public class @InputPlayer : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""SelectBuid"",
-                    ""type"": ""Button"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""7cdbb6d0-c47c-4a31-9d67-8986e5728b6c"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
