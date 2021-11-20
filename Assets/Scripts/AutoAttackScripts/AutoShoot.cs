@@ -139,6 +139,7 @@ namespace AutoAttackScripts
             _enemiesInRange = new List<GameObject>();
             _enemiesHealth = new Dictionary<GameObject, float>();
             StartCoroutine(nameof(AimEnemy));
+
             isPlayer = transform.parent.gameObject.CompareTag("Player");
             if (isPlayer)
             {
@@ -148,6 +149,7 @@ namespace AutoAttackScripts
                     0.0f); //peso de la capa de disparo al inicio
                 //characterAnimator.SetFloat("speedMult", 0.5f);
             }
+            
 
             quadrant = new bool[2];
         }
@@ -155,6 +157,7 @@ namespace AutoAttackScripts
         private void Update()
         {
             PlayerStats._instance.Damage = DamagePerBullet;
+            Debug.Log("Shooting: " + Shooting);
         }
 
         private void OnCollisionExit(Collision other)
@@ -239,14 +242,17 @@ namespace AutoAttackScripts
                         throw new ArgumentOutOfRangeException();
                 }
 
+                
+
                 //we wait timeBetweenShooting amount of time
                 yield return new WaitForSeconds(timeBetweenShooting);
                 Shooting = false;
                 if (isPlayer)
                 {
-                    characterAnimator.SetLayerWeight(characterAnimator.GetLayerIndex("Shooting"), 1f);
+                    characterAnimator.SetLayerWeight(characterAnimator.GetLayerIndex("Shooting"), 0.0f);
                     characterAnimator.SetBool("Shoot", Shooting);
                 }
+
             }
         }
 
@@ -459,6 +465,7 @@ namespace AutoAttackScripts
 
             //add forces to bullet
             currentBullet.GetComponent<Rigidbody>().AddForce(directionShoot.normalized * shootForce, ForceMode.Impulse);
+            
         }
 
         private void ShootingBurst(GameObject enemy)
