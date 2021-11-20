@@ -7,6 +7,7 @@ public class BuildManagement : MonoBehaviour
 {
     public ComunicacionGridCanvas cgc;
     public Button Btn;
+    public UpdateUIStats UpdateUIStats;
 
 
     public void CheckIfInteractable()
@@ -53,6 +54,7 @@ public class BuildManagement : MonoBehaviour
 
      
         cgc.ExposedPlacedBuild.LevelingUp();
+        UpdateUIStats.UpdateStatsText(cgc.ExposedPlacedBuild);
         
         if (cgc.ExposedPlacedBuild.level >= 15)
         {

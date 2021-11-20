@@ -35,6 +35,10 @@ public class ComunicacionGridCanvas : MonoBehaviour
     private Transform buildUpdate;
     private PlacedBuild _placedBuild;
     private RectTransform _rectTransformBuildUpdate;
+
+    public UpdateUIStats UpdateStatsSettingBuild;
+    public UpdateUIStats UpdateStatsEditBuild;
+    
     
     public PlacedBuild ExposedPlacedBuild
     {
@@ -112,6 +116,7 @@ public class ComunicacionGridCanvas : MonoBehaviour
        // BuildButton.SetActive(false);
         BuildButtonActions.outBuildPosition();
         EditBuild.SetActive(true);
+        
         tween = LeanTween.moveX(_rectTransformEditBuild.GetComponent<RectTransform>(), insidePosition.x, transitionTime)
             .setEaseInCubic(); //.setOnComplete(() => {EditBuild.SetActive(true); });
     }
@@ -151,9 +156,14 @@ public class ComunicacionGridCanvas : MonoBehaviour
         BuildingSO placedObjectTypeSO = GridBuildingSystem.Instance.buildingSo;
         if (placedObjectTypeSO != null)
         {
+            
+            
             build = Instantiate(placedObjectTypeSO.canvasVisual, Vector3.zero, Quaternion.identity,
                 buildPlaceVisual.transform);
-
+            
+            UpdateStatsSettingBuild.UpdateStatsText(placedObjectTypeSO);
+            
+            
             build.localPosition = new Vector3(0, 0, -150);
             build.localEulerAngles = placedObjectTypeSO.canvasVisual.rotation.eulerAngles;
             SetLayerRecursive(build.gameObject, 5);
@@ -185,7 +195,10 @@ public class ComunicacionGridCanvas : MonoBehaviour
             _placedBuild = placedBuild;
             buildUpdate = Instantiate(placedBuild.BuildingSo.canvasVisual, Vector3.zero, Quaternion.identity,
                 _buildUpdateObjectPlace.transform);
-
+            
+            
+            UpdateStatsEditBuild.UpdateStatsText(placedBuild);
+            
             buildUpdate.localPosition = new Vector3(0, 0, -60);
             buildUpdate.localEulerAngles = placedBuild.BuildingSo.canvasVisual.rotation.eulerAngles;
             ;
