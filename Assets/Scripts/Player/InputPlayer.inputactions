@@ -166,6 +166,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Build4",
+                    "type": "Button",
+                    "id": "06f94600-18ae-45fb-9551-c5cd7618ded5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -271,7 +279,7 @@
                 {
                     "name": "",
                     "id": "53b0e4c0-0be4-4173-a9df-36d3e99fc117",
-                    "path": "<Keyboard>/r",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -309,6 +317,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "SelectBuid",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "266b4de8-15de-4464-a5a3-fdce33c4c715",
+                    "path": "<Keyboard>/4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Build4",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

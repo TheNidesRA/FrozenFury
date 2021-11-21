@@ -85,7 +85,8 @@ namespace GridSystem
             _control.Building.Build1.performed += ChangeBuild;
             _control.Building.Build2.performed += ChangeBuild;
             _control.Building.Build3.performed += ChangeBuild;
-            _control.Building.RigthClick.performed += RemoveBuild;
+            _control.Building.Build4.performed += ChangeBuild;
+            //_control.Building.RigthClick.performed += RemoveBuild;
             _control.Building.UndoSelection.performed += DeselectObjectType;
             _control.Building.Rotate.performed += Rotate;
             _control.Building.Confirm.performed += Confirm;

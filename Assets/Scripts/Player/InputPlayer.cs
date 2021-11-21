@@ -179,6 +179,14 @@ public class @InputPlayer : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Build4"",
+                    ""type"": ""Button"",
+                    ""id"": ""06f94600-18ae-45fb-9551-c5cd7618ded5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -284,7 +292,7 @@ public class @InputPlayer : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""53b0e4c0-0be4-4173-a9df-36d3e99fc117"",
-                    ""path"": ""<Keyboard>/r"",
+                    ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -322,6 +330,17 @@ public class @InputPlayer : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""SelectBuid"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""266b4de8-15de-4464-a5a3-fdce33c4c715"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Build4"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -372,6 +391,7 @@ public class @InputPlayer : IInputActionCollection, IDisposable
         m_Building_Rotate = m_Building.FindAction("Rotate", throwIfNotFound: true);
         m_Building_Confirm = m_Building.FindAction("Confirm", throwIfNotFound: true);
         m_Building_SelectBuid = m_Building.FindAction("SelectBuid", throwIfNotFound: true);
+        m_Building_Build4 = m_Building.FindAction("Build4", throwIfNotFound: true);
         // Test
         m_Test = asset.FindActionMap("Test", throwIfNotFound: true);
         m_Test_SpawnEnemy = m_Test.FindAction("SpawnEnemy", throwIfNotFound: true);
@@ -467,6 +487,7 @@ public class @InputPlayer : IInputActionCollection, IDisposable
     private readonly InputAction m_Building_Rotate;
     private readonly InputAction m_Building_Confirm;
     private readonly InputAction m_Building_SelectBuid;
+    private readonly InputAction m_Building_Build4;
     public struct BuildingActions
     {
         private @InputPlayer m_Wrapper;
@@ -481,6 +502,7 @@ public class @InputPlayer : IInputActionCollection, IDisposable
         public InputAction @Rotate => m_Wrapper.m_Building_Rotate;
         public InputAction @Confirm => m_Wrapper.m_Building_Confirm;
         public InputAction @SelectBuid => m_Wrapper.m_Building_SelectBuid;
+        public InputAction @Build4 => m_Wrapper.m_Building_Build4;
         public InputActionMap Get() { return m_Wrapper.m_Building; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -520,6 +542,9 @@ public class @InputPlayer : IInputActionCollection, IDisposable
                 @SelectBuid.started -= m_Wrapper.m_BuildingActionsCallbackInterface.OnSelectBuid;
                 @SelectBuid.performed -= m_Wrapper.m_BuildingActionsCallbackInterface.OnSelectBuid;
                 @SelectBuid.canceled -= m_Wrapper.m_BuildingActionsCallbackInterface.OnSelectBuid;
+                @Build4.started -= m_Wrapper.m_BuildingActionsCallbackInterface.OnBuild4;
+                @Build4.performed -= m_Wrapper.m_BuildingActionsCallbackInterface.OnBuild4;
+                @Build4.canceled -= m_Wrapper.m_BuildingActionsCallbackInterface.OnBuild4;
             }
             m_Wrapper.m_BuildingActionsCallbackInterface = instance;
             if (instance != null)
@@ -554,6 +579,9 @@ public class @InputPlayer : IInputActionCollection, IDisposable
                 @SelectBuid.started += instance.OnSelectBuid;
                 @SelectBuid.performed += instance.OnSelectBuid;
                 @SelectBuid.canceled += instance.OnSelectBuid;
+                @Build4.started += instance.OnBuild4;
+                @Build4.performed += instance.OnBuild4;
+                @Build4.canceled += instance.OnBuild4;
             }
         }
     }
@@ -607,6 +635,7 @@ public class @InputPlayer : IInputActionCollection, IDisposable
         void OnRotate(InputAction.CallbackContext context);
         void OnConfirm(InputAction.CallbackContext context);
         void OnSelectBuid(InputAction.CallbackContext context);
+        void OnBuild4(InputAction.CallbackContext context);
     }
     public interface ITestActions
     {
