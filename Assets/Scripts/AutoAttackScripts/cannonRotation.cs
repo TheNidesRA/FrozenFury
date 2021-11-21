@@ -18,7 +18,7 @@ namespace AutoAttackScripts
             currentBullet.GetComponent<Rigidbody>().useGravity = true;
             Vector3 data = CalculateLaunchData(currentEnemy).initialVelocity;
             if (data.x is Single.NaN) { return; }
-            currentBullet.GetComponent<Rigidbody>().velocity = CalculateLaunchData(currentEnemy).initialVelocity;
+            currentBullet.GetComponent<Rigidbody>().velocity = CalculateLaunchData(currentEnemy).initialVelocity + new Vector3(2,0,2);
             AudioManager.Instance?.PlayRandomHitSound();
                  
         }
@@ -27,7 +27,7 @@ namespace AutoAttackScripts
         {
             float displacementY = currentEnemy.transform.position.y - attackPoint.position.y;
             
-            Vector3 displacementXZ = new Vector3(currentEnemy.transform.position.x - attackPoint.position.x + 10, 0, currentEnemy.transform.position.z+10 - attackPoint.position.z);
+            Vector3 displacementXZ = new Vector3(currentEnemy.transform.position.x - attackPoint.position.x , 0, currentEnemy.transform.position.z - attackPoint.position.z);
 
             float time = Mathf.Sqrt(-2 * h / gravity) + Mathf.Sqrt(2 * (displacementY - h) / gravity);
             Vector3 velocityY = Vector3.up * Mathf.Sqrt(-2 * gravity * h);

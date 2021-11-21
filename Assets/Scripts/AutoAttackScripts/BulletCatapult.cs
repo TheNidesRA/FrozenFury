@@ -26,7 +26,7 @@ namespace AutoAttackScripts
 
                 if (hit.gameObject.TryGetComponent<Enemy>(out Enemy enemy))
                 {
-                    if (enemy.OnHit(BuildingInfo.initDamage))
+                    if (enemy.OnHit(bulletDamage))
                     {
                         PlayerSkillCalculator.Instance.UpdateRoundKills();
                         enemy.Die();
