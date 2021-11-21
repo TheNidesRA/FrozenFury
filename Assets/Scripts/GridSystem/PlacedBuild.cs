@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using AutoAttackScripts;
 using GridSystem;
 using UnityEngine;
 using UnityEngine.AI;
@@ -38,6 +39,7 @@ public class PlacedBuild : MonoBehaviour
     [SerializeField] protected int _goldCostLevel;
     [SerializeField] protected int _goldCostRepair;
 
+
     public AnimationCurve CurveHealth;
     public AnimationCurve CurveDamage;
     public AnimationCurve CurveAttackSpeed;
@@ -64,19 +66,30 @@ public class PlacedBuild : MonoBehaviour
     public float damage
     {
         get { return _damage; }
-        set { _damage = value; }
+        set
+        {
+            _damage = value;
+            if (Shoot != null)
+                Shoot.DamagePerBullet = damage;
+        }
     }
 
     public float attackSpeed
     {
         get => _attackSpeed;
+        set
+        {
+            _attackSpeed = value;
+            if (Shoot != null)
+                Shoot.shootsPerSecond = value;
+        }
     }
 
     public int goldCostUpgrade
     {
         get => _goldCostLevel;
     }
-    
+
     public int goldcostRepair
     {
         get => _goldCostRepair;
@@ -97,6 +110,9 @@ public class PlacedBuild : MonoBehaviour
             Debug.Log(_buildingSo.name + " vida restante : " + _health);
         }
     }
+
+
+    public AutoShoot Shoot;
 
     public void Awake()
     {
@@ -224,14 +240,14 @@ public class PlacedBuild : MonoBehaviour
 
     private void Evaluate()
     {
-        _damage = CurveDamage.Evaluate(level);
-        _attackSpeed = CurveAttackSpeed.Evaluate(level);
+        damage = CurveDamage.Evaluate(level);
+        attackSpeed = CurveAttackSpeed.Evaluate(level);
         _health = CurveHealth.Evaluate(level);
         _goldCostLevel = (int) CurveGoldLevelCost.Evaluate(level);
         currentMaxHealth = CurveHealth.Evaluate(level);
 
         // Debug.Log("Nuevas estats para : " + _buildingSo.name + " Damage: " + _damage + " attacspeed: " + _attackSpeed +
-                  // "health : " + health + " /" + currentMaxHealth);
+        // "health : " + health + " /" + currentMaxHealth);
     }
 
     public void Repair()
