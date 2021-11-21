@@ -100,7 +100,7 @@ La divisa de pago del juego se podrá emplear para **desbloquear personajes, com
 
 
 Frozen Fury no se trata de un proyecto de gran envergadura. Es por ello que no cuenta con una infraestructura que demande la participación de una gran cantidad profesionales técnicos y artísticos muy capacitados que supongan un coste superior a los ingresos que se generarán en un principio con el producto.
-**
+
 
 
 **TheNides R.A**. cuenta con un equipo de trabajo polivalente que cubrirá las necesidades y asumirá tareas específicas de las distintas áreas de desarrollo del producto final.
@@ -145,11 +145,11 @@ Debido a que se trata del primer proyecto como estudio indie, la infraestructura
 
 
 
-Se ha establecido una planificación de trabajo necesario para poder acometer el correcto mantenimiento, modificación o aumento de contenido del producto de cara a dos años después del lanzamiento del mismo.
+Se ha establecido una **planificación de trabajo necesario** para poder acometer el correcto mantenimiento, modificación o aumento de contenido del producto de cara a dos años después del lanzamiento del mismo.
 
 
 
-Esta planificación está desglosada por semestres y en ella se establecen tres posibles escenarios a partir de los cuales se tomarán decisiones que cambiarán de una forma u otra el producto resultante. Cada escenario dependerá del grado de cumplimiento de los objetivos de trabajo establecidos.
+Esta planificación está **desglosada por semestres** y en ella se establecen **tres posibles escenarios** a partir de los cuales se tomarán decisiones que cambiarán de una forma u otra el producto resultante. Cada escenario dependerá del grado de cumplimiento de los objetivos de trabajo establecidos.
 
 ![horas](https://user-images.githubusercontent.com/73243869/142696804-50af619f-829a-4d40-be22-6453e5cf63cc.jpg)
 
@@ -160,11 +160,11 @@ Esta planificación está desglosada por semestres y en ella se establecen tres 
 
 
 
-Adicionalmente, se llevará a cabo una evaluación trimestral desde el lanzamiento del producto para medir el comportamiento de las ventas, analizar si se mantienen estáticas o evolucionan favorable o negativamente y, en tal caso, aplicar correcciones a la planificación de trabajo establecida.
+Adicionalmente, se llevará a cabo una **evaluación trimestral desde el lanzamiento del producto** para medir el comportamiento de las ventas, analizar si se mantienen estáticas o evolucionan favorable o negativamente y, en tal caso, aplicar correcciones a la planificación de trabajo establecida.
 
 
 
-Para poder valorar si los escenarios planteados son pesimistas, normales u optimistas, se deberá proyectar las horas de trabajo reales del equipo de la empresa y establecer un objetivo de horas definido. El objetivo se establece de forma mensual para poder realizar un seguimiento cercano de su cumplimiento y rectificar, si procede. Este objetivo estará relacionado con una estimación del tiempo de trabajo necesario de cada área para poder abarcar con holgura y, cumpliendo los plazos a tiempo, todas y cada una de las tareas planificadas en el proyecto, incluyéndose modificaciones o actualizaciones del mismo a lo largo de un plazo máximo de dos años. 
+Para poder valorar si los escenarios planteados son pesimistas, normales u optimistas, **se deberá proyectar las horas de trabajo reales del equipo de la empresa y establecer un objetivo de horas definido**. El objetivo se establece de forma mensual para poder realizar un seguimiento cercano de su cumplimiento y rectificar, si procede. Este objetivo estará relacionado con una estimación del tiempo de trabajo necesario de cada área para poder abarcar con holgura y, cumpliendo los plazos a tiempo, todas y cada una de las tareas planificadas en el proyecto, incluyéndose modificaciones o actualizaciones del mismo a lo largo de un plazo máximo de dos años. 
 
 
 
@@ -177,22 +177,11 @@ Así, una vez conocidas la cantidad de horas invertidas y objetivadas la cantida
 ![optimista](https://user-images.githubusercontent.com/73243869/142697181-48122fba-8e51-491d-b42d-4e9b0a310cfe.jpg)
 
 
-
-
-
-
-
-
-
-
-
-
-
 # **4.    Mecánicas de Juego y Elementos de Juego**
 
 ## **4.1	Descripción detallada del concepto de juego**
 
-La mecánica principal del juego consistirá en el desplazamiento por el entorno para la eliminación de hordas de enemigos. Esto se llevará a cabo mediante el uso del personaje y sus habilidades junto al posicionamiento de trampas y edificaciones ofensivas (o defensivas) que afectarán al entorno y al comportamiento de los enemigos.
+La mecánica principal del juego consistirá en el **desplazamiento por el entorno para la eliminación de hordas de enemigos**. Esto se llevará a cabo mediante el uso del personaje y sus habilidades junto al posicionamiento de trampas y edificaciones ofensivas (o defensivas) que afectarán al entorno y al comportamiento de los enemigos.
 
 Todo esto se observará desde una vista ligeramente picada, las hordas de enemigos serán cambiantes y se adaptarán al jugador para ajustar la dificultad de la partida. Adicionalmente, el jugador tendrá todo un elenco de personajes y edificaciones que seleccionar para que cada una de las partidas sea diferente. Además, tanto la construcción de elementos como las mejoras de personaje requerirán del uso de recursos que el jugador deberá gestionar tras recolectarlos eliminando hordas enemigas.
 
@@ -210,6 +199,13 @@ Esta es una de las principales mecánicas de Frozen Fury. Nada más iniciar la p
 Se podrá observar también que el menú de construcción se actualizará una vez seleccionada una estructura, mostrando estadísticas concretas del edificable seleccionado y, en la parte inferior, varios botones de interacción.
 
 Una vez el usuario selecciona el área del grid en la que desea colocar la estructura, ésta quedará fija, dando pie al jugador a interactuar con los nuevos botones del menú de construcción. Entre ellos se encuentra un botón para **rotar la estructura**, un botón para **mover la estructura** (en caso de haberla posicionado en un sitio no deseado), un botón de **confirmación** para colocarla definitivamente en el mapa y un botón de **borrado**, que cerrará el modo construcción y cancelará la estructura que se fuera a fijar.
+
+### **MEJORAS DE JUGADOR Y ESTRUCTURAS**
+Una de las nuevas mecánicas incluidas es la capacidad de mejorar y reparar estructuras además de poder mejorar al jugador. Las mejoras conllevan un gasto de recursos y afectan principalmente a estadísticas como la vida, el daño, o la velocidad de ataque.
+- Las estructuras se podrán mejorar accediendo primero al menú de mejora de estructura **manteniendo el clic izquierdo sobre ella** (siempre y cuando ya se haya construido), y **presionando los botones de mejora correspondientes** “Level up”. Esto conlleva un gasto de los recursos principales de la partida.
+
+- La opción de mejorar el personaje aparecerá **si el usuario mueve el mismo hacia la furgoneta del mapa**. Una vez cerca de ella, se desplegará el mismo menú de mejora mencionado previamente.
+
 
 ### **OLEADAS**
 Otra de las mecánicas principales de Frozen Fury se centra en lograr que el objetivo principal que el jugador debe defender, quede con al menos un punto de vida al final de la partida. Los encargados de atacar este objetivo principal son los distintos enemigos del juego, a los cuales se les ha dotado de comportamientos distintos en partida que se especificarán en un apartado dedicado exclusivamente a ellos.
@@ -233,23 +229,23 @@ Frozen Fury es un videojuego multiplataforma que se puede jugar tanto en disposi
 
 ### **PC**
 
-- Clic izquierdo en menú desplegable → Acceso al modo construcción. 
-- Clic izquierdo en el mapa en modo construcción → Fijación de estructura y actualización de opciones en el modo construcción.
-- Clic izquierdo en botón de rotar (modo construcción) → Rotación de la estructura fijada previamente en el mapa
-- Clic izquierdo en botón de mover (modo construcción) → Permite el movimiento libre de la estructura previamente fijada.
-- Clic izquierdo en botón de confirmación (modo construcción) → Coloca definitivamente la estructura fijada previamente en el mapa en una posición y con una rotación determinada.
-- Clic izquierdo en botón de borrado (modo construcción) → Elimina la construcción fijada previamente y cierra el modo construcción.
-- Clic izquierdo en botón de inicio de ronda → Iniciar ronda
+- **Clic izquierdo en menú desplegable** → Acceso al modo construcción. 
+- **Clic izquierdo en el mapa en modo construcción** → Fijación de estructura y actualización de opciones en el modo construcción.
+- **Clic izquierdo en botón de rotar (modo construcción)** → Rotación de la estructura fijada previamente en el mapa
+- **Clic izquierdo en botón de mover (modo construcción)** → Permite el movimiento libre de la estructura previamente fijada.
+- **Clic izquierdo en botón de confirmación (modo construcción)** → Coloca definitivamente la estructura fijada previamente en el mapa en una posición y con una rotación determinada.
+- **Clic izquierdo en botón de borrado (modo construcción)** → Elimina la construcción fijada previamente y cierra el modo construcción.
+- **Clic izquierdo en botón de inicio de ronda** → Iniciar ronda
 
 ### **DISPOSITIVO MÓVIL**
 
-- Pulsar menú desplegable → Acceso al modo construcción. 
-- Pulsar en el mapa en modo construcción → Fijación de estructura y actualización de opciones en el modo construcción.
-- Pulsar botón de rotar (modo construcción) → Rotación de la estructura fijada previamente en el mapa
-- Pulsar botón de mover (modo construcción) → Permite el movimiento libre de la estructura previamente fijada.
-- Pulsar botón de confirmación (modo construcción) → Coloca definitivamente la estructura fijada previamente en el mapa en una posición y con una rotación determinada.
-- Pulsar botón de borrado (modo construcción) → Elimina la construcción fijada previamente y cierra el modo construcción.
-- Pulsar botón de inicio de ronda → Iniciar ronda	    
+- **Pulsar menú desplegable** → Acceso al modo construcción. 
+- **Pulsar en el mapa en modo construcción** → Fijación de estructura y actualización de opciones en el modo construcción.
+- **Pulsar botón de rotar (modo construcción)** → Rotación de la estructura fijada previamente en el mapa
+- **Pulsar botón de mover (modo construcción)** → Permite el movimiento libre de la estructura previamente fijada.
+- **Pulsar botón de confirmación (modo construcción)** → Coloca definitivamente la estructura fijada previamente en el mapa en una posición y con una rotación determinada.
+- **Pulsar botón de borrado (modo construcción)** → Elimina la construcción fijada previamente y cierra el modo construcción.
+- **Pulsar botón de inicio de ronda** → Iniciar ronda	    
 
 ## **4.4	 Niveles y misiones**
 
@@ -257,34 +253,34 @@ Frozen Fury se trata de un juego de tipo endless, por lo que como tal, no cuenta
 
 Una vez el jugador haya alcanzado la ronda 20, si este “pierde” (la vida del objetivo principal llega a 0), se considerará como victoria, permitiendo al usuario visualizar una pantalla o splash art de la victoria. Sin embargo, si el jugador no logra defender el objetivo principal por debajo de la ronda 20, se considerará como derrota.
 
-Tay y como se acaba de mencionar, se considerará una partida como victoria cuando el jugador haya alcanzado al menos la ronda 20, sin embargo, esto sólo supondrá un desafío inicial pues se incentiva al jugador a continuar la partida mediante un sistema adaptación de los enemigos (Dynamic Difficulty Adjustment) a las capacidades del jugador para hacer la partida desafiante en todo momento mediante el uso de algoritmos genéticos. De esta forma, el jugador podrá saciar su curiosidad por ver hasta qué punto puede evolucionar una partida a la par que enfrentarse a un desafío a medida.
+Tay y como se acaba de mencionar, se considerará una partida como victoria **cuando el jugador haya alcanzado al menos la ronda 20**, sin embargo, esto sólo supondrá un desafío inicial pues se incentiva al jugador a continuar la partida mediante un sistema adaptación de los enemigos (Dynamic Difficulty Adjustment) a las capacidades del jugador para hacer la partida desafiante en todo momento mediante el uso de algoritmos genéticos. De esta forma, el jugador podrá saciar su curiosidad por ver hasta qué punto puede evolucionar una partida a la par que enfrentarse a un desafío a medida.
 
 ## **4.5	Objetos**
 
 Para defender el objetivo principal, el usuario deberá hacer uso del propio disparo del personaje o de los edificables mencionados en el apartado de **Descripción detallada de mecánicas.** A continuación se describen las distintas estructuras que el jugador puede construir en la partida:
 
-CAÑÓN HELADO
+**CAÑÓN HELADO**
 
 Estructura con velocidad de disparo y daño moderado. El disparo es directo a los enemigos y es de impacto a un único target (objetivo)
 
-CATAPULTA
+**CATAPULTA**
 
 Estructura con velocidad de disparo lenta y daño alto. El disparo se mueve mediante tiro parabólico y el impacto afecta a varios enemigos, es decir, es en área.
 
-TRAMPA DE CONOS
+**TRAMPA DE CONOS**
 
 Estructura que aplica un daño continuado mientras los enemigos están encima de ella. Adicionalmente, aplicará una reducción en la velocidad de movimiento de los mismos.
 
-MURO DE GALLETA
+**MURO DE GALLETA**
 
 Estructura que no inflige daño a los enemigos pero sirve para obstaculizar su paso.
 
 ## **4.6	Armas**
 Frozen Fury no cuenta como tal con distintas armas entre las que cambiar, sino que existen tres personajes jugables que el usuario puede escoger. Dichos personajes tienen distintos modos de disparo:
 
-- Tiro disperso: propio del personaje principal, el heladero, el cual cuenta con una escopeta de dos cañones que dispersará varias balas en un área cónica. Las balas tienen un daño moderado y la cadencia de ataque también es moderada
-- Tiro a ráfagas: propio del personaje **Coneman**. Es un disparo desde un único punto de ataque y con ráfagas de tres balas. El daño será menor que las balas del tiro disperso, pero a cambio, la cadencia de disparo será mayor.
-- Tiro potente: propio del personaje **Torrine.** La cadencia de disparo será lenta puesto que se trata de un tiro con un daño elevado.
+- **Tiro disperso**: propio del personaje principal, el heladero, el cual cuenta con una escopeta de dos cañones que dispersará varias balas en un área cónica. Las balas tienen un daño moderado y la cadencia de ataque también es moderada
+- **Tiro a ráfagas**: propio del personaje **Coneman**. Es un disparo desde un único punto de ataque y con ráfagas de tres balas. El daño será menor que las balas del tiro disperso, pero a cambio, la cadencia de disparo será mayor.
+- **Tiro potente**: propio del personaje **Torrine.** La cadencia de disparo será lenta puesto que se trata de un tiro con un daño elevado.
 
 ## **4.6	Enemigos**
 En este apartado se detallarán los distintos enemigos con los que el juego cuenta, su comportamiento y su interacción con el mundo.
@@ -396,7 +392,7 @@ También se han incluido efectos de sonido para la partida, tales como la muerte
 
 # **7.    Interfaz**
 ## **7.1. Pantallas de juego**	
-![Menu](https://user-images.githubusercontent.com/93185865/142622695-d65f0eb1-17c0-4b4b-b110-14e08d9f86fc.jpg)
+![Menu](https://user-images.githubusercontent.com/73243869/142768630-e3a362c4-e7c4-42e5-a44a-a33e607d95a5.jpg)
 Menú principal
 
 ![Tienda](https://user-images.githubusercontent.com/93185865/142622810-076b903c-dc06-4a98-986d-617354d93db7.jpg)
@@ -408,19 +404,26 @@ Pestaña de selección de personaje
 ![skins_plantilla](https://user-images.githubusercontent.com/93185865/142623266-2d4cdcfb-b346-4add-a6d6-dca682e4d2e1.png)
 Pestaña de compra de cosméticos (tienda)
 
-![Personaje](https://user-images.githubusercontent.com/93185865/142623386-547ce8ed-7247-4e80-93cd-80d5d0650333.jpg)
+![Personaje](https://user-images.githubusercontent.com/73243869/142769000-b73f7e7c-92f6-46b3-8b74-2ff7f5e0f431.jpg)
 Pestaña de selección de personaje
 
-![personajeotro](https://user-images.githubusercontent.com/93185865/142623635-5dcf3d6e-3966-42a5-9f67-f7f2f9a74656.jpg)
-Pestaña de selección de personaje (cambiar personaje)
 
-![menupausa_plantilla2](https://user-images.githubusercontent.com/93185865/142623800-b584eea6-2911-4c7c-9389-25b2423e3910.png)
 
-![pausa2](https://user-images.githubusercontent.com/93185865/142623907-9e8acaf7-89ec-4363-80cd-972615b3fc73.jpg)
+![pausa2](https://user-images.githubusercontent.com/73243869/142769098-37af3d0a-ec48-4e97-9e61-3e6705122938.jpg)
+
 Menú de pausa
 
-![construccion](https://user-images.githubusercontent.com/93185865/142623987-11b73eaf-32fd-4841-88c1-0d03865b324f.jpg) ![construccion2](https://user-images.githubusercontent.com/93185865/142624101-985a6106-30c7-4e14-b66b-b48bd636dc38.jpg)
+![Settings](https://user-images.githubusercontent.com/73243869/142769079-c87cb874-7816-4c21-80db-6fd496fbf0cc.jpg)
+Menú de settings
+
+![hud](https://user-images.githubusercontent.com/73243869/142769162-b95a4321-3124-4778-9d77-878d72c273a7.jpg)
+HUD in-game
+
+![construccion](https://user-images.githubusercontent.com/73243869/142769273-768dc2f1-80ae-466b-a6bf-6e3567dc4a70.jpg) ![construccion2](https://user-images.githubusercontent.com/73243869/142769294-6e510cc3-2b19-41b1-bbb4-a6b0066787b0.jpg)
 Menú de construcción  &  Seleccionar estructura
+
+![upgradeBuild](https://user-images.githubusercontent.com/73243869/142769312-056dc95a-66b6-404a-bb08-2d5d09e179f8.jpg)
+Menú de mejora de construcción
 
 ![Pantalla de victoria](https://user-images.githubusercontent.com/93185865/142624214-0babf39f-998d-4364-a943-6a4493de5eb7.png)
 Pantalla de victoria
@@ -428,11 +431,12 @@ Pantalla de victoria
 ![Pantalla de derrota](https://user-images.githubusercontent.com/93185865/142624266-d6de08ed-1dc8-4427-88be-f976fbc163a4.png)
 Pantalla de derrota
 
-![creditos](https://user-images.githubusercontent.com/93185865/142624392-c1084872-e35c-4a04-b3fb-ef8951601cb1.jpg)
+![Credits](https://user-images.githubusercontent.com/73243869/142769136-15f7bc4e-99e7-4680-a53d-a6f2ac6c72b0.jpg)
 Pantalla de créditos
 
 # **8. Flujo de eventos del juego**
-![Flujo eventos](https://user-images.githubusercontent.com/93185865/142624421-b82c2dcb-40e8-4b1b-bd10-6bd228742874.png)
+![Flujo eventos](https://user-images.githubusercontent.com/73243869/142768936-54c8d6fb-5b1e-4e01-94da-669979a9a686.png)
+
 
 
 # **9. Empleo de assets externos**
@@ -464,7 +468,7 @@ Como se ha mencionado en apartados previos, el primer entregable del prototipo d
 # **11. Post-Mortem versión Alpha**
 
 ## **Bozhidar Petrov Valchev**
-**¿Qué fue bien?**
+## **¿Qué fue bien?**
 
 **La idea del juego**
 
@@ -485,7 +489,7 @@ Crear un nuevo repositorio cuando los problemas empezaron a florecer fue la mejo
 
 
 
-**¿Qué fue mal?**
+## **¿Qué fue mal?**
 
 **Github y Gitkraken**
 
@@ -502,7 +506,7 @@ Hubo un momento donde en algún commit que hizo otro de los miembros se borró p
 
 Hubo un punto donde varias personas teníamos una tarea similar que tenía que ver con los enemigos, las balas y el apuntado a los enemigos. En ese punto, quizás por no haberlo hecho del todo bien o porque colisionaban nuestras ideas, no paraban de ocurrir errores cada vez que alguien añadía/retocaba algo de los scripts que tenían que ver con esas tareas. Era común encontrarse con un NullPointer o algún otro error a la hora de hacer un pull, por suerte en cuanto hice la refactorización de mi código y nos pusimos de acuerdo, ese problema dejó de ocurrir. La comunicación a la hora de añadir/modificar algo del código cobró mucha mayor importancia.
 
-**¿Qué podría mejorar personalmente?**
+## **¿Qué podría mejorar personalmente?**
 
 **Programar antes de planear**
 
@@ -526,7 +530,7 @@ Si antes de ponerme directamente a programar dedicase un momento a planear mi c�
 ## **¿Qué podría mejorar personalmente?**
 Debería mejorar la comunicación con el equipo de diseño, ya que algunos de los modelos realizados por estos no satisfacen las necesidades de los comportamientos diseñados debido a que no se lo especifique en un inicio.
 ## **Jorge Galiano García**
-**¿Qué fue bien?**
+## **¿Qué fue bien?**
 
 Uno de los aspectos que ha ido bien hasta la entrega de la fase beta se trata de la comunicación.
 
@@ -538,7 +542,7 @@ Gracias a este reparto equitativo de las tareas se ha conseguido llegar al objet
 
 Por último, el ambiente de trabajo es algo que ha ido especialmente bien ya que se ha sumado a un grupo de amigos un trabajo serio en el que todo el mundo se ha involucrado correctamente.
 
-**¿Qué fue mal?**
+## **¿Qué fue mal?**
 
 En general no han habido muchos problemas en el proyecto pero el principal ha sido con GitKraken y GitHub.
 
@@ -546,11 +550,11 @@ A mitad del sprint empezaron a surgir problemas con los commits en los que se bo
 
 Otro problema que surgió fue debido a conflictos en el código. El disparo del jugador y el movimiento del personaje en cierto punto empezó a dar problemas debido a que no se habían realizado de la misma forma. Este problema se solucionó con una refactorización del código.
 
-**¿Qué podría mejorar personalmente?**
+## **¿Qué podría mejorar personalmente?**
 
 Al inicio de esta entrega desarrollé ciertos scripts los cuales daban como resultado la funcionalidad que se quería obtener, es decir, eran “correctos”, pero para conseguir este resultado estaba reinventando la rueda en algunos casos. Lo que tengo que mejorar personalmente es el no aferrarme a un código que a pesar de que sea correcto, se pueda conseguir una funcionalidad más adaptada a lo que se pide de una forma más fácil. Por tanto, no siempre tengo que quedarme con el primer código correcto, si no con el mejor de los correctos. 
 ## **Adrián Valiente González**
-**¿Qué fue bien?**
+## **¿Qué fue bien?**
 
 Uno de los factores más importantes en un equipo de trabajo es la comunicación constante. Es fundamental que todos los miembros del equipo sepan en qué punto concreto se encuentra el proyecto, problemas que surgen en los distintos equipos o áreas de trabajo para ponerles una solución, y es ese uno de los aspectos más positivos del equipo de TheNides R.A. Nos comunicamos todos los días y se organizan diariamente reuniones de trabajo (no son necesariamente dailys de 15 minutos, si no que nos metemos en llamada y trabajamos cada uno en nuestras tareas). Todo ello genera un buen ambiente de trabajo en el que todos nosotros nos sentimos cómodos.
 
@@ -558,7 +562,7 @@ El correcto reparto de las tareas también favoreció el trabajo independiente d
 
 El propio equipo de trabajo. Debido a que ha habido una comunicación constante entre los distintos miembros y cada uno de ellos ha tenido una asignación de tareas diferenciadas, cuando alguno de ellos ha terminado sus tareas, se ha dedicado a ayudar a otros miembros con lo suyo. Tanto en la parte artística como en la parte técnica.
 
-**¿Qué fue mal?**
+## **¿Qué fue mal?**
 
 Principalmente por puro desconocimiento han surgido varios problemas con el sistema de control de versiones. Se ha corrompido el proyecto una vez, ha desaparecido trabajo y ha habido que repetirlo varias veces por problemas con los pulls en el main y en las distintas ramas… Como se ha mencionado, esto ocurre por desconocimiento de Github y de Git Kraken principalmente.
 
@@ -566,7 +570,7 @@ Además de mantener la comunicación por llamada directa, se ha ido plasmando en
 
 Actualmente se está utilizando Scrum como framework de trabajo. Para la organización de las tareas, la empresa cuenta con un Trello en el que cada uno de los miembros se debería asignar una serie de tareas e ir marcándose como hechas una vez acabadas. Como tal, las tareas figuran en el trello, pero no se realiza un seguimiento y actualización de las mismas a diario. Al igual que con los dailys, se debería mantener esa constancia en el Trello para ver el punto en el que se encuentra el proyecto.
 
-**¿Qué podría mejorar personalmente?**
+## **¿Qué podría mejorar personalmente?**
 
 Creo que soy una persona a la que se le da bien organizar el trabajo, dividir las tareas y comunicarse con el equipo, pero no siento que haya ejercido correctamente de scrum master. Es cierto que, nuevamente, es por inexperiencia y por no haber ejercido muchas veces el papel. Tan solo tuve una ocasión a lo largo del curso para ejercer como Scrum Master, y no fue por mucho tiempo. Me he documentado y leído sobre las tareas y las actividades que debe llevar a cabo una persona con este rol, pero no he sabido ejecutarlas correctamente.
 
