@@ -39,15 +39,20 @@ public class BreathTitle : MonoBehaviour
 
     private void OnEnable()
     {
+        rect.position = initPosition;
+        rect.rotation = Quaternion.Euler(initRotation);
+        rect.sizeDelta = initScale;
+
         switch (animationType)
         {
             case AnimationType.Breath:
-          
-                actualMovement = LeanTween.size(rect, rect.sizeDelta*ammount,  duration).setLoopClamp().setEase(curve);
+
+                actualMovement = LeanTween.size(rect, rect.sizeDelta * ammount, duration).setLoopClamp().setEase(curve);
                 break;
             case AnimationType.Shake:
-                actualMovement = LeanTween.rotateAround(rect, Vector3.forward, ammount ,duration).setLoopClamp().setEase(curve);
-            
+                actualMovement = LeanTween.rotateAround(rect, Vector3.forward, ammount, duration).setLoopClamp()
+                    .setEase(curve);
+
                 break;
         }
     }
@@ -55,13 +60,15 @@ public class BreathTitle : MonoBehaviour
     private void OnDisable()
     {
         actualMovement.setLoopClamp(0);
+        actualMovement.setTime(0);
+        LeanTween.cancel(rect);
     }
 
 
     private void infiniteLoop()
     {
     }
-
+    
     // public void buttonClick()
     // {
     //     if (actualMovement == null)
