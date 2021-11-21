@@ -10,7 +10,7 @@ namespace AutoAttackScripts
         private bool _bulletFromPlayer;
         public float bulletDamage;
         private BuildingSO _buildingInfo;
-        
+
         public bool BulletFromPlayer
         {
             get => _bulletFromPlayer;
@@ -46,14 +46,14 @@ namespace AutoAttackScripts
             {
                 if (!_enemy.OnHit(bulletDamage))
                     return;
-                
+
                 PlayerSkillCalculator.Instance.kills++;
             }
             else
             {
-                if (!_enemy.OnHit(BuildingInfo.initDamage))
+                if (!_enemy.OnHit(bulletDamage))
                     return;
-                
+
                 PlayerSkillCalculator.Instance.UpdateRoundKills();
             }
 
