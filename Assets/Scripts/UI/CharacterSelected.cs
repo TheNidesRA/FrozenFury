@@ -25,6 +25,9 @@ public class CharacterSelected : MonoBehaviour
     public bool torrineSelected = false;
     public bool conemanSelected = false;
 
+    public GameObject mainMenu;
+    public GameObject Characters;
+
 
     void Start()
     {
@@ -108,6 +111,9 @@ public class CharacterSelected : MonoBehaviour
         characterAnimatorHeladero.SetBool("Celebrate", true);
         yield return new WaitForSeconds(1.13f);
         characterAnimatorHeladero.SetBool("Celebrate", false);
+        Characters.SetActive(false);
+        mainMenu.SetActive(true);
+        
     }
 
     public IEnumerator celebrationTorrine()
@@ -115,6 +121,8 @@ public class CharacterSelected : MonoBehaviour
         characterAnimatorTorrine.SetBool("Celebrate", true);
         yield return new WaitForSeconds(2f);
         characterAnimatorTorrine.SetBool("Celebrate", false);
+        Characters.SetActive(false);
+        mainMenu.SetActive(true);
     }
 
     public IEnumerator celebrationConeman()
@@ -122,6 +130,8 @@ public class CharacterSelected : MonoBehaviour
         characterAnimatorConeman.SetBool("Celebrate", true);
         yield return new WaitForSeconds(1.20f);
         characterAnimatorConeman.SetBool("Celebrate", false);
+        Characters.SetActive(false);
+        mainMenu.SetActive(true);
     }
 
 

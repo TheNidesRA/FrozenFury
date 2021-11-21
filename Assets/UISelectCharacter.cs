@@ -7,14 +7,30 @@ public class UISelectCharacter : MonoBehaviour
   public RectTransform canvas;
   public GameObject Container;
 
-  public void SelectCharacter(float xPosition)
+  public List<GameObject> Characters;
+  
+  
+  public void SelectCharacter(int xPosition)
   {
-    
-    Vector3 pos = canvas.localPosition;
-    pos.x = xPosition;
-    canvas.localPosition = pos;
-    //canvas.gameObject.SetActive(true);
-    Container.SetActive(true);
-    gameObject.SetActive(false);
+
+    for (var i = 0; i < Characters.Count; i++)
+    {
+        if (xPosition == i)
+        {
+            Characters[i].SetActive(true);
+        }
+        else
+        {
+            Characters[i].SetActive(false); 
+        }
+    }
+
+    // Vector3 pos = canvas.localPosition;
+    // pos.x = xPosition;
+    // canvas.localPosition = pos;
+    // //canvas.gameObject.SetActive(true);
+     Container.SetActive(true);
+     gameObject.SetActive(false);
+
   }
 }
