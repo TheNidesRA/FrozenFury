@@ -38,10 +38,35 @@ namespace Enemies
 
         private void Start()
         {
-            WorldController.Instance.OnStructChanged += (sender, f) => { stucts = f; };
-            WaveController._instance.OnRoundChange += (sender, i) => { round = i; };
-            PlayerStats._instance.OnLvlChanged += (sender, i) => { playerLvl = i; };
-            PlayerStats._instance.OnDeathEvent += (sender, b) => { playerDeaths++; };
+            WorldController.Instance.OnStructChanged += Aux1;
+            WaveController._instance.OnRoundChange += Aux3;
+            PlayerStats._instance.OnLvlChanged += Aux4;
+            PlayerStats._instance.OnDeathEvent += Aux2;
+        }
+
+        private void OnDestroy()
+        {
+            WorldController.Instance.OnStructChanged -= Aux1;
+            WaveController._instance.OnRoundChange -= Aux3;
+            PlayerStats._instance.OnLvlChanged -= Aux4;
+            PlayerStats._instance.OnDeathEvent -= Aux2;
+        }
+
+        private void Aux1(object sender, float f)
+        {
+            stucts = f;
+        }
+        private void Aux2(object sender, float f)
+        {
+            playerDeaths++;
+        }
+        private void Aux3(object sender, int i)
+        {
+            round = i;
+        }
+        private void Aux4(object sender, int f)
+        {
+            playerLvl = f;
         }
 
         public float ComputeSkill()

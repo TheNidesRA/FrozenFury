@@ -27,7 +27,10 @@ public class LevelSystem : MonoBehaviour
 
     public float damage = 0;
 
-
+    private void OnDestroy()
+    {
+        OnPlayerLevelChanged -= Instace_OnPlayerLevelChange;
+    }
     // Start is called before the first frame update
     void Start()
     {

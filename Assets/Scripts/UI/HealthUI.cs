@@ -15,6 +15,11 @@ public class HealthUI : MonoBehaviour
         _hpText.text = GlobalHealth.instance.globalHealth.ToString();
     }
 
+    private void OnDestroy()
+    {
+        GlobalHealth.instance.OnHealthChange -= UpdateUI;
+    }
+
     private void UpdateUI(object sender, int e)
     {
         _hpText.text = e.ToString();

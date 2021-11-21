@@ -53,6 +53,15 @@ public class ComunicacionGridCanvas : MonoBehaviour
         get { return _placedBuild; }
     }
 
+    public void OnDestroy()
+    {
+        GridBuildingSystem.Instance.OnSelectedChanged -= Instance_OnSelectedChanged;
+        GridBuildingSystem.Instance.OnObjectRemovePosition -= Instance_OnObjectRemovePosition;
+        GridBuildingSystem.Instance.OnObjectPlaced -= Instance_OnObjectPlaced;
+        GridBuildingSystem.Instance.OnObjectSetPosition -= Instance_OnObjectSetPosition;
+        GridBuildingSystem.Instance.OnBuildSelected -= Instance_OnBuildSelected;
+        WaveController._instance.OnRoundActive -= Instance_OnRoundActive;
+    }
 
     private void Start()
     {

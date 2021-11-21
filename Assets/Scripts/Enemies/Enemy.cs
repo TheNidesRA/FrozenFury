@@ -201,6 +201,7 @@ namespace Enemies
 
         private void OnDestroy()
         {
+            
             OnEnemyDeath?.Invoke(gameObject);
             PlayerStats._instance.gold += (int)gold;
             WaveController._instance.EnemyDeath();

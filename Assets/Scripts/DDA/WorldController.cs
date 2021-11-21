@@ -125,9 +125,17 @@ public class WorldController : MonoBehaviour
         _structs = new List<BuildStats>();
     }
 
+    private void Aux(object sender, int i)
+    {
+        round = i;
+    }
+    private void OnDestroy()
+    {
+        WaveController._instance.OnRoundChange -= Aux;
+    }
     private void Start()
     {
-        WaveController._instance.OnRoundChange += (sender, i) => { round = i; };
+        WaveController._instance.OnRoundChange += Aux;
     }
 
     public void LevelUpgrade(BuildStats stats)

@@ -411,8 +411,12 @@ namespace AutoAttackScripts
             if (isPlayer)
             {
                 //Enemy out of sight, trigger for animation blend tree
-                characterAnimator.SetBool("EnemySighted", enemySighted);
-                characterAnimator.SetBool("Shoot", false);
+                if (characterAnimator != null)
+                {
+                    characterAnimator.SetBool("EnemySighted", enemySighted);
+                    characterAnimator.SetBool("Shoot", false);
+                }
+                
             }
             else
             {
