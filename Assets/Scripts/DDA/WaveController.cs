@@ -8,6 +8,8 @@ namespace Enemies
     public class WaveController : MonoBehaviour
     {
         public EnemySpawner Spawner;
+        public GameObject canvasContinue;
+
 
         /// <summary>
         /// Minimmun enemies per round
@@ -118,7 +120,8 @@ namespace Enemies
             round++;
             if (_round == winRound)
             {
-                SceneController._instance.GoToWinScene();
+                canvasContinue.SetActive(true);
+                //SceneController._instance.GoToWinScene();
             }
 
             /*Debug.Log("Fin de la ronda. \n" +

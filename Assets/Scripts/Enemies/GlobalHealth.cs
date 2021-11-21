@@ -1,4 +1,5 @@
 ﻿using System;
+using Enemies;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -45,6 +46,9 @@ class GlobalHealth : MonoBehaviour
     private void EndGameFunc()
     {
         Debug.Log("GAME OVER");
-        SceneController._instance.GoToLoseScene();
+        if (WaveController._instance.round < WaveController._instance.winRound)
+            SceneController._instance.GoToLoseScene();
+        else
+            SceneController._instance.GoToWinScene();
     }
 }
