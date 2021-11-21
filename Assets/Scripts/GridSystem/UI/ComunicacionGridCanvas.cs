@@ -100,6 +100,7 @@ public class ComunicacionGridCanvas : MonoBehaviour
             Debug.Log("No lo sacamos ya ha empezado");
             return;
         }
+
         RefreshVisualUpdateBuild(eventArgs);
         _buildUpdateConteiner.SetActive(true);
         buildManagement.CheckIfInteractable();
@@ -165,7 +166,6 @@ public class ComunicacionGridCanvas : MonoBehaviour
 
     private void RefreshVisual()
     {
-       
         if (build != null)
         {
             Destroy(build.gameObject);
@@ -199,8 +199,6 @@ public class ComunicacionGridCanvas : MonoBehaviour
 
     private void RefreshVisualUpdateBuild(PlacedBuild placedBuild)
     {
-      
-        
         if (buildUpdate != null)
         {
             Destroy(buildUpdate.gameObject);
@@ -226,7 +224,6 @@ public class ComunicacionGridCanvas : MonoBehaviour
         }
         else
         {
-            
             tween = LeanTween.move(_rectTransformBuildUpdate, outsidePosition, transitionTime).setEaseOutCubic()
                 .setOnComplete(() => { _buildUpdateConteiner.SetActive(false); });
             //BuildButton.SetActive(true);
@@ -243,8 +240,12 @@ public class ComunicacionGridCanvas : MonoBehaviour
             Debug.Log("Hello");
             return;
         }
+
         HidePlayerStats();
         BuildButtonActions.outBuildPosition();
+        LeanTween.move(_rectTransformBuildUpdate, outsidePosition, transitionTime).setEaseOutCubic()
+            .setOnComplete(() => { _buildUpdateConteiner.SetActive(false); });
+        // BuildButton.SetActive(true);
         // BuildButton.SetActive(false);
         // EditBuild.SetActive(false);
     }
