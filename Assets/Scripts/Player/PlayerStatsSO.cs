@@ -18,7 +18,8 @@ public class PlayerStatsSO : ScriptableObject
  public float MAXATTACKSPEED;
  public int MAXGOLDUPGRADECOST;
 
-
+ public string name;
+ public Transform CanvasModel;
 
 
 
