@@ -27,6 +27,7 @@ public class CharacterSelected : MonoBehaviour
 
     public GameObject mainMenu;
     public GameObject Characters;
+    public GameObject boton;
 
 
     void Start()
@@ -108,30 +109,36 @@ public class CharacterSelected : MonoBehaviour
 
     public IEnumerator celebrationHeladero()
     {
+        boton.SetActive(false);
         characterAnimatorHeladero.SetBool("Celebrate", true);
         yield return new WaitForSeconds(1.5f);
         characterAnimatorHeladero.SetBool("Celebrate", false);
         Characters.SetActive(false);
         mainMenu.SetActive(true);
+        boton.SetActive(true);
         
     }
 
     public IEnumerator celebrationTorrine()
     {
+        boton.SetActive(false);
         characterAnimatorTorrine.SetBool("Celebrate", true);
         yield return new WaitForSeconds(2f);
         characterAnimatorTorrine.SetBool("Celebrate", false);
         Characters.SetActive(false);
         mainMenu.SetActive(true);
+        boton.SetActive(true);
     }
 
     public IEnumerator celebrationConeman()
     {
+        boton.SetActive(false);
         characterAnimatorConeman.SetBool("Celebrate", true);
         yield return new WaitForSeconds(1.20f);
         characterAnimatorConeman.SetBool("Celebrate", false);
         Characters.SetActive(false);
         mainMenu.SetActive(true);
+        boton.SetActive(true);
     }
 
 
