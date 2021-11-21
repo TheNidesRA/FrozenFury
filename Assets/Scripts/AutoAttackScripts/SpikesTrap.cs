@@ -7,16 +7,22 @@ using UnityEngine;
 public class SpikesTrap : PlacedBuild
 {
     public bool invencibilidadTrampa = false;
+    private Animator spikesAnimator;
 
 
     [Range(0f, 1f)] public float slowDown = 0.2f;
 
+    private void Start()
+    {
+        spikesAnimator = GetComponent<Animator>();
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag($"Enemy"))
         {
             collision.gameObject.GetComponent<Enemy>().OnSlow(slowDown);
+            spikesAnimator.SetBool("Shoot", true);
         }
     }
 
@@ -35,6 +41,7 @@ public class SpikesTrap : PlacedBuild
         if (collision.gameObject.CompareTag($"Enemy"))
         {
             collision.gameObject.GetComponent<Enemy>().OnResetSlow();
+            spikesAnimator.SetBool("Shoot", false);
         }
     }
 
