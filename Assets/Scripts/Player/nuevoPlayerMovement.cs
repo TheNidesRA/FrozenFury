@@ -62,7 +62,7 @@ public class nuevoPlayerMovement : MonoBehaviour
             }
             
             
-            Debug.Log("HOLLAAA");
+            // Debug.Log("HOLLAAA");
             
         };
         GridBuildingSystem.Instance.OnObjectPlaced += (a,b)=>{ work = true; } ;
