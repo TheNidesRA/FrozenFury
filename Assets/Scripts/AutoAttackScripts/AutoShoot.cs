@@ -553,7 +553,7 @@ namespace AutoAttackScripts
                 foreach (var bullet in bullets)
                 {
                     BulletScript bulletScript=bullet.GetComponent<BulletScript>();
-                    bulletScript.BuildingInfo = buildinginfo;
+                    bulletScript.bulletDamage = DamagePerBullet;
                     bulletScript.BulletFromPlayer = false;
                 }
             }
