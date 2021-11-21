@@ -161,7 +161,7 @@ namespace AutoAttackScripts
 
         private void Update()
         {
-            PlayerStats._instance.Damage = DamagePerBullet;
+            //PlayerStats._instance.Damage = DamagePerBullet;
 //            Debug.Log("Shooting: " + Shooting);
         }
 
@@ -542,15 +542,19 @@ namespace AutoAttackScripts
             {
                 foreach (var bullet in bullets)
                 {
-                    bullet.GetComponent<BulletScript>().BulletFromPlayer = true;
+                    BulletScript bulletScript =bullet.GetComponent<BulletScript>();
+                    bulletScript .BulletFromPlayer = true;
+                    bulletScript.bulletDamage = DamagePerBullet;
+
                 }
             }
             else
             {
                 foreach (var bullet in bullets)
                 {
-                    bullet.GetComponent<BulletScript>().BuildingInfo = buildinginfo;
-                    bullet.GetComponent<BulletScript>().BulletFromPlayer = false;
+                    BulletScript bulletScript=bullet.GetComponent<BulletScript>();
+                    bulletScript.BuildingInfo = buildinginfo;
+                    bulletScript.BulletFromPlayer = false;
                 }
             }
         }

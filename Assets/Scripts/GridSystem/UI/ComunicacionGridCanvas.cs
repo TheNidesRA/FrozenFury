@@ -20,7 +20,7 @@ public class ComunicacionGridCanvas : MonoBehaviour
     public Vector3 insidePosition;
     public Vector3 outsidePosition;
     public Vector3 outOfCanvasPosition;
-    
+
     public float transitionTime;
     public SideBarButtonActions BuildButtonActions;
     private LTDescr tween;
@@ -38,8 +38,16 @@ public class ComunicacionGridCanvas : MonoBehaviour
 
     public UpdateUIStats UpdateStatsSettingBuild;
     public UpdateUIStats UpdateStatsEditBuild;
-    
-    
+    public UpgradePlayer UpdateStatsPlayer;
+
+    public RectTransform playerStatsRect;
+
+    private bool rondaComenzada = false;
+
+
+    private Vector3 insidePositionStats;
+    private Vector3 outsidePositionStats;
+
     public PlacedBuild ExposedPlacedBuild
     {
         get { return _placedBuild; }
@@ -57,6 +65,10 @@ public class ComunicacionGridCanvas : MonoBehaviour
         GridBuildingSystem.Instance.OnObjectSetPosition += Instance_OnObjectSetPosition;
         GridBuildingSystem.Instance.OnBuildSelected += Instance_OnBuildSelected;
         WaveController._instance.OnRoundActive += Instance_OnRoundActive;
+        insidePositionStats = insidePosition;
+        insidePositionStats.z = -400f;
+        outsidePositionStats = outsidePosition;
+        outsidePositionStats.z = -400f;
     }
 
 
@@ -93,6 +105,7 @@ public class ComunicacionGridCanvas : MonoBehaviour
 
     private void Instance_OnRoundActive(object sender, bool eventArgs)
     {
+        rondaComenzada = eventArgs;
         if (eventArgs)
             RoundStarted();
         else
@@ -104,19 +117,19 @@ public class ComunicacionGridCanvas : MonoBehaviour
 
     public void FinishBuilding()
     {
-       // BuildButton.SetActive(true);
-       BuildButtonActions.returnInside(); 
-       tween = LeanTween.move(_rectTransformEditBuild, outsidePosition, transitionTime).setEaseOutCubic()
+        // BuildButton.SetActive(true);
+        BuildButtonActions.returnInside();
+        tween = LeanTween.move(_rectTransformEditBuild, outsidePosition, transitionTime).setEaseOutCubic()
             .setOnComplete(() => { EditBuild.SetActive(false); });
     }
 
 
     public void SetBuildPosition()
     {
-       // BuildButton.SetActive(false);
+        // BuildButton.SetActive(false);
         BuildButtonActions.outBuildPosition();
         EditBuild.SetActive(true);
-        
+
         tween = LeanTween.moveX(_rectTransformEditBuild.GetComponent<RectTransform>(), insidePosition.x, transitionTime)
             .setEaseInCubic(); //.setOnComplete(() => {EditBuild.SetActive(true); });
     }
@@ -139,9 +152,9 @@ public class ComunicacionGridCanvas : MonoBehaviour
     {
         tween = LeanTween.move(_rectTransformBuildUpdate, outsidePosition, transitionTime).setEaseOutCubic()
             .setOnComplete(() => { _buildUpdateConteiner.SetActive(false); });
-       // BuildButton.SetActive(true);
-       
-       BuildButtonActions.returnInside();
+        // BuildButton.SetActive(true);
+
+        BuildButtonActions.returnInside();
     }
 
 
@@ -156,14 +169,12 @@ public class ComunicacionGridCanvas : MonoBehaviour
         BuildingSO placedObjectTypeSO = GridBuildingSystem.Instance.buildingSo;
         if (placedObjectTypeSO != null)
         {
-            
-            
             build = Instantiate(placedObjectTypeSO.canvasVisual, Vector3.zero, Quaternion.identity,
                 buildPlaceVisual.transform);
-            
+
             UpdateStatsSettingBuild.UpdateStatsText(placedObjectTypeSO);
-            
-            
+
+
             build.localPosition = new Vector3(0, 0, -150);
             build.localEulerAngles = placedObjectTypeSO.canvasVisual.rotation.eulerAngles;
             SetLayerRecursive(build.gameObject, 5);
@@ -173,9 +184,9 @@ public class ComunicacionGridCanvas : MonoBehaviour
         {
             tween = LeanTween.move(_rectTransformEditBuild, outsidePosition, transitionTime).setEaseOutCubic()
                 .setOnComplete(() => { EditBuild.SetActive(false); });
-           // BuildButton.SetActive(true);
-         if(!GridBuildingSystem.Instance.buildMenu)
-            BuildButtonActions.returnInside();
+            // BuildButton.SetActive(true);
+            if (!GridBuildingSystem.Instance.buildMenu)
+                BuildButtonActions.returnInside();
         }
     }
 
@@ -195,10 +206,10 @@ public class ComunicacionGridCanvas : MonoBehaviour
             _placedBuild = placedBuild;
             buildUpdate = Instantiate(placedBuild.BuildingSo.canvasVisual, Vector3.zero, Quaternion.identity,
                 _buildUpdateObjectPlace.transform);
-            
-            
+
+
             UpdateStatsEditBuild.UpdateStatsText(placedBuild);
-            
+
             buildUpdate.localPosition = new Vector3(0, 0, -60);
             buildUpdate.localEulerAngles = placedBuild.BuildingSo.canvasVisual.rotation.eulerAngles;
             ;
@@ -209,12 +220,11 @@ public class ComunicacionGridCanvas : MonoBehaviour
         {
             tween = LeanTween.move(_rectTransformBuildUpdate, outsidePosition, transitionTime).setEaseOutCubic()
                 .setOnComplete(() => { _buildUpdateConteiner.SetActive(false); });
-             //BuildButton.SetActive(true);
-             if(!GridBuildingSystem.Instance.buildMenu)
-            BuildButtonActions.returnInside();
+            //BuildButton.SetActive(true);
+            if (!GridBuildingSystem.Instance.buildMenu)
+                BuildButtonActions.returnInside();
         }
     }
-    
 
 
     private void RoundStarted()
@@ -224,6 +234,7 @@ public class ComunicacionGridCanvas : MonoBehaviour
             Debug.Log("Hello");
             return;
         }
+        HidePlayerStats();
         BuildButtonActions.outBuildPosition();
         // BuildButton.SetActive(false);
         // EditBuild.SetActive(false);
@@ -243,5 +254,29 @@ public class ComunicacionGridCanvas : MonoBehaviour
         {
             SetLayerRecursive(child.gameObject, layer);
         }
+    }
+
+    private void HidePlayerStatsTween()
+    {
+        LeanTween.move(playerStatsRect, outsidePositionStats, transitionTime).setEaseOutCubic().setOnComplete(
+            () => { playerStatsRect.gameObject.SetActive(false); });
+    }
+
+    private void ShowPlayerStatsTween()
+    {
+        LeanTween.move(playerStatsRect, insidePositionStats, transitionTime).setEaseInCubic();
+    }
+
+    public void ShowPlayerStats()
+    {
+        if (rondaComenzada) return;
+        playerStatsRect.gameObject.SetActive(true);
+        UpdateStatsPlayer.UpdateStatsPlayer();
+        ShowPlayerStatsTween();
+    }
+
+    public void HidePlayerStats()
+    {
+        HidePlayerStatsTween();
     }
 }

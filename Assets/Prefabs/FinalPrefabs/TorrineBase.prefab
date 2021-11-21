@@ -803,7 +803,7 @@ GameObject:
   - component: {fileID: 4624514271091450143}
   m_Layer: 10
   m_Name: 'ShootingRange '
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1935,11 +1935,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 992a1dfc21cf9dd448cfd4477c61a9ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerStatsSo: {fileID: 0}
   _gold: 0
-  damage: 0
+  _damage: 0
+  _initDamage: 0
+  _initAttackSpeed: 0
+  _initHealth: 0
+  _initGoldCostLevel: 0
   _level: 1
   _health: 100
-  _maxHealth: 100
+  _attackSpeed: 0
+  _goldLevelCost: 0
+  CurveHealth:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  CurveDamage:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  CurveAttackSpeed:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  CurveGoldLevelCost:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  MAXHEALTH: 0
+  MAXDAMAGE: 0
+  MAXATTACKSPEED: 0
+  MAXGOLDCOSTLEVEL: 0
   _respawnTime: 5
   Shoot: {fileID: 8211696439731997743}
   Animator: {fileID: 4584740332617131757}
