@@ -251,7 +251,7 @@ Frozen Fury es un videojuego multiplataforma que se puede jugar tanto en disposi
 
 Frozen Fury se trata de un juego de tipo endless, por lo que como tal, no cuenta con un número de ronda determinada para acabar la partida en victoria. Pero se ha establecido otra condición de victoria implícita:
 
-Una vez el jugador haya alcanzado la ronda 20, si este “pierde” (la vida del objetivo principal llega a 0), se considerará como victoria, permitiendo al usuario visualizar una pantalla o splash art de la victoria. Sin embargo, si el jugador no logra defender el objetivo principal por debajo de la ronda 20, se considerará como derrota.
+Una vez el jugador haya alcanzado la ronda 8, si este “pierde” (la vida del objetivo principal llega a 0), se considerará como victoria, permitiendo al usuario visualizar una pantalla o splash art de la victoria. Sin embargo, si el jugador no logra defender el objetivo principal por debajo de la ronda 8, se considerará como derrota.
 
 Tay y como se acaba de mencionar, se considerará una partida como victoria **cuando el jugador haya alcanzado al menos la ronda 20**, sin embargo, esto sólo supondrá un desafío inicial pues se incentiva al jugador a continuar la partida mediante un sistema adaptación de los enemigos (Dynamic Difficulty Adjustment) a las capacidades del jugador para hacer la partida desafiante en todo momento mediante el uso de algoritmos genéticos. De esta forma, el jugador podrá saciar su curiosidad por ver hasta qué punto puede evolucionar una partida a la par que enfrentarse a un desafío a medida.
 
