@@ -230,8 +230,8 @@ public class PlacedBuild : MonoBehaviour
         _goldCostLevel = (int) CurveGoldLevelCost.Evaluate(level);
         currentMaxHealth = CurveHealth.Evaluate(level);
 
-        Debug.Log("Nuevas estats para : " + _buildingSo.name + " Damage: " + _damage + " attacspeed: " + _attackSpeed +
-                  "health : " + health + " /" + currentMaxHealth);
+        // Debug.Log("Nuevas estats para : " + _buildingSo.name + " Damage: " + _damage + " attacspeed: " + _attackSpeed +
+                  // "health : " + health + " /" + currentMaxHealth);
     }
 
     public void Repair()
