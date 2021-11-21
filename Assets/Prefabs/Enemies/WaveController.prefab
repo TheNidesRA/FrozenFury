@@ -49,6 +49,48 @@ MonoBehaviour:
   minEnemies: 10
   winRound: 20
   spawnProgression: 0.7
+  spawnTimeProgression:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 2
+      inSlope: -0.10128272
+      outSlope: -0.10128272
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 4.936676
+      value: 1.5
+      inSlope: -0.08907924
+      outSlope: -0.08907924
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.0758743
+    - serializedVersion: 3
+      time: 25
+      value: 1
+      inSlope: -0.0031023524
+      outSlope: -0.0031023524
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.13100688
+    - serializedVersion: 3
+      time: 50
+      value: 0.8
+      inSlope: -0.007999999
+      outSlope: -0.007999999
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   enemiconfig: {fileID: 11400000, guid: abadacf5ee166c5449de88ce6a81cc7b, type: 2}
 --- !u!114 &6526087785502107153
 MonoBehaviour:

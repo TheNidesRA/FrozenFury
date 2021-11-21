@@ -52,5 +52,10 @@ namespace Enemies
                 // Debug.Log("Enemigo creado");
             }
         }
+
+        public void UpdateSpawnDelay(float newDelay)
+        {
+            spawnDelay = newDelay;
+        }
     }
 }

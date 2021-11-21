@@ -26,6 +26,8 @@ namespace Enemies
         /// </summary>
         public float spawnProgression = 0.7f;
 
+        public AnimationCurve spawnTimeProgression;
+
         private Wave _currentWave;
         private int _round = 1;
         private int _enemiesAlive;
@@ -123,6 +125,7 @@ namespace Enemies
 
             /*Debug.Log("Fin de la ronda. \n" +
                       "round:  " + _round);*/
+            Spawner.UpdateSpawnDelay(spawnTimeProgression.Evaluate(round));
         }
 
         public void SetSpawnPoints(float pts)

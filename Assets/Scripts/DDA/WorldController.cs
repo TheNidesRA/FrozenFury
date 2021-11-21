@@ -244,7 +244,7 @@ public class WorldController : MonoBehaviour
         CheckIfNegative(ref _weights[2], ref _weights[4]);
 
 
-        if (_weights[1] > 0.35f)
+        if (_weights[1] > 0.25f)
         {
             _weights[3] = _weights[1] - 0.35f;
             _weights[1] = 0.35f;
