@@ -13,7 +13,7 @@ public class AudioSettings : MonoBehaviour
     {
         if (volume == 0)
         {
-            soundMixer.SetFloat("volume", Mathf.Log10(0.01f) * 20);
+            soundMixer.SetFloat("volume", 0);
             return;
         }
 
@@ -24,7 +24,7 @@ public class AudioSettings : MonoBehaviour
     {
         if (volume == 0)
         {
-            soundMixer.SetFloat("volume", Mathf.Log10(0.01f) * 20);
+            soundMixer.SetFloat("volume", 0);
             return;
         }
 
