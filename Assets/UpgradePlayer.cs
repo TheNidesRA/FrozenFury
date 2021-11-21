@@ -27,11 +27,11 @@ public class UpgradePlayer : MonoBehaviour
 
     public void UpdateStatsPlayer()
     {
-        Debug.Log("Vida: " + player.Health + " Damage: " + player.Damage + " AttaclSpeed:" + player.attackSpeed);
+        Debug.Log("Vida: " + PlayerStats._instance.Health + " Damage: " + PlayerStats._instance.Damage + " AttaclSpeed:" + PlayerStats._instance.attackSpeed);
         Health.text = Math.Round(PlayerStats._instance.Health, 2).ToString();
         Damage.text = Math.Round(PlayerStats._instance.Damage, 2).ToString();
         AttackSpeed.text = Math.Round(PlayerStats._instance.attackSpeed, 2).ToString();
-        GoldUpgrade.text = "x" + PlayerStats._instance.gold.ToString();
+        GoldUpgrade.text = "x" + PlayerStats._instance._goldLevelCost.ToString();
     }
 
 

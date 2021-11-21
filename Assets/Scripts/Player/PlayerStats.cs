@@ -33,7 +33,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private float _health = 10;
     [SerializeField] public float _maxHealth { get; private set; }
     [SerializeField] private float _attackSpeed;
-    [SerializeField] private int _goldLevelCost;
+    [SerializeField] public int _goldLevelCost{ get; private set; }
 
 
     public AnimationCurve CurveHealth;
@@ -209,9 +209,11 @@ public class PlayerStats : MonoBehaviour
 
     public void LevelingUp()
     {
-        if (!(_gold >= _goldLevelCost)) return;
-        gold -= _goldLevelCost;
-        Level++;
+        if ((_gold >= _goldLevelCost))
+        {
+            gold -= _goldLevelCost;
+            Level++;
+        }
     }
 
     private void Evaluate()
