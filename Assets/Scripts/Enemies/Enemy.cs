@@ -54,7 +54,7 @@ namespace Enemies
             {
                 NavMeshAgent.speed = value;
                 _speed = value;
-                 Debug.Log("Velociada cambiaadaa: " + _speed);
+                 // Debug.Log("Velociada cambiaadaa: " + _speed);
             }
         }
 
@@ -65,7 +65,7 @@ namespace Enemies
             {
                 NavMeshAgent.acceleration = value;
                 _acceleration = value;
-                Debug.Log("Aceleracion cambiaadaa: " + _acceleration);
+                // Debug.Log("Aceleracion cambiaadaa: " + _acceleration);
             }
         }
 
@@ -116,8 +116,8 @@ namespace Enemies
             armor = stats.armor;
             attackSpeed = stats.atackSpd;
 
-            PrintStats();
-            Debug.Log("init :_ +" + initSpeed);
+            // PrintStats();
+            // Debug.Log("init :_ +" + initSpeed);
             initSpeed = speed; //AUX PARA LOS SLOWS Y SPEEDS
         }
 
@@ -166,13 +166,13 @@ namespace Enemies
         {
             speed = speed * speedUp;
             acceleration = acceleration * speedUp;
-            Debug.Log("Speed up");
+            // Debug.Log("Speed up");
         }
 
         public void OnResetSlow()
         {
             speed = initSpeed;
-            Debug.Log("Velocidad inicial!!!!");
+            // Debug.Log("Velocidad inicial!!!!");
             acceleration = initAcceleration;
 
             afecctedTrap = false;
@@ -219,7 +219,7 @@ namespace Enemies
         {
             if (isAttacking) return;
             isAttacking = true;
-            Debug.Log("Ataca!");
+            // Debug.Log("Ataca!");
             StartCoroutine(nameof(StartAnimation));
         }
 

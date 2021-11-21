@@ -12,14 +12,14 @@ namespace Enemies
         {
             if (healthLoss == 0)
             {
-                mults[0] += 0.07f;
+                mults[0] += 0.03f;
                 mults[1] += 0.05f;
                 mults[2] -= 0.05f;
                 // vars[0] += 1;
                 vars[1] += 1;
             }else if (healthLoss < 5)
             {
-                mults[0] -= 0.1f;
+                mults[0] -= 0.05f;
                 mults[1] -= 0.08f;
                 mults[2] += 0.07f;
             }else if (healthLoss < 10)
@@ -89,6 +89,7 @@ namespace Enemies
         public void UpdateWIthPlayerSkill(float skill, float[] mults, AnimationCurve curve)
         {
             float val = curve.Evaluate(skill / 10);
+            // Debug.Log("Val: " + );
             mults[0] += val;
             mults[1] += val;
             mults[2] += val;

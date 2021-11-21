@@ -14,7 +14,7 @@ namespace Enemies
         /// </summary>
         public int minEnemies = 10;
 
-        public float spwnPts;
+        private float spwnPts;
 
         /// <summary>
         /// Global level difficulty
@@ -124,5 +124,11 @@ namespace Enemies
             Debug.Log("Fin de la ronda. \n" +
                       "round:  " + _round);
         }
+
+        public void SetSpawnPoints(float pts)
+        {
+            spwnPts = pts;
+        }
+        
     }
 }
