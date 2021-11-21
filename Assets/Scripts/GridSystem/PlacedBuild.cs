@@ -103,7 +103,7 @@ public class PlacedBuild : MonoBehaviour
     }
 
 
-    private void Start()
+    protected void initStart()
     {
         CurveHealth = AnimationCurve.EaseInOut(1, _initHealth, MAXLEVEL, MAXHEALTH);
         CurveDamage = AnimationCurve.EaseInOut(1, _initDamage, MAXLEVEL, MAXDAMAGE);
@@ -111,6 +111,11 @@ public class PlacedBuild : MonoBehaviour
         CurveGoldLevelCost = AnimationCurve.EaseInOut(1, _initGoldCostLevel, MAXLEVEL, MAXGOLDCOSTLEVEL);
 
         level = 1;
+    }
+
+    private void Start()
+    {
+        initStart();
     }
 
     public static PlacedBuild Create(Vector3 worldPosition, Vector2Int origin, BuildingSO.Dir dir, BuildingSO building)

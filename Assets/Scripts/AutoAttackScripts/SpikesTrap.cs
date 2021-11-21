@@ -15,6 +15,7 @@ public class SpikesTrap : PlacedBuild
     private void Start()
     {
         spikesAnimator = GetComponent<Animator>();
+        initStart();
     }
 
     private void OnCollisionEnter(Collision collision)
