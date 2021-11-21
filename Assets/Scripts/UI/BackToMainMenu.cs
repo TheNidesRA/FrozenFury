@@ -15,5 +15,7 @@ public class BackToMainMenu : MonoBehaviour
     {
         yield return new WaitForSeconds(timerSecs);
         SceneManager.LoadScene("MainMenuScene");
+        AudioManager.Instance.Stop("Partida");
+        AudioManager.Instance.Play("Menu Principal");
     }
 }
