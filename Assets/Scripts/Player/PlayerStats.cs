@@ -224,7 +224,6 @@ public class PlayerStats : MonoBehaviour
         _goldLevelCost = (int) CurveGoldLevelCost.Evaluate(Level);
         _maxHealth = CurveHealth.Evaluate(Level);
 
-        Debug.Log("Player subido");
     }
 
 

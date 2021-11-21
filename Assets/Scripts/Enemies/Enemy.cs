@@ -153,7 +153,6 @@ namespace Enemies
 
         public void OnSlow(float slowDown)
         {
-            // Debug.Log("Slowwww");
             if (!afecctedTrap)
             {
                 speed = speed * slowDown;
@@ -166,13 +165,11 @@ namespace Enemies
         {
             speed = speed * speedUp;
             acceleration = acceleration * speedUp;
-            // Debug.Log("Speed up");
         }
 
         public void OnResetSlow()
         {
             speed = initSpeed;
-            // Debug.Log("Velocidad inicial!!!!");
             acceleration = initAcceleration;
 
             afecctedTrap = false;

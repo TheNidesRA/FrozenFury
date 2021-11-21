@@ -25,10 +25,6 @@ public class UISelectCharacter : MonoBehaviour
         }
     }
 
-    // Vector3 pos = canvas.localPosition;
-    // pos.x = xPosition;
-    // canvas.localPosition = pos;
-    // //canvas.gameObject.SetActive(true);
      Container.SetActive(true);
      gameObject.SetActive(false);
 

@@ -31,7 +31,6 @@ public class DynamicJoystick : Joystick
        
         GridBuildingSystem.Instance.OnObjectPlaced += (a, b) =>
         {
-            Debug.Log("HOLLAAA");
             work = true;
         } ;
 
@@ -60,13 +59,4 @@ public class DynamicJoystick : Joystick
         base.OnPointerUp(eventData);
     }
 
-   /* protected override void HandleInput(float magnitude, Vector2 normalised, Vector2 radius, Camera cam)
-    {
-        if (magnitude > moveThreshold)
-        {
-            Vector2 difference = normalised * (magnitude - moveThreshold) * radius;
-            //background.anchoredPosition += difference;
-        }
-        base.HandleInput(magnitude, normalised, radius, cam);
-    }*/
 }

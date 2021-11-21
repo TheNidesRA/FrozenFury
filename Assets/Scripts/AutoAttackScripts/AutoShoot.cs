@@ -178,7 +178,7 @@ namespace AutoAttackScripts
                 //Enemy out of sight, trigger for animation blend tree
                 characterAnimator.SetBool("EnemySighted", enemySighted);
 
-            Debug.Log("Dejamos de detectar enemigo");
+            //Debug.Log("Dejamos de detectar enemigo");
         }
 
 

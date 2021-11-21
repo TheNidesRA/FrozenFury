@@ -121,8 +121,8 @@ namespace Enemies
                 SceneController._instance.GoToWinScene();
             }
 
-            Debug.Log("Fin de la ronda. \n" +
-                      "round:  " + _round);
+            /*Debug.Log("Fin de la ronda. \n" +
+                      "round:  " + _round);*/
         }
 
         public void SetSpawnPoints(float pts)

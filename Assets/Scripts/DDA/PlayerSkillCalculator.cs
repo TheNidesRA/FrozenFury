@@ -53,7 +53,7 @@ namespace Enemies
             //This formula converts the skill value into a range between 0 and 10
             float convertedSkill = (skill - rangeMin) * 10 / (rangeMax - rangeMin);
             
-            Debug.Log("PlayerSkill = " + convertedSkill);
+            //Debug.Log("PlayerSkill = " + convertedSkill);
             return convertedSkill;
         }
 

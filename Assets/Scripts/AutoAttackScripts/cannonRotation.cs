@@ -55,27 +55,6 @@ namespace AutoAttackScripts
 
             //calculate direction from the attackpoint to the enemy
             Vector3 directionShoot = enemy.transform.position - attackPoint.position;
-            /*
-            //define the distance x and y first
-            Vector3 distance_x_z = directionShoot;
-            distance_x_z.Normalize();
-            distance_x_z.y = 0;
-
-            //creating a float that represents our distance 
-            float sy = directionShoot.y;
-            float sxz = directionShoot.magnitude;
-
-
-            //calculating initial x velocity
-            //Vx = x / t
-            float Vxz = sxz / 1f;
-
-            ////calculating initial y velocity
-            //Vy0 = y/t + 1/2 * g * t
-            float Vy = sy / 1f + 0.5f * Mathf.Abs(Physics.gravity.y) * 1f;
-
-            Vector3 result = distance_x_z * Vxz;
-            result.y = Vy;*/
 
 
             GameObject currentBullet = Instantiate(bullet, attackPoint.position, Quaternion.identity);
@@ -89,28 +68,6 @@ namespace AutoAttackScripts
             //currentBullet.GetComponent<Rigidbody>().AddForce(directionShoot.normalized * shootForce, ForceMode.Impulse);
             Destroy(currentBullet, bulletTimeAlive);
 
-                
-
-            
-
-
-            //instantiate bullet
-
-
-
-            /* _timer += Time.deltaTime;
-
-             if (_timer > lerpTime)
-             {
-                 _timer = lerpTime;
-             }
-             float lerpRatio = _timer / lerpTime;
-             Vector3 positionOffset = lerpCurve.Evaluate(lerpRatio) * lerpOffset;
-
-             currentBullet.transform.position = Vector3.Lerp(attackPoint.position, enemy.transform.position, lerpRatio);
-
-             //add forces to bullet
-             currentBullet.GetComponent<Rigidbody>().AddForce(result*currentBullet.GetComponent<Rigidbody>().mass, ForceMode.Impulse);*/
         }
 
 
@@ -121,31 +78,10 @@ namespace AutoAttackScripts
 
 
             Vector3 lookVector = (enemy.transform.position - player.transform.position).normalized;
-            lookVector.y = 0;// enemy.transform.position.y;
-            //lookVector.x = 0;
-            //lookVector.z = 0;
+            lookVector.y = 0;
             Quaternion rot = Quaternion.LookRotation(lookVector);
             player.transform.rotation = Quaternion.Slerp(player.transform.rotation, rot, Time.deltaTime * turnSpeed);
 
-
-
-            /*
-            player.transform.LookAt(enemy.transform);
-            player.transform.Rotate(Mathf.Clamp(enemy.transform.rotation.x,minX,maxX), enemy.transform.rotation.y, enemy.transform.rotation.z);
-            Vector3 lookPosition = new Vector3(0f, enemy.transform.position.y, enemy.transform.position.z);
-            Quaternion.LookRotation(lookPosition);
-            if (player.transform.rotation.x > 0 || player.transform.rotation.x < 0)
-            {
-                 player.transform.Rotate(0, enemy.transform.rotation.y, enemy.transform.rotation.z);
-            }else{
-                 player.transform.LookAt(enemy.transform);
-            }
-            player.transform.Rotate(enemy.transform.rotation.x - 40, 0, 0);
-            _objectiveDirection =
-                Quaternion.LookRotation((enemy.transform.position - player.transform.position).normalized);
-            player.transform.rotation =
-                Quaternion.Slerp(player.transform.rotation, _objectiveDirection, Time.deltaTime * turnSpeed);
-            */
         }
 
         public override void StartStopShooting()

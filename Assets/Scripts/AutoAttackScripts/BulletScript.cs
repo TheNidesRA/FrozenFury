@@ -27,7 +27,6 @@ namespace AutoAttackScripts
         {
             if (other.gameObject.CompareTag($"Enemy"))
             {
-                //GetComponent<Rigidbody>().AddExplosionForce(_force, transform.position, _radius);
                 _enemyToRemove = other.gameObject;
                 _enemy = _enemyToRemove.GetComponent<Enemy>();
             }

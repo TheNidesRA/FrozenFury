@@ -26,7 +26,6 @@ public class BuildManagement : MonoBehaviour
     {
         if (cgc.ExposedPlacedBuild == null)
         {
-            Debug.Log("Fallo");
             return;
         }
         
@@ -37,7 +36,6 @@ public class BuildManagement : MonoBehaviour
     {
         if (cgc.ExposedPlacedBuild == null)
         {
-            Debug.Log("Fallo");
             return;
         }
         if (cgc.ExposedPlacedBuild.level >= 15)

@@ -65,14 +65,7 @@ public class CharacterSelected : MonoBehaviour
 
 
         }
-       /* else
-        {
-            Debug.Log("ELSE");
-            heladero.SetActive(heladeroSelected);
-            torrine.SetActive(torrineSelected);
-            coneman.SetActive(conemanSelected);
-            PlayerPrefs.SetInt("selectedCharacter", 0);
-        }*/
+    
        
 
         
@@ -97,7 +90,6 @@ public class CharacterSelected : MonoBehaviour
 
         PlayerPrefs.SetInt("selectedCharacter", 0);
 
-        Debug.Log("Hacemos la animacion de celebracion");
 
         MonoBehaviour mono = AudioManager.GetComponent<MonoBehaviour>();
         mono.StartCoroutine(celebrationHeladero());
