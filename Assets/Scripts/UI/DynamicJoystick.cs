@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using GridSystem;
 using UnityEngine;
@@ -12,28 +13,9 @@ public class DynamicJoystick : Joystick
     public bool work = true;
     protected override void Start()
     {
-        GridBuildingSystem.Instance.OnSelectedChanged += (a, b) =>
-        {
-            if (GridBuildingSystem.Instance.buildingSo != null)
-            {
-                work = false;
-                background.gameObject.SetActive(false);
-            } else
-            {
-                work = true;
-            }
+        GridBuildingSystem.Instance.OnSelectedChanged += Aux1;
 
-            
-            
-           
-            
-        };
-       
-        GridBuildingSystem.Instance.OnObjectPlaced += (a, b) =>
-        {
-            work = true;
-        } ;
-
+        GridBuildingSystem.Instance.OnObjectPlaced += Aux2;
 
 
 
@@ -41,6 +23,34 @@ public class DynamicJoystick : Joystick
         base.Start();
         background.gameObject.SetActive(false);
         
+    }
+
+    private void Aux1(object a, EventArgs b) {
+
+
+        if (GridBuildingSystem.Instance.buildingSo != null)
+        {
+            work = false;
+            background.gameObject.SetActive(false);
+        }
+        else
+        {
+            work = true;
+        }
+
+    }
+ 
+    private void Aux2(object a,EventArgs b)
+    {
+            work = true;
+    } 
+
+
+    private void OnDestroy()
+    {
+        GridBuildingSystem.Instance.OnSelectedChanged -= Aux1;
+
+        GridBuildingSystem.Instance.OnObjectPlaced -= Aux2;
     }
 
     public override void OnPointerDown(PointerEventData eventData)

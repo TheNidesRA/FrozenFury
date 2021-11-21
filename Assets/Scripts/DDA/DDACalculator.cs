@@ -82,10 +82,21 @@ namespace Enemies
             _statCalculator = new StatCalculator();
         }
 
+        private void OnDestroy()
+        {
+            WaveController._instance.OnRoundChange -= EndRoundFunction;
+            WaveController._instance.OnWaveCreated -= AuxFunc;
+        }
+
+        private void AuxFunc(object sender, float f)
+        {
+            _roundMaxHp = f;
+        }
+
         private void Start()
         {
             WaveController._instance.OnRoundChange += EndRoundFunction;
-            WaveController._instance.OnWaveCreated += (sender, f) => { _roundMaxHp = f; };
+            WaveController._instance.OnWaveCreated += AuxFunc;
 
             foreach (var enemy in enemyConfig.enemies)
             {

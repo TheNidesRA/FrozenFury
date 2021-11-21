@@ -14,6 +14,10 @@ public class RoundUI : MonoBehaviour
         WaveController._instance.OnRoundChange += UpdateRoundTxt;
     }
 
+    private void OnDestroy()
+    {
+        WaveController._instance.OnRoundChange -= UpdateRoundTxt;
+    }
     private void UpdateRoundTxt(object sender, int e)
     {
         roundText.text = "Round: " + e.ToString();

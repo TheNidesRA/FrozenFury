@@ -125,9 +125,17 @@ public class WorldController : MonoBehaviour
         _structs = new List<BuildStats>();
     }
 
+    private void Aux(object sender, int i)
+    {
+        round = i;
+    }
+    private void OnDestroy()
+    {
+        WaveController._instance.OnRoundChange -= Aux;
+    }
     private void Start()
     {
-        WaveController._instance.OnRoundChange += (sender, i) => { round = i; };
+        WaveController._instance.OnRoundChange += Aux;
     }
 
     public void LevelUpgrade(BuildStats stats)
@@ -244,7 +252,7 @@ public class WorldController : MonoBehaviour
         CheckIfNegative(ref _weights[2], ref _weights[4]);
 
 
-        if (_weights[1] > 0.35f)
+        if (_weights[1] > 0.25f)
         {
             _weights[3] = _weights[1] - 0.35f;
             _weights[1] = 0.35f;

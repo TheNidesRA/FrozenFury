@@ -69,6 +69,7 @@ public class BuildGhost : MonoBehaviour
         }
         else
         {
+            
             _grid.SetActive(false);
         }
     }
@@ -82,6 +83,12 @@ public class BuildGhost : MonoBehaviour
         }
     }
 
+    public void OnDestroy()
+    {
+        GridBuildingSystem.Instance.OnSelectedChanged -= Instance_OnSelectedChanged;
+        GridBuildingSystem.Instance.OnObjectPlaced -= Instance_OnObjectPlaced;
+        GridBuildingSystem.Instance.OnMissSetPosition -= Instance_OnMissSetPosition;
+    }
 
     // Update is called once per frame
     private void LateUpdate()

@@ -38,6 +38,11 @@ namespace GridSystem.UI
 
         }
 
+        private void OnDestroy()
+        {
+            PlayerStats._instance.OnHealthChanged -= HandleHealth;
+            PlayerStats._instance.OnDeathEvent -= Regenearate;
+        }
         private void Start()
         {
             maxHealth = PlayerStats._instance.GetMaxHealth();

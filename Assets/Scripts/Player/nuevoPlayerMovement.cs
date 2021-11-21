@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using GridSystem;
@@ -50,23 +51,35 @@ public class nuevoPlayerMovement : MonoBehaviour
      */
     void Start()
     {
-        GridBuildingSystem.Instance.OnSelectedChanged += (a, b) =>
-        {
-            if (GridBuildingSystem.Instance.buildingSo != null)
-            {
-                work = false;
-            }
-            else
-            {
-                work = true;
-            }
-            
-            
-            // Debug.Log("HOLLAAA");
-            
-        };
-        GridBuildingSystem.Instance.OnObjectPlaced += (a,b)=>{ work = true; } ;
+        GridBuildingSystem.Instance.OnSelectedChanged += Aux1;
+        GridBuildingSystem.Instance.OnObjectPlaced += Aux2;
 
+    }
+
+    private void Aux1(object a, EventArgs b)
+    {
+
+
+        if (GridBuildingSystem.Instance.buildingSo != null)
+        {
+            work = false;
+        }
+        else
+        {
+            work = true;
+        }
+
+    }
+
+    private void OnDestroy()
+    {
+        GridBuildingSystem.Instance.OnSelectedChanged -= Aux1;
+        GridBuildingSystem.Instance.OnObjectPlaced -= Aux2;
+    }
+
+    private void Aux2(object a, EventArgs b)
+    {
+        work = true;
     }
 
     private void OnEnable()

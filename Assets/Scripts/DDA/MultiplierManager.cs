@@ -19,31 +19,31 @@ namespace Enemies
                 vars[1] += 1;
             }else if (healthLoss < 5)
             {
-                mults[0] -= 0.05f;
-                mults[1] -= 0.08f;
-                mults[2] += 0.07f;
+                mults[0] -= 0.03f;
+                mults[1] -= 0.04f;
+                mults[2] += 0.04f;
             }else if (healthLoss < 10)
             {
-                mults[0] -= 0.12f;
-                mults[1] -= 0.1f;
-                mults[2] += 0.09f;
+                mults[0] -= 0.06f;
+                mults[1] -= 0.07f;
+                mults[2] += 0.08f;
                 // vars[0] -= 2;
-                vars[1] -= 2;
+                vars[1] -= 1;
             }else if (healthLoss < 15)
             {
-                mults[0] -= 0.17f;
-                mults[1] -= 0.14f;
+                mults[0] -= 0.1f;
+                mults[1] -= 0.1f;
                 mults[2] += 0.12f;
                 // vars[0] -= 3;
-                vars[1] -= 3;
+                vars[1] -= 1;
             }
             else
             {
-                mults[0] -= 0.2f;
-                mults[1] -= 0.16f;
+                mults[0] -= 0.15f;
+                mults[1] -= 0.12f;
                 mults[2] += 0.15f;
                 // vars[0] -= 4;
-                vars[1] -= 4;
+                vars[1] -= 2;
             }
         }
 
