@@ -109,7 +109,7 @@ public class CharacterSelected : MonoBehaviour
     public IEnumerator celebrationHeladero()
     {
         characterAnimatorHeladero.SetBool("Celebrate", true);
-        yield return new WaitForSeconds(1.13f);
+        yield return new WaitForSeconds(1.5f);
         characterAnimatorHeladero.SetBool("Celebrate", false);
         Characters.SetActive(false);
         mainMenu.SetActive(true);
