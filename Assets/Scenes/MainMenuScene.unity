@@ -2515,7 +2515,7 @@ MonoBehaviour:
   text: {fileID: 0}
   description: 
   dishableOnPress: 0
-  activarOnEnable: 1
+  activarOnEnable: 0
 --- !u!114 &245541040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2778,7 +2778,7 @@ MonoBehaviour:
   text: {fileID: 0}
   description: 
   dishableOnPress: 0
-  activarOnEnable: 1
+  activarOnEnable: 0
 --- !u!114 &252569111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2833,6 +2833,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Boton Jugar Helado
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 762053474}
+        m_TargetAssemblyTypeName: MoneyManager, Assembly-CSharp
+        m_MethodName: BuyTorrine
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 1800
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &252569112
@@ -4217,7 +4229,7 @@ MonoBehaviour:
   text: {fileID: 0}
   description: 
   dishableOnPress: 0
-  activarOnEnable: 1
+  activarOnEnable: 0
 --- !u!114 &469112272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4271,6 +4283,18 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 762053474}
+        m_TargetAssemblyTypeName: MoneyManager, Assembly-CSharp
+        m_MethodName: BuyConemanSkin2
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 950
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
@@ -4847,7 +4871,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -360, y: -375}
+  m_AnchoredPosition: {x: -360, y: -396.85}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!1 &540724470
@@ -4945,6 +4969,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 762053474}
+        m_TargetAssemblyTypeName: MoneyManager, Assembly-CSharp
+        m_MethodName: BuyICMSkin1
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 40000
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &540724473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5000,7 +5036,7 @@ MonoBehaviour:
   text: {fileID: 0}
   description: 
   dishableOnPress: 0
-  activarOnEnable: 1
+  activarOnEnable: 0
 --- !u!1 &541237769
 GameObject:
   m_ObjectHideFlags: 0
@@ -6694,7 +6730,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &717316832
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6826,6 +6862,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Boton Jugar Helado
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 762053474}
+        m_TargetAssemblyTypeName: MoneyManager, Assembly-CSharp
+        m_MethodName: BuyConeman
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 1800
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &729214686
@@ -6987,8 +7035,8 @@ MonoBehaviour:
   ButtonChooseConemanSkin2: {fileID: 1443709139}
   ButtonChooseICMSkin1: {fileID: 855855454}
   ButtonChooseICMSkin2: {fileID: 260094872}
-  ButtonChooseTorrineSkin1: {fileID: 855855454}
-  ButtonChooseTorrineSkin2: {fileID: 260094872}
+  ButtonChooseTorrineSkin1: {fileID: 360977769}
+  ButtonChooseTorrineSkin2: {fileID: 1263453180}
 --- !u!4 &762053475
 Transform:
   m_ObjectHideFlags: 0
@@ -10232,6 +10280,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 762053474}
+        m_TargetAssemblyTypeName: MoneyManager, Assembly-CSharp
+        m_MethodName: BuyICMSkin2
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 950
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1134043016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10287,7 +10347,7 @@ MonoBehaviour:
   text: {fileID: 0}
   description: 
   dishableOnPress: 0
-  activarOnEnable: 1
+  activarOnEnable: 0
 --- !u!1 &1137477438
 GameObject:
   m_ObjectHideFlags: 0
@@ -15473,7 +15533,7 @@ MonoBehaviour:
   text: {fileID: 0}
   description: 
   dishableOnPress: 0
-  activarOnEnable: 1
+  activarOnEnable: 0
 --- !u!114 &1679446712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16827,6 +16887,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 762053474}
+        m_TargetAssemblyTypeName: MoneyManager, Assembly-CSharp
+        m_MethodName: BuyTorrineSkin2
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 950
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1790286768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16882,7 +16954,7 @@ MonoBehaviour:
   text: {fileID: 0}
   description: 
   dishableOnPress: 0
-  activarOnEnable: 1
+  activarOnEnable: 0
 --- !u!1 &1794000694
 GameObject:
   m_ObjectHideFlags: 0
@@ -18892,6 +18964,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 762053474}
+        m_TargetAssemblyTypeName: MoneyManager, Assembly-CSharp
+        m_MethodName: BuyTorrineSkin1
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 40000
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1946902882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18947,7 +19031,7 @@ MonoBehaviour:
   text: {fileID: 0}
   description: 
   dishableOnPress: 0
-  activarOnEnable: 1
+  activarOnEnable: 0
 --- !u!1 &1965416480
 GameObject:
   m_ObjectHideFlags: 0
@@ -19312,7 +19396,7 @@ MonoBehaviour:
   text: {fileID: 0}
   description: 
   dishableOnPress: 0
-  activarOnEnable: 1
+  activarOnEnable: 0
 --- !u!114 &1995695280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20861,7 +20945,7 @@ MonoBehaviour:
   text: {fileID: 0}
   description: 
   dishableOnPress: 0
-  activarOnEnable: 1
+  activarOnEnable: 0
 --- !u!114 &2134135473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20915,6 +20999,18 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 762053474}
+        m_TargetAssemblyTypeName: MoneyManager, Assembly-CSharp
+        m_MethodName: BuyConemanSkin1
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 40000
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
