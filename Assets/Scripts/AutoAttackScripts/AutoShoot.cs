@@ -283,7 +283,7 @@ namespace AutoAttackScripts
                     throw new ArgumentOutOfRangeException("typeofShooting", "Invalid type of shooting");
             }
 
-            AudioManager.Instance?.PlayRandomHitSound();
+            AudioManager.Instance?.PlayRandomNewHitSound();
         }
 
         private void ShootLowestDistanceEnemy()
@@ -416,7 +416,6 @@ namespace AutoAttackScripts
                     characterAnimator.SetBool("EnemySighted", enemySighted);
                     characterAnimator.SetBool("Shoot", false);
                 }
-                
             }
             else
             {
@@ -546,17 +545,16 @@ namespace AutoAttackScripts
             {
                 foreach (var bullet in bullets)
                 {
-                    BulletScript bulletScript =bullet.GetComponent<BulletScript>();
-                    bulletScript .BulletFromPlayer = true;
+                    BulletScript bulletScript = bullet.GetComponent<BulletScript>();
+                    bulletScript.BulletFromPlayer = true;
                     bulletScript.bulletDamage = DamagePerBullet;
-
                 }
             }
             else
             {
                 foreach (var bullet in bullets)
                 {
-                    BulletScript bulletScript=bullet.GetComponent<BulletScript>();
+                    BulletScript bulletScript = bullet.GetComponent<BulletScript>();
                     bulletScript.bulletDamage = DamagePerBullet;
                     bulletScript.BulletFromPlayer = false;
                 }

@@ -34,4 +34,39 @@ public class AudioAuxFunctions : MonoBehaviour
     {
         AudioManager.Instance?.Play("Boton Jugar Helado");
     }
+
+    public void PlayStartRound()
+    {
+        AudioManager.Instance?.Play("Empezar Ronda");
+    }
+
+    public void PlayFinishRound()
+    {
+        AudioManager.Instance?.Play("Finalizar Ronda");
+    }
+
+    public void PlayRandomBuy()
+    {
+        AudioManager.Instance?.PlayRandomBuy();
+    }
+
+    public void PlayRandomNewHitSound()
+    {
+        AudioManager.Instance?.PlayRandomNewHitSound();
+    }
+
+    public void PlayWinMusic()
+    {
+        AudioManager.Instance?.Play("Ganar Partida");
+    }
+
+    public void PlayLoseMusic()
+    {
+        AudioManager.Instance?.Play("Perder Partida");
+    }
+    
+    public void PlayChillMusic()
+    {
+        AudioManager.Instance?.Play("Chill Theme");
+    }
 }

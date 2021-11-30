@@ -8394,6 +8394,7 @@ MonoBehaviour:
   duration: 3
   delay: 0
   ammount: 1.05
+  loop: 1
 --- !u!114 &1013362306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13268,6 +13269,7 @@ MonoBehaviour:
   duration: 4
   delay: 0
   ammount: 5
+  loop: 1
 --- !u!1 &1554195432
 GameObject:
   m_ObjectHideFlags: 0
@@ -15495,6 +15497,41 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: Empezar Ronda
+    output: {fileID: 24300002, guid: b0ef6460782205b439bbf0cda037b862, type: 2}
+    clip: {fileID: 8300000, guid: 0b9df3b4ab18a8f4699ac59caac5af23, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Finalizar Ronda
+    output: {fileID: 24300002, guid: b0ef6460782205b439bbf0cda037b862, type: 2}
+    clip: {fileID: 8300000, guid: 18a9eccf03d42574dbb4ee6e537ff02e, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Ganar Partida
+    output: {fileID: 24300002, guid: d9061f2ab73a6dc44a37388daf7be5b8, type: 2}
+    clip: {fileID: 8300000, guid: a852d766966796847a082d651f738481, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Perder Partida
+    output: {fileID: 24300002, guid: d9061f2ab73a6dc44a37388daf7be5b8, type: 2}
+    clip: {fileID: 8300000, guid: 7d7cf71cd85661043b559e0a296e3cd3, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Chill Theme
+    output: {fileID: 24300002, guid: d9061f2ab73a6dc44a37388daf7be5b8, type: 2}
+    clip: {fileID: 8300000, guid: b1b8bd3a7c5feae4da2628ddf20ea575, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
   randomHits:
   - name: Hit1
     output: {fileID: 24300002, guid: b0ef6460782205b439bbf0cda037b862, type: 2}
@@ -15550,6 +15587,50 @@ MonoBehaviour:
   - name: Muerte2
     output: {fileID: 24300002, guid: b0ef6460782205b439bbf0cda037b862, type: 2}
     clip: {fileID: 8300000, guid: 37ba6f9d2f9443045a18d12504cc341e, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  randomBuy:
+  - name: Buy1
+    output: {fileID: 24300002, guid: b0ef6460782205b439bbf0cda037b862, type: 2}
+    clip: {fileID: 8300000, guid: fc4feffdf075e6f4dbcef5b3188297a6, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Buy2
+    output: {fileID: 24300002, guid: b0ef6460782205b439bbf0cda037b862, type: 2}
+    clip: {fileID: 8300000, guid: 886a44d1f2edc494e9bf64ff9fdab7ac, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  randomNewHits:
+  - name: NewHit1
+    output: {fileID: 24300002, guid: b0ef6460782205b439bbf0cda037b862, type: 2}
+    clip: {fileID: 8300000, guid: de533414ba66947469aedcc9cc61e27b, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: NewHit2
+    output: {fileID: 24300002, guid: b0ef6460782205b439bbf0cda037b862, type: 2}
+    clip: {fileID: 8300000, guid: 727b9d6534d62c4408053bc74e11cbee, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: NewHit3
+    output: {fileID: 24300002, guid: b0ef6460782205b439bbf0cda037b862, type: 2}
+    clip: {fileID: 8300000, guid: 6767c4690233edb43b80e327854dbef1, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: NewHit4
+    output: {fileID: 24300002, guid: b0ef6460782205b439bbf0cda037b862, type: 2}
+    clip: {fileID: 8300000, guid: 6b08283442a743141a4dc7738a08e5d3, type: 3}
     volume: 0.3
     pitch: 1
     loop: 0
