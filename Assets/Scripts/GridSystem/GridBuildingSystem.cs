@@ -231,9 +231,9 @@ namespace GridSystem
             }
         }
 
-        public void changeBuild(int build)
+        public bool changeBuild(int build)
         {
-            if (!_enableBuild) return;
+            if (!_enableBuild) return false;
             
             BuildingSO targetBuild = _buildingsList[build];
             if (PlayerStats._instance.gold >= targetBuild.goldCost)
@@ -241,7 +241,10 @@ namespace GridSystem
                 _buildingSO = targetBuild;
                 // Debug.Log(_buildingSO.ToString());
                 RefreshSelectedObjectType();
+                return true;
             }
+
+            return false;
         }
 
 

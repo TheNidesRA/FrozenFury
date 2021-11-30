@@ -8,7 +8,8 @@ public class BreathTitle : MonoBehaviour
     public enum AnimationType
     {
         Breath,
-        Shake
+        Shake,
+        Both
     }
 
 
@@ -27,6 +28,7 @@ public class BreathTitle : MonoBehaviour
     private Vector3 initRotation;
     private Vector2 initScale;
 
+    public bool loop = true;
 
     private void Awake()
     {
@@ -42,33 +44,63 @@ public class BreathTitle : MonoBehaviour
         rect.position = initPosition;
         rect.rotation = Quaternion.Euler(initRotation);
         rect.sizeDelta = initScale;
+        if (loop)
+            switch (animationType)
+            {
+                case AnimationType.Breath:
 
+                    actualMovement = LeanTween.size(rect, rect.sizeDelta * ammount, duration).setLoopClamp()
+                        .setEase(curve);
+                    break;
+                case AnimationType.Shake:
+                    actualMovement = LeanTween.rotateAround(rect, Vector3.forward, ammount, duration).setLoopClamp()
+                        .setEase(curve);
+
+                    break;
+            }
+    }
+
+
+
+    public void StartTweening()
+    {
         switch (animationType)
         {
             case AnimationType.Breath:
 
-                actualMovement = LeanTween.size(rect, rect.sizeDelta * ammount, duration).setLoopClamp().setEase(curve);
+                actualMovement = LeanTween.size(rect, rect.sizeDelta * ammount, duration)
+                    .setEase(curve);
                 break;
             case AnimationType.Shake:
-                actualMovement = LeanTween.rotateAround(rect, Vector3.forward, ammount, duration).setLoopClamp()
+                actualMovement = LeanTween.rotateAround(rect, Vector3.forward, ammount, duration)
                     .setEase(curve);
 
+                break;
+            case AnimationType.Both:
+                actualMovement = LeanTween.rotateAround(rect, Vector3.forward, ammount, duration)
+                    .setEase(curve);
+  actualMovement = LeanTween.size(rect, rect.sizeDelta * ammount, duration)
+                    .setEase(curve);
                 break;
         }
     }
 
     private void OnDisable()
     {
-        actualMovement.setLoopClamp(0);
-        actualMovement.setTime(0);
-        LeanTween.cancel(rect);
+        if (!ReferenceEquals(actualMovement, null))
+            if (LeanTween.isTweening(actualMovement.id))
+            {
+                actualMovement.setLoopClamp(0);
+                actualMovement.setTime(0);
+                LeanTween.cancel(rect);
+            }
     }
 
 
     private void infiniteLoop()
     {
     }
-    
+
     // public void buttonClick()
     // {
     //     if (actualMovement == null)

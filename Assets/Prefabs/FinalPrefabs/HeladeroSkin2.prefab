@@ -972,6 +972,7 @@ MonoBehaviour:
   _damagePerBullet: 0
   bullet: {fileID: 7750081597608461541, guid: 1432f830bd3b4374481a9c3b7a111e3f, type: 3}
   timeBetweenShooting: 1.59
+  shootsPerSecond: 1
   timeToShootBulletBurst: 0.2
   shotgunBulletSeparation: 10
   attackPoint: {fileID: 2455831411735419855}
@@ -1637,7 +1638,7 @@ Animator:
   m_GameObject: {fileID: 3374801931392486406}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e418a4deb7e32cd4196788eac2f3c388, type: 2}
+  m_Controller: {fileID: 9100000, guid: f9756733733598b4d81a493033f359b2, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1658,14 +1659,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 992a1dfc21cf9dd448cfd4477c61a9ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gold: 0
-  damage: 0
+  PlayerStatsSo: {fileID: 11400000, guid: 5619348b1f4014140a66a95ca968ee79, type: 2}
+  _gold: 100
+  _damage: 0
+  _initDamage: 0
+  _initAttackSpeed: 0
+  _initHealth: 0
+  _initGoldCostLevel: 0
   _level: 1
-  _health: 10
-  _maxHealth: 100
-  _respawnTime: 5
-  Shoot: {fileID: 0}
-  Animator: {fileID: 0}
+  _health: 100
+  _attackSpeed: 0
+  CurveHealth:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  CurveDamage:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  CurveAttackSpeed:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  CurveGoldLevelCost:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  MAXHEALTH: 0
+  MAXDAMAGE: 0
+  MAXATTACKSPEED: 0
+  MAXGOLDCOSTLEVEL: 0
+  _respawnTime: 10
+  Shoot: {fileID: 2455831411125020136}
+  Animator: {fileID: 2455831410612645058}
 --- !u!114 &2455831410612645056
 MonoBehaviour:
   m_ObjectHideFlags: 0
