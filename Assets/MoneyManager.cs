@@ -7,13 +7,14 @@ public class MoneyManager : MonoBehaviour
 {
     public PlayerEconomySO PlayerEconomySo;
 
-
+    [SerializeField]
     public enum CoinType
     {
         Coin,
         Ring
     }
 
+    [SerializeField]
     public enum ItemToBuy
     {
         ConeMan,
@@ -233,10 +234,97 @@ public class MoneyManager : MonoBehaviour
         Rings += rings;
     }
 
-
+    public void BuyTorrine(float cost)
+    {
+        CoinType moneda = CoinType.Ring;
+        if (CheckMoney(cost, moneda))
+        {
+            Buy(cost,moneda);
+            Torrine = true;
+        }
+        
+    }
+    public void BuyConeman(float cost)
+    {
+        CoinType moneda = CoinType.Ring;
+        if (CheckMoney(cost, moneda))
+        {
+            Buy(cost,moneda);
+            ConeMan = true;
+        }
+        
+    }
+    
+    public void BuyConemanSkin1(float cost)
+    {
+        CoinType moneda = CoinType.Coin;
+        if (CheckMoney(cost, moneda))
+        {
+            Buy(cost,moneda);
+            Skin1ConeMan = true;
+        }
+        
+    }
+    public void BuyTorrineSkin1(float cost)
+    {
+        CoinType moneda = CoinType.Coin;
+        if (CheckMoney(cost, moneda))
+        {
+            Buy(cost,moneda);
+            Skin1Torrine = true;
+        }
+        
+    }
+    public void BuyICMSkin1(float cost)
+    {
+        CoinType moneda = CoinType.Coin;
+        if (CheckMoney(cost, moneda))
+        {
+            Buy(cost,moneda);
+            Skin1Icm = true;
+        }
+        
+    }
+    
+    
+    public void BuyConemanSkin2(float cost)
+    {
+        CoinType moneda = CoinType.Ring;
+        if (CheckMoney(cost, moneda))
+        {
+            Buy(cost,moneda);
+            Skin2ConeMan = true;
+        }
+        
+    }
+    public void BuyTorrineSkin2(float cost)
+    {
+        CoinType moneda = CoinType.Ring;
+        if (CheckMoney(cost, moneda))
+        {
+            Buy(cost,moneda);
+            Skin2Torrine = true;
+        }
+        
+    }
+    public void BuyICMSkin2(float cost)
+    {
+        CoinType moneda = CoinType.Ring;
+        if (CheckMoney(cost, moneda))
+        {
+            Buy(cost,moneda);
+            Skin2Icm = true;
+        }
+        
+    }
+    
+    
+    
+    
+    
+    
     public void tryToBuy(float cost, CoinType moneda, ItemToBuy item)
     {
-
         if (CheckMoney(cost, moneda))
         {
             switch (item)
@@ -267,9 +355,24 @@ public class MoneyManager : MonoBehaviour
                     break;
             }
         }
-        
     }
 
+    private void Buy(float cost, CoinType moneda)
+    {
+        switch (moneda)
+        {
+            case CoinType.Coin:
+                Coins -= cost;
+             break;
+             
+            case CoinType.Ring:
+                Rings -= cost;
+                break;
+             
+            default:
+                break;
+        }
+    }
 
     private bool CheckMoney(float cost, CoinType moneda)
     {

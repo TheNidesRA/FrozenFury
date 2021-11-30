@@ -21,7 +21,7 @@ public class ButtonWithTextAnimation : MonoBehaviour, IPointerEnterHandler, IPoi
     private LTDescr _animation;
     private Button btn = null;
     public bool dishableOnPress;
-    public bool activarOnEnable = true;
+    public bool activarOnEnable = false;
 
     private void Awake()
     {
