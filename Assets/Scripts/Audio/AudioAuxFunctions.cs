@@ -9,6 +9,16 @@ public class AudioAuxFunctions : MonoBehaviour
         AudioManager.Instance?.Stop("Partida");
     }
 
+    public void StopWinMusic()
+    {
+        AudioManager.Instance?.Stop("Ganar Partida");
+    }
+
+    public void StopLoseMusic()
+    {
+        AudioManager.Instance?.Stop("Perder Partida");
+    }
+
     public void PlayGameplayMusic()
     {
         AudioManager.Instance?.Play("Partida");
@@ -64,7 +74,7 @@ public class AudioAuxFunctions : MonoBehaviour
     {
         AudioManager.Instance?.Play("Perder Partida");
     }
-    
+
     public void PlayChillMusic()
     {
         AudioManager.Instance?.Play("Chill Theme");
