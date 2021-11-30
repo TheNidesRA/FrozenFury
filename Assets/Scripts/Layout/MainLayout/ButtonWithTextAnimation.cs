@@ -21,6 +21,7 @@ public class ButtonWithTextAnimation : MonoBehaviour, IPointerEnterHandler, IPoi
     private LTDescr _animation;
     private Button btn = null;
     public bool dishableOnPress;
+    public bool activarOnEnable = true;
 
     private void Awake()
     {
@@ -37,7 +38,7 @@ public class ButtonWithTextAnimation : MonoBehaviour, IPointerEnterHandler, IPoi
         _rcTransform.sizeDelta = _initialSize;
         if (!ReferenceEquals(btn, null))
         {
-            if (!btn.interactable)
+            if (!btn.interactable && activarOnEnable)
                 btn.interactable = true;
         }
     }
