@@ -23,14 +23,18 @@ public class SceneController : MonoBehaviour
     {
         PlayerPrefs.SetInt("round", round);
         SceneManager.LoadScene("LoseScreen");
+        AudioManager.Instance?.Stop("Partida");
+        AudioManager.Instance?.Play("Perder Partida");
     }
 
 
     public void GoToWinScene()
     {
         SceneManager.LoadScene("WinScreen");
+        AudioManager.Instance?.Stop("Partida");
+        AudioManager.Instance?.Play("Ganar Partida");
     }
-    
+
     public void GoToMainMenu()
     {
         SceneManager.LoadScene("MainMenuScene");
