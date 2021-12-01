@@ -178,7 +178,6 @@ public class MoneyManager : MonoBehaviour
 
     public Transform modelPosition;
     public GameObject model;
-    
 
 
     public float Coins
@@ -443,6 +442,7 @@ public class MoneyManager : MonoBehaviour
                     return false;
                 }
 
+                AudioManager.Instance?.PlayRandomBuy();
                 return true;
             default:
                 return false;
@@ -461,17 +461,15 @@ public class MoneyManager : MonoBehaviour
             Destroy(model);
         }
 
-        
-        
+
         model = Instantiate(pj, modelPosition);
 
         Vector3 pos = new Vector3(0, -280, -300);
         Vector3 rotation = new Vector3(0, 180, 0);
-        
+
         model.transform.localScale = new Vector3(60, 60, 60);
         model.transform.localPosition = pos;
         model.transform.localRotation = Quaternion.Euler(rotation);
-
     }
 
     public void AddModelShop(GameObject pj)
@@ -481,20 +479,17 @@ public class MoneyManager : MonoBehaviour
             Destroy(model);
         }
 
-        
-        
+
         model = Instantiate(pj, modelPosition);
 
         Vector3 pos = new Vector3(0, -280, -300);
         Vector3 rotation = new Vector3(0, 180, 0);
-        
-        model.transform.localScale = new Vector3(60, 60, 60)*3.5f;
+
+        model.transform.localScale = new Vector3(60, 60, 60) * 3.5f;
         model.transform.localPosition = pos;
         model.transform.localRotation = Quaternion.Euler(rotation);
-
     }
-    
-    
+
 
     private void Fallo()
     {
