@@ -36,14 +36,15 @@ namespace Enemies
 
 
         private bool _roundActiveAux;
+
         private bool _roundActive
         {
             get => _roundActiveAux;
             set
             {
                 _roundActiveAux = value;
-                
-                OnRoundActive?.Invoke(this,_roundActive);
+
+                OnRoundActive?.Invoke(this, _roundActive);
             }
         }
 
@@ -102,8 +103,6 @@ namespace Enemies
                 Spawner.StartRound(_currentWave.Enemies);
                 _enemiesAlive = _currentWave.Enemies.Count;
                 _roundActive = true;
-                
-
             }
         }
 
@@ -113,6 +112,7 @@ namespace Enemies
             if (_enemiesAlive <= 0)
             {
                 EndRound();
+                AudioManager.Instance?.Play("Finalizar Ronda");
             }
         }
 
@@ -135,6 +135,5 @@ namespace Enemies
         {
             spwnPts = pts;
         }
-        
     }
 }

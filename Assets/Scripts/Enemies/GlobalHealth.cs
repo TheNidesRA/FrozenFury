@@ -40,6 +40,7 @@ class GlobalHealth : MonoBehaviour
         if (globalHealth <= 0)
         {
             EndGameFunc();
+            AudioManager.Instance?.Stop("Finalizar Ronda");
         }
     }
 
