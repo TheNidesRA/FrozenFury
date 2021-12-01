@@ -175,7 +175,10 @@ public class MoneyManager : MonoBehaviour
 
     public GameObject ConfirmDialoge;
     public Button yes;
-    public Image purchaseImage;
+
+    public Transform modelPosition;
+    public GameObject model;
+    
 
 
     public float Coins
@@ -446,10 +449,23 @@ public class MoneyManager : MonoBehaviour
         }
     }
 
-    public void AddImage(Image img)
+    public void AddPriceImage(Sprite img)
     {
-        purchaseImage.sprite = img.sprite;
+        yes.image.sprite = img;
     }
+
+    public void AddModel(GameObject pj)
+    {
+        if (model != null)
+        {
+            Destroy(model);
+        }
+
+        model = Instantiate(pj, modelPosition);
+
+
+    }
+
 
     private void Fallo()
     {
