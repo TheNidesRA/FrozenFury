@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-575164986332522108
+--- !u!114 &-7672352861695085211
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,10 +20,10 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MapMaterial
+  m_Name: PinkOutfit
   m_Shader: {fileID: 4800000, guid: 6459b2db96a08ca41b0f9b39dc7ad59e, type: 3}
-  m_ShaderKeywords: N_F_EAL_ON N_F_O_ON N_F_RELGI_ON N_F_SON_ON N_F_SS_ON N_F_ST_ON
-    N_F_TRANSAFFSHA N_F_TRANSAFFSHA_ON
+  m_ShaderKeywords: N_F_EAL_ON N_F_HDLS_ON N_F_O_ON N_F_RELGI_ON N_F_SS_ON N_F_TRANSAFFSHA
+    N_F_TRANSAFFSHA_ON
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -75,8 +75,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 2.6, y: 2.6}
-        m_Offset: {x: 0.19, y: 0.19}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MaskGloss:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -152,6 +152,8 @@ Material:
     - _BleModSour: 1
     - _Blend: 0
     - _BumpScale: 1
+    - _ClearCoatMask: 0
+    - _ClearCoatSmoothness: 0
     - _Compa: 4
     - _Cull: 2
     - _Culling: 2
@@ -160,30 +162,27 @@ Material:
     - _Cutoff: 0.5
     - _Cutout: 0
     - _DepthThreshold: 900
+    - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
-    - _Diffuse: 0.18
     - _DirectionalLightIntensity: 0
-    - _DoubleSidedOutline: 0
+    - _DoubleSidedOutline: 1
     - _DstBlend: 0
     - _DynamicNoisyOutline: 0
+    - _EnvironmentReflections: 1
     - _EnvironmentalLightingIntensity: 1
-    - _FadeDiffuse: 0.933
-    - _FadeShadow: 0
-    - _FadeSpecular: 0.784
     - _FarDistanceMaxWidth: 10
     - _GIFlatShade: 0
     - _GIShadeThreshold: 0
     - _GlossColorPower: 10
     - _GlossIntensity: 1
-    - _GlossMapScale: 1
+    - _GlossMapScale: 0
     - _GlossSoftness: 0
     - _GlossTextureFollowLight: 0
     - _GlossTextureFollowObjectRotation: 0
     - _GlossTextureRotate: 0
     - _GlossTextureSoftness: 0
-    - _Glossiness: 0.5
-    - _GlossinessSource: 0
-    - _GlossyReflections: 1
+    - _Glossiness: 0
+    - _GlossyReflections: 0
     - _HighlightColorPower: 1
     - _LightAffectOutlineColor: 0
     - _LightAffectRimLightColor: 0
@@ -196,7 +195,6 @@ Material:
     - _MVCOL: 0
     - _Metallic: 0
     - _MixMainTexToOutline: 0
-    - _Mode: 0
     - _N_F_CA: 0
     - _N_F_CLD: 0
     - _N_F_CO: 0
@@ -205,7 +203,7 @@ Material:
     - _N_F_FR: 0
     - _N_F_GLO: 0
     - _N_F_GLOT: 0
-    - _N_F_HDLS: 0
+    - _N_F_HDLS: 1
     - _N_F_HPSS: 0
     - _N_F_MC: 0
     - _N_F_MSSOLTFO: 0
@@ -218,9 +216,9 @@ Material:
     - _N_F_RL: 0
     - _N_F_SCT: 0
     - _N_F_SL: 0
-    - _N_F_SON: 1
+    - _N_F_SON: 0
     - _N_F_SS: 1
-    - _N_F_ST: 1
+    - _N_F_ST: 0
     - _N_F_STIAL: 0
     - _N_F_STIS: 0
     - _NoisyOutlineIntensity: 0
@@ -228,20 +226,19 @@ Material:
     - _OcclusionStrength: 1
     - _Opacity: 1
     - _Oper: 0
-    - _Outline: 0
-    - _OutlineExtrudeMethod: 1
-    - _OutlineWidth: 4
+    - _OutlineExtrudeMethod: 0
+    - _OutlineWidth: 3
     - _OutlineWidthAffectedByViewDistance: 0
-    - _OutlineZPostionInCamera: 0.001
-    - _OverallShadowColorPower: -3.63
+    - _OutlineZPostionInCamera: 0
+    - _OverallShadowColorPower: 1
     - _PSGLOTEX: 0
     - _PTexturePower: 1
-    - _Parallax: 0.02
+    - _Parallax: 0.005
     - _PointSpotlightIntensity: 0
     - _QueueOffset: 0
     - _RELG: 1
     - _ReceiveShadows: 1
-    - _ReduSha: 3.68
+    - _ReduSha: 0.5
     - _RefMetallic: 0
     - _RefVal: 0
     - _ReflectionIntensity: 0
@@ -263,7 +260,7 @@ Material:
     - _SelfShadowRealTimeShadowColorPower: 1
     - _SelfShadowRealtimeShadowIntensity: 1
     - _SelfShadowShadowTAtViewDirection: 0
-    - _SelfShadowThreshold: 0.93
+    - _SelfShadowThreshold: 0
     - _ShadowColorTexturePower: 0
     - _ShadowHardness: 1
     - _ShadowTColorPower: 1
@@ -271,52 +268,44 @@ Material:
     - _ShadowTIntensity: 1
     - _ShadowTLightThreshold: 50
     - _ShadowTShadowThreshold: 0
-    - _Shininess: 0
     - _ShowInAmbientLightShadowIntensity: 1
     - _ShowInAmbientLightShadowThreshold: 0.4
     - _ShowNormal: 0
     - _SmoothObjectNormal: 0
     - _Smoothness: 0.5
-    - _SmoothnessSource: 0
     - _SmoothnessTextureChannel: 0
-    - _SpecSource: 0
-    - _Specular: 1
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0
     - _TEXMCOLINT: 1
     - _TRANSMODE: 0
-    - _TexAlpha: 0.103
     - _TexturePatternStyle: 0
     - _TransAffSha: 1
     - _TransparentThreshold: 0
     - _UVCAND: 0
-    - _UVSec: 0
     - _UseSecondaryCutout: 0
     - _UseTLB: 0
     - _VertexColorBlueAffectOutlineWitdh: 0
     - _VertexColorGreenControlSelfShadowThreshold: 0
     - _VertexColorRedControlSmoothObjectNormal: 0
+    - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 1, g: 0.6726255, b: 0.3339622, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _CustomLightDirection: {r: 0, g: 0, b: 10, a: 0}
-    - _DiffuseColor: {r: 0.764151, g: 0.507255, b: 0.24150053, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GlossColor: {r: 1, g: 1, b: 1, a: 1}
-    - _HighlightColor: {r: 1, g: 1, b: 1, a: 1}
-    - _MainColor: {r: 0.6698113, g: 0.33917734, b: 0.17945886, a: 1}
-    - _OutlineColor: {r: 0, g: 0, b: 0, a: 0}
+    - _HighlightColor: {r: 0.49056602, g: 0.49056602, b: 0.49056602, a: 1}
+    - _MainColor: {r: 1, g: 0.35283017, b: 0.6611495, a: 1}
+    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineOffset: {r: 0, g: 0, b: 0, a: 1}
     - _OverallShadowColor: {r: 0, g: 0, b: 0, a: 1}
     - _PTCol: {r: 0, g: 0, b: 0, a: 1}
     - _RimLightColor: {r: 1, g: 1, b: 1, a: 1}
     - _SelfLitColor: {r: 1, g: 1, b: 1, a: 1}
     - _SelfShadowRealTimeShadowColor: {r: 1, g: 1, b: 1, a: 1}
-    - _ShadowColor: {r: 0.509434, g: 0.33414218, b: 0.15619439, a: 1}
     - _ShadowTColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SpecColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
-    - _SpecularColor: {r: 0.8941177, g: 0.5882353, b: 0.27450982, a: 1}
+    - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _XYZPosition: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
