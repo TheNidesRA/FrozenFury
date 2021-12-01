@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace GridSystem.UI
+namespace UI
 {
     public class PlayerHealthBar:MonoBehaviour
     {
@@ -48,7 +48,6 @@ namespace GridSystem.UI
             maxHealth = PlayerStats._instance.GetMaxHealth();
             PlayerStats._instance.OnHealthChanged += HandleHealth;
             PlayerStats._instance.OnDeathEvent += Regenearate;
-            
         }
 
         private void Regenearate(object sender, float e)
