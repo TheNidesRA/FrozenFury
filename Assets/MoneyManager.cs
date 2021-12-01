@@ -175,6 +175,7 @@ public class MoneyManager : MonoBehaviour
 
     public GameObject ConfirmDialoge;
     public Button yes;
+    public Image purchaseImage;
 
 
     public float Coins
@@ -445,6 +446,10 @@ public class MoneyManager : MonoBehaviour
         }
     }
 
+    public void AddImage(Image img)
+    {
+        purchaseImage.sprite = img.sprite;
+    }
 
     private void Fallo()
     {
