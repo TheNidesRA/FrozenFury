@@ -36,11 +36,14 @@ namespace Enemies
 
         #endregion
 
+        public event EventHandler<float> HealthBarEvent;
+
         public float initSpeed;
         public float initAcceleration;
 
         public string Id => id;
 
+        public float maxHealth;
         public float health;
         public float damage;
 
@@ -124,6 +127,7 @@ namespace Enemies
         public void InitializeStats()
         {
             health = _initStats.initHp;
+            maxHealth = _initStats.initHp;
             damage = _initStats.initDmg;
             speed = _initStats.initSpd;
             armor = _initStats.initArm;
@@ -143,6 +147,7 @@ namespace Enemies
         {
             health -= dmg;
             OnHealthChanged?.Invoke(gameObject);
+            HealthBarEvent?.Invoke(maxHealth, health);
             return health <= 0;
         }
 

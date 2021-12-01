@@ -22,7 +22,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: MapMaterial
   m_Shader: {fileID: 4800000, guid: 6459b2db96a08ca41b0f9b39dc7ad59e, type: 3}
-  m_ShaderKeywords: N_F_EAL_ON N_F_O_ON N_F_RELGI_ON N_F_SS_ON N_F_TRANSAFFSHA N_F_TRANSAFFSHA_ON
+  m_ShaderKeywords: N_F_EAL_ON N_F_O_ON N_F_RELGI_ON N_F_SON_ON N_F_SS_ON N_F_ST_ON
+    N_F_TRANSAFFSHA N_F_TRANSAFFSHA_ON
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -74,8 +75,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
+        m_Scale: {x: 2.6, y: 2.6}
+        m_Offset: {x: 0.19, y: 0.19}
     - _MaskGloss:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -162,7 +163,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _Diffuse: 0.18
     - _DirectionalLightIntensity: 0
-    - _DoubleSidedOutline: 1
+    - _DoubleSidedOutline: 0
     - _DstBlend: 0
     - _DynamicNoisyOutline: 0
     - _EnvironmentalLightingIntensity: 1
@@ -217,9 +218,9 @@ Material:
     - _N_F_RL: 0
     - _N_F_SCT: 0
     - _N_F_SL: 0
-    - _N_F_SON: 0
+    - _N_F_SON: 1
     - _N_F_SS: 1
-    - _N_F_ST: 0
+    - _N_F_ST: 1
     - _N_F_STIAL: 0
     - _N_F_STIS: 0
     - _NoisyOutlineIntensity: 0
@@ -228,10 +229,10 @@ Material:
     - _Opacity: 1
     - _Oper: 0
     - _Outline: 0
-    - _OutlineExtrudeMethod: 0
-    - _OutlineWidth: 0.5
+    - _OutlineExtrudeMethod: 1
+    - _OutlineWidth: 4
     - _OutlineWidthAffectedByViewDistance: 0
-    - _OutlineZPostionInCamera: 0
+    - _OutlineZPostionInCamera: 0.001
     - _OverallShadowColorPower: -3.63
     - _PSGLOTEX: 0
     - _PTexturePower: 1
@@ -240,7 +241,7 @@ Material:
     - _QueueOffset: 0
     - _RELG: 1
     - _ReceiveShadows: 1
-    - _ReduSha: 0.5
+    - _ReduSha: 3.68
     - _RefMetallic: 0
     - _RefVal: 0
     - _ReflectionIntensity: 0
@@ -264,7 +265,7 @@ Material:
     - _SelfShadowShadowTAtViewDirection: 0
     - _SelfShadowThreshold: 0.93
     - _ShadowColorTexturePower: 0
-    - _ShadowHardness: 0
+    - _ShadowHardness: 1
     - _ShadowTColorPower: 1
     - _ShadowTHardness: 1
     - _ShadowTIntensity: 1
@@ -305,7 +306,7 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GlossColor: {r: 1, g: 1, b: 1, a: 1}
     - _HighlightColor: {r: 1, g: 1, b: 1, a: 1}
-    - _MainColor: {r: 0.3254902, g: 0.21372549, b: 0.09411765, a: 1}
+    - _MainColor: {r: 0.6698113, g: 0.33917734, b: 0.17945886, a: 1}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 0}
     - _OutlineOffset: {r: 0, g: 0, b: 0, a: 1}
     - _OverallShadowColor: {r: 0, g: 0, b: 0, a: 1}
