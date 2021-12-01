@@ -28,7 +28,7 @@ public class CharacterSelected : MonoBehaviour
     public GameObject mainMenu;
     public GameObject Characters;
     public GameObject boton;
-
+    public GameObject Money;
 
     void Start()
     {
@@ -108,6 +108,7 @@ public class CharacterSelected : MonoBehaviour
         Characters.SetActive(false);
         mainMenu.SetActive(true);
         boton.SetActive(true);
+        Money.SetActive(true);
         
     }
 
@@ -120,6 +121,7 @@ public class CharacterSelected : MonoBehaviour
         Characters.SetActive(false);
         mainMenu.SetActive(true);
         boton.SetActive(true);
+        Money.SetActive(true);
     }
 
     public IEnumerator celebrationConeman()
@@ -131,6 +133,7 @@ public class CharacterSelected : MonoBehaviour
         Characters.SetActive(false);
         mainMenu.SetActive(true);
         boton.SetActive(true);
+        Money.SetActive(true);
     }
 
 
