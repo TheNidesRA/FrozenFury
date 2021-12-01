@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
 using UnityEngine.UI;
 
 public class MoneyManager : MonoBehaviour
@@ -172,6 +173,10 @@ public class MoneyManager : MonoBehaviour
     public Button ButtonChooseTorrineSkin2;
 
 
+    public GameObject ConfirmDialoge;
+    public Button yes;
+
+
     public float Coins
     {
         get => _coins;
@@ -239,90 +244,131 @@ public class MoneyManager : MonoBehaviour
         CoinType moneda = CoinType.Ring;
         if (CheckMoney(cost, moneda))
         {
-            Buy(cost,moneda);
-            Torrine = true;
+            ConfirmDialoge.SetActive(true);
+            yes.onClick.RemoveAllListeners();
+            yes.onClick.AddListener(() =>
+            {
+                Buy(cost, moneda);
+                Torrine = true;
+                ConfirmDialoge.SetActive(false);
+            });
         }
-        
     }
+
     public void BuyConeman(float cost)
     {
         CoinType moneda = CoinType.Ring;
         if (CheckMoney(cost, moneda))
         {
-            Buy(cost,moneda);
-            ConeMan = true;
+            ConfirmDialoge.SetActive(true);
+            yes.onClick.RemoveAllListeners();
+            yes.onClick.AddListener(() =>
+            {
+                Buy(cost, moneda);
+                ConeMan = true;
+                ConfirmDialoge.SetActive(false);
+            });
         }
-        
     }
-    
+
     public void BuyConemanSkin1(float cost)
     {
         CoinType moneda = CoinType.Coin;
         if (CheckMoney(cost, moneda))
         {
-            Buy(cost,moneda);
-            Skin1ConeMan = true;
+            ConfirmDialoge.SetActive(true);
+            yes.onClick.RemoveAllListeners();
+            yes.onClick.AddListener(() =>
+            {
+                Buy(cost, moneda);
+                Skin1ConeMan = true;
+                ConfirmDialoge.SetActive(false);
+            });
         }
-        
     }
+
     public void BuyTorrineSkin1(float cost)
     {
         CoinType moneda = CoinType.Coin;
         if (CheckMoney(cost, moneda))
         {
-            Buy(cost,moneda);
-            Skin1Torrine = true;
+            ConfirmDialoge.SetActive(true);
+            yes.onClick.RemoveAllListeners();
+            yes.onClick.AddListener(() =>
+            {
+                Buy(cost, moneda);
+                Skin1Torrine = true;
+                ConfirmDialoge.SetActive(false);
+            });
         }
-        
     }
+
     public void BuyICMSkin1(float cost)
     {
         CoinType moneda = CoinType.Coin;
         if (CheckMoney(cost, moneda))
         {
-            Buy(cost,moneda);
-            Skin1Icm = true;
+            ConfirmDialoge.SetActive(true);
+            yes.onClick.RemoveAllListeners();
+            yes.onClick.AddListener(() =>
+            {
+                Buy(cost, moneda);
+                Skin1Icm = true;
+                ConfirmDialoge.SetActive(false);
+            });
         }
-        
     }
-    
-    
+
+
     public void BuyConemanSkin2(float cost)
     {
         CoinType moneda = CoinType.Ring;
         if (CheckMoney(cost, moneda))
         {
-            Buy(cost,moneda);
-            Skin2ConeMan = true;
+            ConfirmDialoge.SetActive(true);
+            yes.onClick.RemoveAllListeners();
+            yes.onClick.AddListener(() =>
+            {
+                Buy(cost, moneda);
+                Skin2ConeMan = true;
+                ConfirmDialoge.SetActive(false);
+            });
         }
-        
     }
+
     public void BuyTorrineSkin2(float cost)
     {
         CoinType moneda = CoinType.Ring;
         if (CheckMoney(cost, moneda))
         {
-            Buy(cost,moneda);
-            Skin2Torrine = true;
+            ConfirmDialoge.SetActive(true);
+            yes.onClick.RemoveAllListeners();
+            yes.onClick.AddListener(() =>
+            {
+                Buy(cost, moneda);
+                Skin2Torrine = true;
+                ConfirmDialoge.SetActive(false);
+            });
         }
-        
     }
+
     public void BuyICMSkin2(float cost)
     {
         CoinType moneda = CoinType.Ring;
         if (CheckMoney(cost, moneda))
         {
-            Buy(cost,moneda);
-            Skin2Icm = true;
+            ConfirmDialoge.SetActive(true);
+            yes.onClick.RemoveAllListeners();
+            yes.onClick.AddListener(() =>
+            {
+                Buy(cost, moneda);
+                Skin2Icm = true;
+                ConfirmDialoge.SetActive(false);
+            });
         }
-        
     }
-    
-    
-    
-    
-    
-    
+
+
     public void tryToBuy(float cost, CoinType moneda, ItemToBuy item)
     {
         if (CheckMoney(cost, moneda))
@@ -363,12 +409,12 @@ public class MoneyManager : MonoBehaviour
         {
             case CoinType.Coin:
                 Coins -= cost;
-             break;
-             
+                break;
+
             case CoinType.Ring:
                 Rings -= cost;
                 break;
-             
+
             default:
                 break;
         }
