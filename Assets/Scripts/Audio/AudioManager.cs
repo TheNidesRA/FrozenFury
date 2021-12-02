@@ -9,6 +9,10 @@ public class AudioManager : MonoBehaviour
     public Sound[] randomDeath;
     public Sound[] randomBuy;
     public Sound[] randomNewHits;
+    public static float previousManagerAudio;
+    public static float previousManagerSliderAudio;
+    public static float previousManagerSliderMusic;
+    public static float previousManagerMusic;
     public static AudioManager Instance { get; private set; }
 
 
@@ -22,6 +26,10 @@ public class AudioManager : MonoBehaviour
         else
         {
             Instance = this;
+            previousManagerAudio = -1;
+            previousManagerMusic = -1;
+            previousManagerSliderAudio = -1;
+            previousManagerSliderMusic = -1;
         }
 
         DontDestroyOnLoad(gameObject);
@@ -144,5 +152,45 @@ public class AudioManager : MonoBehaviour
     {
         Sound s = randomNewHits[UnityEngine.Random.Range(0, randomNewHits.Length)];
         s.source.Play();
+    }
+
+    public static float getAudioVolume()
+    {
+        return previousManagerAudio;
+    }
+
+    public static float getMusicVolume()
+    {
+        return previousManagerMusic;
+    }
+
+    public static float getAudioSlider()
+    {
+        return previousManagerSliderAudio;
+    }
+
+    public static float getMusicSlider()
+    {
+        return previousManagerSliderMusic;
+    }
+
+    public static void setAudioVolume(float value)
+    {
+        previousManagerAudio = value;
+    }
+
+    public static void setMusicVolume(float value)
+    {
+        previousManagerMusic = value;
+    }
+
+    public static void setAudioSlider(float value)
+    {
+        previousManagerSliderAudio = value;
+    }
+
+    public static void setMusicSlider(float value)
+    {
+        previousManagerSliderMusic = value;
     }
 }
