@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CharacterChooseCanvas : MonoBehaviour
+public class TutorialCanvasController : MonoBehaviour
 {
     public RectTransform canvas;
     public int index;

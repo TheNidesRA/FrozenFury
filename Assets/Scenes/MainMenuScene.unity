@@ -16798,8 +16798,11 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  botones: []
+  flechas: []
   paginasTutorial: []
+  botones: []
+  indiceActualIMG: {fileID: 0}
+  indicePrevioIMG: {fileID: 0}
 --- !u!1 &1012353003
 GameObject:
   m_ObjectHideFlags: 0
@@ -17915,7 +17918,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  botones:
+  flechas:
   - {fileID: 1593184672}
   - {fileID: 513186956}
   paginasTutorial:
@@ -17927,6 +17930,17 @@ MonoBehaviour:
   - {fileID: 489846286}
   - {fileID: 2126620253}
   - {fileID: 550123830}
+  botones:
+  - {fileID: 958948184}
+  - {fileID: 1319361562}
+  - {fileID: 950834569}
+  - {fileID: 865061010}
+  - {fileID: 1890536775}
+  - {fileID: 1247810985}
+  - {fileID: 2080906816}
+  - {fileID: 2006801274}
+  indiceActualIMG: {fileID: 21300000, guid: ede500dcdf3143345b19fe6e62897b88, type: 3}
+  indicePrevioIMG: {fileID: 21300000, guid: ba04758b414d4e644b3a2b6d0d44f163, type: 3}
 --- !u!1 &1077878076
 GameObject:
   m_ObjectHideFlags: 0
@@ -22968,7 +22982,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1375253366
 RectTransform:
   m_ObjectHideFlags: 0
