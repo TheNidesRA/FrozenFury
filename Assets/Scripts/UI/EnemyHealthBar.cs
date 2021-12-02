@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using Enemies;
 using UnityEngine;
 using UnityEngine.Rendering.VirtualTexturing;
@@ -13,7 +14,11 @@ namespace UI
 
         private float fixedRotation = 0;
 
+        private float secondsOnScreen = 2;
+
         private Quaternion fixedrot;
+
+        private Canvas _canvas;
 
         private void Awake()
         {
@@ -27,6 +32,8 @@ namespace UI
             fixedrot = gameObject.transform.rotation;
             gameObject.transform.position = initPos;
             GetComponentInParent<Enemy>().HealthBarEvent += HandleHealth;
+            _canvas = GetComponent<Canvas>();
+            _canvas.enabled = false;
         }
         
         private void Update()
@@ -48,8 +55,24 @@ namespace UI
 
         private void HandleHealth(object e, float health)
         {
+            _canvas.enabled = true;
             healtBar.fillAmount = health / maxHealth;
+            try
+            {
+                StopCoroutine("DisableBar");
+            }
+            catch
+            {
+                Debug.LogError("Routine not initialized yet");
+            }
+            
+            StartCoroutine("DisableBar",DisableBar());
         }
 
+        private IEnumerator DisableBar()
+        {
+            yield return new WaitForSeconds(secondsOnScreen);
+            _canvas.enabled = false;
+        }
     }
 }
