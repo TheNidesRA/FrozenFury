@@ -412,10 +412,12 @@ public class MoneyManager : MonoBehaviour
         {
             case CoinType.Coin:
                 Coins -= cost;
+                AudioManager.Instance?.PlayRandomBuy();
                 break;
 
             case CoinType.Ring:
                 Rings -= cost;
+                AudioManager.Instance?.PlayRandomBuy();
                 break;
 
             default:
@@ -442,7 +444,6 @@ public class MoneyManager : MonoBehaviour
                     return false;
                 }
 
-                AudioManager.Instance?.PlayRandomBuy();
                 return true;
             default:
                 return false;
