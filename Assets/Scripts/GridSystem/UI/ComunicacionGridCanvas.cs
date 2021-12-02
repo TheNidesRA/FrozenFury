@@ -110,6 +110,7 @@ public class ComunicacionGridCanvas : MonoBehaviour
             return;
         }
 
+       
         RefreshVisualUpdateBuild(eventArgs);
         _buildUpdateConteiner.SetActive(true);
         buildManagement.CheckIfInteractable();
@@ -123,6 +124,7 @@ public class ComunicacionGridCanvas : MonoBehaviour
         rondaComenzada = eventArgs;
         if (eventArgs)
             RoundStarted();
+        
         else
         {
             RoundEnded();
@@ -168,7 +170,7 @@ public class ComunicacionGridCanvas : MonoBehaviour
         tween = LeanTween.move(_rectTransformBuildUpdate, outsidePosition, transitionTime).setEaseOutCubic()
             .setOnComplete(() => { _buildUpdateConteiner.SetActive(false); });
         // BuildButton.SetActive(true);
-
+        _placedBuild.HideArea();
         BuildButtonActions.returnInside();
     }
 
@@ -211,6 +213,9 @@ public class ComunicacionGridCanvas : MonoBehaviour
         if (buildUpdate != null)
         {
             Destroy(buildUpdate.gameObject);
+            
+               
+        
             buildUpdate = null;
             _placedBuild = null;
         }
@@ -225,6 +230,12 @@ public class ComunicacionGridCanvas : MonoBehaviour
 
             UpdateStatsEditBuild.UpdateStatsText(placedBuild);
 
+
+            if (_placedBuild.Area != null)
+            {
+                _placedBuild.ShowArea();
+            }
+            
             buildUpdate.localPosition = new Vector3(0, 0, -60);
             buildUpdate.localEulerAngles = placedBuild.BuildingSo.canvasVisual.rotation.eulerAngles;
             ;
@@ -233,6 +244,7 @@ public class ComunicacionGridCanvas : MonoBehaviour
         }
         else
         {
+            _placedBuild.HideArea();
             tween = LeanTween.move(_rectTransformBuildUpdate, outsidePosition, transitionTime).setEaseOutCubic()
                 .setOnComplete(() => { _buildUpdateConteiner.SetActive(false); });
             //BuildButton.SetActive(true);
@@ -244,6 +256,7 @@ public class ComunicacionGridCanvas : MonoBehaviour
 
     private void RoundStarted()
     {
+        _placedBuild.HideArea();
         if (EditBuild.activeSelf)
         {
             Debug.Log("Hello");
