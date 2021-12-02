@@ -13,21 +13,47 @@ public class AudioSettings : MonoBehaviour
     public Slider audioSlider;
     public bool isMutedAudio = false;
     public bool isMutedMusic = false;
-    public float previousAudio = 0.5f;
-    public float previousSliderMusic = 0.5f;
-    public float previousSliderAudio = 0.5f;
-    public float previousMusic = 0.5f;
+    public float previousAudio;
+    public float previousSliderMusic;
+    public float previousSliderAudio;
+    public float previousMusic;
+
+    private void Start()
+    {
+        if (AudioManager.getAudioVolume() != -1f)
+        {
+            SetVolumeSounds(AudioManager.getAudioSlider());
+        }
+
+        if (AudioManager.getAudioSlider() != -1f)
+        {
+            ChangeAudioSliderValue(AudioManager.getAudioSlider());
+        }
+
+        if (AudioManager.getMusicVolume() != -1f)
+        {
+            SetVolumeMusic(AudioManager.getMusicSlider());
+        }
+
+        if (AudioManager.getMusicSlider() != -1f)
+        {
+            ChangeMusicSliderValue(AudioManager.getMusicSlider());
+        }
+    }
 
     public void SetVolumeSounds(float volume)
     {
         if (volume == 0)
         {
             soundMixer.SetFloat("volume", -200);
+            AudioManager.setAudioVolume(0);
             return;
         }
 
         soundMixer.SetFloat("volume", Mathf.Log10(volume) * 20);
         previousAudio = Mathf.Log10(volume) * 20;
+        AudioManager.setAudioVolume(previousAudio);
+        AudioManager.setAudioSlider(volume);
     }
 
     public void SetVolumeMusic(float volume)
@@ -35,11 +61,14 @@ public class AudioSettings : MonoBehaviour
         if (volume == 0)
         {
             musicMixer.SetFloat("volume", -200);
+            AudioManager.setMusicVolume(0);
             return;
         }
 
         musicMixer.SetFloat("volume", Mathf.Log10(volume) * 20);
         previousMusic = Mathf.Log10(volume) * 20;
+        AudioManager.setMusicVolume(previousMusic);
+        AudioManager.setMusicSlider(volume);
     }
 
     public void MuteAudio()
@@ -49,6 +78,7 @@ public class AudioSettings : MonoBehaviour
             isMutedAudio = true;
             previousSliderAudio = audioSlider.value;
             audioSlider.value = 0;
+            AudioManager.setAudioSlider(0);
             SetVolumeSounds(0);
         }
         else
@@ -56,6 +86,7 @@ public class AudioSettings : MonoBehaviour
             isMutedAudio = false;
             SetVolumeSounds(previousAudio);
             audioSlider.value = previousSliderAudio;
+            AudioManager.setAudioSlider(audioSlider.value);
             previousSliderAudio = 0;
         }
     }
@@ -67,6 +98,7 @@ public class AudioSettings : MonoBehaviour
             isMutedMusic = true;
             previousSliderMusic = musicSlider.value;
             musicSlider.value = 0;
+            AudioManager.setMusicSlider(0);
             SetVolumeMusic(0);
         }
         else
@@ -74,7 +106,18 @@ public class AudioSettings : MonoBehaviour
             isMutedMusic = false;
             SetVolumeMusic(previousMusic);
             musicSlider.value = previousSliderMusic;
+            AudioManager.setMusicSlider(musicSlider.value);
             previousSliderMusic = 0;
         }
+    }
+
+    public void ChangeAudioSliderValue(float value)
+    {
+        audioSlider.value = value;
+    }
+
+    public void ChangeMusicSliderValue(float value)
+    {
+        musicSlider.value = value;
     }
 }
