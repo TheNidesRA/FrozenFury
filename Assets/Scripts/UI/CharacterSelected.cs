@@ -13,9 +13,25 @@ public class CharacterSelected : MonoBehaviour
     public GameObject torrineChosen;
     public GameObject conemanChosen;
 
+    public GameObject heladeroChosenSkin1;
+    public GameObject torrineChosenSkin1;
+    public GameObject conemanChosenSkin1;
+
+    public GameObject heladeroChosenSkin2;
+    public GameObject torrineChosenSkin2;
+    public GameObject conemanChosenSkin2;
+
     private Animator characterAnimatorHeladero;
     private Animator characterAnimatorConeman;
     private Animator characterAnimatorTorrine;
+
+    private Animator characterAnimatorHeladeroSkin1;
+    private Animator characterAnimatorConemanSkin1;
+    private Animator characterAnimatorTorrineSkin1;
+
+    private Animator characterAnimatorHeladeroSkin2;
+    private Animator characterAnimatorConemanSkin2;
+    private Animator characterAnimatorTorrineSkin2;
 
     public bool[] charSelected;
 
@@ -64,6 +80,14 @@ public class CharacterSelected : MonoBehaviour
             characterAnimatorHeladero = heladeroChosen.GetComponent<Animator>();
             characterAnimatorConeman = conemanChosen.GetComponent<Animator>();
             characterAnimatorTorrine = torrineChosen.GetComponent<Animator>();
+
+            characterAnimatorHeladeroSkin1 = heladeroChosenSkin1.GetComponent<Animator>();
+            characterAnimatorConemanSkin1 = conemanChosenSkin1.GetComponent<Animator>();
+            characterAnimatorTorrineSkin1 = torrineChosenSkin1.GetComponent<Animator>();
+
+            characterAnimatorHeladeroSkin2 = heladeroChosenSkin2.GetComponent<Animator>();
+            characterAnimatorConemanSkin2 = conemanChosenSkin2.GetComponent<Animator>();
+            characterAnimatorTorrineSkin2 = torrineChosenSkin2.GetComponent<Animator>();
         }
     
 
@@ -104,21 +128,25 @@ public class CharacterSelected : MonoBehaviour
     #region Heladero
     public void OnClickSelectedHeladero()
     {
+        MonoBehaviour mono = AudioManager.GetComponent<MonoBehaviour>();
         int aux = OnSelectedBefore();
         if (aux == 0)
         {
             bucleSetActive(aux);
             PlayerPrefs.SetInt("selectedCharacter", aux);
+            mono.StartCoroutine(celebrationHeladero());
         }
         else if (aux == 3)
         {
             bucleSetActive(aux);
             PlayerPrefs.SetInt("selectedCharacter", aux);
+            mono.StartCoroutine(celebrationHeladeroSkin1());
         }
         else if (aux == 4)
         {
             bucleSetActive(aux);
             PlayerPrefs.SetInt("selectedCharacter", aux);
+            mono.StartCoroutine(celebrationHeladeroSkin2());
         }
         else
         {
@@ -126,8 +154,8 @@ public class CharacterSelected : MonoBehaviour
             PlayerPrefs.SetInt("selectedCharacter", 0);
         }
         
-        MonoBehaviour mono = AudioManager.GetComponent<MonoBehaviour>();
-        mono.StartCoroutine(celebrationHeladero());
+        
+        
     }
     public void OnClickSelectedHeladeroOriginal()
     {
@@ -150,29 +178,33 @@ public class CharacterSelected : MonoBehaviour
     #region Torrine
     public void OnClickSelectedTorrine()
     {
+        MonoBehaviour mono = AudioManager.GetComponent<MonoBehaviour>();
         int aux = OnSelectedBefore();
         if (aux == 1)
         {
             bucleSetActive(aux);
             PlayerPrefs.SetInt("selectedCharacter", aux);
+            mono.StartCoroutine(celebrationTorrine());
         }
         else if (aux == 5)
         {
             bucleSetActive(aux);
             PlayerPrefs.SetInt("selectedCharacter", aux);
+            mono.StartCoroutine(celebrationTorrineSkin1());
         }
         else if (aux == 6)
         {
             bucleSetActive(aux);
             PlayerPrefs.SetInt("selectedCharacter", aux);
+            mono.StartCoroutine(celebrationTorrineSkin2());
         }
         else
         {
             bucleSetActive(1);
             PlayerPrefs.SetInt("selectedCharacter", 1);
         }
-        MonoBehaviour mono = AudioManager.GetComponent<MonoBehaviour>();
-        mono.StartCoroutine(celebrationTorrine());
+        
+        
     }
     public void OnClickSelectedTorrineOriginal()
     {
@@ -194,29 +226,33 @@ public class CharacterSelected : MonoBehaviour
     #region Coneman
     public void OnClickSelectedConeman()
     {
+        MonoBehaviour mono = AudioManager.GetComponent<MonoBehaviour>();
         int aux = OnSelectedBefore();
         if (aux == 2)
         {
             bucleSetActive(aux);
             PlayerPrefs.SetInt("selectedCharacter", aux);
+            mono.StartCoroutine(celebrationConeman());
         }
         else if (aux == 7)
         {
             bucleSetActive(aux);
             PlayerPrefs.SetInt("selectedCharacter", aux);
+            mono.StartCoroutine(celebrationConemanSkin1());
         }
         else if (aux == 8)
         {
             bucleSetActive(aux);
             PlayerPrefs.SetInt("selectedCharacter", aux);
+            mono.StartCoroutine(celebrationConemanSkin2());
         }
         else
         {
             bucleSetActive(2);
             PlayerPrefs.SetInt("selectedCharacter", 2);
         }
-        MonoBehaviour mono = AudioManager.GetComponent<MonoBehaviour>();
-        mono.StartCoroutine(celebrationConeman());
+        
+       
     }
     public void OnClickSelectedConemanOriginal()
     {
@@ -249,6 +285,33 @@ public class CharacterSelected : MonoBehaviour
         Money.SetActive(true);
         
     }
+
+    public IEnumerator celebrationHeladeroSkin1()
+    {
+        boton.SetActive(false);
+        characterAnimatorHeladeroSkin1.SetBool("Celebrate", true);
+        yield return new WaitForSeconds(1.5f);
+        characterAnimatorHeladeroSkin1.SetBool("Celebrate", false);
+        Characters.SetActive(false);
+        mainMenu.SetActive(true);
+        boton.SetActive(true);
+        Money.SetActive(true);
+
+    }
+
+    public IEnumerator celebrationHeladeroSkin2()
+    {
+        boton.SetActive(false);
+        characterAnimatorHeladeroSkin2.SetBool("Celebrate", true);
+        yield return new WaitForSeconds(1.5f);
+        characterAnimatorHeladeroSkin2.SetBool("Celebrate", false);
+        Characters.SetActive(false);
+        mainMenu.SetActive(true);
+        boton.SetActive(true);
+        Money.SetActive(true);
+
+    }
+
     public IEnumerator celebrationHeladeroOriginal()
     {
         characterAnimatorHeladero.SetBool("Celebrate", true);
@@ -268,6 +331,30 @@ public class CharacterSelected : MonoBehaviour
         Money.SetActive(true);
     }
 
+    public IEnumerator celebrationTorrineSkin1()
+    {
+        boton.SetActive(false);
+        characterAnimatorTorrineSkin1.SetBool("Celebrate", true);
+        yield return new WaitForSeconds(2f);
+        characterAnimatorTorrineSkin1.SetBool("Celebrate", false);
+        Characters.SetActive(false);
+        mainMenu.SetActive(true);
+        boton.SetActive(true);
+        Money.SetActive(true);
+    }
+
+    public IEnumerator celebrationTorrineSkin2()
+    {
+        boton.SetActive(false);
+        characterAnimatorTorrineSkin2.SetBool("Celebrate", true);
+        yield return new WaitForSeconds(2f);
+        characterAnimatorTorrineSkin2.SetBool("Celebrate", false);
+        Characters.SetActive(false);
+        mainMenu.SetActive(true);
+        boton.SetActive(true);
+        Money.SetActive(true);
+    }
+
     public IEnumerator celebrationTorrineOriginal()
     {
         characterAnimatorTorrine.SetBool("Celebrate", true);
@@ -279,8 +366,32 @@ public class CharacterSelected : MonoBehaviour
     {
         boton.SetActive(false);
         characterAnimatorConeman.SetBool("Celebrate", true);
-        yield return new WaitForSeconds(1.20f);
+        yield return new WaitForSeconds(1.7f);
         characterAnimatorConeman.SetBool("Celebrate", false);
+        Characters.SetActive(false);
+        mainMenu.SetActive(true);
+        boton.SetActive(true);
+        Money.SetActive(true);
+    }
+
+    public IEnumerator celebrationConemanSkin1()
+    {
+        boton.SetActive(false);
+        characterAnimatorConemanSkin1.SetBool("Celebrate", true);
+        yield return new WaitForSeconds(1.7f);
+        characterAnimatorConemanSkin1.SetBool("Celebrate", false);
+        Characters.SetActive(false);
+        mainMenu.SetActive(true);
+        boton.SetActive(true);
+        Money.SetActive(true);
+    }
+
+    public IEnumerator celebrationConemanSkin2()
+    {
+        boton.SetActive(false);
+        characterAnimatorConemanSkin2.SetBool("Celebrate", true);
+        yield return new WaitForSeconds(1.7f);
+        characterAnimatorConemanSkin2.SetBool("Celebrate", false);
         Characters.SetActive(false);
         mainMenu.SetActive(true);
         boton.SetActive(true);
