@@ -212,10 +212,8 @@ public class ComunicacionGridCanvas : MonoBehaviour
     {
         if (buildUpdate != null)
         {
+            _placedBuild.HideArea();
             Destroy(buildUpdate.gameObject);
-            
-               
-        
             buildUpdate = null;
             _placedBuild = null;
         }
