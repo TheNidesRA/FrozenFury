@@ -97,6 +97,7 @@ public class CharacterSelected : MonoBehaviour
                 aux = i;
             personajes[i].SetActive(charSelected[i]);
         }
+
         return aux;
     }
 
