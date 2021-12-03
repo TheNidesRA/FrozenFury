@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using Enemies;
 using UnityEngine;
-using UnityEngine.Rendering.VirtualTexturing;
-using UnityEngine.XR;
 
 namespace UI
 {
@@ -26,7 +23,7 @@ namespace UI
             Vector3 aux = initPos;
             Vector3 camPos = Camera.main.transform.position;
             aux.x = camPos.x;
-            
+
             gameObject.transform.position = aux;
             gameObject.transform.LookAt(camPos);
             fixedrot = gameObject.transform.rotation;
@@ -35,7 +32,7 @@ namespace UI
             _canvas = GetComponent<Canvas>();
             _canvas.enabled = false;
         }
-        
+
         private void Update()
         {
             gameObject.transform.rotation = fixedrot;
@@ -65,8 +62,8 @@ namespace UI
             {
                 Debug.LogError("Routine not initialized yet");
             }
-            
-            StartCoroutine("DisableBar",DisableBar());
+
+            StartCoroutine("DisableBar", DisableBar());
         }
 
         private IEnumerator DisableBar()
