@@ -170,7 +170,7 @@ public class ComunicacionGridCanvas : MonoBehaviour
         tween = LeanTween.move(_rectTransformBuildUpdate, outsidePosition, transitionTime).setEaseOutCubic()
             .setOnComplete(() => { _buildUpdateConteiner.SetActive(false); });
         // BuildButton.SetActive(true);
-        _placedBuild.HideArea();
+        _placedBuild?.HideArea();
         BuildButtonActions.returnInside();
     }
 
@@ -212,10 +212,8 @@ public class ComunicacionGridCanvas : MonoBehaviour
     {
         if (buildUpdate != null)
         {
+            _placedBuild.HideArea();
             Destroy(buildUpdate.gameObject);
-            
-               
-        
             buildUpdate = null;
             _placedBuild = null;
         }
@@ -256,7 +254,7 @@ public class ComunicacionGridCanvas : MonoBehaviour
 
     private void RoundStarted()
     {
-        _placedBuild.HideArea();
+        _placedBuild?.HideArea();
         if (EditBuild.activeSelf)
         {
             Debug.Log("Hello");

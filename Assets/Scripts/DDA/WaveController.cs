@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Enemies
 {
@@ -112,6 +110,7 @@ namespace Enemies
             if (_enemiesAlive <= 0)
             {
                 EndRound();
+                GameObject.Find("AudioFunctions").GetComponent<AudioSettings>().LowerVolumeStartRound();
                 AudioManager.Instance?.Play("Finalizar Ronda");
             }
         }
