@@ -66,9 +66,6 @@ public class CharacterSelected : MonoBehaviour
 
         }
     
-       
-
-        
 
     }
     public void OnSelectedBefore()
@@ -94,9 +91,35 @@ public class CharacterSelected : MonoBehaviour
         MonoBehaviour mono = AudioManager.GetComponent<MonoBehaviour>();
         mono.StartCoroutine(celebrationHeladero());
 
+    }
+    public void OnClickSelectedTorrine()
+    {
+        heladeroSelected = false;
+        torrineSelected = true;
+        conemanSelected = false;
 
+        heladero.SetActive(heladeroSelected);
+        torrine.SetActive(torrineSelected);
+        coneman.SetActive(conemanSelected);
 
+        PlayerPrefs.SetInt("selectedCharacter", 1);
+        MonoBehaviour mono = AudioManager.GetComponent<MonoBehaviour>();
+        mono.StartCoroutine(celebrationTorrine());
+    }
+    public void OnClickSelectedConeman()
+    {
+        heladeroSelected = false;
+        torrineSelected = false;
+        conemanSelected = true;
 
+        heladero.SetActive(heladeroSelected);
+        torrine.SetActive(torrineSelected);
+        coneman.SetActive(conemanSelected);
+
+        PlayerPrefs.SetInt("selectedCharacter", 2);
+
+        MonoBehaviour mono = AudioManager.GetComponent<MonoBehaviour>();
+        mono.StartCoroutine(celebrationConeman());
     }
 
     public IEnumerator celebrationHeladero()
@@ -137,33 +160,5 @@ public class CharacterSelected : MonoBehaviour
     }
 
 
-    public void OnClickSelectedTorrine()
-    {
-        heladeroSelected = false;
-        torrineSelected = true;
-        conemanSelected = false;
 
-        heladero.SetActive(heladeroSelected);
-        torrine.SetActive(torrineSelected);
-        coneman.SetActive(conemanSelected);
-
-        PlayerPrefs.SetInt("selectedCharacter", 1);
-        MonoBehaviour mono = AudioManager.GetComponent<MonoBehaviour>();
-        mono.StartCoroutine(celebrationTorrine());
-    }
-    public void OnClickSelectedConeman()
-    {
-        heladeroSelected = false;
-        torrineSelected = false;
-        conemanSelected = true;
-
-        heladero.SetActive(heladeroSelected);
-        torrine.SetActive(torrineSelected);
-        coneman.SetActive(conemanSelected);
-
-        PlayerPrefs.SetInt("selectedCharacter", 2);
-
-        MonoBehaviour mono = AudioManager.GetComponent<MonoBehaviour>();
-        mono.StartCoroutine(celebrationConeman());
-    }
 }
