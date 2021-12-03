@@ -24,6 +24,8 @@ public class PlacedBuild : MonoBehaviour
 
     public List<Transform> attactPoints;
 
+    public GameObject Area=null;
+
 
     [SerializeField] protected float _initDamage;
     [SerializeField] protected float _initAttackSpeed;
@@ -151,7 +153,7 @@ public class PlacedBuild : MonoBehaviour
         //     // placedBuild._navMeshObstacle = placedBuildTransform.GetComponent<NavMeshObstacle>();
         //     // placedBuild._navMeshObstacle.enabled = true;
         // }
-
+        
         placedBuild._initDamage = building.initDamage;
         placedBuild._initHealth = building.initHealth;
         placedBuild._initAttackSpeed = building.initAttackSpeed;
@@ -162,6 +164,7 @@ public class PlacedBuild : MonoBehaviour
         placedBuild.MAXHEALTH = building.MAXHEALT;
         placedBuild.MAXATTACKSPEED = building.MAXATTACKSPEED;
         placedBuild.MAXGOLDCOSTLEVEL = building.MAXGOLDCOSTLEVEL;
+
 
         // placedBuild.getValidAttacksPoints();
         return placedBuild;
@@ -257,6 +260,19 @@ public class PlacedBuild : MonoBehaviour
         PlayerStats._instance.gold -= _goldCostRepair;
         _health = currentMaxHealth;
     }
+
+
+    public void ShowArea()
+    {  if(Area!=null)
+        Area.SetActive(true);
+    }
+
+    public void HideArea()
+    {
+        if(Area!=null)
+        Area.SetActive(false);
+    }
+    
 }
 
 
