@@ -84,4 +84,9 @@ public class AudioAuxFunctions : MonoBehaviour
     {
         AudioManager.Instance?.Stop("Chill Theme");
     }
+
+    public void PlayDestroyStructure()
+    {
+        AudioManager.Instance?.Play("Destruir Estructura");
+    }
 }
