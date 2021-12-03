@@ -120,4 +120,20 @@ public class AudioSettings : MonoBehaviour
     {
         musicSlider.value = value;
     }
+
+    public IEnumerator LowerVolumeStartRoundCoroutine()
+    {
+        previousSliderAudio = audioSlider.value;
+        previousSliderMusic = musicSlider.value;
+        SetVolumeMusic(0.1f);
+        SetVolumeSounds(0.6f);
+        yield return new WaitForSeconds(2f);
+        SetVolumeMusic(previousSliderMusic);
+        SetVolumeSounds(previousSliderAudio);
+    }
+
+    public void LowerVolumeStartRound()
+    {
+        StartCoroutine(nameof(LowerVolumeStartRoundCoroutine));
+    }
 }
