@@ -12,36 +12,36 @@ namespace Enemies
         {
             if (healthLoss == 0)
             {
-                mults[0] += 0.03f;
-                mults[1] += 0.05f;
-                mults[2] -= 0.05f;
+                mults[0] += 0.01f;
+                mults[1] += 0.009f;
+                mults[2] -= 0.01f;
                 // vars[0] += 1;
                 vars[1] += 1;
             }else if (healthLoss < 5)
             {
-                mults[0] -= 0.03f;
-                mults[1] -= 0.04f;
-                mults[2] += 0.04f;
+                mults[0] -= 0.001f;
+                mults[1] -= 0.003f;
+                mults[2] += 0.007f;
             }else if (healthLoss < 10)
             {
-                mults[0] -= 0.06f;
-                mults[1] -= 0.07f;
-                mults[2] += 0.08f;
+                mults[0] -= 0.007f;
+                mults[1] -= 0.01f;
+                mults[2] += 0.015f;
                 // vars[0] -= 2;
-                vars[1] -= 1;
+                // vars[1] -= 1;
             }else if (healthLoss < 15)
             {
-                mults[0] -= 0.1f;
-                mults[1] -= 0.1f;
-                mults[2] += 0.12f;
+                mults[0] -= 0.03f;
+                mults[1] -= 0.015f;
+                mults[2] += 0.02f;
                 // vars[0] -= 3;
                 vars[1] -= 1;
             }
             else
             {
-                mults[0] -= 0.15f;
-                mults[1] -= 0.12f;
-                mults[2] += 0.15f;
+                mults[0] -= 0.09f;
+                mults[1] -= 0.03f;
+                mults[2] += 0.04f;
                 // vars[0] -= 4;
                 vars[1] -= 2;
             }
@@ -53,35 +53,35 @@ namespace Enemies
             
             if (healthPercent == 0)
             {
-                mults[0] += 0.06f;
-                mults[1] += 0.05f;
-                mults[2] -= 0.04f;
+                mults[0] += 0.01f;
+                mults[1] += 0.005f;
+                mults[2] -= 0.01f;
                 globalDiff += 4;
             }else if (healthPercent < 0.04)
             {
-                mults[0] -= 0.04f;
-                mults[1] -= 0.03f;
-                mults[2] += 0.02f;
-                globalDiff -= 2;
+                mults[0] -= 0.002f;
+                mults[1] -= 0.002f;
+                mults[2] += 0.005f;
+                globalDiff -= 1;
             }else if (healthPercent < 0.1)
             {
-                mults[0] -= 0.05f;
-                mults[1] -= 0.04f;
-                mults[2] += 0.03f;
-                globalDiff -= 4;
+                mults[0] -= 0.007f;
+                mults[1] -= 0.005f;
+                mults[2] += 0.01f;
+                globalDiff -= 2;
             }else if (healthPercent < 0.2)
             {
-                mults[0] -= 0.07f;
-                mults[1] -= 0.05f;
-                mults[2] += 0.05f;
-                globalDiff -= 6;
+                mults[0] -= 0.01f;
+                mults[1] -= 0.008f;
+                mults[2] += 0.02f;
+                globalDiff -= 4;
             }
             else
             {
-                mults[0] -= 0.1f;
-                mults[1] -= 0.075f;
-                mults[2] += 0.075f;
-                globalDiff -= 8;
+                mults[0] -= 0.02f;
+                mults[1] -= 0.01f;
+                mults[2] += 0.05f;
+                globalDiff -= 6;
             }
 
         }
