@@ -127,9 +127,9 @@ public class AudioSettings : MonoBehaviour
     {
         previousSliderAudio = audioSlider.value;
         previousSliderMusic = musicSlider.value;
-        SetVolumeMusic(0.1f);
-        SetVolumeSounds(0.6f);
-        yield return new WaitForSeconds(2f);
+        SetVolumeMusic(0.05f);
+        SetVolumeSounds(0.8f);
+        yield return new WaitForSeconds(3f);
         SetVolumeMusic(previousSliderMusic);
         SetVolumeSounds(previousSliderAudio);
     }
