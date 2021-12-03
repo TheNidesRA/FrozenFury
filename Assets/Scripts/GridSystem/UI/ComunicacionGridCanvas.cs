@@ -254,7 +254,7 @@ public class ComunicacionGridCanvas : MonoBehaviour
 
     private void RoundStarted()
     {
-        _placedBuild.HideArea();
+        _placedBuild?.HideArea();
         if (EditBuild.activeSelf)
         {
             Debug.Log("Hello");
