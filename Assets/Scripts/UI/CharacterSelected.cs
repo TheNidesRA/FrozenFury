@@ -152,6 +152,8 @@ public class CharacterSelected : MonoBehaviour
         {
             bucleSetActive(0);
             PlayerPrefs.SetInt("selectedCharacter", 0);
+            mono.StartCoroutine(celebrationHeladero());
+            Debug.Log("No tira esto :))");
         }
         
         
@@ -202,6 +204,7 @@ public class CharacterSelected : MonoBehaviour
         {
             bucleSetActive(1);
             PlayerPrefs.SetInt("selectedCharacter", 1);
+            mono.StartCoroutine(celebrationTorrine());
         }
         
         
@@ -250,6 +253,7 @@ public class CharacterSelected : MonoBehaviour
         {
             bucleSetActive(2);
             PlayerPrefs.SetInt("selectedCharacter", 2);
+             mono.StartCoroutine(celebrationConeman());
         }
         
        
