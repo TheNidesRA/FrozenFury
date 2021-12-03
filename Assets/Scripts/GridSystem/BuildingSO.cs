@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -74,6 +75,7 @@ public class BuildingSO : ScriptableObject
     public Transform prefab;
     public Transform visual;
     public Transform canvasVisual;
+
     public int goldCost = 1;
     public BuildingType type;
 
@@ -125,6 +127,7 @@ public class BuildingSO : ScriptableObject
         return gridPositionList;
     }
 
+ 
     public override string ToString()
     {
         return name;
