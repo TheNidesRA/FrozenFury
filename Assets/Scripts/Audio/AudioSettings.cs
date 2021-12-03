@@ -50,6 +50,7 @@ public class AudioSettings : MonoBehaviour
             return;
         }
 
+        isMutedAudio = false;
         soundMixer.SetFloat("volume", Mathf.Log10(volume) * 20);
         previousAudio = Mathf.Log10(volume) * 20;
         AudioManager.setAudioVolume(previousAudio);
@@ -65,6 +66,7 @@ public class AudioSettings : MonoBehaviour
             return;
         }
 
+        isMutedMusic = false;
         musicMixer.SetFloat("volume", Mathf.Log10(volume) * 20);
         previousMusic = Mathf.Log10(volume) * 20;
         AudioManager.setMusicVolume(previousMusic);
@@ -84,7 +86,7 @@ public class AudioSettings : MonoBehaviour
         else
         {
             isMutedAudio = false;
-            SetVolumeSounds(previousAudio);
+            SetVolumeSounds(previousSliderAudio);
             audioSlider.value = previousSliderAudio;
             AudioManager.setAudioSlider(audioSlider.value);
             previousSliderAudio = 0;
@@ -104,7 +106,7 @@ public class AudioSettings : MonoBehaviour
         else
         {
             isMutedMusic = false;
-            SetVolumeMusic(previousMusic);
+            SetVolumeMusic(previousSliderMusic);
             musicSlider.value = previousSliderMusic;
             AudioManager.setMusicSlider(musicSlider.value);
             previousSliderMusic = 0;
