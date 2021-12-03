@@ -133,23 +133,17 @@ public class CharacterSelected : MonoBehaviour
     {
         bucleSetActive(0);
         PlayerPrefs.SetInt("selectedCharacter", 0);
-        MonoBehaviour mono = AudioManager.GetComponent<MonoBehaviour>();
-        mono.StartCoroutine(celebrationHeladeroOriginal());
     }
 
     public void OnClickSelectedHeladeroSkin1()
     {
         bucleSetActive(3);
         PlayerPrefs.SetInt("selectedCharacter", 3);
-        MonoBehaviour mono = AudioManager.GetComponent<MonoBehaviour>();
-        mono.StartCoroutine(celebrationHeladeroOriginal());
     }
     public void OnClickSelectedHeladeroSkin2()
     {
         bucleSetActive(4);
         PlayerPrefs.SetInt("selectedCharacter", 4);
-        MonoBehaviour mono = AudioManager.GetComponent<MonoBehaviour>();
-        mono.StartCoroutine(celebrationHeladeroOriginal());
     }
     #endregion
 
@@ -184,22 +178,16 @@ public class CharacterSelected : MonoBehaviour
     {
         bucleSetActive(1);
         PlayerPrefs.SetInt("selectedCharacter", 1);
-        MonoBehaviour mono = AudioManager.GetComponent<MonoBehaviour>();
-        mono.StartCoroutine(celebrationTorrineOriginal());
     }
     public void OnClickSelectedTorrineSkin1()
     {
         bucleSetActive(5);
         PlayerPrefs.SetInt("selectedCharacter", 5);
-        MonoBehaviour mono = AudioManager.GetComponent<MonoBehaviour>();
-        mono.StartCoroutine(celebrationTorrineOriginal());
     }
     public void OnClickSelectedTorrineSkin2()
     {
         bucleSetActive(6);
         PlayerPrefs.SetInt("selectedCharacter", 6);
-        MonoBehaviour mono = AudioManager.GetComponent<MonoBehaviour>();
-        mono.StartCoroutine(celebrationTorrineOriginal());
     }
     #endregion
 
@@ -234,22 +222,16 @@ public class CharacterSelected : MonoBehaviour
     {
         bucleSetActive(2);
         PlayerPrefs.SetInt("selectedCharacter", 2);
-        MonoBehaviour mono = AudioManager.GetComponent<MonoBehaviour>();
-        mono.StartCoroutine(celebrationConemanOriginal());
     }
     public void OnClickSelectedConemanSkin1()
     {
         bucleSetActive(7);
         PlayerPrefs.SetInt("selectedCharacter", 7);
-        MonoBehaviour mono = AudioManager.GetComponent<MonoBehaviour>();
-        mono.StartCoroutine(celebrationConemanOriginal());
     }
     public void OnClickSelectedConemanSkin2()
     {
         bucleSetActive(8);
         PlayerPrefs.SetInt("selectedCharacter", 8);
-        MonoBehaviour mono = AudioManager.GetComponent<MonoBehaviour>();
-        mono.StartCoroutine(celebrationConemanOriginal());
     }
     #endregion
 
