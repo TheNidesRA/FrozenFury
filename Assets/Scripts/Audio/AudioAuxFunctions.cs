@@ -79,4 +79,14 @@ public class AudioAuxFunctions : MonoBehaviour
     {
         AudioManager.Instance?.Play("Chill Theme");
     }
+
+    public void StopChillMusic()
+    {
+        AudioManager.Instance?.Stop("Chill Theme");
+    }
+
+    public void PlayDestroyStructure()
+    {
+        AudioManager.Instance?.Play("Destruir Estructura");
+    }
 }
