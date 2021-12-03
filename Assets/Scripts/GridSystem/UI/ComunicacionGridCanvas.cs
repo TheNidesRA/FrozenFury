@@ -170,7 +170,7 @@ public class ComunicacionGridCanvas : MonoBehaviour
         tween = LeanTween.move(_rectTransformBuildUpdate, outsidePosition, transitionTime).setEaseOutCubic()
             .setOnComplete(() => { _buildUpdateConteiner.SetActive(false); });
         // BuildButton.SetActive(true);
-        _placedBuild.HideArea();
+        _placedBuild?.HideArea();
         BuildButtonActions.returnInside();
     }
 
