@@ -25,6 +25,7 @@ public class SceneController : MonoBehaviour
         SceneManager.LoadScene("LoseScreen");
         AudioManager.Instance?.Stop("Partida");
         AudioManager.Instance?.Stop("Finalizar Ronda");
+        AudioManager.Instance?.Stop("Chill Theme");
         AudioManager.Instance?.Play("Perder Partida");
     }
 
@@ -34,6 +35,7 @@ public class SceneController : MonoBehaviour
         SceneManager.LoadScene("WinScreen");
         AudioManager.Instance?.Stop("Partida");
         AudioManager.Instance?.Stop("Finalizar Ronda");
+        AudioManager.Instance?.Stop("Chill Theme");
         AudioManager.Instance?.Play("Ganar Partida");
     }
 
