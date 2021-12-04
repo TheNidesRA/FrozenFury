@@ -112,7 +112,7 @@ namespace Enemies
                 EndRound();
                 GameObject.Find("AudioFunctions").GetComponent<AudioSettings>().LowerVolumeStartRound();
                 AudioManager.Instance?.Play("Finalizar Ronda");
-                AudioManager.Instance.Stop("Partida");
+                AudioManager.Instance?.Stop("Partida");
                 AudioManager.Instance?.Play("Chill Theme");
             }
         }
