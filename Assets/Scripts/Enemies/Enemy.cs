@@ -238,6 +238,20 @@ namespace Enemies
         }
 
 
+        private void OnDrawGizmos()
+        {
+            if (NavMeshAgent.hasPath)
+            {
+                Handles.Label(transform.position,actionTarget.name);
+                
+                for (int i = 0; i < NavMeshAgent.path.corners.Length-1 ; i++)
+                {
+                    Handles.color=Color.green;
+                    Handles.DrawLine(NavMeshAgent.path.corners[i],NavMeshAgent.path.corners[i+1]);
+                }
+            }
+        }
+
         void OnDrawGizmosSelected()
         {
             float halfFOV = angleVision / 2.0f;
@@ -248,14 +262,7 @@ namespace Enemies
             Gizmos.DrawRay(transform.position, leftRayDirection * radioVision);
             Gizmos.DrawRay(transform.position, rightRayDirection * radioVision);
 
-           /* if (NavMeshAgent.hasPath)
-            {
-                for (int i = 0; i < NavMeshAgent.path.corners.Length-1 ; i++)
-                {
-                    Handles.color=Color.red;
-                    Handles.DrawLine(NavMeshAgent.path.corners[i],NavMeshAgent.path.corners[i+1]);
-                }
-            }*/
+          
             
             
             // Gizmos.DrawSphere(transform.position,AttackRange);
@@ -325,9 +332,10 @@ namespace Enemies
             Handles.color = Color.yellow;
             Handles.DrawLine(script.transform.position, script.transform.position + viewAngle01 * script.radioVision);
             Handles.DrawLine(script.transform.position, script.transform.position + viewAngle02 * script.radioVision);
-
+         
             if (script.actionTarget != null)
             {
+              
                 Handles.color = Color.green;
                 Handles.DrawLine(script.transform.position, script.actionTarget.transform.position);
             }
@@ -356,6 +364,8 @@ namespace Enemies
 
             return distance;
         }
+
+       
     }
 #endif
 }
