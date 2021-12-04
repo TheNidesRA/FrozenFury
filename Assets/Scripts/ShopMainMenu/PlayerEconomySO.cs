@@ -14,8 +14,5 @@ public class PlayerEconomySO : ScriptableObject
     public bool ConeMan_skin_2;
     public bool Torrine_skin_1;
     public bool Torrine_skin_2;
-
-
-
-
+    
 }
