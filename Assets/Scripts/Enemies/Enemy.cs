@@ -57,7 +57,7 @@ namespace Enemies
             {
                 NavMeshAgent.speed = value;
                 _speed = value;
-                 // Debug.Log("Velociada cambiaadaa: " + _speed);
+                // Debug.Log("Velociada cambiaadaa: " + _speed);
             }
         }
 
@@ -103,7 +103,6 @@ namespace Enemies
             NavMeshAgent.acceleration = acceleration;
         }
 
-        
 
         [ContextMenu("calcula distancia")]
         public void CalcDist()
@@ -206,9 +205,8 @@ namespace Enemies
 
         private void OnDestroy()
         {
-            
             OnEnemyDeath?.Invoke(gameObject);
-            PlayerStats._instance.gold += (int)gold;
+            PlayerStats._instance.gold += (int) gold;
             WaveController._instance.EnemyDeath();
         }
 
@@ -242,12 +240,31 @@ namespace Enemies
         {
             if (NavMeshAgent.hasPath)
             {
-                Handles.Label(transform.position,actionTarget.name);
-                
-                for (int i = 0; i < NavMeshAgent.path.corners.Length-1 ; i++)
+                if (actionTarget != null)
                 {
-                    Handles.color=Color.green;
-                    Handles.DrawLine(NavMeshAgent.path.corners[i],NavMeshAgent.path.corners[i+1]);
+                    GUIStyle v = new GUIStyle();
+                    v.fontSize = 20;
+                    v.fontStyle = FontStyle.Bold;
+                    Handles.Label(transform.position, actionTarget.name, v);
+                }
+
+
+                Vector3 pos = transform.position;
+                pos.y += 15;
+                pos.x -= 3;
+
+                GUIStyle style = new GUIStyle();
+                style.normal.textColor = Color.blue;
+                style.fontSize = 20;
+                style.fontStyle = FontStyle.Bold;
+
+                Handles.Label(pos, NODOACTUAL, style);
+
+
+                for (int i = 0; i < NavMeshAgent.path.corners.Length - 1; i++)
+                {
+                    Handles.color = Color.green;
+                    Handles.DrawLine(NavMeshAgent.path.corners[i], NavMeshAgent.path.corners[i + 1]);
                 }
             }
         }
@@ -262,12 +279,9 @@ namespace Enemies
             Gizmos.DrawRay(transform.position, leftRayDirection * radioVision);
             Gizmos.DrawRay(transform.position, rightRayDirection * radioVision);
 
-          
-            
-            
+
             // Gizmos.DrawSphere(transform.position,AttackRange);
         }
-
 
 
         public static float GetPathRemainingDistance(NavMeshAgent navMeshAgent)
@@ -332,10 +346,9 @@ namespace Enemies
             Handles.color = Color.yellow;
             Handles.DrawLine(script.transform.position, script.transform.position + viewAngle01 * script.radioVision);
             Handles.DrawLine(script.transform.position, script.transform.position + viewAngle02 * script.radioVision);
-         
+
             if (script.actionTarget != null)
             {
-              
                 Handles.color = Color.green;
                 Handles.DrawLine(script.transform.position, script.actionTarget.transform.position);
             }
@@ -364,8 +377,6 @@ namespace Enemies
 
             return distance;
         }
-
-       
     }
 #endif
 }
