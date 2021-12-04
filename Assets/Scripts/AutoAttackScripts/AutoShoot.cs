@@ -432,8 +432,10 @@ namespace AutoAttackScripts
         {
             yield return new WaitForSeconds(timeToShootBulletBurst);
             ShootBulletBurst(enemy);
+            AudioManager.Instance?.PlayRandomNewHitSound();
             yield return new WaitForSeconds(timeToShootBulletBurst);
             ShootBulletBurst(enemy);
+            AudioManager.Instance?.PlayRandomNewHitSound();
             if (isPlayer)
                 characterAnimator.SetBool("Shoot", false);
         }
