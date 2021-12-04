@@ -1,11 +1,9 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Enemies
 {
     public class EnemyGoal : MonoBehaviour
     {
-        
         public static EnemyGoal instance { get; private set; }
 
         private void Awake()
@@ -19,24 +17,25 @@ namespace Enemies
                 instance = this;
             }
         }
-        
-        
+
+
         private void OnCollisionEnter(Collision other)
         {
             if (!other.gameObject.CompareTag("Enemy")) return;
-            
+
             //Bajamos la vida global
             try
             {
                 GlobalHealth.instance.DecreaseHealth();
+                AudioManager.Instance?.Play("Golpe Furgoneta");
             }
             catch
             {
                 Debug.Log("Bro, you need to introduce a globalHealth controller.");
             }
-            
+
             Enemy enemy = other.gameObject.GetComponent<Enemy>();
-            
+
             //Add the enemy remaining stats to the DDA
             try
             {
@@ -45,9 +44,8 @@ namespace Enemies
             catch
             {
                 Debug.LogError("Instance of DDACalculator missing");
-                
             }
-            
+
             //Destroy the enemy 
             enemy.Die();
         }
