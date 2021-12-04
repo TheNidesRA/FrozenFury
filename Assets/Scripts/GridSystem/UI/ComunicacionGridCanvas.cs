@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using Enemies;
 using GridSystem;
 using TMPro;
@@ -212,7 +210,7 @@ public class ComunicacionGridCanvas : MonoBehaviour
     {
         if (buildUpdate != null)
         {
-            _placedBuild.HideArea();
+            _placedBuild?.HideArea();
             Destroy(buildUpdate.gameObject);
             buildUpdate = null;
             _placedBuild = null;
@@ -242,7 +240,7 @@ public class ComunicacionGridCanvas : MonoBehaviour
         }
         else
         {
-            _placedBuild.HideArea();
+            _placedBuild?.HideArea();
             tween = LeanTween.move(_rectTransformBuildUpdate, outsidePosition, transitionTime).setEaseOutCubic()
                 .setOnComplete(() => { _buildUpdateConteiner.SetActive(false); });
             //BuildButton.SetActive(true);
