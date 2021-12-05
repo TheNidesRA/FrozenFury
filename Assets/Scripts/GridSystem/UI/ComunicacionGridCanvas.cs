@@ -51,6 +51,13 @@ public class ComunicacionGridCanvas : MonoBehaviour
         get { return _placedBuild; }
     }
 
+
+
+
+    public GameObject startRound;
+    
+    
+
     public void OnDestroy()
     {
         GridBuildingSystem.Instance.OnSelectedChanged -= Instance_OnSelectedChanged;
@@ -252,6 +259,7 @@ public class ComunicacionGridCanvas : MonoBehaviour
 
     private void RoundStarted()
     {
+        startRound.SetActive(false);
         _placedBuild?.HideArea();
         if (EditBuild.activeSelf)
         {
@@ -270,6 +278,7 @@ public class ComunicacionGridCanvas : MonoBehaviour
 
     private void RoundEnded()
     {
+        startRound.SetActive(true);
         if (EditBuild.activeSelf) return;
         BuildButtonActions.returnInside();
     }

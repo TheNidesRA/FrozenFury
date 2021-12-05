@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UpgradePlayer : MonoBehaviour
 {
@@ -11,13 +12,16 @@ public class UpgradePlayer : MonoBehaviour
     public TextMeshProUGUI AttackSpeed;
     public TextMeshProUGUI GoldUpgrade;
     private PlayerStats player;
+    public Button btn;
+    public Image texto;
+    public Image Ladrillos;
+    public TextMeshProUGUI coste;
+    public Color DisableColor;
 
     private void Start()
     {
         player = PlayerStats._instance;
         PlayerStats._instance.OnLvlChanged += Instance_OnLvlChanged;
-       
-        
     }
 
     public void Instance_OnLvlChanged(object sender, int i)
@@ -37,6 +41,17 @@ public class UpgradePlayer : MonoBehaviour
 
     public void LevelUpPlayer()
     {
-        player.LevelingUp();
+        if (PlayerStats._instance?.Level >= 15)
+        {
+            btn.interactable = false;
+            //texto.color = new Color(0, 0, 0, 0);
+            texto.color = DisableColor;
+            Ladrillos.color = DisableColor;
+            coste.color = DisableColor;
+        }
+        else
+        {
+            player.LevelingUp();
+        }
     }
 }
