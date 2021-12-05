@@ -872,6 +872,7 @@ GameObject:
   - component: {fileID: 7956182126718149147}
   - component: {fileID: 7247611405744484929}
   - component: {fileID: 3704179301118084927}
+  - component: {fileID: 7858986778936265999}
   m_Layer: 8
   m_Name: Pascual
   m_TagString: Enemy
@@ -904,7 +905,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3663394931353185443}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 58c6f9b140a52a14881ec09eaebb66eb, type: 3}
   m_Name: 
@@ -941,8 +942,8 @@ MonoBehaviour:
   initSpeed: 50
   initAcceleration: 60
   maxHealth: 60
-  health: 76.40029
-  damage: 17.500072
+  health: 30
+  damage: 7.5
   _speed: 50
   _acceleration: 60
   armor: 1
@@ -1001,6 +1002,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7858986778936265999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3663394931353185443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5933a3eb7d81b404c98102187b0bbcb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Pascual: {fileID: 7956182126718149147}
+  currentState: 0
+  animator: {fileID: 3704179301118084927}
+  bullet: {fileID: 7040415461391761229, guid: 1a54109b718f5b54086fdb097435c6a8, type: 3}
 --- !u!1 &4047860838846988739
 GameObject:
   m_ObjectHideFlags: 0
