@@ -17,11 +17,17 @@ public class GolemCheckIFWallFrontTurret : ActionNode
 
     protected override State OnUpdate()
     {
-        float distanceToTarget = Vector3.Distance(context.transform.position, context.enemy.targetPosition);
+        float distanceToTarget =
+            Vector3.Distance(context.transform.position, context.enemy.actionTarget.transform.position);
+
+    Debug.Log("Distancia: "+ distanceToTarget);
+    Debug.Log("Target: "+context.enemy.actionTarget.name);
         
-        Vector3 directionToTarget = (context.gameObject.transform.position - context.enemy.targetPosition).normalized;
-        
-        if (Physics.Raycast(context.transform.position, directionToTarget,out RaycastHit info,distanceToTarget,targetMask))
+        Vector3 directionToTarget =
+            ( context.enemy.actionTarget.transform.position-context.gameObject.transform.position).normalized;
+
+        if (Physics.Raycast(context.transform.position, directionToTarget, out RaycastHit info, distanceToTarget,
+            targetMask))
         {
             if (info.collider.gameObject.TryGetComponent<PlacedBuild>(out PlacedBuild build))
             {
@@ -31,6 +37,7 @@ public class GolemCheckIFWallFrontTurret : ActionNode
                 return State.Success;
             }
         }
+
         Debug.Log("No hay muro delante");
         return State.Failure;
     }

@@ -9,11 +9,12 @@ public class GolemCheckDistance : ActionNode
 {
 
     public float threasole = 2f;
+    public float distanciaRechazada = 0;
 
     protected override void OnStart()
     {
         context.enemy.NODOACTUAL = "GolemCheckDistance";
-        
+        distanciaRechazada = 0;
         //throw new System.NotImplementedException();
     }
 
@@ -41,6 +42,7 @@ public class GolemCheckDistance : ActionNode
                     return State.Success;
                 }
 
+                distanciaRechazada = difference;
                 // Debug.Log("No renta");
                 return State.Failure;
             }

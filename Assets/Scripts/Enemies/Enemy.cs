@@ -57,7 +57,7 @@ namespace Enemies
             {
                 NavMeshAgent.speed = value;
                 _speed = value;
-                 // Debug.Log("Velociada cambiaadaa: " + _speed);
+                // Debug.Log("Velociada cambiaadaa: " + _speed);
             }
         }
 
@@ -103,7 +103,6 @@ namespace Enemies
             NavMeshAgent.acceleration = acceleration;
         }
 
-        
 
         [ContextMenu("calcula distancia")]
         public void CalcDist()
@@ -206,9 +205,8 @@ namespace Enemies
 
         private void OnDestroy()
         {
-            
             OnEnemyDeath?.Invoke(gameObject);
-            PlayerStats._instance.gold += (int)gold;
+            PlayerStats._instance.gold += (int) gold;
             WaveController._instance.EnemyDeath();
         }
 
@@ -238,6 +236,39 @@ namespace Enemies
         }
 
 
+        private void OnDrawGizmos()
+        {
+            if (NavMeshAgent.hasPath)
+            {
+                if (actionTarget != null)
+                {
+                    GUIStyle v = new GUIStyle();
+                    v.fontSize = 20;
+                    v.fontStyle = FontStyle.Bold;
+                    Handles.Label(transform.position, actionTarget.name, v);
+                }
+
+
+                Vector3 pos = transform.position;
+                pos.y += 15;
+                pos.x -= 3;
+
+                GUIStyle style = new GUIStyle();
+                style.normal.textColor = Color.blue;
+                style.fontSize = 20;
+                style.fontStyle = FontStyle.Bold;
+
+                Handles.Label(pos, NODOACTUAL, style);
+
+
+                for (int i = 0; i < NavMeshAgent.path.corners.Length - 1; i++)
+                {
+                    Handles.color = Color.green;
+                    Handles.DrawLine(NavMeshAgent.path.corners[i], NavMeshAgent.path.corners[i + 1]);
+                }
+            }
+        }
+
         void OnDrawGizmosSelected()
         {
             float halfFOV = angleVision / 2.0f;
@@ -248,19 +279,9 @@ namespace Enemies
             Gizmos.DrawRay(transform.position, leftRayDirection * radioVision);
             Gizmos.DrawRay(transform.position, rightRayDirection * radioVision);
 
-           /* if (NavMeshAgent.hasPath)
-            {
-                for (int i = 0; i < NavMeshAgent.path.corners.Length-1 ; i++)
-                {
-                    Handles.color=Color.red;
-                    Handles.DrawLine(NavMeshAgent.path.corners[i],NavMeshAgent.path.corners[i+1]);
-                }
-            }*/
-            
-            
+
             // Gizmos.DrawSphere(transform.position,AttackRange);
         }
-
 
 
         public static float GetPathRemainingDistance(NavMeshAgent navMeshAgent)

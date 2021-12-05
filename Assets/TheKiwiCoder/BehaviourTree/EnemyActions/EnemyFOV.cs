@@ -24,11 +24,11 @@ public class EnemyFOV : ActionNode
         // Debug.Log(avistado);
         if (!avistado)
         {
-  //          Debug.Log("Exitazo Player Detected");
+            Debug.Log("No he pillao nada");
             return State.Failure;
         }
 
-//        Debug.Log("Exitazo Player Detected");
+        Debug.Log("Exitazo Player Detected");
         return State.Success;
     }
 
@@ -40,14 +40,13 @@ public class EnemyFOV : ActionNode
 
         if (rangeChecks.Length != 0)
         {
-            Vector3 directionToTarget =
-                (PlayerStats._instance.transform.position - context.transform.position).normalized;
+            Vector3 directionToTarget = (PlayerStats._instance.transform.position - context.transform.position).normalized;
             float angulo = Vector3.Angle(context.transform.forward, directionToTarget);
-//            Debug.Log(angulo);
-
+            //Debug.Log(angulo);
+            //Debug.Log("Almenos hay algo ");
             if (angulo < context.enemy.angleVision / 2)
             {
-                //  Debug.Log("Torretilla en vision");
+                 Debug.Log("Torretilla en vision");
 
                 context.enemy.actionTarget = rangeChecks[0].gameObject;
 

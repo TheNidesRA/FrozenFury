@@ -272,6 +272,12 @@ public class PlacedBuild : MonoBehaviour
         if(Area!=null)
         Area.SetActive(false);
     }
+
+    [ContextMenu("ValorZero")]
+    public void ValorZero()
+    {
+        damage = 0;
+    }
     
 }
 

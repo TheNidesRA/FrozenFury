@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using Enemies;
-using UnityEngine;
 using TheKiwiCoder;
 
 public class EnemyGoesToGoal : ActionNode
