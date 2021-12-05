@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Enemies;
+using Unity.Mathematics;
 using UnityEngine;
 using Quaternion = UnityEngine.Quaternion;
 using Vector3 = UnityEngine.Vector3;
@@ -449,7 +450,7 @@ namespace AutoAttackScripts
             Vector3 directionShoot = enemy.transform.position - position;
 
             //instantiate bullet
-            GameObject currentBullet = Instantiate(bullet, position, Quaternion.identity);
+            GameObject currentBullet = Instantiate(bullet, position, quaternion.Euler(-90, -90, 0));
             AssignShooterOfTheBullet(new List<GameObject>() { currentBullet });
             //add forces to bullet
             currentBullet.GetComponent<Rigidbody>().AddForce(directionShoot.normalized * shootForce, ForceMode.Impulse);
@@ -492,7 +493,7 @@ namespace AutoAttackScripts
             Vector3 directionShoot = enemy.transform.position - position;
 
             //instantiate bullet
-            GameObject currentBullet = Instantiate(bullet, position, Quaternion.identity);
+            GameObject currentBullet = Instantiate(bullet, position, Quaternion.Euler(0, -90, 0));
             AssignShooterOfTheBullet(new List<GameObject>() { currentBullet });
             Destroy(currentBullet, bulletTimeAlive);
 
@@ -518,9 +519,9 @@ namespace AutoAttackScripts
             Vector3 rightShootPropagation = (enemyPos + Vector3.forward * shotgunBulletSeparation) - position;
 
             //instantiate bullets
-            var firstBullet = Instantiate(bullet, position, Quaternion.identity);
-            var secondBullet = Instantiate(bullet, position, Quaternion.identity);
-            var thirdBullet = Instantiate(bullet, position, Quaternion.identity);
+            var firstBullet = Instantiate(bullet, position, Quaternion.Euler(0, -90, 0));
+            var secondBullet = Instantiate(bullet, position, Quaternion.Euler(0, -90, 0));
+            var thirdBullet = Instantiate(bullet, position, Quaternion.Euler(0, -90, 0));
 
             AssignShooterOfTheBullet(new List<GameObject>() { firstBullet, secondBullet, thirdBullet });
             Destroy(firstBullet, bulletTimeAlive);

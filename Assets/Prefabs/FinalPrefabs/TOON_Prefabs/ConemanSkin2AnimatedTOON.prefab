@@ -1880,10 +1880,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2010285217890881878}
-  - component: {fileID: 3327721598422000851}
   - component: {fileID: 1544399178825326062}
   - component: {fileID: 604752624224091655}
   - component: {fileID: 6120484278008624498}
+  - component: {fileID: 819238607019218414}
   m_Layer: 10
   m_Name: 'ShootingRange  '
   m_TagString: Player
@@ -1905,19 +1905,6 @@ Transform:
   m_Father: {fileID: 4428122620258544837}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!135 &3327721598422000851
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4727175799244163253}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 7
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &1544399178825326062
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1951,7 +1938,7 @@ MonoBehaviour:
   bulletTimeAlive: 4
   shootForce: 200
   _damagePerBullet: 10
-  bullet: {fileID: 7679035201997218491, guid: 9714aadc40251f74ebfdcf2ff13c7bb1, type: 3}
+  bullet: {fileID: 7674638558856576864, guid: 4ff209dc95a6a384084c043500d92575, type: 3}
   timeBetweenShooting: 1.59
   shootsPerSecond: 0.65
   timeToShootBulletBurst: 0.2
@@ -2032,6 +2019,20 @@ MonoBehaviour:
   playerLevel: 0
   attackSpeed: 0
   damage: 0
+--- !u!136 &819238607019218414
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4727175799244163253}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 5
+  m_Height: 50
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5213887178918888553
 GameObject:
   m_ObjectHideFlags: 0
