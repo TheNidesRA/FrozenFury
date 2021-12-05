@@ -1,11 +1,17 @@
+using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 using Button = UnityEngine.UI.Button;
 
 public class BuildManagement : MonoBehaviour
 {
     public ComunicacionGridCanvas cgc;
     public Button Btn;
+    public Image LevelUpText;
+    public Image ladrillos;
+    public TextMeshProUGUI numero;
+    public Color DisableColor;
+    private Color Default = Color.white;
     public UpdateUIStats UpdateUIStats;
 
 
@@ -14,11 +20,18 @@ public class BuildManagement : MonoBehaviour
         if (cgc.ExposedPlacedBuild.level >= 15)
         {
             Btn.interactable = false;
+           
+            numero.color = DisableColor;
+            ladrillos.color = DisableColor;
+            LevelUpText.color = DisableColor;
         }
 
         else
         {
             Btn.interactable = true;
+            numero.color = Default;
+            ladrillos.color = Default;
+            LevelUpText.color = Default;
         }
     }
 
@@ -56,11 +69,19 @@ public class BuildManagement : MonoBehaviour
         if (cgc.ExposedPlacedBuild.level >= 15)
         {
             Btn.interactable = false;
+            Btn.interactable = false;
+          
+            numero.color = DisableColor;
+            ladrillos.color = DisableColor;
+            LevelUpText.color = DisableColor;
         }
 
         else
         {
             Btn.interactable = true;
+            numero.color = Default;
+            ladrillos.color = Default;
+            LevelUpText.color = Default;
         }
 
     }
