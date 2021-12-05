@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,7 +16,7 @@ namespace AutoAttackScripts
             Physics.gravity = Vector3.up * gravity;
             currentBullet.GetComponent<Rigidbody>().useGravity = true;
             Vector3 data = CalculateLaunchData(currentEnemy).initialVelocity;
-            if (data.x is Single.NaN) { return; }
+            if (data.x is float.NaN) { return; }
             currentBullet.GetComponent<Rigidbody>().velocity = CalculateLaunchData(currentEnemy).initialVelocity + new Vector3(2,0,2);
             AudioManager.Instance?.PlayRandomHitSound();
                  
