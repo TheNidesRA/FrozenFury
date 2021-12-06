@@ -6,11 +6,13 @@ using UnityEngine;
 public class GolemFOVTurret : ActionNode
 {
     public LayerMask targetMask;
+    [SerializeField] private Sprite ActionImage;
 
 
     protected override void OnStart()
     {
         context.enemy.NODOACTUAL = "GolemFOVTurret";
+        context.enemy.ActionImage.sprite = ActionImage;
         //   Debug.Log("AQUI MIRANDO ");
     }
 

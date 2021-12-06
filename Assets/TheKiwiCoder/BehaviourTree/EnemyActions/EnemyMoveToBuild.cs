@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyMoveToBuild : ActionNode
 {
     bool fracaso=false;
+    [SerializeField] private Sprite ActionImage;
 
     protected override void OnStart()
     {
@@ -12,6 +13,7 @@ public class EnemyMoveToBuild : ActionNode
 
         context.animator.SetBool("Run", true); //Run animation trigger
 
+        context.enemy.ActionImage.sprite = ActionImage;
         fracaso = false;
 
         if (context.enemy.actionTarget == null)

@@ -1,8 +1,12 @@
 using Enemies;
 using TheKiwiCoder;
+using UnityEngine;
 
 public class EnemyGoesToGoal : ActionNode
 {
+
+    public Sprite ActionImage;
+    
     protected override void OnStart()
     {
         context.enemy.NODOACTUAL = "EnemyGoesToGoal";
@@ -11,6 +15,7 @@ public class EnemyGoesToGoal : ActionNode
         context.enemy.actionTarget = EnemyGoal.instance.gameObject;
         context.agent.SetDestination(EnemyGoal.instance.getPosition());
         context.animator.SetBool("Run", true);
+        context.enemy.ActionImage.sprite = ActionImage;
     }
 
     protected override void OnStop()

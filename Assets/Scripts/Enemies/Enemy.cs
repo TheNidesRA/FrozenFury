@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 #if UNITY_EDITOR
 using UnityEditor;
 
@@ -94,7 +95,7 @@ namespace Enemies
         public float radioVision;
 
         public string NODOACTUAL;
-
+        public Image ActionImage;
         private void Awake()
         {
             actionTarget = null;

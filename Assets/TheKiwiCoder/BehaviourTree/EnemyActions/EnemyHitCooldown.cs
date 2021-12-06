@@ -7,6 +7,7 @@ public class EnemyHitCooldown : ActionNode
 {
     private float duration;
     float startTime;
+    [SerializeField] private Sprite ActionImage;
 
     protected override void OnStart()
     {
@@ -16,6 +17,7 @@ public class EnemyHitCooldown : ActionNode
         Debug.Log("Hay que esperar : "+ duration);
         context.animator.SetBool("Attack", true);
         context.animator.SetFloat("SpeedMult", context.enemy.attackSpeed);
+        context.enemy.ActionImage.sprite = ActionImage;
     }
 
     protected override void OnStop() {

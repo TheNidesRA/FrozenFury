@@ -11,11 +11,13 @@ public class GolemSearchBuildInRadius : ActionNode
     public float radius;
     public LayerMask layer;
     public GameObject debugTarget;
-        
-        protected override void OnStart()
+    [SerializeField] private Sprite ActionImage;
+
+    protected override void OnStart()
         {
             context.enemy.NODOACTUAL = "GolemSearchWall";
             debugTarget = null;
+            context.enemy.ActionImage.sprite = ActionImage;
         }
 
         protected override void OnStop()

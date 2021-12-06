@@ -10,13 +10,17 @@ public class GolemCheckDistance : ActionNode
 
     public float threasole = 2f;
     public float distanciaRechazada = 0;
+    [SerializeField] private Sprite ActionImage;
 
     protected override void OnStart()
     {
         context.enemy.NODOACTUAL = "GolemCheckDistance";
         distanciaRechazada = 0;
+        context.enemy.ActionImage.sprite = ActionImage;
         //throw new System.NotImplementedException();
     }
+
+  
 
     protected override void OnStop()
     {

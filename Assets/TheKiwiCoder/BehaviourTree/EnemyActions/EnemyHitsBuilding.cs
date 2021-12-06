@@ -7,10 +7,12 @@ public class EnemyHitsBuilding : ActionNode
 {
     public LayerMask buildingMask;
     public BuildingSO.BuildingType buildingType;
+    [SerializeField] private Sprite ActionImage;
 
     protected override void OnStart()
     {
         context.enemy.NODOACTUAL = "EnemiHitBuilding";
+        context.enemy.ActionImage.sprite = ActionImage;
         //context.animator.SetBool("Attack", true);
     }
 

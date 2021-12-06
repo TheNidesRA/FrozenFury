@@ -7,10 +7,12 @@ using UnityEngine;
 public class EnemyFOV : ActionNode
 {
     public LayerMask targetMask;
+    [SerializeField] private Sprite ActionImage;
 
     protected override void OnStart()
     {
         context.enemy.NODOACTUAL = "EnemyFOV";
+        context.enemy.ActionImage.sprite = ActionImage;
     }
 
     protected override void OnStop()

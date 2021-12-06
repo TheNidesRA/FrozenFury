@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Enemies;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PascualStateMachine : MonoBehaviour
 {
@@ -16,6 +17,9 @@ public class PascualStateMachine : MonoBehaviour
     private bool AreaActive = false;
     [Range(0f,1f)]
     public float PorcentajeVidaBoost;
+
+    public Sprite chasing;
+    public Sprite van;
 
     private float vidaBoost;
 
@@ -99,6 +103,7 @@ public class PascualStateMachine : MonoBehaviour
         if (PlayerStats._instance.Health > 0)
         {
             Debug.Log("A chasear ");
+            Pascual.ActionImage.sprite = chasing;
             //Pascual.NavMeshAgent.ResetPath();
             currentState = State.ChassingPlayer;
             Pascual.NavMeshAgent.SetDestination(PlayerStats._instance.transform.position);
@@ -107,6 +112,7 @@ public class PascualStateMachine : MonoBehaviour
         else
         {
             // Pascual.NavMeshAgent.ResetPath();
+            Pascual.ActionImage.sprite = van;
             currentState = State.GoToVan;
             Pascual.NavMeshAgent.SetDestination(EnemyGoal.instance.getPosition());
             Pascual.NavMeshAgent.isStopped = false;
