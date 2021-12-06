@@ -12,6 +12,12 @@ public class PascualStateMachine : MonoBehaviour
     public GameObject bullet;
     private float duration;
     private float startTime;
+    public GameObject BuffArea;
+    private bool AreaActive = false;
+    [Range(0f,1f)]
+    public float PorcentajeVidaBoost;
+
+    private float vidaBoost;
 
     private enum State
     {
@@ -23,12 +29,21 @@ public class PascualStateMachine : MonoBehaviour
 
     private void Start()
     {
+        AreaActive = false;
         Evaluate();
+        vidaBoost = Pascual.health * PorcentajeVidaBoost;
     }
 
     private void Update()
     {
         RunStateMachine();
+        
+        if (Pascual.health <= (vidaBoost) && !AreaActive)
+        {
+            BuffArea.SetActive(true);
+            AreaActive = true;
+        }
+            
     }
 
 

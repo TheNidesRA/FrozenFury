@@ -1018,6 +1018,8 @@ MonoBehaviour:
   currentState: 0
   animator: {fileID: 3704179301118084927}
   bullet: {fileID: 7040415461391761229, guid: 1a54109b718f5b54086fdb097435c6a8, type: 3}
+  BuffArea: {fileID: 5841497910665411850}
+  PorcentajeVidaBoost: 0.41
 --- !u!1 &4047860838846988739
 GameObject:
   m_ObjectHideFlags: 0
@@ -1436,13 +1438,14 @@ GameObject:
   - component: {fileID: 8774751751276659109}
   - component: {fileID: 2935132074714474219}
   - component: {fileID: 7118337689222272956}
+  - component: {fileID: 1693868946380945310}
   m_Layer: 17
   m_Name: Cylinder
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8430593221441387389
 Transform:
   m_ObjectHideFlags: 0
@@ -1472,7 +1475,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5841497910665411850}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1484,7 +1487,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 72da5794ddb3edf47a5082d0592949fc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1517,9 +1520,22 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5000001
-  m_Height: 2
+  m_Height: 52.21
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &1693868946380945310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5841497910665411850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 735a094e6c8c4e24eb8ee8c8428704ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boost: 1.5
 --- !u!1 &6469238550236018412
 GameObject:
   m_ObjectHideFlags: 0
