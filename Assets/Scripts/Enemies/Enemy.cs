@@ -246,7 +246,7 @@ namespace Enemies
                     GUIStyle v = new GUIStyle();
                     v.fontSize = 20;
                     v.fontStyle = FontStyle.Bold;
-                    Handles.Label(transform.position, actionTarget.name, v);
+                    //Handles.Label(transform.position, actionTarget.name, v);
                 }
 
 
@@ -259,13 +259,13 @@ namespace Enemies
                 style.fontSize = 20;
                 style.fontStyle = FontStyle.Bold;
 
-                Handles.Label(pos, NODOACTUAL, style);
+                //Handles.Label(pos, NODOACTUAL, style);
 
 
                 for (int i = 0; i < NavMeshAgent.path.corners.Length - 1; i++)
                 {
-                    Handles.color = Color.green;
-                    Handles.DrawLine(NavMeshAgent.path.corners[i], NavMeshAgent.path.corners[i + 1]);
+                    //Handles.color = Color.green;
+                    //Handles.DrawLine(NavMeshAgent.path.corners[i], NavMeshAgent.path.corners[i + 1]);
                 }
             }
         }
