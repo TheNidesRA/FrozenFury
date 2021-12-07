@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -13,6 +14,13 @@ namespace Enemies
 {
     public abstract class Enemy : MonoBehaviour
     {
+        public GameObject particle;
+        public Vector3 particleScale = new Vector3(1, 1, 1);
+        private Vector3 particleOffset;
+        public float particleXPosition = -1f;
+        public float particleYPosition = -1f;
+        public float particleZPosition = -1f;
+
         /// <summary>
         /// Enemy id
         /// </summary>
@@ -96,6 +104,7 @@ namespace Enemies
 
         public string NODOACTUAL;
         public Image ActionImage;
+
         private void Awake()
         {
             actionTarget = null;
@@ -154,6 +163,7 @@ namespace Enemies
         public void Die()
         {
             Destroy(gameObject);
+            ParticleManager.Instance?.PlayEnemyDeathParticles(transform.position);
         }
 
         public void OnSlow(float slowDown)
@@ -207,7 +217,7 @@ namespace Enemies
         private void OnDestroy()
         {
             OnEnemyDeath?.Invoke(gameObject);
-            PlayerStats._instance.gold += (int) gold;
+            PlayerStats._instance.gold += (int)gold;
             WaveController._instance.EnemyDeath();
         }
 
@@ -310,7 +320,7 @@ namespace Enemies
         public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();
-            var script = (EnemyGolem) target;
+            var script = (EnemyGolem)target;
             if (script == null) return;
 
             EditorGUILayout.Space();

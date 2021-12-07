@@ -974,14 +974,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfdc12a21026b5f4eb283434af045c86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particle: {fileID: 100004, guid: 7867af58a6ec48846ae807eb4022fbaa, type: 3}
+  particleScale: {x: 5, y: 5, z: 5}
+  particleXPosition: -1
+  particleYPosition: 10
+  particleZPosition: -1
   id: Diablillo
   _initStats: {fileID: 11400000, guid: d35925fb47f1fb24ba70eafa65bfc0bb, type: 2}
   NavMeshAgent: {fileID: 6987965381564869950}
   initSpeed: 15
   initAcceleration: 25
   maxHealth: 75
-  health: 75
-  damage: 20
+  health: 125.44472
+  damage: 29.985256
   _speed: 15
   _acceleration: 25
   armor: 1

@@ -2683,14 +2683,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce180c43ceb141179df230d0a499ae7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particle: {fileID: 100004, guid: 7867af58a6ec48846ae807eb4022fbaa, type: 3}
+  particleScale: {x: 5, y: 5, z: 5}
+  particleXPosition: -1
+  particleYPosition: 10
+  particleZPosition: -1
   id: Dragon
   _initStats: {fileID: 11400000, guid: 68681b477c7602b4b8483500b5067551, type: 2}
   NavMeshAgent: {fileID: 7659340899241863367}
   initSpeed: 10
   initAcceleration: 10
   maxHealth: 10
-  health: 10
-  damage: 1
+  health: 30.592628
+  damage: 2.2592628
   _speed: 10
   _acceleration: 10
   armor: 1
