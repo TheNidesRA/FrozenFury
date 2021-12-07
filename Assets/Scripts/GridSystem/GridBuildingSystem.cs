@@ -171,7 +171,6 @@ namespace GridSystem
         {
             if (value)
             {
-             
                 _buildingSO = null;
                 buildMenu = false;
                 enableBuildMove = false;
@@ -194,6 +193,7 @@ namespace GridSystem
 
             if (build != null)
             {
+                ParticleManager.Instance?.PlayDestroyedBuildParticles(build.transform.position);
                 build.DestroySelf();
 
                 List<Vector2Int> buildingPositions = build.GetGridPositionList();
@@ -234,7 +234,7 @@ namespace GridSystem
         public bool changeBuild(int build)
         {
             if (!_enableBuild) return false;
-            
+
             BuildingSO targetBuild = _buildingsList[build];
             if (PlayerStats._instance.gold >= targetBuild.goldCost)
             {
@@ -424,7 +424,7 @@ namespace GridSystem
             PlacedBuild placedBuild =
                 PlacedBuild.Create(placedBuildWorldPosition, buildPosition, _dir, _buildingSO);
             // Debug.Log("Se ha construido un edificio tipo: "  + placedBuild.BuildingSo.type);
-
+            ParticleManager.Instance?.PlayPlacedBuildParticles(placedBuildWorldPosition);
             foreach (var buildingPosition in buildingPositions)
             {
                 _grid.GetObjectValue(buildingPosition.x, buildingPosition.y).SetPlacedBuild(placedBuild);

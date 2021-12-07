@@ -3760,14 +3760,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75219822548947bbbe22d96fa7aec033, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particle: {fileID: 100004, guid: 7867af58a6ec48846ae807eb4022fbaa, type: 3}
+  particleScale: {x: 7, y: 7, z: 7}
+  particleXPosition: -1
+  particleYPosition: 10
+  particleZPosition: -1
   id: Golem
   _initStats: {fileID: 11400000, guid: 02ebd71750f34ec468184b883725a6da, type: 2}
   NavMeshAgent: {fileID: 5696459737070658345}
   initSpeed: 5
   initAcceleration: 5
   maxHealth: 300
-  health: 300
-  damage: 50
+  health: 350.0064
+  damage: 57.401066
   _speed: 5
   _acceleration: 5
   armor: 1

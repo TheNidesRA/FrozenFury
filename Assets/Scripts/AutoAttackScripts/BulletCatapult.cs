@@ -12,8 +12,6 @@ namespace AutoAttackScripts
 
         public override void OnCollisionEnter(Collision other)
         {
-            Debug.Log(other.collider.gameObject.name);
-            Debug.Log("Buenas");
             var explosionPos = transform.position;
             var colliders = Physics.OverlapSphere(explosionPos, _radius);
 
