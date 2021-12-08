@@ -99,7 +99,7 @@ public class EnemyMoveToBuild : ActionNode
             return State.Failure;
         }
 
-        if (Vector3.Distance(context.transform.position, context.agent.destination) < 2f)
+        if (Vector3.Distance(context.transform.position, context.agent.destination) <= context.agent.stoppingDistance+0.2)
         {
             // Debug.Log("Hemos llegao");
             return State.Success;
