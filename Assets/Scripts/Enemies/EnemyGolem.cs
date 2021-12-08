@@ -8,6 +8,7 @@ namespace Enemies
     public class EnemyGolem : Enemy
     {
         private NavMeshPathStatus s;
+        
 
 
         private void Start()
@@ -16,6 +17,7 @@ namespace Enemies
             // targetPosition=EnemyGoal.instance.transform.position;
             // actionTarget = EnemyGoal.instance.gameObject;
             // NavMeshAgent.destination = EnemyGoal.instance.transform.position;
+            timeWaitAnim = 1.10f;
         }
 
         private void Update()

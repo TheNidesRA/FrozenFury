@@ -47,7 +47,7 @@ namespace Enemies
             }
 
             //Destroy the enemy 
-            enemy.Die();
+            enemy.DieNoAnim();
         }
 
         public Vector3 getPosition()
