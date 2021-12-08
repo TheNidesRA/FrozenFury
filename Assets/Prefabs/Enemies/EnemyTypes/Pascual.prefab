@@ -1140,6 +1140,7 @@ MonoBehaviour:
   damage: 15
   _speed: 50
   _acceleration: 60
+  timeWaitAnim: 2.3
   armor: 1
   attackSpeed: 1
   gold: 20
@@ -1155,6 +1156,8 @@ MonoBehaviour:
   radioVision: 70
   NODOACTUAL: 
   ActionImage: {fileID: 7336180836069158403}
+  BehaviourTreeRunner: {fileID: 0}
+  collider: {fileID: 4937888182061120484}
   boost: {fileID: 5841497910665411850}
 --- !u!195 &7247611405744484929
 NavMeshAgent:

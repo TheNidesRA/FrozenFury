@@ -5,9 +5,10 @@ using Enemies;
 using UnityEngine;
 
 public class EnemyPascual : Enemy
-{
-    
+{  
     
     
     public GameObject boost;
+
+
 }

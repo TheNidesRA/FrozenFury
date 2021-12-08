@@ -9,8 +9,17 @@ public class EnemyDiablillo : Enemy
 {
     public NavMeshPathStatus s;
 
+    
+
+    private void Start()
+    {
+       
+        timeWaitAnim = 1.20f;
+    }
+
     private void Update()
     {
         s = NavMeshAgent.pathStatus;
     }
+    
 }

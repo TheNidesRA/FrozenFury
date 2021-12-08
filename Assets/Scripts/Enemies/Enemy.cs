@@ -4,8 +4,10 @@ using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
+using TheKiwiCoder;
 #if UNITY_EDITOR
 using UnityEditor;
+
 
 #endif
 
@@ -20,6 +22,7 @@ namespace Enemies
         public float particleXPosition = -1f;
         public float particleYPosition = -1f;
         public float particleZPosition = -1f;
+
 
         /// <summary>
         /// Enemy id
@@ -58,6 +61,12 @@ namespace Enemies
 
         [SerializeField] private float _speed;
         [SerializeField] private float _acceleration;
+
+        public float timeWaitAnim = 1.0f;
+
+        private Animator characterAnimator;
+
+        
 
         public float speed
         {
@@ -105,12 +114,18 @@ namespace Enemies
         public string NODOACTUAL;
         public Image ActionImage;
 
+        public BehaviourTreeRunner BehaviourTreeRunner = null;
+
+        public Collider collider;
+
         private void Awake()
         {
             actionTarget = null;
             auxActionTarget = null;
             NavMeshAgent.speed = _speed;
             NavMeshAgent.acceleration = acceleration;
+            characterAnimator = gameObject.GetComponent<Animator>();
+
         }
 
 
@@ -162,8 +177,29 @@ namespace Enemies
 
         public void Die()
         {
+            NavMeshAgent.isStopped = true;
+            NavMeshAgent.ResetPath();
+            if (!ReferenceEquals(BehaviourTreeRunner, null))
+                BehaviourTreeRunner.enabled = false;
+            StartCoroutine(dieAnim());
+
+        }
+
+        public void DieNoAnim()
+        {
             Destroy(gameObject);
             ParticleManager.Instance?.PlayEnemyDeathParticles(transform.position);
+        }
+
+        public IEnumerator dieAnim()
+        {
+            characterAnimator.SetBool("Die", true);
+            collider.enabled = false;
+            ParticleManager.Instance?.PlayEnemyDeathParticles(transform.position);
+            yield return new WaitForSeconds(timeWaitAnim);
+            Destroy(gameObject);
+            
+
         }
 
         public void OnSlow(float slowDown)

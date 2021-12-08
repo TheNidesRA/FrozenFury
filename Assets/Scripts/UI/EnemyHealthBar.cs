@@ -52,6 +52,11 @@ namespace UI
 
         private void HandleHealth(object e, float health)
         {
+            if (health <= 0)
+            {
+                _canvas.enabled = false;
+                return;
+            }
             _canvas.enabled = true;
             healtBar.fillAmount = health / maxHealth;
             try
