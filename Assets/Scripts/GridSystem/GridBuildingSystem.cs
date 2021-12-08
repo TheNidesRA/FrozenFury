@@ -193,8 +193,14 @@ namespace GridSystem
 
             if (build != null)
             {
+              
+                
                 if (PlayerPrefs.GetInt("particlesActivated") == 1)
-                    ParticleManager.Instance?.PlayDestroyedBuildParticles(build.transform.position);
+                {
+                    ParticleManager.Instance?.PlayDestroyedBuildParticles(GetWorldCenter(build));
+                    
+                }
+                    
 
                 build.DestroySelf();
 
@@ -231,6 +237,27 @@ namespace GridSystem
                 // Debug.Log(_buildingSO.ToString());
                 RefreshSelectedObjectType();
             }
+        }
+
+        public Vector3 GetWorldCenter(PlacedBuild build)
+        {
+            // _grid.GetXZ(build.transform.position, out int x, out int z);
+            //
+            // int ancho = build.BuildingSo.width / 2;
+            // int alto = build.BuildingSo.heigth / 2;
+            //
+            // int xcentro = ancho + x;
+            // int zcentro = alto + z;
+
+            Vector2 c = build.BuildingSo.GetCenter(build.dir)*cellSize;
+      
+            Vector3 centro = new Vector3(c.x, 0, c.y);
+
+            Vector3 postion = build.transform.position + centro;
+            
+            Debug.Log("Dir : "+ build.dir+" c: "+ c+ " Posicion :" +build.transform.position+ c+ " Centro: "+postion);
+
+            return postion;
         }
 
         public bool changeBuild(int build)
@@ -427,7 +454,7 @@ namespace GridSystem
                 PlacedBuild.Create(placedBuildWorldPosition, buildPosition, _dir, _buildingSO);
             // Debug.Log("Se ha construido un edificio tipo: "  + placedBuild.BuildingSo.type
             if (PlayerPrefs.GetInt("particlesActivated") == 1)
-                ParticleManager.Instance?.PlayPlacedBuildParticles(placedBuildWorldPosition);
+                ParticleManager.Instance?.PlayPlacedBuildParticles(GetWorldCenter(placedBuild));
 
             foreach (var buildingPosition in buildingPositions)
             {
