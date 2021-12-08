@@ -47,7 +47,6 @@ namespace UI
         {
             //Esto tira fallo si se para la partida y hay enemigos en pantalla
             GetComponentInParent<Enemy>().HealthBarEvent -= HandleHealth;
-            Debug.Log("Me desuscribo illo");
         }
 
         private void HandleHealth(object e, float health)
@@ -57,6 +56,7 @@ namespace UI
                 _canvas.enabled = false;
                 return;
             }
+
             _canvas.enabled = true;
             healtBar.fillAmount = health / maxHealth;
             try

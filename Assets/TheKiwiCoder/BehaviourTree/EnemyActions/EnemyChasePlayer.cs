@@ -23,7 +23,6 @@ public class EnemyChasePlayer : ActionNode
 //      Debug.Log("Distancia: " + distancia + " Range: " + context.enemy.attackRange);
         if (distancia <= context.enemy.attackRange)
         {
-            Debug.Log("Hemos llegao");
             // context.agent.isStopped = true;
             return State.Success;
         }
