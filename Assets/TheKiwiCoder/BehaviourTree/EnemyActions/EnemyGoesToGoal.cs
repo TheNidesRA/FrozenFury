@@ -15,6 +15,7 @@ public class EnemyGoesToGoal : ActionNode
         context.enemy.actionTarget = EnemyGoal.instance.gameObject;
         context.agent.SetDestination(EnemyGoal.instance.getPosition());
         context.animator.SetBool("Run", true);
+        context.animator.SetBool("Attack", false);
         context.enemy.ActionImage.sprite = ActionImage;
     }
 
