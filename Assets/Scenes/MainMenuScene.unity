@@ -25543,6 +25543,13 @@ MonoBehaviour:
     pitch: 1
     loop: 1
     source: {fileID: 0}
+  - name: No Buy
+    output: {fileID: 24300002, guid: b0ef6460782205b439bbf0cda037b862, type: 2}
+    clip: {fileID: 8300000, guid: 30e27a0d6c32e4142b43cdde4bfc87de, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
   randomHits:
   - name: Hit1
     output: {fileID: 24300002, guid: b0ef6460782205b439bbf0cda037b862, type: 2}
@@ -25642,6 +25649,28 @@ MonoBehaviour:
   - name: NewHit4
     output: {fileID: 24300002, guid: b0ef6460782205b439bbf0cda037b862, type: 2}
     clip: {fileID: 8300000, guid: 6b08283442a743141a4dc7738a08e5d3, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  randomEnemyHits:
+  - name: EnemyHit1
+    output: {fileID: 24300002, guid: b0ef6460782205b439bbf0cda037b862, type: 2}
+    clip: {fileID: 8300000, guid: 5321a7bcb740e0640898fd57b6b6df26, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: EnemyHit2
+    output: {fileID: 24300002, guid: b0ef6460782205b439bbf0cda037b862, type: 2}
+    clip: {fileID: 8300000, guid: 89685fd8a50260c47943bc7e3a0f6210, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: EnemyHit3
+    output: {fileID: 24300002, guid: b0ef6460782205b439bbf0cda037b862, type: 2}
+    clip: {fileID: 8300000, guid: 2300f23497fdd8e46a9f5d59f548cc22, type: 3}
     volume: 0.3
     pitch: 1
     loop: 0
@@ -28337,7 +28366,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 8.2, y: -10}
+  m_AnchoredPosition: {x: 8.199997, y: -10}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1891902921
