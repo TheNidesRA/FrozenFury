@@ -173,7 +173,6 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   children:
-  - {fileID: -4830551711788281767}
   - {fileID: -1178742042385155628}
   - {fileID: -8000423311271376732}
 --- !u!114 &-5397918032975510296
@@ -223,27 +222,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   ActionImage: {fileID: 21300000, guid: b473bc6bfd0a66742b3f211909718629, type: 3}
---- !u!114 &-4830551711788281767
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c5714e2c186f254385659d94a796e3e, type: 3}
-  m_Name: EnemyGoesToGoal
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: a2d8185f8bcecd342a30d9d95ac83423
-  position: {x: -1452, y: 774.4}
-  blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
-  description: 
-  drawGizmos: 0
-  ActionImage: {fileID: 21300000, guid: 260641d8f9cb464449854193f5fdb8ea, type: 3}
 --- !u!114 &-4165836962118965734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -419,7 +397,6 @@ MonoBehaviour:
   - {fileID: -3357956890546489192}
   - {fileID: -289978453894954629}
   - {fileID: -5627431911030952990}
-  - {fileID: -4830551711788281767}
   - {fileID: -1178742042385155628}
   - {fileID: -5085825506388299453}
   - {fileID: -4165836962118965734}
