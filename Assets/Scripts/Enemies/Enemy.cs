@@ -171,6 +171,7 @@ namespace Enemies
             health -= dmg;
             OnHealthChanged?.Invoke(gameObject);
             HealthBarEvent?.Invoke(maxHealth, health);
+            AudioManager.Instance?.PlayRandomEnemyHit();
             return health <= 0;
         }
 

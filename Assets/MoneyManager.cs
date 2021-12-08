@@ -494,6 +494,7 @@ public class MoneyManager : MonoBehaviour
 
     private void Fallo()
     {
+        AudioManager.Instance?.Play("No Buy");
         Debug.Log("Sos pobre no lo puedes comprar jajajaja");
     }
 }
