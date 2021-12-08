@@ -56,15 +56,14 @@ public class BuildingSO : ScriptableObject
         Turret,
         Wall,
         Trap
-        
     }
 
-    
+
     public int width;
     public int heigth;
     public float initDamage;
     public float initHealth;
-    public float initAttackSpeed=1;
+    public float initAttackSpeed = 1;
     public int initGoldCostLevel;
     public int GoldCostRepair;
     public int MAXHEALT;
@@ -127,7 +126,29 @@ public class BuildingSO : ScriptableObject
         return gridPositionList;
     }
 
- 
+
+    public Vector2 GetCenter(Dir dir)
+    {
+        switch (dir)
+        {
+            default:
+                return new Vector2(width / 2.0f, heigth / 2.0f);
+
+
+            case Dir.Down:
+            case Dir.Up:
+
+                return new Vector2(width / 2.0f, heigth / 2.0f);
+
+
+            case Dir.Left:
+            case Dir.Right:
+
+                return new Vector2(heigth / 2.0f, width / 2.0f);
+        }
+    }
+
+
     public override string ToString()
     {
         return name;

@@ -175,7 +175,7 @@ namespace Enemies
             return health <= 0;
         }
 
-        public void Die()
+        virtual public void Die()
         {
             NavMeshAgent.isStopped = true;
             NavMeshAgent.ResetPath();
