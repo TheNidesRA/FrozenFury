@@ -9,6 +9,7 @@ public class AudioManager : MonoBehaviour
     public Sound[] randomDeath;
     public Sound[] randomBuy;
     public Sound[] randomNewHits;
+    public Sound[] randomEnemyHits;
     public static float previousManagerAudio;
     public static float previousManagerSliderAudio;
     public static float previousManagerSliderMusic;
@@ -92,6 +93,16 @@ public class AudioManager : MonoBehaviour
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
         }
+
+        foreach (var s in randomEnemyHits)
+        {
+            s.source = gameObject.AddComponent<AudioSource>();
+            s.source.clip = s.clip;
+            s.source.outputAudioMixerGroup = s.output;
+            s.source.volume = s.volume;
+            s.source.pitch = s.pitch;
+            s.source.loop = s.loop;
+        }
     }
 
 
@@ -151,6 +162,12 @@ public class AudioManager : MonoBehaviour
     public void PlayRandomNewHitSound()
     {
         Sound s = randomNewHits[UnityEngine.Random.Range(0, randomNewHits.Length)];
+        s.source.Play();
+    }
+
+    public void PlayRandomEnemyHit()
+    {
+        Sound s = randomEnemyHits[UnityEngine.Random.Range(0, randomEnemyHits.Length)];
         s.source.Play();
     }
 

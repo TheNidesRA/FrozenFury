@@ -66,7 +66,6 @@ namespace Enemies
 
         private Animator characterAnimator;
 
-        
 
         public float speed
         {
@@ -125,7 +124,6 @@ namespace Enemies
             NavMeshAgent.speed = _speed;
             NavMeshAgent.acceleration = acceleration;
             characterAnimator = gameObject.GetComponent<Animator>();
-
         }
 
 
@@ -172,6 +170,7 @@ namespace Enemies
             health -= dmg;
             OnHealthChanged?.Invoke(gameObject);
             HealthBarEvent?.Invoke(maxHealth, health);
+            AudioManager.Instance?.PlayRandomEnemyHit();
             return health <= 0;
         }
 
@@ -182,17 +181,14 @@ namespace Enemies
             if (!ReferenceEquals(BehaviourTreeRunner, null))
                 BehaviourTreeRunner.enabled = false;
             StartCoroutine(dieAnim());
-
         }
 
         public void DieNoAnim()
         {
             Destroy(gameObject);
-            
-            if(PlayerPrefs.GetInt("particlesActivated") == 1)
-                ParticleManager.Instance?.PlayEnemyDeathParticles(transform.position);
 
-        
+            if (PlayerPrefs.GetInt("particlesActivated") == 1)
+                ParticleManager.Instance?.PlayEnemyDeathParticles(transform.position);
         }
 
         public IEnumerator dieAnim()
@@ -204,8 +200,6 @@ namespace Enemies
                 ParticleManager.Instance?.PlayEnemyDeathParticles(transform.position);
             yield return new WaitForSeconds(timeWaitAnim);
             Destroy(gameObject);
-            
-
         }
 
         public void OnSlow(float slowDown)
@@ -310,7 +304,7 @@ namespace Enemies
                 style.normal.textColor = Color.blue;
                 style.fontSize = 20;
                 style.fontStyle = FontStyle.Bold;
-                
+
                 //Handles.Label(pos, NODOACTUAL, style);
 
 
