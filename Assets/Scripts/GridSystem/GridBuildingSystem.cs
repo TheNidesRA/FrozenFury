@@ -249,7 +249,7 @@ namespace GridSystem
             // int xcentro = ancho + x;
             // int zcentro = alto + z;
 
-            Vector2 c = build.BuildingSo.GetCenter(build.dir)*cellSize;
+            Vector2 c = (build.BuildingSo.GetCenter(build.dir)-build.BuildingSo.GetRotationOffset(build.dir))*cellSize;
       
             Vector3 centro = new Vector3(c.x, 0, c.y);
 
