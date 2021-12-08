@@ -66,7 +66,7 @@ namespace Enemies
 
         private Animator characterAnimator;
 
-        
+        public Transform particlePos;
 
         public float speed
         {
@@ -125,7 +125,6 @@ namespace Enemies
             NavMeshAgent.speed = _speed;
             NavMeshAgent.acceleration = acceleration;
             characterAnimator = gameObject.GetComponent<Animator>();
-
         }
 
 
@@ -182,17 +181,14 @@ namespace Enemies
             if (!ReferenceEquals(BehaviourTreeRunner, null))
                 BehaviourTreeRunner.enabled = false;
             StartCoroutine(dieAnim());
-
         }
 
         public void DieNoAnim()
         {
             Destroy(gameObject);
-            
-            if(PlayerPrefs.GetInt("particlesActivated") == 1)
-                ParticleManager.Instance?.PlayEnemyDeathParticles(transform.position);
 
-        
+            if (PlayerPrefs.GetInt("particlesActivated") == 1)
+                ParticleManager.Instance?.PlayEnemyDeathParticles(transform.position);
         }
 
         public IEnumerator dieAnim()
@@ -200,12 +196,19 @@ namespace Enemies
             characterAnimator.SetBool("Die", true);
             collider.enabled = false;
 
-            if (PlayerPrefs.GetInt("particlesActivated") == 1)
-                ParticleManager.Instance?.PlayEnemyDeathParticles(transform.position);
             yield return new WaitForSeconds(timeWaitAnim);
-            Destroy(gameObject);
-            
+            if (particlePos != null)
+            {
+                if (PlayerPrefs.GetInt("particlesActivated") == 1)
+                    ParticleManager.Instance?.PlayEnemyDeathParticles(particlePos.position);
+            }
+            else
+            {
+                if (PlayerPrefs.GetInt("particlesActivated") == 1)
+                    ParticleManager.Instance?.PlayEnemyDeathParticles(transform.position);
+            }
 
+            Destroy(gameObject);
         }
 
         public void OnSlow(float slowDown)
@@ -259,7 +262,7 @@ namespace Enemies
         private void OnDestroy()
         {
             OnEnemyDeath?.Invoke(gameObject);
-            PlayerStats._instance.gold += (int)gold;
+            PlayerStats._instance.gold += (int) gold;
             WaveController._instance.EnemyDeath();
         }
 
@@ -310,7 +313,7 @@ namespace Enemies
                 style.normal.textColor = Color.blue;
                 style.fontSize = 20;
                 style.fontStyle = FontStyle.Bold;
-                
+
                 //Handles.Label(pos, NODOACTUAL, style);
 
 
@@ -362,7 +365,7 @@ namespace Enemies
         public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();
-            var script = (EnemyGolem)target;
+            var script = (EnemyGolem) target;
             if (script == null) return;
 
             EditorGUILayout.Space();
