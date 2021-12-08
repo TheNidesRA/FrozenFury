@@ -51,9 +51,13 @@ public class ParticleManager : MonoBehaviour
             Instance = this;
         }
 
-        PlayDestroyedBuildParticles(new Vector3(0, 0, 0));
-        PlayEnemyDeathParticles(new Vector3(0, 0, 0));
-        PlayPlacedBuildParticles(new Vector3(0, 0, 0));
+        if (PlayerPrefs.GetInt("particlesActivated") == 1)
+        {
+            PlayDestroyedBuildParticles(new Vector3(0, 0, 0));
+            PlayEnemyDeathParticles(new Vector3(0, 0, 0));
+            PlayPlacedBuildParticles(new Vector3(0, 0, 0));
+        }
+        
     }
 
     public void PlayEnemyDeathParticles(Vector3 enemyPos)

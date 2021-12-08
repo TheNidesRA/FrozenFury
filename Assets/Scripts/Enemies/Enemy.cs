@@ -188,14 +188,20 @@ namespace Enemies
         public void DieNoAnim()
         {
             Destroy(gameObject);
-            ParticleManager.Instance?.PlayEnemyDeathParticles(transform.position);
+            
+            if(PlayerPrefs.GetInt("particlesActivated") == 1)
+                ParticleManager.Instance?.PlayEnemyDeathParticles(transform.position);
+
+        
         }
 
         public IEnumerator dieAnim()
         {
             characterAnimator.SetBool("Die", true);
             collider.enabled = false;
-            ParticleManager.Instance?.PlayEnemyDeathParticles(transform.position);
+
+            if (PlayerPrefs.GetInt("particlesActivated") == 1)
+                ParticleManager.Instance?.PlayEnemyDeathParticles(transform.position);
             yield return new WaitForSeconds(timeWaitAnim);
             Destroy(gameObject);
             
@@ -304,7 +310,7 @@ namespace Enemies
                 style.normal.textColor = Color.blue;
                 style.fontSize = 20;
                 style.fontStyle = FontStyle.Bold;
-
+                
                 //Handles.Label(pos, NODOACTUAL, style);
 
 
