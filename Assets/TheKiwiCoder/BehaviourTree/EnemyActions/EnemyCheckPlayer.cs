@@ -8,7 +8,7 @@ public class EnemyCheckPlayer : ActionNode
     protected override void OnStart()
     {
     
-        context.enemy.NODOACTUAL = "EnemyGoesToGoal";
+        context.enemy.NODOACTUAL = "EnemyCheckPlayer";
 
 
     }

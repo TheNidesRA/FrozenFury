@@ -7,12 +7,13 @@ using UnityEngine;
 public class EnemyFOV : ActionNode
 {
     public LayerMask targetMask;
-    [SerializeField] private Sprite ActionImage;
+   // [SerializeField] private Sprite ActionImage;
 
     protected override void OnStart()
     {
         context.enemy.NODOACTUAL = "EnemyFOV";
-        context.enemy.ActionImage.sprite = ActionImage;
+        //context.enemy.ActionImage.sprite = ActionImage;
+        context.enemy.ActionImage.sprite = BocadillosSistema._instance.GetPlayer();
     }
 
     protected override void OnStop()

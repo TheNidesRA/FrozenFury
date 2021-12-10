@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyMoveToBuild : ActionNode
 {
     bool fracaso=false;
-    [SerializeField] private Sprite ActionImage;
+   // [SerializeField] private Sprite ActionImage;
 
     protected override void OnStart()
     {
@@ -13,7 +13,6 @@ public class EnemyMoveToBuild : ActionNode
 
         context.animator.SetBool("Run", true); //Run animation trigger
 
-        context.enemy.ActionImage.sprite = ActionImage;
         fracaso = false;
 
         if (context.enemy.actionTarget == null)
@@ -28,6 +27,7 @@ public class EnemyMoveToBuild : ActionNode
 
         if (context.enemy.actionTarget.TryGetComponent<PlacedBuild>(out PlacedBuild p))
         {
+            context.enemy.ActionImage.sprite = BocadillosSistema._instance.GetSprite(p.BuildingSo.name);
             var l = p.getValidAttacksPoints();
             // Debug.Log("Ya no es null de hecho estamos analizandolo XD");
             Transform s = NearPosition(l);
