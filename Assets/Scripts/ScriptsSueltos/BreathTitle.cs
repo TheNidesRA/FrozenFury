@@ -22,7 +22,7 @@ public class BreathTitle : MonoBehaviour
     private RectTransform rect=null;
 
 
-    private LTDescr actualMovement = null;
+    public LTDescr actualMovement = null;
 
     private Vector3 initPosition;
     private Vector3 initRotation;

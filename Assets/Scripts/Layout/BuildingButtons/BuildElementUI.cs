@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using BigfootSdk.SafeArea.BuildingButtons;
 using GridSystem;
+using TMPro.EditorUtilities;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -19,8 +20,13 @@ public class BuildElementUI : MonoBehaviour, IPointerEnterHandler, IPointerClick
     private Image _image;
     private Color _initColor;
     public Color FailColor = Color.red;
-
+    public Button btnYo;
+    public Button bt1;
+    public Button bt2;
+    public Button bt3;
+    public Button bt4;
     public BreathTitle gold = null;
+    
 
     private void Awake()
     {
@@ -36,9 +42,15 @@ public class BuildElementUI : MonoBehaviour, IPointerEnterHandler, IPointerClick
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        Debug.Log("SDAS" + btnYo.interactable);
+        if (!btnYo.interactable) return;
       //  _buildGroup.OnPointerClick(this);
       if (!GridBuildingSystem.Instance.changeBuild(build))
       {
+          bt1.interactable = false;
+          bt2.interactable = false;
+          bt3.interactable = false;
+          bt4.interactable = false;
           LeanTween.value(_image.gameObject, setColorCallback, _initColor, FailColor, 0.3f).setOnComplete(
 
               () =>
@@ -47,8 +59,15 @@ public class BuildElementUI : MonoBehaviour, IPointerEnterHandler, IPointerClick
                   if (!ReferenceEquals(gold, null))
                   {
                       gold.StartTweening();
+                      gold.actualMovement.setOnComplete(() =>
+                      {
+                          bt1.interactable = true;
+                          bt2.interactable = true;
+                          bt3.interactable = true;
+                          bt4.interactable = true;
+                      });
                   }
-                  
+
                   LeanTween.value(_image.gameObject, setColorCallback, FailColor, _initColor, 0.3f).setOnComplete(
                       () =>
                       {
