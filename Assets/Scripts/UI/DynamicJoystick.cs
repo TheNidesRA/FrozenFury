@@ -39,11 +39,17 @@ public class DynamicJoystick : Joystick
         }
 
     }
- 
+    
     private void Aux2(object a,EventArgs b)
     {
             work = true;
     } 
+
+
+    public bool getWork()
+    {
+        return work;
+    }
 
 
     private void OnDestroy()
