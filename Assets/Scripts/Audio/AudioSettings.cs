@@ -55,6 +55,7 @@ public class AudioSettings : MonoBehaviour
         previousAudio = Mathf.Log10(volume) * 20;
         AudioManager.setAudioVolume(previousAudio);
         AudioManager.setAudioSlider(volume);
+        AudioManager.Instance?.Play("Boton Jugar Helado");
     }
 
     public void SetVolumeMusic(float volume)
