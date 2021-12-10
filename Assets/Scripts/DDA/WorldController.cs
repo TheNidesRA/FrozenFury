@@ -212,6 +212,15 @@ public class WorldController : MonoBehaviour
     {
         _weights = new float[] {0.6f, 0.2f, 0.1f, 0.0f, 0.1f};
         
+        /// <summary>
+        /// Function in charge of modifying the different enemy weights:
+        /// _weights[0] --> DonDiablo
+        /// _weights[1] --> Golem
+        /// _weights[2] --> BadBunny
+        /// _weights[3] --> Boomfinn
+        /// _weights[4] --> Dragon
+        /// </summary>
+        
         float skillCorrection = playerSkillCurve.Evaluate(_playerSkill / 10);
         _weights[0] -= skillCorrection;
         _weights[2] += skillCorrection;

@@ -14,16 +14,19 @@ namespace Enemies
         /// </summary>
         public int minEnemies = 10;
 
+       
+        /// <summary>
+        /// Cuantos bichos extra spawnear
+        /// </summary>
         private float spwnPts;
 
-        /// <summary>
-        /// Global level difficulty
-        /// </summary>
+       
         public int winRound = 2;
 
         /// <summary>
         /// How Enemy increase per round
         /// </summary>
+       
         public float spawnProgression = 0.7f;
 
         public AnimationCurve spawnTimeProgression;
@@ -129,6 +132,7 @@ namespace Enemies
 
             /*Debug.Log("Fin de la ronda. \n" +
                       "round:  " + _round);*/
+            //Lee la curva y le pasa el numerito
             Spawner.UpdateSpawnDelay(spawnTimeProgression.Evaluate(round));
         }
 
