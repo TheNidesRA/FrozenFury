@@ -46,9 +46,11 @@ public class MoneyManager : MonoBehaviour
         set
         {
             _ConeMan = value;
-
+            
             PlayerEconomySo.ConeMan = value;
+            Debug.Log(value);
             ButtonBuyConeman.interactable = !value;
+            Debug.Log(ButtonBuyConeman.interactable);
             ButtonChooseConeman.interactable = value;
         }
     }
@@ -223,6 +225,10 @@ public class MoneyManager : MonoBehaviour
         Rings = PlayerEconomySo.rings;
         Torrine = PlayerEconomySo.Torrine;
         ConeMan = PlayerEconomySo.ConeMan;
+        // Debug.Log(PlayerEconomySo.ConeMan);
+        // ButtonBuyConeman.interactable
+        // Debug.Log(ConeMan);
+        Debug.Log(ButtonBuyConeman.interactable);
         Skin1Torrine = PlayerEconomySo.Torrine_skin_1;
         Skin2Torrine = PlayerEconomySo.Torrine_skin_2;
         Skin1ConeMan = PlayerEconomySo.ConeMan_skin_1;

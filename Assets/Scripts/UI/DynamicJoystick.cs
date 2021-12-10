@@ -11,18 +11,23 @@ public class DynamicJoystick : Joystick
 
     [SerializeField] private float moveThreshold = 1;
     public bool work = true;
+    public bool pulsado = false;
     protected override void Start()
     {
         GridBuildingSystem.Instance.OnSelectedChanged += Aux1;
-
         GridBuildingSystem.Instance.OnObjectPlaced += Aux2;
+        GridBuildingSystem.Instance.OnObjectSetPosition += Aux3;
 
-
-
+        pulsado = false;
         MoveThreshold = moveThreshold;
         base.Start();
         background.gameObject.SetActive(false);
         
+    }
+
+    private void Aux3(object sender, EventArgs e)
+    {
+        work = false;
     }
 
     private void Aux1(object a, EventArgs b) {
@@ -55,13 +60,18 @@ public class DynamicJoystick : Joystick
     private void OnDestroy()
     {
         GridBuildingSystem.Instance.OnSelectedChanged -= Aux1;
-
         GridBuildingSystem.Instance.OnObjectPlaced -= Aux2;
+        GridBuildingSystem.Instance.OnObjectSetPosition -= Aux3;
     }
 
     public override void OnPointerDown(PointerEventData eventData)
     {
-        if (!work) return;
+        if (!work)
+            return;
+
+        if (pulsado)
+            return;
+        pulsado = true;
         base.OnPointerDown(eventData);
         background.anchoredPosition = ScreenPointToAnchoredPosition(eventData.position);
         background.gameObject.SetActive(true);
@@ -71,6 +81,7 @@ public class DynamicJoystick : Joystick
     public override void OnPointerUp(PointerEventData eventData)
     {
         if (!work) return;
+        pulsado = false;
         background.gameObject.SetActive(false);
         base.OnPointerUp(eventData);
     }

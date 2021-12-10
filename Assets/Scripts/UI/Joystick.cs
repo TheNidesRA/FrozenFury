@@ -5,8 +5,9 @@ using UnityEngine.EventSystems;
 
 public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
-    public float Horizontal { get { return (snapX) ? SnapFloat(input.x, AxisOptions.Horizontal) : input.x; } }
-    public float Vertical { get { return (snapY) ? SnapFloat(input.y, AxisOptions.Vertical) : input.y; } }
+    public float Horizontal { get { return (snapX) ? SnapFloat(input.x, AxisOptions.Horizontal) : input.x; }}
+
+    public float Vertical { get { return (snapY) ? SnapFloat(input.y, AxisOptions.Vertical) : input.y; }}
     public Vector2 Direction { get { return new Vector2(Horizontal, Vertical); } }
 
     public float HandleRange
@@ -31,6 +32,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
     [SerializeField] private AxisOptions axisOptions = AxisOptions.Both;
     [SerializeField] private bool snapX = false;
     [SerializeField] private bool snapY = false;
+
 
     [SerializeField] protected RectTransform background = null;
     [SerializeField] private RectTransform handle = null;
@@ -58,7 +60,10 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         handle.pivot = center;
         handle.anchoredPosition = Vector2.zero;
     }
-
+    public void OnDisable()
+    {
+        input = new Vector2(0, 0);
+    }
     public virtual void OnPointerDown(PointerEventData eventData)
     {
         OnDrag(eventData);
@@ -67,7 +72,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
     public void OnDrag(PointerEventData eventData)
     {
         cam = null;
-        
+
         if (canvas.renderMode == RenderMode.ScreenSpaceCamera)
             cam = canvas.worldCamera;
         
@@ -78,14 +83,14 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         HandleInput(input.magnitude, input.normalized, radius, cam);
         handle.anchoredPosition = input * radius * handleRange;
 
-       /* Vector2 direction = eventData.position - position;
-        input = (direction.magnitude > background.sizeDelta.x / 2) ? direction.normalized : direction / (background.sizeDelta.x / 2f);
+        /* Vector2 direction = eventData.position - position;
+         input = (direction.magnitude > background.sizeDelta.x / 2) ? direction.normalized : direction / (background.sizeDelta.x / 2f);
 
-        if (axisOptions == AxisOptions.Horizontal)
-            input = new Vector2(input.x, 0f);
-        if (axisOptions == AxisOptions.Vertical)
-            input = new Vector2(0f, input.y);
-        handle.anchoredPosition = (input * background.sizeDelta / 2) * handleRange;*/
+         if (axisOptions == AxisOptions.Horizontal)
+             input = new Vector2(input.x, 0f);
+         if (axisOptions == AxisOptions.Vertical)
+             input = new Vector2(0f, input.y);
+         handle.anchoredPosition = (input * background.sizeDelta / 2) * handleRange;*/
 
     }
 

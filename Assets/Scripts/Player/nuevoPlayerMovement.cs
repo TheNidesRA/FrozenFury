@@ -23,6 +23,7 @@ public class nuevoPlayerMovement : MonoBehaviour
     private int rotationSpeed;
     public Joystick joystickDynamic;
 
+    public bool estadoAnterior = false;
     public bool work = true;
 
     public static bool controlMovimiento;
@@ -30,6 +31,7 @@ public class nuevoPlayerMovement : MonoBehaviour
     private void Awake()
     {
         work = true;
+        estadoAnterior = false;
         inputPlayer = new InputPlayer();
         _characterController = GetComponent<CharacterController>();
         v_movement_z = v_movement.z;
@@ -105,6 +107,7 @@ public class nuevoPlayerMovement : MonoBehaviour
         {
             if (joystickDynamic != null)
                 joystickDynamic.enabled = false;
+            estadoAnterior = true;
             inputMovement = new Vector2(0, 0);
             return;
         }
@@ -115,10 +118,19 @@ public class nuevoPlayerMovement : MonoBehaviour
         }
         else
         {
-        
-            inputMovement = new Vector2(joystickDynamic.Horizontal, joystickDynamic.Vertical);
+            if (!estadoAnterior)
+            {
+                inputMovement = new Vector2(joystickDynamic.Horizontal, joystickDynamic.Vertical);
+            }
+            else
+            {
+                joystickDynamic.OnDisable();
+                inputMovement = new Vector2(joystickDynamic.Horizontal, joystickDynamic.Vertical);
+                estadoAnterior = false;
+                
+            }
+            
         }
-
 
     }
 
