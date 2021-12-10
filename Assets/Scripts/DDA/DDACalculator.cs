@@ -45,9 +45,9 @@ namespace Enemies
 
         /// <summary>
         ///Array containing the multipliers for the difficulty variables..
-        ///     _diffVariables[0] --> StatsMult
-        ///     _diffVariables[1] --> SpawnMult
-        ///     _diffVariables[2] --> GoldMult 
+        ///     _diffMultipliers[0] --> StatsMult
+        ///     _diffMultipliers[1] --> SpawnMult
+        ///     _diffMultipliers[2] --> GoldMult 
         /// </summary>
         private float[] _diffMultipliers = new float[3] {1, 1, 1};
 
@@ -58,11 +58,11 @@ namespace Enemies
 
         private StatCalculator _statCalculator;
 
-        private float _roundMaxHp = 0;
+        private float _roundMaxHp = 0; //vida de los enemigos que se van a spawnear (En su conjunto y tal)
 
         public static DDACalculator instance { get; private set; }
 
-        public AnimationCurve testCurve;
+        public AnimationCurve PlayerSkillCurve;
 
         private void Awake()
         {
@@ -98,6 +98,8 @@ namespace Enemies
             WaveController._instance.OnRoundChange += EndRoundFunction;
             WaveController._instance.OnWaveCreated += AuxFunc;
 
+            //Guardamos las stats base
+            
             foreach (var enemy in enemyConfig.enemies)
             {
                 EnemyStats stats = new EnemyStats(enemy.Id, enemy.health, enemy.damage, enemy.speed, enemy.armor,
@@ -111,8 +113,11 @@ namespace Enemies
         {
             float totalBaseDmg = 0;
             float totalEnemyHp = 0;
-            int winnersCount = _winners.Count;
-            WorldController.Instance.UpdtateStreake(winnersCount == 0);
+            int winnersCount = _winners.Count; //Los bichos que se cuelan (golpean a la caravana)
+            WorldController.Instance.UpdtateStreake(winnersCount == 0);// Ponemos que en esta ronda no hemos pasado sin que nos hagan daño
+            
+            //De los bichos que han llegado, guardamos el daño del mismo y su vida
+            
             for (int i = 0; i < winnersCount; i++)
             {
                 WinnerStats stats = _winners.Pop();
@@ -120,13 +125,14 @@ namespace Enemies
                 totalEnemyHp += stats.hp;
             }
 
+            
             float skill = PlayerSkillCalculator.Instance.ComputeSkill();
             WorldController.Instance.SetPlayerSkill(skill);
 
             _multManager.UpdateWithGlobalHealth(_diffVariables, _diffMultipliers, (int) totalBaseDmg);
             _multManager.UpdateWithWinnersHealth(_roundMaxHp, totalEnemyHp,
                 _diffMultipliers, ref _globalDiff);
-            _multManager.UpdateWIthPlayerSkill(skill, _diffMultipliers, testCurve);
+            _multManager.UpdateWIthPlayerSkill(skill, _diffMultipliers, PlayerSkillCurve);
 
             _statCalculator.UpdateVariables(_diffVariables, _diffMultipliers);
 
