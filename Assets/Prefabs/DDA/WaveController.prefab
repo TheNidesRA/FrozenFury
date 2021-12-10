@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Spawner: {fileID: 0}
   canvasContinue: {fileID: 0}
-  minEnemies: 10
+  minEnemies: 5
   winRound: 9
   spawnProgression: 0.7
   spawnTimeProgression:
@@ -111,7 +111,7 @@ MonoBehaviour:
   playerDeaths: 0
   rangeMin: 1
   rangeMax: 1
-  maxKills: 1000
+  maxKills: 500
   maxPlayerLvl: 50
   maxStructs: 40
   maxDeaths: 50
@@ -129,36 +129,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawner: {fileID: 0}
   enemyConfig: {fileID: 11400000, guid: abadacf5ee166c5449de88ce6a81cc7b, type: 2}
-  testCurve:
+  PlayerSkillCurve:
     serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0.05
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 136
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.59968317
-      value: 0.060708016
-      inSlope: 0.04283206
-      outSlope: 0.04283206
-      tangentMode: 136
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0.10055238
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 136
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+    m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4

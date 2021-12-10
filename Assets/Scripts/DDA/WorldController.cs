@@ -263,8 +263,8 @@ public class WorldController : MonoBehaviour
 
         if (_weights[1] > 0.12f)
         {
-            _weights[3] = _weights[1] - 0.35f;
-            _weights[1] = 0.35f;
+            _weights[3] += _weights[1] - 0.12f;
+            _weights[1] = 0.12f;
         }
         if (round < 5)
         {
