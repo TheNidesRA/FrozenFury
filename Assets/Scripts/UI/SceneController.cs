@@ -27,6 +27,15 @@ public class SceneController : MonoBehaviour
         AudioManager.Instance?.Stop("Finalizar Ronda");
         AudioManager.Instance?.Stop("Chill Theme");
         AudioManager.Instance?.Play("Perder Partida");
+        try
+        {
+            GameObject.Find("AudioFunctions").TryGetComponent<AudioSettings>(out var audioSettings);
+            audioSettings.SetVolumeMusic(audioSettings.previousSliderMusic);
+            audioSettings.SetVolumeSounds(audioSettings.previousSliderAudio);
+        }
+        catch (NullReferenceException e)
+        {
+        }
     }
 
 
@@ -37,6 +46,15 @@ public class SceneController : MonoBehaviour
         AudioManager.Instance?.Stop("Finalizar Ronda");
         AudioManager.Instance?.Stop("Chill Theme");
         AudioManager.Instance?.Play("Ganar Partida");
+        try
+        {
+            GameObject.Find("AudioFunctions").TryGetComponent<AudioSettings>(out var audioSettings);
+            audioSettings.SetVolumeMusic(audioSettings.previousSliderMusic);
+            audioSettings.SetVolumeSounds(audioSettings.previousSliderAudio);
+        }
+        catch (NullReferenceException e)
+        {
+        }
     }
 
     public void GoToMainMenu()
