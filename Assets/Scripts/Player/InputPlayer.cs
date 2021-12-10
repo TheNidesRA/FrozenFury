@@ -187,6 +187,14 @@ public class @InputPlayer : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Cancelar"",
+                    ""type"": ""Button"",
+                    ""id"": ""f071095e-bcb0-4765-b4cd-f82d50f8f5fa"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -354,6 +362,17 @@ public class @InputPlayer : IInputActionCollection, IDisposable
                     ""action"": ""Build4"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a9f82f67-f6e7-4883-8582-8f8c416439fd"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cancelar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -403,6 +422,7 @@ public class @InputPlayer : IInputActionCollection, IDisposable
         m_Building_Confirm = m_Building.FindAction("Confirm", throwIfNotFound: true);
         m_Building_SelectBuid = m_Building.FindAction("SelectBuid", throwIfNotFound: true);
         m_Building_Build4 = m_Building.FindAction("Build4", throwIfNotFound: true);
+        m_Building_Cancelar = m_Building.FindAction("Cancelar", throwIfNotFound: true);
         // Test
         m_Test = asset.FindActionMap("Test", throwIfNotFound: true);
         m_Test_SpawnEnemy = m_Test.FindAction("SpawnEnemy", throwIfNotFound: true);
@@ -499,6 +519,7 @@ public class @InputPlayer : IInputActionCollection, IDisposable
     private readonly InputAction m_Building_Confirm;
     private readonly InputAction m_Building_SelectBuid;
     private readonly InputAction m_Building_Build4;
+    private readonly InputAction m_Building_Cancelar;
     public struct BuildingActions
     {
         private @InputPlayer m_Wrapper;
@@ -514,6 +535,7 @@ public class @InputPlayer : IInputActionCollection, IDisposable
         public InputAction @Confirm => m_Wrapper.m_Building_Confirm;
         public InputAction @SelectBuid => m_Wrapper.m_Building_SelectBuid;
         public InputAction @Build4 => m_Wrapper.m_Building_Build4;
+        public InputAction @Cancelar => m_Wrapper.m_Building_Cancelar;
         public InputActionMap Get() { return m_Wrapper.m_Building; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -556,6 +578,9 @@ public class @InputPlayer : IInputActionCollection, IDisposable
                 @Build4.started -= m_Wrapper.m_BuildingActionsCallbackInterface.OnBuild4;
                 @Build4.performed -= m_Wrapper.m_BuildingActionsCallbackInterface.OnBuild4;
                 @Build4.canceled -= m_Wrapper.m_BuildingActionsCallbackInterface.OnBuild4;
+                @Cancelar.started -= m_Wrapper.m_BuildingActionsCallbackInterface.OnCancelar;
+                @Cancelar.performed -= m_Wrapper.m_BuildingActionsCallbackInterface.OnCancelar;
+                @Cancelar.canceled -= m_Wrapper.m_BuildingActionsCallbackInterface.OnCancelar;
             }
             m_Wrapper.m_BuildingActionsCallbackInterface = instance;
             if (instance != null)
@@ -593,6 +618,9 @@ public class @InputPlayer : IInputActionCollection, IDisposable
                 @Build4.started += instance.OnBuild4;
                 @Build4.performed += instance.OnBuild4;
                 @Build4.canceled += instance.OnBuild4;
+                @Cancelar.started += instance.OnCancelar;
+                @Cancelar.performed += instance.OnCancelar;
+                @Cancelar.canceled += instance.OnCancelar;
             }
         }
     }
@@ -647,6 +675,7 @@ public class @InputPlayer : IInputActionCollection, IDisposable
         void OnConfirm(InputAction.CallbackContext context);
         void OnSelectBuid(InputAction.CallbackContext context);
         void OnBuild4(InputAction.CallbackContext context);
+        void OnCancelar(InputAction.CallbackContext context);
     }
     public interface ITestActions
     {

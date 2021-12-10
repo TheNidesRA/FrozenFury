@@ -3,6 +3,7 @@ using Enemies;
 using GridSystem;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ComunicacionGridCanvas : MonoBehaviour
 {
@@ -51,13 +52,10 @@ public class ComunicacionGridCanvas : MonoBehaviour
     {
         get { return _placedBuild; }
     }
-
-
-
-
+    
     public GameObject startRound;
-    
-    
+
+    public Button CancelarConstruccion;
 
     public void OnDestroy()
     {
@@ -202,6 +200,7 @@ public class ComunicacionGridCanvas : MonoBehaviour
         BuildingSO placedObjectTypeSO = GridBuildingSystem.Instance.buildingSo;
         if (placedObjectTypeSO != null)
         {
+            CancelarConstruccion.gameObject.SetActive(true);
             build = Instantiate(placedObjectTypeSO.canvasVisual, Vector3.zero, Quaternion.identity,
                 buildPlaceVisual.transform);
 
@@ -215,6 +214,7 @@ public class ComunicacionGridCanvas : MonoBehaviour
         }
         else
         {
+            CancelarConstruccion.gameObject.SetActive(false);
             tween = LeanTween.move(_rectTransformEditBuild, outsidePosition, transitionTime).setEaseOutCubic()
                 .setOnComplete(() => { EditBuild.SetActive(false); 
                     if (joystick != null) 

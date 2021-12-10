@@ -90,6 +90,7 @@ namespace GridSystem
             _control.Building.UndoSelection.performed += DeselectObjectType;
             _control.Building.Rotate.performed += Rotate;
             _control.Building.Confirm.performed += Confirm;
+            _control.Building.Cancelar.performed += UndoSelection;
             _control.Building.SelectBuid.performed += SearchBuilding;
         }
 
@@ -144,6 +145,11 @@ namespace GridSystem
             WaveController._instance.OnRoundActive += Instance_OnRoundActive;
         }
 
+        private void UndoSelection(InputAction.CallbackContext callbackContext)
+        {
+            removeSelectedBuild();
+        }
+        
         private void RemoveBuild(InputAction.CallbackContext callbackContext)
         {
             GridObject gridObject = GetMouseGridObject();
