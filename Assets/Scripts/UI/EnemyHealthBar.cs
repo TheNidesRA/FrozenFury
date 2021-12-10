@@ -16,6 +16,7 @@ namespace UI
         private Quaternion fixedrot;
 
         private Canvas _canvas;
+        private Enemy _enemy;
 
         private void Awake()
         {
@@ -23,12 +24,13 @@ namespace UI
             Vector3 aux = initPos;
             Vector3 camPos = Camera.main.transform.position;
             aux.x = camPos.x;
+            _enemy = GetComponentInParent<Enemy>();
 
             gameObject.transform.position = aux;
             gameObject.transform.LookAt(camPos);
             fixedrot = gameObject.transform.rotation;
             gameObject.transform.position = initPos;
-            GetComponentInParent<Enemy>().HealthBarEvent += HandleHealth;
+            _enemy.HealthBarEvent += HandleHealth;
             _canvas = GetComponent<Canvas>();
             _canvas.enabled = false;
         }
@@ -40,13 +42,13 @@ namespace UI
 
         private void OnEnable()
         {
-            maxHealth = GetComponentInParent<Enemy>().maxHealth;
+            maxHealth = _enemy.maxHealth;
         }
 
         private void OnDisable()
         {
             //Esto tira fallo si se para la partida y hay enemigos en pantalla
-            GetComponentInParent<Enemy>().HealthBarEvent -= HandleHealth;
+            _enemy.HealthBarEvent -= HandleHealth;
         }
 
         private void HandleHealth(object e, float health)
