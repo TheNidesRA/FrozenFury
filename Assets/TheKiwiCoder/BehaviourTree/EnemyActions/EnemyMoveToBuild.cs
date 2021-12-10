@@ -27,7 +27,6 @@ public class EnemyMoveToBuild : ActionNode
 
         if (context.enemy.actionTarget.TryGetComponent<PlacedBuild>(out PlacedBuild p))
         {
-     
             context.enemy.ActionImage.sprite = BocadillosSistema._instance.GetSprite(p.BuildingSo.name);
             var l = p.getValidAttacksPoints();
             // Debug.Log("Ya no es null de hecho estamos analizandolo XD");

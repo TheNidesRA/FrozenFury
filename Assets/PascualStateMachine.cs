@@ -103,7 +103,7 @@ public class PascualStateMachine : MonoBehaviour
         if (PlayerStats._instance.Health > 0)
         {
             //Debug.Log("A chasear ");
-            Pascual.ActionImage.sprite = chasing;
+            Pascual.ActionImage.sprite = BocadillosSistema._instance.GetPlayer();;
             //Pascual.NavMeshAgent.ResetPath();
             currentState = State.ChassingPlayer;
             Pascual.NavMeshAgent.SetDestination(PlayerStats._instance.transform.position);
