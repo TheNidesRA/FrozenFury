@@ -12,11 +12,17 @@ namespace Enemies
         {
             if (healthLoss == 0)
             {
+                // mults[0] += 0.03f;
+                // mults[1] += 0.05f;
+                // mults[2] -= 0.05f;
+                // // vars[0] += 1;
+                // vars[1] += 1;
+                
                 mults[0] += 0.03f;
                 mults[1] += 0.05f;
                 mults[2] -= 0.05f;
                 // vars[0] += 1;
-                vars[1] += 1;
+                vars[1] += 0.3f;
             }else if (healthLoss < 5)
             {
                 mults[0] -= 0.03f;
