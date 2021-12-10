@@ -199,16 +199,15 @@ namespace GridSystem
 
             if (build != null)
             {
-                float payback = (build.BuildingSo.goldCost * 0.5f) ;
+                float payback = (build.BuildingSo.goldCost * 0.5f);
                 int pint = Convert.ToInt32(payback);
                 PlayerStats._instance.gold += pint;
-                
+
                 if (PlayerPrefs.GetInt("particlesActivated") == 1)
                 {
                     ParticleManager.Instance?.PlayDestroyedBuildParticles(GetWorldCenter(build));
-                    
                 }
-                    
+
 
                 build.DestroySelf();
 
@@ -257,13 +256,15 @@ namespace GridSystem
             // int xcentro = ancho + x;
             // int zcentro = alto + z;
 
-            Vector2 c = (build.BuildingSo.GetCenter(build.dir)-build.BuildingSo.GetRotationOffset(build.dir))*cellSize;
-      
+            Vector2 c = (build.BuildingSo.GetCenter(build.dir) - build.BuildingSo.GetRotationOffset(build.dir)) *
+                        cellSize;
+
             Vector3 centro = new Vector3(c.x, 0, c.y);
 
             Vector3 postion = build.transform.position + centro;
-            
-            Debug.Log("Dir : "+ build.dir+" c: "+ c+ " Posicion :" +build.transform.position+ c+ " Centro: "+postion);
+
+            Debug.Log("Dir : " + build.dir + " c: " + c + " Posicion :" + build.transform.position + c + " Centro: " +
+                      postion);
 
             return postion;
         }
@@ -377,6 +378,7 @@ namespace GridSystem
 
             if (CanBuild(buildingPositions))
             {
+                AudioManager.Instance.PlayRandomConstruction();
                 buildMenu = false;
                 enableBuildMove = true;
 
