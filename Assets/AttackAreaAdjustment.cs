@@ -16,7 +16,7 @@ public class AttackAreaAdjustment : MonoBehaviour
       if (prefab)
       {
      
-         Vector3 scalev = new Vector3(Edificio.transform.localScale.x,1,Edificio.transform.localScale.z) * Collider.radius;
+         Vector3 scalev = new Vector3(Edificio.transform.localScale.x,1,Edificio.transform.localScale.z) * Collider.radius*2;
          scalev.y = 0.5f;
          Area.transform.localScale = scalev;
          return;
@@ -26,7 +26,7 @@ public class AttackAreaAdjustment : MonoBehaviour
 
       Collider = Scale.GetComponent<SphereCollider>();
       
-      Vector3 scale = new Vector3(Scale.localScale.x,1,Scale.localScale.z) * Collider.radius;
+      Vector3 scale = new Vector3(Scale.localScale.x,1,Scale.localScale.z) * Collider.radius*2;
       scale.y = 0.5f;
       Area.transform.localScale = scale;
       
