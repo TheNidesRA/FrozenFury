@@ -378,7 +378,7 @@ namespace GridSystem
 
             if (CanBuild(buildingPositions))
             {
-                AudioManager.Instance.PlayRandomConstruction();
+                AudioManager.Instance?.PlayRandomConstruction();
                 buildMenu = false;
                 enableBuildMove = true;
 
