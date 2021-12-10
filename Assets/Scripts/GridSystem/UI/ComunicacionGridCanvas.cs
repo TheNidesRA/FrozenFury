@@ -8,7 +8,7 @@ public class ComunicacionGridCanvas : MonoBehaviour
 {
     public GameObject BuildButton;
 
-    public GameObject joystick;
+    public DynamicJoystick joystick;
     public GameObject EditBuild;
     private RectTransform _rectTransformEditBuild;
     public GameObject buildPlaceVisual;
@@ -144,7 +144,8 @@ public class ComunicacionGridCanvas : MonoBehaviour
         BuildButtonActions.returnInside();
         tween = LeanTween.move(_rectTransformEditBuild, outsidePosition, transitionTime).setEaseOutCubic()
             .setOnComplete(() => { EditBuild.SetActive(false);
-                joystick.SetActive(true);
+                if (joystick != null)
+                    joystick.enabled = true;
             });
     }
 
@@ -154,7 +155,8 @@ public class ComunicacionGridCanvas : MonoBehaviour
         // BuildButton.SetActive(false);
         BuildButtonActions.outBuildPosition();
         EditBuild.SetActive(true);
-        joystick.SetActive(false);
+        if(joystick!=null)
+        joystick.enabled = false;
 
         tween = LeanTween.moveX(_rectTransformEditBuild.GetComponent<RectTransform>(), insidePosition.x, transitionTime)
             .setEaseInCubic(); //.setOnComplete(() => {EditBuild.SetActive(true); });
@@ -163,8 +165,9 @@ public class ComunicacionGridCanvas : MonoBehaviour
     public void EnableBuildMoving()
     {
         tween = LeanTween.move(_rectTransformEditBuild, outsidePosition, transitionTime).setEaseOutCubic()
-            .setOnComplete(() => { EditBuild.SetActive(false); 
-                joystick.SetActive(true);
+            .setOnComplete(() => { EditBuild.SetActive(false);
+                if (joystick != null)
+                    joystick.enabled = true;
             });
     }
 
@@ -213,7 +216,9 @@ public class ComunicacionGridCanvas : MonoBehaviour
         else
         {
             tween = LeanTween.move(_rectTransformEditBuild, outsidePosition, transitionTime).setEaseOutCubic()
-                .setOnComplete(() => { EditBuild.SetActive(false); joystick.SetActive(true);});
+                .setOnComplete(() => { EditBuild.SetActive(false); 
+                    if (joystick != null) 
+                        joystick.enabled = true;});
             // BuildButton.SetActive(true);
             if (!GridBuildingSystem.Instance.buildMenu)
                 BuildButtonActions.returnInside();

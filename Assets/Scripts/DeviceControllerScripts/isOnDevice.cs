@@ -23,6 +23,11 @@ public class isOnDevice : MonoBehaviour
 #endif
     }
 
+    private void Start()
+    {
+        
+    }
+
 
     private void Awake()
     {

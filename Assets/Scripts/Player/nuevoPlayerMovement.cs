@@ -22,7 +22,6 @@ public class nuevoPlayerMovement : MonoBehaviour
     private float gravity;
     private int rotationSpeed;
     public Joystick joystickDynamic;
-    public GameObject joy;
 
     public bool work = true;
 
@@ -98,7 +97,8 @@ public class nuevoPlayerMovement : MonoBehaviour
         
         if (!work)
         {
-            joy.SetActive(false);
+            if (joystickDynamic != null)
+                joystickDynamic.enabled = false;
             inputMovement = new Vector2(0, 0);
             return;
         }
