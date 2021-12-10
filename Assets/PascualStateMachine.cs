@@ -64,7 +64,7 @@ public class PascualStateMachine : MonoBehaviour
                 float distance = Vector3.Distance(PlayerStats._instance.transform.position, transform.position);
                 if (distance < Pascual.attackRange)
                 {
-                    Debug.Log("Hemos llegao: " + distance);
+                   // Debug.Log("Hemos llegao: " + distance);
                     Pascual.NavMeshAgent.isStopped = true;
                     currentState = State.Attack;
                 }
@@ -75,7 +75,7 @@ public class PascualStateMachine : MonoBehaviour
 
                 break;
             case State.Attack:
-                Debug.Log("Attack");
+               // Debug.Log("Attack");
                 duration = 1 / Pascual.attackSpeed;
                 startTime = Time.time;
                 animator.SetBool("Attack", true);
@@ -88,7 +88,7 @@ public class PascualStateMachine : MonoBehaviour
             case State.AttackAnimation:
                 if (Time.time - startTime > duration)
                 {
-                    Debug.Log("AttackCD");
+                  //  Debug.Log("AttackCD");
                     animator.SetBool("Attack", false);
                     Evaluate();
                 }
@@ -102,7 +102,7 @@ public class PascualStateMachine : MonoBehaviour
         animator.SetBool("Run", true);
         if (PlayerStats._instance.Health > 0)
         {
-            Debug.Log("A chasear ");
+            //Debug.Log("A chasear ");
             Pascual.ActionImage.sprite = chasing;
             //Pascual.NavMeshAgent.ResetPath();
             currentState = State.ChassingPlayer;

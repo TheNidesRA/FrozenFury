@@ -25,7 +25,7 @@ namespace Enemies
         }
 
         public List<EnemyStats> UpdateStats(List<EnemyStats> statsList, Dictionary<string, EnemyStats>initStats,
-                                    float[] vars, float diff)
+                                    float[] vars, float diff)// Diff es la globaldiff vars son las variables de dificultad
         {
             List<EnemyStats> returnList = new List<EnemyStats>();
             

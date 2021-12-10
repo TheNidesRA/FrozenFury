@@ -73,7 +73,7 @@ namespace Enemies
         {
             float skill = 0;
 
-            skill = (playerLvl + stucts + kills) / (1 + playerDeaths);
+            skill = (playerLvl + stucts + kills) / (1 + playerDeaths); //CALCULA LA HABLIDAD :)
 
             //This formula converts the skill value into a range between 0 and 10
             float convertedSkill = (skill - rangeMin) * 10 / (rangeMax - rangeMin);

@@ -5,8 +5,8 @@ namespace Enemies
 {
     public class WaveGenerator
     {
-        private float _roundProgression;
-        private int _minEnemies;
+        private float _roundProgression;//Cuantos enemigos "extra"spawnean por ronda
+        private int _minEnemies; 
         private Enemy[] _enemies;
 
         public WaveGenerator(EnemyConfiguration config, float lvlDif, int min)
