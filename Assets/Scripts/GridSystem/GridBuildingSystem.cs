@@ -193,7 +193,9 @@ namespace GridSystem
 
             if (build != null)
             {
-              
+                float payback = (build.BuildingSo.goldCost * 0.5f) ;
+                int pint = Convert.ToInt32(payback);
+                PlayerStats._instance.gold += pint;
                 
                 if (PlayerPrefs.GetInt("particlesActivated") == 1)
                 {
