@@ -53,7 +53,7 @@ public class nuevoPlayerMovement : MonoBehaviour
     {
         GridBuildingSystem.Instance.OnSelectedChanged += Aux1;
         GridBuildingSystem.Instance.OnObjectPlaced += Aux2;
-
+        GridBuildingSystem.Instance.OnObjectSetPosition += Aux3;
     }
 
     private void Aux1(object a, EventArgs b)
@@ -75,11 +75,17 @@ public class nuevoPlayerMovement : MonoBehaviour
     {
         GridBuildingSystem.Instance.OnSelectedChanged -= Aux1;
         GridBuildingSystem.Instance.OnObjectPlaced -= Aux2;
+        GridBuildingSystem.Instance.OnObjectSetPosition -= Aux3;
     }
 
     private void Aux2(object a, EventArgs b)
     {
         work = true;
+    }
+
+    private void Aux3(object a, EventArgs b)
+    {
+        work = false;
     }
 
     private void OnEnable()
@@ -112,9 +118,6 @@ public class nuevoPlayerMovement : MonoBehaviour
         
             inputMovement = new Vector2(joystickDynamic.Horizontal, joystickDynamic.Vertical);
         }
-
-
-
 
 
     }
