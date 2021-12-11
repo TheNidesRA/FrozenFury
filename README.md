@@ -768,6 +768,131 @@ En este apartado se citarán un listado de cambios conocidos que se aplicarán a
 - **Tweaks y timing de animaciones**: Actualmente, todos los modelos exceptuando algunos casos por errores internos, cuentan con animaciones que aportan dinamismo al videojuego respecto a la anterior entrega. A pesar de ello, todavía falta por modificar y calcular correctamente los tiempos de las animaciones de los personajes y de las estructuras para una mayor fluidez visual
 
 # **15. Post-Mortem versión Beta**
+## **Bozhidar Petrov Valchev**
+
+## **¿Qué fue bien?**
+
+**De unas simples mecánicas a un juego**
+Cuando se terminó la alfa, “Frozen Fury” era una combinación de mecánicas muy lejos de parecerse a un juego. Además al ser una alfa, también quedaba mucho por pulir de la parte de gráficos. Sin embargo, al acabar la beta, es increíble en lo que se habían convertido unas simples mecánicas. Cada vez el producto se parecía más a un juego de verdad.
+
+**Uso de las herramientas de control de versiones**
+Todos los problemas que tuvimos en la fase alfa sobre Gitkraken, no volvieron a ocurrir en esta fase. Los errores del pasado nos hicieron ganar una experiencia que sería vital para que ningún miembro del equipo tuviese problemas con la herramienta.
+
+**Gran cantidad de contenido y feedback positivo**
+Mirando hacia atrás, el juego se sometió a un rediseño completo. Se metieron animaciones para los personajes, enemigos, una tienda de personajes y otra de skins. Además metimos pantallas de derrota y otra de victoria y, por primera vez, vimos a personas externas al proyecto jugando a “Frozen Fury” y pensando que era un juego (con muchos detalles por pulir, por supuesto, pero aun así, se divertían con la experiencia jugable).
+
+## **¿Qué fue mal?**
+**La organización del Trello y la metodología ágil.**
+En esta fase volvió a ocurrir lo mismo que en la alfa. El trello y los dailies volvieron a quedarse en el olvido. Los primeros días lo usamos y fuimos actualizando el progreso, pero pasada una semana, el uso de estas herramientas era menos constante. 
+Los dailiess sobre todo, era muy común ver que ninguno de nosotros había rellenado nada en los dailies durante varios días.
+Estoy totalmente seguro de que el motivo de esto es debido a que nos pasábamos reunidos todos los días en llamada durante horas avanzando el proyecto y sabíamos con exactitud qué estaba haciendo cada miembro.
+
+
+
+
+
+
+
+## **¿Qué podría mejorar personalmente?**
+
+**Saber cómo están haciendo sus tareas los otros miembros del grupo**
+Al principio, como era un proyecto pequeño, sabía con exactitud de qué forma estaban implementando sus tareas los otros desarrolladores, sin embargo, a medida que el proyecto fue avanzando, me fui centrando en mis tareas y abstrayéndome de las tareas de los demás, si funcionaban, para mí era suficiente. 
+Ya fuese porque teníamos más actividades o porque estaba falto de tiempo, consideré que esto era correcto, sin embargo, esto luego tuvo sus consecuencias cuando tuve que implementar algunas funcionalidades que se solapaban a algunas ya existentes.
+En ese momento tenía que meter mi parte de código en otro código ya existente, y para ello, tenía que saber lo que hacía ese código. Había veces que era sencillo entenderlo, pero en otras situaciones, el código era extenso y tenía que recurrir a la ayuda de las personas que lo desarrollaron, ralentizando así al equipo. 
+Como mínimo, creo que debería de saber cómo están desarrollando los demás sus tareas.
+
+
+
+## **Daniel Sánchez Cánovas**
+ 
+## **¿Qué fue bien?**
+
+Se refinaron las mecánicas planteadas y se creó una IA básica de los personajes así como un DDA que dieron lugar a la base de lo que teníamos planteado, creando así una buena experiencia jugable (según el feedback recibido).
+
+Se añadieron las animaciones a los diferentes personajes y se creo un escenario que dio vida al juego.
+
+El uso del repositorio fue correcto en esta fase y no hubo ningún error grave y la mayoría supo utilizarlo correctamente.
+## **¿Qué fue mal?**
+
+Se dejó atrás el apartado visual y no conseguimos el estilo que toon que estábamos buscando.
+
+También obviamos la retroalimentación, en muchos escenarios el jugador no sabe exactamente lo que está pasando y hasta que no lleva un tiempo jugando no se da cuenta de lo que ocurre en algunos casos.
+El uso de las metodologías ágiles, similar a la primera fase, se empezó muy bien haciendo los dailies  y actualizando el trello, pero conforme íbamos avanzando se fue quedando atrás llegando con esto un poco de desorganización, aunque nada grave debido a que siempre estábamos en llamada comunicándonos las cosas pero siempre se podía olvidar algo.
+Mucha carga de trabajo para esta entrega, nos habíamos puesto unos mínimos muy altos y nos costó llegar a la entrega con un juego completo y medianamente pulido.
+## **¿Qué podría mejorar personalmente?**
+Mis commits en el github, sigo sin poner descripciones, al principio las escribía pero con el paso del tiempo solo lo dejaba en el título.
+
+
+
+## **Jorge Galiano García**
+## **¿Qué fue bien?**
+En primer lugar, la comunicación ha sido uno de los aspectos más importantes en el desarrollo de la beta, se ha mantenido durante toda la fase y ha sido muy buena, creando un muy buen entendimiento entre los diferentes miembros del equipo. 
+Otro apartado que ha sido positivo se trata del contenido del trabajo. En la Alpha aunque se consiguiera una buena entrega, el contenido únicamente trataba las mecánicas más básicas del juego , no habían modelos en algunos casos y existían bastantes errores aún por solucionar. Para la Beta, a parte de solucionar errores existentes, se han ido refinando las mecánicas, introduciendo modelos y creando algo más parecido a un juego, generando así mucho más contenido en el videojuego.
+El uso del repositorio en esta entrega también ha mejorado gracias a conseguir conocimiento sobre el uso del mismo, en la anterior fase se produjeron ciertos errores de uso que ralentizaron el proyecto. Gracias a esto se han evitado muchos errores y se ha conseguido tener un buen ritmo de trabajo durante la versión Alpha.
+## **¿Qué fue mal?**
+Un aspecto que ha ido mal se corresponde al apartado gráfico del videojuego, más concretamente a los shaders. Este trabajo se ha ido posponiendo hasta que el equipo concretó que no se implementaría en esta entrega, perdiendo así calidad visual para la versión Beta.
+	Otro aspecto que poco a poco ha ido a peor durante la fase Beta se trata del uso de una metodología ágil. Al comienzo de la entrega se hacían dailies para saber qué tareas íbamos a hacer y si alguien necesitaba ayuda, pero esto conforme avanzó el tiempo se dejó de hacer.
+
+## **¿Qué podría mejorar personalmente?**
+A lo largo de la fase Beta, he ido perdiendo contacto con otras partes del código ya que el trabajo estaba dividido. Esto en algunos casos ha podido llegar a ralentizar el proyecto cuando tenía que relacionar mi parte con la de otro compañero y necesitaba que me ayudara a entender el código para poder continuar con la tarea asignada.
+ 
+
+
+## **Adrián Valiente González**
+## **¿Qué fue bien?**
+Nuevamente, uno de los factores clave para el desarrollo de la fase beta del juego ha sido la comunicación del equipo de trabajo. La versión Alpha tenía las mecánicas básicas más importantes del videojuego (en su fase más temprana), pero en la versión Beta se ha tenido desarrollar un juego completo sin placeholders y con un menor número de errores, lo que conllevaba en 3 semanas, un trabajo exhaustivo y constante para sacar la mejor versión beta del juego posible.
+
+Al mismo tiempo, y siendo más importante en esta entrega, se ha mantenido la correcta división de las tareas y roles de los diferentes equipos de trabajo de la empresa. El área técnica y artística del proyecto ha establecido una correcta prioridad de las diferentes actividades y han trabajado mano a mano si surgían imprevistos o errores, dedicando el tiempo necesario para solucionarlos lo antes posible.
+
+Otro factor muy importante de haber aprendido es el correcto uso del sistema de control de versiones GitKraken. Para la versión Alpha, había cierto desconocimiento del mismo, de hecho, se produjeron diversos errores derivados de sobreescribir trabajo, tener que repetirlo numerosas veces por ello, corrupciones de archivos… Para esta versión beta, se ha sabido manejar y gestionar correctamente y no ha dado problemas.
+
+En cuanto al seguimiento de la metodología ágil, se ha llevado una mejor organización de las tareas del tablero Trello debido a que las historias de usuario se escribieron entre todos los miembros del equipo, y dichas tareas se asignaron de forma equilibrada entre las distintas áreas del proyecto.
+## **¿Qué fue mal?**
+Como ya se mencionó en el Post-Mortem de la versión Alpha, se ha estado siguiendo Scrum como framework de trabajo. A pesar de haber llevado una mayor constancia con el tablero Trello, no se ha plasmado el trabajo diario en el documento Excel de Daily Meetings. No era obligatorio, puesto que el equipo se ha reunido todos los días un mínimo de dos horas y se ha sabido en todo momento el punto concreto en el que se encontraba el proyecto pero, en caso de haber tenido constancia con el documento, se reforzaba este aspecto habría sido más fácil establecer una traza de la cantidad de trabajo dedicada diariamente.
+En cuanto a las reuniones diarias, como se ha mencionado en el anterior apartado, el equipo de trabajo ha llevado a cabo reuniones todos los días de un mínimo de dos horas cada una, hasta llegar a dedicar tardes y mañanas enteras reunidos en llamada. Como ha resultado difícil seguir correctamente el framework de trabajo debido a que es la primera vez que nos configuramos como empresa, la rutina de los daily standup meetings no se ha cumplido correctamente. La planificación inicial consistía en una reunión al comienzo del día de aproximadamente 15 minutos, y una reunión al final del día con todo el trabajo llevado a cabo cada día. Al final, como se ha mencionado, ha habido reuniones diarias pero de más de dos horas cada una.
+## **¿Qué podría mejorar personalmente?**
+El rol de Scrum Master es un cargo de suma importancia para un proyecto como este, pero debido a mi inexperiencia y, tras haber ejercido una única vez en otra de las asignaturas del grado, siento que es un cargo que me ha venido un poco grande y no he sabido gestionar correctamente. Pienso que ha sido porque, como no somos un equipo de trabajo muy grande y, hay diversas personas que tienen que ejercer varios roles al mismo tiempo, no se le puede dedicar el tiempo suficiente a cada rol para perfeccionarlo. Si quiero ejercer correctamente de Scrum Master tengo que dedicarle el tiempo de estudio suficiente, y ahí entonces, ejercer el rol.
+
+
+## **Miguel Vidal De La Plaza**
+## **¿Qué fue bien?**
+La comunicación en el equipo ha resultado ser todo un éxito durante la fase de desarrollo de la beta ya que hemos conseguido un ritmo de trabajo común al que nos hemos sincronizado todo el equipo.
+Por otro lado, la división de tareas durante la práctica ha sido eficiente y funcional, de manera que siempre teníamos a un miembro especializado en cada tarea. De esta manera se aseguraba que cuando hubiese un error de cualquier tipo, siempre habría alguien especializado en ese campo.
+Otro de los aspectos positivos de nuestra dinámica de trabajo ha sido el aprendizaje y la experiencia obtenida durante el desarrollo de la metodología SCRUM, reuniéndonos diariamente para trabajar y discutir los avances llevados a cabo el día anterior.
+Finalmente, merece la pena mencionar todos los conocimientos adquiridos durante esta fase sobre Git y cómo utilizarlo correctamente (en nuestro caso mediante el uso de GitKraken).
+## **¿Qué fue mal?**
+A pesar de funcionar bastante bien como equipo y haber llevado a cabo una buena metodología SCRUM, hemos dejado algo de lado el tablero de Trello, quedando este casi en el olvido.
+Por otro lado, la organización general del equipo con respecto a otras asignaturas tambien ha sido un error a tener en cuenta que ha causado problemas a todos nuestros miembros, obligándolos a hacer jornadas intensivas para llegar a todas las entregas.
+## **¿Qué podría mejorar personalmente?**
+Personalmente creo que podría esforzarme más en rellenar diariamente todos los documentos relativos a la metodología SCRUM.
+También mencionar que de cara al final de la entrega, debido problemas mencionados anteriormente (principalmente otras asignaturas) no he podido mantener el mismo ritmo de trabajo que hasta ese momento había llevado.
+Por último, como programador debería acostumbrarme a escribir más comentarios en el código para facilitarme la tarea de regresar a código ya escrito (ya sea para la resolución de posibles errores o para la expansión de este).
+## **Javier Morales Lasheras**
+## **¿Qué fue bien?**
+La buena comunicación y la buena relación que hay entre todos los miembros son unos de los aspectos más fuertes del equipo. 
+Al realizar videollamadas la mayoría de las tardes, siempre hemos sabido en qué estado del desarrollo del videojuego estábamos. 
+En cuanto al reparto de tareas, también ha sido un éxito desde mi punto de vista porque se han dividido en las categorías de desarrollo y de arte y se han cumplido los plazos propuestos.
+Es complicado trabajar con tanta gente ya que se puede correr el riesgo de que haya personas que trabajen más o menos que otras, pero en nuestra situación, todo el mundo ha trabajado equitativamente en su área específica. Al igual que en la Alpha, se asignaron a cada uno de los miembros del equipo varias tareas y con pequeños plazos para tenerlas listas a tiempo con la herramienta de Trello. 
+Por último, mencionar que finalmente he aprendido a usar una herramienta tan importante como Gitkraken, gracias a mis compañeros de trabajo, para tener todos los archivos del desarrollo en un mismo proyecto, aún siendo de la parte artística. 
+## **¿Qué fue mal?**
+Pese a la gran comunicación que teníamos por llamada casi todos los días, hemos seguido siendo irregulares a la hora de dejarlo por escrito en la hoja del excel del Daily Standup. Muchas veces se nos olvidaba rellenarlo, dejando desinformado al resto del equipo. 
+Añadido a esto, al principio del proyecto realizamos pequeñas reuniones diarias de unos 15 minutos de duración aproximadamente, y también hemos perdido la costumbre de realizarlas ya que nos reunimos directamente por videollamada para teletrabajar. 
+## **¿Qué podría mejorar personalmente?**
+Desde mi punto de vista, podría mejorar todo lo que está comentado en el apartado anterior. Ser más constante e intentar rellenar el excel de los Daily Standups porque al fin de al cabo es una tarea que no consume nada de tiempo. 
+Por último, una mala costumbre que he tenido alguna vez por vaguería es pasar alguno de mis archivos por Discord en vez de subirlos al repositorio haciendo commits en Gitkraren. De cara al futuro evitar que esto se vuelva a repetir y subirlos directamente al repositiorio. 
+
+
+## **Paloma Leiva Haro**
+## **¿Qué fue bien?**
+Un aspecto destacable del equipo durante el desarrollo de la Beta ha sido la comunicación entre sus miembros. Esta fue muy buena a lo largo de toda la Alpha y se ha mantenido y perfeccionado durante la Beta, así como la división y el reparto de las tareas del proyecto.
+Del mismo modo, se ha llevado a cabo un uso correcto del Trello al contar con la participación de todos los miembros del equipo para su gestión, y también se ha mejorado en el uso de GitKraken. Durante esta Beta se ha aumentado el número de Commits sobre el proyecto, además de incluir mejores descripciones y etiquetas.
+## **¿Qué fue mal?**
+A pesar de hacer reuniones diarias para trabajar en grupo mediante plataformas como Discord, se ha perdido la costumbre creada durante la Alpha de realizar Daily StandUp Meetings al inicio y al final de cada sesión de trabajo, como dicta la metodología ágil que el equipo está tratando de seguir: Scrum.
+Por otra parte, de nuevo el equipo no ha sido capaz de mantener la constancia para describir el trabajo diario en el Excel de Daily Meetings.
+## **¿Qué podría mejorar personalmente?**
+Personalmente, considero que aún debo seguir mejorando en el uso de GitKraken, haciendo un commit del trabajo que realizo cada día en lugar de acumular todo lo que voy creando para una única entrega final.
+
+Por último, debería ser más constante con el documento Excel de Daily Meetings y describir de forma apropiada lo que he hecho cada día.
 
 # **16. Fase Gold Master (11/12/2021)**
 Tras haber recibido retroalimentación de los usuarios durante la fase de Beta Testing, se enumerarán y desarrollarán en este apartado las características más importantes implementadas para la fase final del videojuego:
