@@ -46,6 +46,11 @@ public class SceneController : MonoBehaviour
         AudioManager.Instance?.Stop("Finalizar Ronda");
         AudioManager.Instance?.Stop("Chill Theme");
         AudioManager.Instance?.Play("Ganar Partida");
+        if (MoneySingeltone.Instance != null)
+        {
+            MoneySingeltone.Instance.PlayerEconomySo.coins += (200 * round);
+        }
+        
         try
         {
             GameObject.Find("AudioFunctions").TryGetComponent<AudioSettings>(out var audioSettings);

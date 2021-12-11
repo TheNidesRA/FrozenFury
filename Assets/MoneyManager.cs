@@ -6,7 +6,8 @@ using UnityEngine.UI;
 
 public class MoneyManager : MonoBehaviour
 {
-    public PlayerEconomySO PlayerEconomySo;
+   
+
 
     [SerializeField]
     public enum CoinType
@@ -46,8 +47,8 @@ public class MoneyManager : MonoBehaviour
         set
         {
             _ConeMan = value;
-            
-            PlayerEconomySo.ConeMan = value;
+
+            MoneySingeltone.Instance.PlayerEconomySo.ConeMan = value;
             Debug.Log(value);
             ButtonBuyConeman.interactable = !value;
             Debug.Log(ButtonBuyConeman.interactable);
@@ -62,7 +63,7 @@ public class MoneyManager : MonoBehaviour
         {
             _Torrine = value;
 
-            PlayerEconomySo.Torrine = value;
+            MoneySingeltone.Instance.PlayerEconomySo.Torrine = value;
             ButtonBuyTorrine.interactable = !value;
             ButtonChooseTorrine.interactable = value;
         }
@@ -75,7 +76,7 @@ public class MoneyManager : MonoBehaviour
         {
             _Skin_1_ICM = value;
 
-            PlayerEconomySo.ICM_skin_1 = value;
+            MoneySingeltone.Instance.PlayerEconomySo.ICM_skin_1 = value;
             ButtonBuy_Skin_1_ICM.interactable = !value;
             ButtonChooseICMSkin1.interactable = value;
         }
@@ -88,7 +89,7 @@ public class MoneyManager : MonoBehaviour
         {
             _Skin_2_ICM = value;
 
-            PlayerEconomySo.ICM_skin_2 = value;
+            MoneySingeltone.Instance.PlayerEconomySo.ICM_skin_2 = value;
             ButtonBuy_Skin_2_ICM.interactable = !value;
             ButtonChooseICMSkin2.interactable = value;
         }
@@ -101,7 +102,7 @@ public class MoneyManager : MonoBehaviour
         {
             _Skin_1_ConeMan = value;
 
-            PlayerEconomySo.ConeMan_skin_1 = value;
+            MoneySingeltone.Instance.PlayerEconomySo.ConeMan_skin_1 = value;
             ButtonBuy_Skin_1_Coneman.interactable = !value;
             ButtonChooseConemanSkin1.interactable = value;
         }
@@ -114,7 +115,7 @@ public class MoneyManager : MonoBehaviour
         {
             _Skin_2_ConeMan = value;
 
-            PlayerEconomySo.ConeMan_skin_2 = value;
+            MoneySingeltone.Instance.PlayerEconomySo.ConeMan_skin_2 = value;
             ButtonBuy_Skin_2_Coneman.interactable = !value;
             ButtonChooseConemanSkin2.interactable = value;
         }
@@ -127,7 +128,7 @@ public class MoneyManager : MonoBehaviour
         {
             _Skin_1_Torrine = value;
 
-            PlayerEconomySo.Torrine_skin_1 = value;
+            MoneySingeltone.Instance.PlayerEconomySo.Torrine_skin_1 = value;
             ButtonBuy_Skin_1_Torrine.interactable = !value;
             ButtonChooseTorrineSkin1.interactable = value;
         }
@@ -140,7 +141,7 @@ public class MoneyManager : MonoBehaviour
         {
             _Skin_2_Torrine = value;
 
-            PlayerEconomySo.Torrine_skin_2 = value;
+            MoneySingeltone.Instance.PlayerEconomySo.Torrine_skin_2 = value;
             ButtonBuy_Skin_2_Torrine.interactable = !value;
             ButtonChooseTorrineSkin2.interactable = value;
         }
@@ -188,7 +189,7 @@ public class MoneyManager : MonoBehaviour
         set
         {
             _coins = value;
-            PlayerEconomySo.coins = value;
+            MoneySingeltone.Instance.PlayerEconomySo.coins = value;
             if (value > 99999)
             {
                 TextoMonedas.text = "+99.999";
@@ -206,7 +207,7 @@ public class MoneyManager : MonoBehaviour
         set
         {
             _rings = value;
-            PlayerEconomySo.rings = value;
+            MoneySingeltone.Instance.PlayerEconomySo.rings = value;
 
             if (value > 99999)
             {
@@ -219,22 +220,26 @@ public class MoneyManager : MonoBehaviour
         }
     }
 
-    private void Awake()
+    private void Start()
     {
-        Coins = PlayerEconomySo.coins;
-        Rings = PlayerEconomySo.rings;
-        Torrine = PlayerEconomySo.Torrine;
-        ConeMan = PlayerEconomySo.ConeMan;
-        // Debug.Log(PlayerEconomySo.ConeMan);
-        // ButtonBuyConeman.interactable
-        // Debug.Log(ConeMan);
-        Debug.Log(ButtonBuyConeman.interactable);
-        Skin1Torrine = PlayerEconomySo.Torrine_skin_1;
-        Skin2Torrine = PlayerEconomySo.Torrine_skin_2;
-        Skin1ConeMan = PlayerEconomySo.ConeMan_skin_1;
-        Skin2ConeMan = PlayerEconomySo.ConeMan_skin_2;
-        Skin1Icm = PlayerEconomySo.ICM_skin_1;
-        Skin2Icm = PlayerEconomySo.ICM_skin_2;
+       
+
+            Coins =  MoneySingeltone.Instance.PlayerEconomySo.coins;
+            Rings =  MoneySingeltone.Instance.PlayerEconomySo.rings;
+            Torrine =  MoneySingeltone.Instance.PlayerEconomySo.Torrine;
+            ConeMan =  MoneySingeltone.Instance.PlayerEconomySo.ConeMan;
+            // Debug.Log(PlayerEconomySo.ConeMan);
+            // ButtonBuyConeman.interactable
+            // Debug.Log(ConeMan);
+            // Debug.Log(ButtonBuyConeman.interactable);
+            Skin1Torrine =  MoneySingeltone.Instance.PlayerEconomySo.Torrine_skin_1;
+            Skin2Torrine =  MoneySingeltone.Instance.PlayerEconomySo.Torrine_skin_2;
+            Skin1ConeMan =  MoneySingeltone.Instance.PlayerEconomySo.ConeMan_skin_1;
+            Skin2ConeMan =  MoneySingeltone.Instance.PlayerEconomySo.ConeMan_skin_2;
+            Skin1Icm =  MoneySingeltone.Instance.PlayerEconomySo.ICM_skin_1;
+            Skin2Icm =  MoneySingeltone.Instance.PlayerEconomySo.ICM_skin_2;
+       
+        
     }
 
 
