@@ -22,19 +22,19 @@ namespace Enemies
         private void OnCollisionEnter(Collision other)
         {
             if (!other.gameObject.CompareTag("Enemy")) return;
+            
+            Enemy enemy = other.gameObject.GetComponent<Enemy>();
 
             //Bajamos la vida global
             try
             {
-                GlobalHealth.instance.DecreaseHealth();
+                GlobalHealth.instance.DecreaseHealth(enemy.baseDamage);
                 AudioManager.Instance?.Play("Golpe Furgoneta");
             }
             catch
             {
                 Debug.Log("Bro, you need to introduce a globalHealth controller.");
             }
-
-            Enemy enemy = other.gameObject.GetComponent<Enemy>();
 
             //Add the enemy remaining stats to the DDA
             try
