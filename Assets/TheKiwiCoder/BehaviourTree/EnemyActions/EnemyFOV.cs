@@ -49,6 +49,7 @@ public class EnemyFOV : ActionNode
             }
         }
 
+        context.enemy.speed = 30;
         return false;
     }
 }

@@ -11,6 +11,7 @@ public class EnemySetPlayerAsTargetAndStartChase : ActionNode
         context.enemy.actionTarget = PlayerStats._instance.gameObject;
         context.agent.SetDestination(context.enemy.actionTarget.transform.position);
         context.enemy.NODOACTUAL = "EnemySetPlayerAsTargetAndStartChase";
+        context.enemy.speed = 40;
     }
 
     protected override void OnStop()
