@@ -17,6 +17,8 @@ public class AudioSettings : MonoBehaviour
     public float previousSliderMusic;
     public float previousSliderAudio;
     public float previousMusic;
+    public float augmentAudioPercentage = 0.5f;
+    public float lowerMusicPercentage = 0.3f;
 
     private void Start()
     {
@@ -47,6 +49,7 @@ public class AudioSettings : MonoBehaviour
         {
             soundMixer.SetFloat("volume", -200);
             AudioManager.setAudioVolume(0);
+            isMutedAudio = true;
             return;
         }
 
@@ -63,6 +66,7 @@ public class AudioSettings : MonoBehaviour
         {
             musicMixer.SetFloat("volume", -200);
             AudioManager.setMusicVolume(0);
+            isMutedMusic = true;
             return;
         }
 
@@ -127,8 +131,8 @@ public class AudioSettings : MonoBehaviour
     {
         previousSliderAudio = audioSlider.value;
         previousSliderMusic = musicSlider.value;
-        SetVolumeMusic(0.05f);
-        SetVolumeSounds(0.8f);
+        SetVolumeMusic(previousSliderMusic - (previousSliderMusic * lowerMusicPercentage));
+        SetVolumeSounds(previousSliderAudio + (previousSliderAudio * augmentAudioPercentage));
         yield return new WaitForSeconds(3f);
         SetVolumeMusic(previousSliderMusic);
         SetVolumeSounds(previousSliderAudio);
@@ -136,6 +140,7 @@ public class AudioSettings : MonoBehaviour
 
     public void LowerVolumeStartRound()
     {
-        StartCoroutine(nameof(LowerVolumeStartRoundCoroutine));
+        if (!isMutedMusic)
+            StartCoroutine(nameof(LowerVolumeStartRoundCoroutine));
     }
 }
