@@ -40,6 +40,17 @@ public class ParticleManager : MonoBehaviour
 
     #endregion
 
+    #region boomfinExplodeParticles
+
+    public GameObject boomfinParticle;
+    public Vector3 boomfinScale;
+    private Vector3 _positionBoomfin;
+    public float boomfinParticleX;
+    public float boomfinParticleY;
+    public float boomfinParticleZ;
+
+    #endregion
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -57,7 +68,6 @@ public class ParticleManager : MonoBehaviour
             PlayEnemyDeathParticles(new Vector3(0, 0, 0));
             PlayPlacedBuildParticles(new Vector3(0, 0, 0));
         }
-        
     }
 
     public void PlayEnemyDeathParticles(Vector3 enemyPos)
@@ -125,5 +135,27 @@ public class ParticleManager : MonoBehaviour
 
         var particle = Instantiate(particleBuildDestroyed, _positionParticleBuildDestroyed, Quaternion.identity);
         particle.transform.localScale = scaleParticleBuildDestroyed;
+    }
+
+    public void PlayBoomfinExplode(Vector3 boomfinPos)
+    {
+        _positionBoomfin = boomfinPos;
+        if (boomfinParticleX != -1f)
+        {
+            _positionBoomfin.x = boomfinParticleX;
+        }
+
+        if (boomfinParticleY != -1f)
+        {
+            _positionBoomfin.y = boomfinParticleY;
+        }
+
+        if (boomfinParticleZ != -1f)
+        {
+            _positionBoomfin.z = boomfinParticleZ;
+        }
+
+        var particle = Instantiate(boomfinParticle, _positionBoomfin, Quaternion.identity);
+        particle.transform.localScale = boomfinScale;
     }
 }
