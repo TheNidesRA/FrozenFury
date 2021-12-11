@@ -2649,7 +2649,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7659340899241863360}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.739998, y: 0.83720636, z: -12.970001}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3.5, y: 3.5, z: 3.5}
   m_Children:
   - {fileID: 6192611785366589273}
@@ -2669,8 +2669,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.4276029, y: 1.0486615, z: 2.4396527}
-  m_Center: {x: -0.096883915, y: 1.0726793, z: 0.7198255}
+  m_Size: {x: 2.2281241, y: 1.0486615, z: 4.323928}
+  m_Center: {x: -0.06774511, y: 1.0726793, z: 0.46155933}
 --- !u!114 &7659340899241863366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2693,9 +2693,9 @@ MonoBehaviour:
   NavMeshAgent: {fileID: 7659340899241863367}
   initSpeed: 10
   initAcceleration: 10
-  maxHealth: 20
-  health: 20
-  damage: 1
+  maxHealth: 100
+  health: 227.73956
+  damage: 1.9573957
   _speed: 10
   _acceleration: 10
   timeWaitAnim: 1.13
@@ -2704,7 +2704,7 @@ MonoBehaviour:
   attackSpeed: 1
   gold: 20
   attackRange: 0
-  baseDamage: 1
+  baseDamage: 3
   invencibilidadTrampa: 0
   tiempoInvencibilidad: 5
   afecctedTrap: 0

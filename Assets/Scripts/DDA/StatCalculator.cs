@@ -42,20 +42,20 @@ namespace Enemies
                 var enemyStats = init;
                 
                 enemyStats.hp = init.hp * vars[0] + diff * 2;
-                if (enemyStats.hp < init.hp / 2)
+                if (enemyStats.hp < init.hp)
                 {
-                    enemyStats.hp = init.hp / 2;
+                    enemyStats.hp = init.hp;
                 }
                 enemyStats.dmg = init.dmg * vars[0] + diff * 0.1f;
-                if (enemyStats.dmg < init.dmg / 2)
+                if (enemyStats.dmg < init.dmg)
                 {
-                    enemyStats.dmg = init.dmg / 2;
+                    enemyStats.dmg = init.dmg;
                 }
                 // enemyStats.atackSpd = init.atackSpd + (vars[0] * diff * 0.05f);
                 enemyStats.gold = init.gold * vars[2] - diff * 0.2f;
-                if (enemyStats.gold < init.gold / 2)
+                if (enemyStats.gold < init.gold)
                 {
-                    enemyStats.gold = init.gold / 2;
+                    enemyStats.gold = init.gold;
                 }
                 returnList.Add(enemyStats);
             }

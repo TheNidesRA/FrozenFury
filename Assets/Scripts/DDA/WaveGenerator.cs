@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using Random = UnityEngine.Random;
 
 namespace Enemies
@@ -83,7 +87,9 @@ namespace Enemies
                 }
                 
             }
-            
+
+            List<Enemy> list= wave.Enemies.OrderBy(x => Random.value).ToList();
+            wave.Enemies = list;
             return wave;
         }
     }

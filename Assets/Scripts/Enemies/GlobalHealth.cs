@@ -34,9 +34,9 @@ class GlobalHealth : MonoBehaviour
         }
     }
 
-    public void DecreaseHealth()
+    public void DecreaseHealth(float damage)
     {
-        globalHealth--;
+        globalHealth -= (int)damage;
         if (globalHealth <= 0)
         {
             EndGameFunc();
