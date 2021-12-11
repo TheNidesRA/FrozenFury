@@ -452,6 +452,7 @@ namespace AutoAttackScripts
             //instantiate bullet
             GameObject currentBullet = Instantiate(bullet, position, quaternion.Euler(-90, -90, 0));
             AssignShooterOfTheBullet(new List<GameObject>() { currentBullet });
+            Destroy(currentBullet, bulletTimeAlive);
             //add forces to bullet
             currentBullet.GetComponent<Rigidbody>().AddForce(directionShoot.normalized * shootForce, ForceMode.Impulse);
         }

@@ -53,7 +53,8 @@ namespace AutoAttackScripts
 
         protected override void ShootEnemy(GameObject enemy)
         {
-            if (enemy == null) return;
+            if (enemy == null || enemy.transform.position.y > 10) return;
+
 
             //calculate direction from the attackpoint to the enemy
             Vector3 directionShoot = enemy.transform.position - attackPoint.position;
@@ -76,9 +77,9 @@ namespace AutoAttackScripts
 
 
         override
-            public void RotatePlayerToEnemy(GameObject enemy)
+        public void RotatePlayerToEnemy(GameObject enemy)
         {
-            if (enemy == null) return;
+            if (enemy == null || enemy.transform.position.y > 10) return;
 
 
             Vector3 lookVector = (enemy.transform.position - player.transform.position).normalized;
