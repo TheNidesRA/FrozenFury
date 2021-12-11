@@ -52,6 +52,7 @@ public class PlacedBuild : MonoBehaviour
     public float MAXATTACKSPEED;
     public int MAXGOLDCOSTLEVEL;
 
+    public event EventHandler<float> OnHealthChanged;
 
     public int level
     {
@@ -109,6 +110,7 @@ public class PlacedBuild : MonoBehaviour
             }
 
             _health = value;
+            OnHealthChanged?.Invoke(this, _health);
             Debug.Log(_buildingSo.name + " vida restante : " + _health);
         }
     }
