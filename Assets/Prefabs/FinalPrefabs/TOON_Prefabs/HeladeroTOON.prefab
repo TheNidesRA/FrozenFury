@@ -450,7 +450,7 @@ MonoBehaviour:
   MAXDAMAGE: 0
   MAXATTACKSPEED: 0
   MAXGOLDCOSTLEVEL: 0
-  _respawnTime: 10
+  _respawnTime: 7
   Shoot: {fileID: 1839577035249603878}
   Animator: {fileID: 1839577036105125786}
 --- !u!114 &1839577036105125788
@@ -469,6 +469,7 @@ MonoBehaviour:
   v_movement_x: 0
   moveSpeed: 0
   joystickDynamic: {fileID: 0}
+  estadoAnterior: 0
   work: 1
 --- !u!1 &1597885010147225502
 GameObject:
