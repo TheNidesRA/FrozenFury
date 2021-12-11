@@ -181,13 +181,14 @@ namespace Enemies
             NavMeshAgent.ResetPath();
             if (!ReferenceEquals(BehaviourTreeRunner, null))
                 BehaviourTreeRunner.enabled = false;
+            OnEnemyDeath?.Invoke(gameObject);
             StartCoroutine(dieAnim());
         }
 
         public void DieNoAnim()
         {
             Destroy(gameObject);
-
+            OnEnemyDeath?.Invoke(gameObject);
             if (PlayerPrefs.GetInt("particlesActivated") == 1)
                 ParticleManager.Instance?.PlayEnemyDeathParticles(transform.position);
         }
@@ -262,8 +263,7 @@ namespace Enemies
 
         private void OnDestroy()
         {
-            OnEnemyDeath?.Invoke(gameObject);
-            PlayerStats._instance.gold += (int) gold;
+            PlayerStats._instance.gold += (int)gold;
             WaveController._instance.EnemyDeath();
         }
 
@@ -366,7 +366,7 @@ namespace Enemies
         public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();
-            var script = (EnemyGolem) target;
+            var script = (EnemyGolem)target;
             if (script == null) return;
 
             EditorGUILayout.Space();
