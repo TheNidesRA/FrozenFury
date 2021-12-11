@@ -69,6 +69,8 @@ public class ComunicacionGridCanvas : MonoBehaviour
 
     private void Start()
     {
+        LeanTween.init(5000);
+   
         _rectTransformEditBuild = EditBuild.GetComponent<RectTransform>();
         _rectTransformBuildUpdate = _buildUpdateConteiner.GetComponent<RectTransform>();
         RefreshVisual();
