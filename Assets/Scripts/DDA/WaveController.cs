@@ -14,19 +14,18 @@ namespace Enemies
         /// </summary>
         public int minEnemies = 10;
 
-       
+
         /// <summary>
         /// Cuantos bichos extra spawnear
         /// </summary>
         private float spwnPts;
 
-       
+
         public int winRound = 2;
 
         /// <summary>
         /// How Enemy increase per round
         /// </summary>
-       
         public float spawnProgression = 0.7f;
 
         public AnimationCurve spawnTimeProgression;
@@ -112,11 +111,18 @@ namespace Enemies
             _enemiesAlive--;
             if (_enemiesAlive <= 0)
             {
-                EndRound();
-                GameObject.Find("AudioFunctions").GetComponent<AudioSettings>().LowerVolumeStartRound();
                 AudioManager.Instance?.Play("Finalizar Ronda");
                 AudioManager.Instance?.Stop("Partida");
                 AudioManager.Instance?.Play("Chill Theme");
+                try
+                {
+                    GameObject.Find("AudioFunctions").GetComponent<AudioSettings>().LowerVolumeStartRound();
+                }
+                catch (NullReferenceException)
+                {
+                }
+
+                EndRound();
             }
         }
 
