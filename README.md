@@ -69,11 +69,11 @@ Frozen Fury seguirá una sola estrategia principal de monetización una vez publ
 
 
 
-`	`La estrategia de monetización es la siguiente:
+La estrategia de monetización es la siguiente:
 
 
 
-- **Complementos adicionales**: En caso de que el producto vea cumplidos sus objetivos de ventas principales y el negocio comience generar rentabilidad, se incluirá contenido adicional como **personajes nuevos, mapas** (que conlleva la aparición de nuevos enemigos diferentes), **edificaciones y construcciones nuevas…**
+- **Complementos adicionales**: En caso de que el producto vea cumplidos sus objetivos de ventas principales y el negocio comience generar rentabilidad (en un plazo máximo de dos años), se incluirá contenido adicional como **personajes nuevos, mapas** (que conlleva la aparición de nuevos enemigos diferentes), **edificaciones y construcciones nuevas…**
 
 
 ### **PRODUCTOS Y CARACTERÍSTICAS DE MONETIZACIÓN**
@@ -188,7 +188,7 @@ Todo esto se observará desde una vista ligeramente picada, las hordas de enemig
 ## **4.2	Descripción detallada de las mecánicas de juego**
 
 ### **MOVIMIENTO**
-El usuario tendrá movimiento libre alrededor del mapa. Para ello, dependiendo de la plataforma desde la que se esté accediendo al videojuego, se empleará un PAD que comenzará oculto en la pantalla y que se mostrará únicamente cuando el usuario presione la misma (en el caso de dispositivos móviles), o alternativamente, el movimiento responderá a la interacción que tenga el usuario con el teclado (en el caso de jugar desde ordenador)
+El usuario tendrá movimiento libre alrededor del mapa. Para ello, dependiendo de la plataforma desde la que se esté accediendo al videojuego, se empleará un PAD que comenzará oculto en la pantalla y que se mostrará únicamente cuando el usuario presione la misma (en el caso de dispositivos móviles), o alternativamente, el movimiento responderá a la interacción que tenga el usuario con el teclado (en el caso de jugar desde ordenador).
 
 ### **ATAQUE BÁSICO**
 Los ataques que realiza el personaje a los distintos enemigos del juego se hacen de manera automatizada. Si el jugador está lo suficientemente cerca de un enemigo, su personaje disparará automáticamente y, sin fallar los disparos, a los diferentes enemigos que divise. 
@@ -198,10 +198,10 @@ Esta es una de las principales mecánicas de Frozen Fury. Nada más iniciar la p
 
 Se podrá observar también que el menú de construcción se actualizará una vez seleccionada una estructura, mostrando estadísticas concretas del edificable seleccionado y, en la parte inferior, varios botones de interacción.
 
-Una vez el usuario selecciona el área del grid en la que desea colocar la estructura, ésta quedará fija, dando pie al jugador a interactuar con los nuevos botones del menú de construcción. Entre ellos se encuentra un botón para **rotar la estructura**, un botón para **mover la estructura** (en caso de haberla posicionado en un sitio no deseado), un botón de **confirmación** para colocarla definitivamente en el mapa y un botón de **borrado**, que cerrará el modo construcción y cancelará la estructura que se fuera a fijar.
+Una vez el usuario selecciona el área del grid en la que desea colocar la estructura, ésta quedará fija, dando pie al jugador a interactuar con los nuevos botones del menú de construcción. Entre ellos se encuentra un botón para **rotar la estructura**, un botón para **mover la estructura** (en caso de haberla posicionado en un sitio no deseado), un botón de **confirmación** para colocarla definitivamente en el mapa y un botón de **cancelar**, que cerrará el modo construcción y cancelará la estructura que se fuera a fijar.
 
 ### **MEJORAS DE JUGADOR Y ESTRUCTURAS**
-Una de las nuevas mecánicas incluidas es la capacidad de mejorar y reparar estructuras además de poder mejorar al jugador. Las mejoras conllevan un gasto de recursos y afectan principalmente a estadísticas como la vida, el daño, o la velocidad de ataque.
+Otra de las mecánicas incluidas es la capacidad de mejorar estructuras además del propio jugador. Las mejoras conllevan un gasto de recursos y afectan principalmente a estadísticas como la vida, el daño, o la velocidad de ataque.
 - Las estructuras se podrán mejorar accediendo primero al menú de mejora de estructura **manteniendo el clic izquierdo sobre ella** (siempre y cuando ya se haya construido), y **presionando los botones de mejora correspondientes** “Level up”. Esto conlleva un gasto de los recursos principales de la partida.
 
 - La opción de mejorar el personaje aparecerá **si el usuario mueve el mismo hacia la furgoneta del mapa**. Una vez cerca de ella, se desplegará el mismo menú de mejora mencionado previamente.
@@ -230,11 +230,18 @@ Frozen Fury es un videojuego multiplataforma que se puede jugar tanto en disposi
 ### **PC**
 
 - **Clic izquierdo en menú desplegable** → Acceso al modo construcción. 
+- **Tecla 1** →  Selección de  estructura: Cañón de helado
+- **Tecla 2** →  Selección de estructura: Catapulta de guindas
+- **Tecla 3** →  Selección de estructura: Muro de helado
+- **Tecla 4** →  Selección de estructura: Trampa de conos
+- **Tecla R** →  Rotar estructura
+- **Tecla E** → Cancelar construcción de estructura
+- **Tecla Enter** →  Confirmar construcción de estructura
 - **Clic izquierdo en el mapa en modo construcción** → Fijación de estructura y actualización de opciones en el modo construcción.
 - **Clic izquierdo en botón de rotar (modo construcción)** → Rotación de la estructura fijada previamente en el mapa
 - **Clic izquierdo en botón de mover (modo construcción)** → Permite el movimiento libre de la estructura previamente fijada.
 - **Clic izquierdo en botón de confirmación (modo construcción)** → Coloca definitivamente la estructura fijada previamente en el mapa en una posición y con una rotación determinada.
-- **Clic izquierdo en botón de borrado (modo construcción)** → Elimina la construcción fijada previamente y cierra el modo construcción.
+- **Clic izquierdo en botón de cancelar (modo construcción)** → Elimina la construcción fijada previamente y cierra el modo construcción.
 - **Clic izquierdo en botón de inicio de ronda** → Iniciar ronda
 
 ### **DISPOSITIVO MÓVIL**
@@ -253,7 +260,7 @@ Frozen Fury se trata de un juego de tipo endless, por lo que como tal, no cuenta
 
 Una vez el jugador haya alcanzado la ronda 8, si este “pierde” (la vida del objetivo principal llega a 0), se considerará como victoria, permitiendo al usuario visualizar una pantalla o splash art de la victoria. Sin embargo, si el jugador no logra defender el objetivo principal por debajo de la ronda 8, se considerará como derrota.
 
-Tay y como se acaba de mencionar, se considerará una partida como victoria **cuando el jugador haya alcanzado al menos la ronda 20**, sin embargo, esto sólo supondrá un desafío inicial pues se incentiva al jugador a continuar la partida mediante un sistema adaptación de los enemigos (Dynamic Difficulty Adjustment) a las capacidades del jugador para hacer la partida desafiante en todo momento mediante el uso de algoritmos genéticos. De esta forma, el jugador podrá saciar su curiosidad por ver hasta qué punto puede evolucionar una partida a la par que enfrentarse a un desafío a medida.
+Tay y como se acaba de mencionar, se considerará una partida como victoria **cuando el jugador haya alcanzado al menos la ronda 8**, sin embargo, esto sólo supondrá un desafío inicial pues se incentiva al jugador a continuar la partida mediante un sistema adaptación de los enemigos (Dynamic Difficulty Adjustment) a las capacidades del jugador para hacer la partida desafiante en todo momento mediante el uso de algoritmos genéticos. De esta forma, el jugador podrá saciar su curiosidad por ver hasta qué punto puede evolucionar una partida a la par que enfrentarse a un desafío a medida.
 
 ## **4.5	Objetos**
 
@@ -361,7 +368,7 @@ El tercer destino del heladero fue el “Valle de la galleta” un lugar donde e
 
 **Bosque de las virutas multicolor**: un gran bosque situado en el reino de las virutas. Sus árboles dan como fruto virutas de diversos colores que van cambiando su sabor y textura dependiendo de la estación. Los árboles dan fruto a diario. Las virutas que caen de los árboles sirven de abono para otros árboles.
 
-**Valle de la galleta:** un valle situado en el reino de la galleta crujiente en el cual los tallos y troncos de los árboles están formados por una crujiente y deliciosa galleta.
+**Valle de la galleta:** un valle situado en el reino de la galleta crujiente en el cual los tallos y troncos de los árboles están formados por una crujiente y deliciosa galleta. Este destino será el que se presenta en la versión final del juego.
 
 
 
@@ -383,59 +390,87 @@ Frozen Fury cuenta con piezas musicales que van muy relacionadas con la propia t
 
 La música del menú principal es una melodía animada, y de temática cartoon. Esta acompaña correctamente a todos los elementos que el usuario puede visualizar en pantalla: colores vivos, logos y botones en movimiento, interacción con los mismos con retroalimentación.
 
-Una vez el usuario entra a la pantalla de juego, la música cambiará a una melodía que pondrá en situación de combate al mismo. La melodía sigue siendo de tipo cartoon y está muy inspirada en el videojuego *Plants vs Zombies.*
+Una vez el usuario entra a la pantalla de juego, la música cambiará a una melodía relajada mientras el usuario construye sus edificables en el mapa. Una vez empezada la ronda, se reproducirá una melodía de acción que pondrá en situación de combate al mismo. La melodía sigue siendo de tipo cartoon y está muy inspirada en el videojuego *Plants vs Zombies.*
 ## **6.4. Ambiente sonoro**
-La música mencionada en al apartado anterior estará acompañada de diversos efectos de sonido. Se pueden distinguir entre efectos de sonido de interacción con botones neutros y otros efectos relacionados con la comida (un splash o chapoteo, trozo de comida que se puede caer al suelo etc…) El volumen general del juego podrá ajustarse en la pantalla de ajustes del mismo.
+La música mencionada en al apartado anterior estará acompañada de diversos efectos de sonido. Se pueden distinguir entre efectos de sonido de interacción con botones neutros y otros efectos relacionados con la comida (un splash o chapoteo, trozo de comida que se puede caer al suelo etc…), melodías de comienzo y fin de ronda, impacto de proyectil con el enemigo, músicas de victoria y derrota... El volumen general del juego y de los efectos de sonido podrá modificarse en la pantalla de ajustes del mismo.
 
 También se han incluido efectos de sonido para la partida, tales como la muerte del jugador, sonidos y efectos de disparo o construcción…
 
 
 # **7.    Interfaz**
 ## **7.1. Pantallas de juego**	
-![Menu](https://user-images.githubusercontent.com/73243869/142768630-e3a362c4-e7c4-42e5-a44a-a33e607d95a5.jpg)
+![Menu](https://user-images.githubusercontent.com/93185865/145675005-b2e21e85-24f3-4345-a628-caf68c00b03f.jpg)
 Menú principal
 
-![Tienda](https://user-images.githubusercontent.com/93185865/142622810-076b903c-dc06-4a98-986d-617354d93db7.jpg)
+![Store](https://user-images.githubusercontent.com/93185865/145675083-71bcb73f-3a47-4d6f-9b2f-cc905631133a.jpg)
 Pestaña de compra de personaje (tienda)
+
+![ConfirmacionPJ](https://user-images.githubusercontent.com/93185865/145675206-ac674318-aec3-44eb-932f-b39e04311244.jpg)
+Pestaña de confirmación de compra personaje (tienda)
+
+![TiendaSkins](https://user-images.githubusercontent.com/93185865/145675109-ab1c3fb1-dd5d-4ed0-bf7b-a26a8703b010.jpg)
+Pestaña de compra de cosméticos (tienda)
+
+![ConfirmacionSkin](https://user-images.githubusercontent.com/93185865/145675166-cb7e262e-4da1-49b0-8ad7-41534eed489a.jpg)
+Pestaña de confirmación de compra skin (tienda)
+
+![Recursos](https://user-images.githubusercontent.com/93185865/145675136-6bb8f17f-ac44-4779-8397-f0b74242d121.jpg)
+Pestaña de compra de recursos (tienda)
 
 ![SeleccionPersonajes](https://user-images.githubusercontent.com/93185865/142622990-24453286-c6b4-43d6-8b05-237411fc789c.jpg)
 Pestaña de selección de personaje
 
-![skins_plantilla](https://user-images.githubusercontent.com/93185865/142623266-2d4cdcfb-b346-4add-a6d6-dca682e4d2e1.png)
-Pestaña de compra de cosméticos (tienda)
 
-![Personaje](https://user-images.githubusercontent.com/73243869/142769000-b73f7e7c-92f6-46b3-8b74-2ff7f5e0f431.jpg)
+![Seleccionpj](https://user-images.githubusercontent.com/93185865/145675230-522e171e-879a-41b7-8eac-09ef23ab9d4b.jpg)
 Pestaña de selección de personaje
 
+![Bestiario](https://user-images.githubusercontent.com/93185865/145675315-d60fec85-066d-4383-a31d-194ae8f91f73.jpg)
+Bestiario
+
+![BestiarioEjemplo](https://user-images.githubusercontent.com/93185865/145675338-3047a392-d3c4-41bc-b51f-a95c0e2ccffd.jpg)
+Ejemplo Bestiario
+
+![tuto1](https://user-images.githubusercontent.com/93185865/145675368-88a27ae8-200b-4fbf-b150-eb254d286465.jpg)
+Ejemplo Tutorial 1
+
+![tuto2](https://user-images.githubusercontent.com/93185865/145675388-2559d507-84e6-43d2-9c24-031e90367dd4.jpg)
+Ejemplo Tutorial 2
 
 
-![pausa2](https://user-images.githubusercontent.com/73243869/142769098-37af3d0a-ec48-4e97-9e61-3e6705122938.jpg)
 
+![options](https://user-images.githubusercontent.com/93185865/145675437-20167c3f-60d7-401c-bfff-e249bb78fe92.jpg)
 Menú de pausa
 
-![Settings](https://user-images.githubusercontent.com/73243869/142769079-c87cb874-7816-4c21-80db-6fd496fbf0cc.jpg)
-Menú de settings
+![options2](https://user-images.githubusercontent.com/93185865/145675454-b12e433c-de80-48c6-82c2-6d7bdc337b36.jpg)
+Menú options in-game 
 
-![hud](https://user-images.githubusercontent.com/73243869/142769162-b95a4321-3124-4778-9d77-878d72c273a7.jpg)
+![optionsmenu](https://user-images.githubusercontent.com/93185865/145675477-dc63f17d-23f9-4c07-bf2a-0f43b2ad42d4.jpg)
+Menú options en menú principal
+
+![HUD in game](https://user-images.githubusercontent.com/93185865/145675506-f7c94b36-e285-4abb-af5d-3c4af59456e6.jpg)
 HUD in-game
 
-![construccion](https://user-images.githubusercontent.com/73243869/142769273-768dc2f1-80ae-466b-a6bf-6e3567dc4a70.jpg) ![construccion2](https://user-images.githubusercontent.com/73243869/142769294-6e510cc3-2b19-41b1-bbb4-a6b0066787b0.jpg)
-Menú de construcción  &  Seleccionar estructura
+![const1](https://user-images.githubusercontent.com/93185865/145675521-bb9bd2fa-33e0-4621-81cc-2951513b20f0.jpg)
+Menú desplegable construcción
 
-![upgradeBuild](https://user-images.githubusercontent.com/73243869/142769312-056dc95a-66b6-404a-bb08-2d5d09e179f8.jpg)
+![seleccionconstruccion](https://user-images.githubusercontent.com/93185865/145675554-f9abf6d4-1a5b-489c-a015-e09d32f23456.jpg)
+Menú de estructura
+
+![MenuMejora](https://user-images.githubusercontent.com/93185865/145675574-ab94e242-9dbc-4081-8ee8-f933a49d89cc.jpg)
 Menú de mejora de construcción
 
-![Pantalla de victoria](https://user-images.githubusercontent.com/93185865/142624214-0babf39f-998d-4364-a943-6a4493de5eb7.png)
+![victoria](https://user-images.githubusercontent.com/93185865/145675645-680377db-e164-4d74-baf1-29b1d944fdfa.jpg)
 Pantalla de victoria
 
-![Pantalla de derrota](https://user-images.githubusercontent.com/93185865/142624266-d6de08ed-1dc8-4427-88be-f976fbc163a4.png)
+![loose](https://user-images.githubusercontent.com/93185865/145675751-0830c9cd-ca07-4f00-9130-2e50ab6147fe.jpg)
 Pantalla de derrota
 
-![Credits](https://user-images.githubusercontent.com/73243869/142769136-15f7bc4e-99e7-4680-a53d-a6f2ac6c72b0.jpg)
+![creds](https://user-images.githubusercontent.com/93185865/145675811-b2fbf51e-ea02-418f-8830-7c7d5ef8fcc7.jpg)
 Pantalla de créditos
 
 # **8. Flujo de eventos del juego**
-![Flujo eventos](https://user-images.githubusercontent.com/73243869/142768936-54c8d6fb-5b1e-4e01-94da-669979a9a686.png)
+![Eventos](https://user-images.githubusercontent.com/93185865/145676155-b7666135-1eeb-437d-a736-942037a09e24.png)
+
 
 
 
@@ -453,6 +488,21 @@ La música y los efectos de sonido no han sido obtenidos de librerías de sonido
 Su nombre es Andoni Plaza, y se puede acceder a su trabajo, redes sociales y portfolio desde el siguiente enlace: 
 
 <https://linktr.ee/AcidWarlock> 
+
+## **TOON SHADER**
+El shader aplicado a los modelos 3D ha sido comprado entre todos los miembros del equipo de trabajo de la asset store de Unity.
+
+El creador del shader es el usuario https://mjqstudioworks.weebly.com/ y el shader se puede obtener en el siguiente enlace https://assetstore.unity.com/packages/vfx/shaders/realtoon-65518.
+
+## **TEMPLATE RESPONSIVE WEBGL**
+Se ha empleado un template obtenido de Itch.io para hacer que el juego sea responsive en WebGL. Emplear este template ha conllevado un mayor tiempo de carga del juego en Itch.io.
+
+Se puede acceder al template en el siguiente enlace: https://seansleblanc.itch.io/better-minimal-webgl-template.
+
+## **EFECTOS DE PARTÍCULAS**
+Para reforzar la retroalimentación en las acciones del usuario y en las de los enemigos del juego, se ha empleado un asset con diferentes efectos de partículas obtenido de la asset store de Unity.
+
+Se puede acceder al asset en el siguiente enlace: https://assetstore.unity.com/packages/vfx/particles/cartoon-fx-free-109565
 
 # **10. Contenido jugable en la versión Alpha (30/10/2021)**
 Como se ha mencionado en apartados previos, el primer entregable del prototipo del videojuego permitirá que el usuario pueda llevar a cabo el transcurso de una partida de comienzo a fin. A falta de implementar un gran número de funcionalidades, esta versión del producto posee las características más relevantes del mismo. Entre ellas se encuentran:
@@ -671,15 +721,14 @@ Para la fase Beta, se debe procurar lograr un producto prácticamente completo, 
 - Se creará una tienda donde el usuario podrá invertir la divisa gratuita del juego en la compra de cosméticos para los personajes. En un principio, cada personaje cuenta con dos cosméticos cada uno.
 - Se desarrollará más en profundidad los distintos tipos de enemigos con los que cuenta el juego y sus respectivos comportamientos. Se estudiarán también diversos artículos de investigación sobre el ajuste de dificultad dinámica de los enemigos, basados en fórmulas matemáticas y factores multiplicadores dependientes de estadísticas del jugador o del entorno de juego para fomentar la rejugabilidad del producto. Se pretende en todo momento que el usuario se proponga un reto y trate de superar su marca en cada partida que juegue. Es precisamente por ello por lo que la IA de Frozen Fury contará con un ajuste de dificultad dinámica; el desarrollo de una partida puede ser completamente diferente a otra, lo que despertará la curiosidad del jugador por descubrir los límites que la IA será capaz de superar o alcanzar.
 
-# **13. Fase Beta (estado actual)** 
+# **13. Fase Beta (20/11/2021)** 
 
 ## **MAPAS JUGABLES**
 
 En primer lugar, el equipo de desarrollo ha decidido mantener para la beta un solo mapa jugable. Esto es debido a que era necesario ajustar, corregir, balancear y pulir todos los elementos del gameplay del juego. Al fin y al cabo, los nuevos mapas no varían mucho; se modifica el modelo 3d del mismo, la disposición de elementos del escenario, los spawn points de los enemigos y del objetivo a defender. Es por ello que se ha establecido como prioritario el desarrollo completo del gameplay del juego antes de añadir nuevos mapas. 
 
-Aun así, se han incluido dos elementos que varían ligeramente el aspecto y sensación de el mapa jugable: 
+Aun así, se han incluido un elemento que varía ligeramente el aspecto y sensación de el mapa jugable: 
 
-- Un ciclo de día y noche en el mapa que varía su iluminación y ambiente
 - Disposición aleatoria de props en el escenario, donde cada vez que se inicia una partida, un número determinado de props del escenario cambian de posición.
 
 
@@ -718,22 +767,41 @@ En este apartado se citarán un listado de cambios conocidos que se aplicarán a
 
 - **Tweaks y timing de animaciones**: Actualmente, todos los modelos exceptuando algunos casos por errores internos, cuentan con animaciones que aportan dinamismo al videojuego respecto a la anterior entrega. A pesar de ello, todavía falta por modificar y calcular correctamente los tiempos de las animaciones de los personajes y de las estructuras para una mayor fluidez visual
 
+# **15. Post-Mortem versión Beta**
 
+# **16. Fase Gold Master (11/12/2021)**
+Tras haber recibido retroalimentación de los usuarios durante la fase de Beta Testing, se enumerarán y desarrollarán en este apartado las características más importantes implementadas para la fase final del videojuego:
 
-# **15. Hoja de ruta de desarrollo**
+## **TUTORIAL**
+Para la fase Beta no dio tiempo a incluir los controles y las mecánicas de Frozen Fury dentro del propio videojuego. Tan solo se indicaron en la propia página de Itch.io pero no conviene explicarlos en este apartado puesto que el juego se reproduce en pantalla completa y pueden pasar desapercibidos. En la versión final del juego se incluye un tutorial ilustrativo con las distintas acciones y controles que se pueden llevar a cabo durante el desarrollo de una partida.
+## **BESTIARIO**
+A petición de muchos usuarios beta testers, se ha incluido un bestiario con la información de las acciones de los distintos monstruos que pueden aparecer durante el desarrollo de una partida. En cada apartado de cada monstruo, se incluye una descripción de sus acciones junto a la visualización de su modelo 3D.
+## **BALANCE GENERAL DEL JUEGO**
+Éramos conscientes de que el escalado de dificultad del juego era demasiado alto cuando se alcanzaban rondas cercanas a la octava. Se ha llevado a cabo un balance general del juego en el que se incluyen *Nerfs* de las estadísticas de daño de algunos personajes, mejoras de los edificables para que la partida no dependa en gran parte de las acciones del jugador para defender el objetivo principal, aparición aleatoria y mezclada de enemigos (previamente, aparecían pequeñas oleadas de cada tipo de enemigo en orden), reaparición más rápida de enemigos etc...
+## **RETROALIMENTACIÓN**
+Otro de los aspectos importantes de los que carecía Frozen Fury era la falta de retroalimentación en las acciones del jugador y en las de los enemigos. Como se ha mencionado en el apartado de assets externos, se ha empleado unos efectos de partículas ya diseñados implementados de tipo cartoon que se relacionan con la estética del juego.
+## **MÚSICA**
+Se han añadido otras piezas musicales adicionales al videojuego como:
+- Música de victoria y derrota.
+- Efectos de sonido de impacto de proyectil en enemigo.
+- Efecto de sonido de impacto de enemigo con objetivo principal.
+- Efectos de sonido de comienzo y fin de ronda.
+- Distinción entre música de entre rondas y de música de ronda.
+
+# **17. Hoja de ruta de desarrollo**
 
 Como se ha mencionado previamente en el documento, se ha establecido un total de 3 hitos fundamentales en el desarrollo del producto. Se deben cumplir en los plazos indicados y se estructuran de manera jerárquica, es decir, el comienzo de unos hitos dependen el cumplimiento de otros
-## **15.1. Hito 1**
+## **17.1. Hito 1**
 El primer hito que el equipo de desarrollo debe terminar es una Fase Alpha del producto. En esta etapa se mostrarán las funcionalidades básicas del mismo, y se podrá terminar una partida entera, dejando ver al usuario el desarrollo completo del flujo principal de eventos en el juego. Existe la posibilidad de fallos en el producto durante esta fase, modelos 3d sin animaciones o texturas… que de cara a fases posteriores, se irán completando y mejorando.
 
-## **15.2. Hito 2**
+## **17.2. Hito 2**
 El segundo hito que el equipo de desarrollo deberá completar es la Fase Beta del producto. Es de gran importancia que durante esta fase, se vea un producto prácticamente terminado. Los principales fallos de programación y aspectos que falten de arte se deberán completar y solventar debido a que el resultado de esta fase se pasará a un equipo de testing para evaluar el producto. Con ello, se recibirá la retroalimentación correspondiente para terminar de refinar el producto de cara a la fase final de su desarrollo.
 
-## **15.3. Hito 3**
+## **17.3. Hito 3**
 La retroalimentación recibida sobre aquellos aspectos más importantes en el juego a modificar o mejorar es importante llevarla a cabo porque, una vez terminados los cambios, se deberá presentar el producto final a un Jurado de expertos que lo evaluarán en sus distintos aspectos de uso (mecánicas, jugabilidad, arte, gameplay design etc…). La fase final o Gold Master, es el hito previo al lanzamiento del producto al mercado.
 
-## **15.4. Fecha de lanzamiento**
-El lanzamiento del producto está previsto para el 22 de Diciembre del 2021
+## **17.4. Fecha de lanzamiento**
+El lanzamiento del producto está previsto para el 12 de Diciembre del 2021
 
 
 
