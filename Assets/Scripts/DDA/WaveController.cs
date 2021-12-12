@@ -140,6 +140,7 @@ namespace Enemies
                       "round:  " + _round);*/
             //Lee la curva y le pasa el numerito
             Spawner.UpdateSpawnDelay(spawnTimeProgression.Evaluate(round));
+            PlayerStats._instance.Curar();
         }
 
         public void SetSpawnPoints(float pts)

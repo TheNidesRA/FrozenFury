@@ -167,6 +167,13 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
+    public void Curar()
+    {
+        Health = _maxHealth;
+        if (PlayerPrefs.GetInt("particlesActivated") == 1)
+            ParticleManager.Instance?.PlayHealParticle(gameObject.transform.position);
+    }
+
     private void Start()
     {
         CurveHealth = AnimationCurve.EaseInOut(1, _initHealth, MAXLEVEL, MAXHEALTH);
