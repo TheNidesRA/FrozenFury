@@ -67,9 +67,15 @@ public class ComunicacionGridCanvas : MonoBehaviour
         WaveController._instance.OnRoundActive -= Instance_OnRoundActive;
     }
 
-    private void Start()
+
+    private void Awake()
     {
         LeanTween.init(5000);
+    }
+
+    private void Start()
+    {
+     
    
         _rectTransformEditBuild = EditBuild.GetComponent<RectTransform>();
         _rectTransformBuildUpdate = _buildUpdateConteiner.GetComponent<RectTransform>();

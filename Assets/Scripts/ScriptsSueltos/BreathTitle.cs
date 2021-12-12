@@ -19,7 +19,7 @@ public class BreathTitle : MonoBehaviour
     public float delay;
     public float ammount;
     private bool _expand = false;
-    private RectTransform rect=null;
+    private RectTransform rect = null;
 
 
     public LTDescr actualMovement = null;
@@ -55,11 +55,12 @@ public class BreathTitle : MonoBehaviour
                 {
                     case AnimationType.Breath:
 
-                        actualMovement = LeanTween.size(rect, rect.sizeDelta * ammount, duration).setLoopClamp()
+                        actualMovement = LeanTween.size(rect, rect.sizeDelta * ammount, duration).setRecursive(true)
                             .setEase(curve);
                         break;
                     case AnimationType.Shake:
-                        actualMovement = LeanTween.rotateAround(rect, Vector3.forward, ammount, duration).setLoopClamp()
+                        actualMovement = LeanTween.rotateAround(rect, Vector3.forward, ammount, duration)
+                            .setRecursive(true)
                             .setEase(curve);
 
                         break;
@@ -96,7 +97,7 @@ public class BreathTitle : MonoBehaviour
         if (!ReferenceEquals(actualMovement, null))
             if (LeanTween.isTweening(actualMovement.id))
             {
-                actualMovement.setLoopClamp(0);
+                actualMovement.setRecursive(false);
                 actualMovement.setTime(0);
                 LeanTween.cancel(rect);
                 LeanTween.cancel(actualMovement.id);
@@ -104,10 +105,7 @@ public class BreathTitle : MonoBehaviour
     }
 
 
-    private void infiniteLoop()
-    {
-    }
-
+ 
     // public void buttonClick()
     // {
     //     if (actualMovement == null)

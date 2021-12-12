@@ -11,13 +11,14 @@ public class Rotate : MonoBehaviour
     
     private void OnEnable()
     {
-        tween= LeanTween.rotateAround(gameObject, Vector3.up, 360, 20f).setLoopClamp().setEaseShake();
+        tween= LeanTween.rotateAround(gameObject, Vector3.up, 360, 20f).setRecursive(true).setEaseShake();
         
     }
 
     private void OnDisable()
     {
-        tween.setLoopClamp(0);
+        tween.setRecursive(false);
+        LeanTween.cancel(tween.uniqueId);
     }
 
     void Start()
