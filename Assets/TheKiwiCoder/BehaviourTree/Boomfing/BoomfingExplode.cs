@@ -43,7 +43,8 @@ public class BoomfingExplode : ActionNode
         }
 
         Destroy(explosionTransform.gameObject, 1);
-        ParticleManager.Instance?.PlayBoomfinExplode(context.transform.position);
+        if (PlayerPrefs.GetInt("particlesActivated") == 1)
+            ParticleManager.Instance?.PlayBoomfinExplode(context.transform.position);
         Destroy(context.gameObject);
 
         return State.Success;

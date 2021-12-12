@@ -34,11 +34,12 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private float _health = 10;
     [SerializeField] private float _maxHealth;
     public event EventHandler<float> OnMaxHealthChanged;
+
     public float maxHealth
     {
         get => _maxHealth;
         set
-        { 
+        {
             OnMaxHealthChanged?.Invoke(this, value);
             _maxHealth = value;
         }
@@ -161,7 +162,8 @@ public class PlayerStats : MonoBehaviour
         if (!e)
         {
             Health = _maxHealth;
-            ParticleManager.Instance?.PlayHealParticle(gameObject.transform.position);
+            if (PlayerPrefs.GetInt("particlesActivated") == 1)
+                ParticleManager.Instance?.PlayHealParticle(gameObject.transform.position);
         }
     }
 
@@ -244,7 +246,8 @@ public class PlayerStats : MonoBehaviour
         {
             gold -= _goldLevelCost;
             Level++;
-            ParticleManager.Instance?.PlayHealParticle(gameObject.transform.position);
+            if (PlayerPrefs.GetInt("particlesActivated") == 1)
+                ParticleManager.Instance?.PlayHealParticle(gameObject.transform.position);
         }
     }
 
