@@ -239,13 +239,19 @@ public class MoneyManager : MonoBehaviour
     public void AddCoins1(float coins)
     {
         if (Rings >= 150)
+        {
             Coins += coins;
+            Rings -= 150;
+        }
     }
 
     public void AddCoins2(float coins)
     {
         if (Rings >= 300)
+        {
             Coins += coins;
+            Rings -= 300;
+        }
     }
 
     public void AddRings(float rings)
