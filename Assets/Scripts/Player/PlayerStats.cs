@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using AutoAttackScripts;
+using Enemies;
 using UnityEngine;
 
 [DefaultExecutionOrder(-1)]
@@ -134,6 +135,24 @@ public class PlayerStats : MonoBehaviour
         InitStats();
     }
 
+    private void OnEnable()
+    {
+        WaveController._instance.OnRoundActive += Curar;
+    }
+
+    private void OnDisable()
+    {
+        WaveController._instance.OnRoundActive -= Curar;
+    }
+
+    private void Curar(object sender, bool e)
+    {
+        if (!e)
+        {
+            Health = _maxHealth;
+        }
+            
+    }
 
     private void Start()
     {
