@@ -34,7 +34,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private float _health = 10;
     [SerializeField] public float _maxHealth { get; private set; }
     [SerializeField] private float _attackSpeed;
-    [SerializeField] public int _goldLevelCost{ get; private set; }
+    [SerializeField] public int _goldLevelCost { get; private set; }
 
 
     public AnimationCurve CurveHealth;
@@ -150,8 +150,8 @@ public class PlayerStats : MonoBehaviour
         if (!e)
         {
             Health = _maxHealth;
+            ParticleManager.Instance?.PlayHealParticle(gameObject.transform.position);
         }
-            
     }
 
     private void Start()
@@ -233,6 +233,7 @@ public class PlayerStats : MonoBehaviour
         {
             gold -= _goldLevelCost;
             Level++;
+            ParticleManager.Instance?.PlayHealParticle(gameObject.transform.position);
         }
     }
 
@@ -241,9 +242,8 @@ public class PlayerStats : MonoBehaviour
         Damage = CurveDamage.Evaluate(Level);
         attackSpeed = CurveAttackSpeed.Evaluate(Level);
         Health = CurveHealth.Evaluate(Level);
-        _goldLevelCost = (int) CurveGoldLevelCost.Evaluate(Level);
+        _goldLevelCost = (int)CurveGoldLevelCost.Evaluate(Level);
         _maxHealth = CurveHealth.Evaluate(Level);
-
     }
 
 

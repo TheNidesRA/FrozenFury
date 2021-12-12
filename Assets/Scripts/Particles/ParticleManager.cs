@@ -51,6 +51,17 @@ public class ParticleManager : MonoBehaviour
 
     #endregion
 
+    #region healPlayerParticles
+
+    public GameObject healParticle;
+    public Vector3 healParticleScale;
+    private Vector3 _positionPlayer;
+    public float healParticleX;
+    public float healParticleY;
+    public float healParticleZ;
+
+    #endregion
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -157,5 +168,28 @@ public class ParticleManager : MonoBehaviour
 
         var particle = Instantiate(boomfinParticle, _positionBoomfin, Quaternion.identity);
         particle.transform.localScale = boomfinScale;
+    }
+
+    public void PlayHealParticle(Vector3 healPos)
+    {
+        _positionPlayer = healPos;
+
+        if (healParticleX != -1f)
+        {
+            _positionPlayer.x = healParticleX;
+        }
+
+        if (healParticleY != -1f)
+        {
+            _positionPlayer.y = healParticleY;
+        }
+
+        if (healParticleZ != -1f)
+        {
+            _positionPlayer.z = healParticleZ;
+        }
+
+        var particle = Instantiate(healParticle, _positionPlayer, Quaternion.identity);
+        particle.transform.localScale = healParticleScale;
     }
 }
