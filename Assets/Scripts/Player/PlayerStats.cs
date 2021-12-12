@@ -31,7 +31,18 @@ public class PlayerStats : MonoBehaviour
 
     [SerializeField] private int _level = 1;
     [SerializeField] private float _health = 10;
-    [SerializeField] public float _maxHealth { get; private set; }
+    [SerializeField] private float _maxHealth;
+    public event EventHandler<float> OnMaxHealthChanged;
+    public float maxHealth
+    {
+        get => _maxHealth;
+        set
+        { 
+            OnMaxHealthChanged?.Invoke(this, value);
+            _maxHealth = value;
+        }
+    }
+
     [SerializeField] private float _attackSpeed;
     [SerializeField] public int _goldLevelCost{ get; private set; }
 

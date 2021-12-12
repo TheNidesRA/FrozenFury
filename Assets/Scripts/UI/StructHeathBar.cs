@@ -29,8 +29,14 @@ namespace UI
             gameObject.transform.LookAt(camPos);
             gameObject.transform.position = initPos;
             _build.OnHealthChanged += HandleHealth;
+            _build.OnMaxHealthChanged += HandelMaxHealth;
             _canvas = GetComponent<Canvas>();
             _canvas.enabled = false;
+        }
+
+        private void HandelMaxHealth(object sender, float structMaxHealth)
+        {
+            this.maxHealth = structMaxHealth;
         }
 
         private void Update()
@@ -40,7 +46,7 @@ namespace UI
 
         private void Start()
         {
-            maxHealth = _build.health;
+            maxHealth = _build.currentMaxHealth;
         }
 
         private void OnDisable()

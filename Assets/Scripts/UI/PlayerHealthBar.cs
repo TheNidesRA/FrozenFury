@@ -48,6 +48,12 @@ namespace UI
             maxHealth = PlayerStats._instance.GetMaxHealth();
             PlayerStats._instance.OnHealthChanged += HandleHealth;
             PlayerStats._instance.OnDeathEvent += Regenearate;
+            PlayerStats._instance.OnMaxHealthChanged += HandleMaxHealth;
+        }
+
+        private void HandleMaxHealth(object sender, float playerMaxHealth)
+        {
+            maxHealth = playerMaxHealth;
         }
 
         private void Regenearate(object sender, float e)

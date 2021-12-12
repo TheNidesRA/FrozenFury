@@ -73,7 +73,7 @@ public class ShowUpgrades : MonoBehaviour, IPointerEnterHandler, IPointerClickHa
         {
             HealthUpgrade.enabled = true;
             string mejoraVida = Math.Round(PlayerStats._instance.CurveHealth.Evaluate(PlayerStats._instance.Level + 1) -
-                                           PlayerStats._instance._maxHealth, 2).ToString();
+                                           PlayerStats._instance.maxHealth, 2).ToString();
             HealthUpgrade.text = "+ " + mejoraVida;
 
             DamageUpgrade.enabled = true;

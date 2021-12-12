@@ -36,7 +36,24 @@ public class PlacedBuild : MonoBehaviour
     [SerializeField] protected float _damage;
     [SerializeField] protected float _attackSpeed;
     [SerializeField] protected float _health;
-    public float currentMaxHealth;
+    
+    public event EventHandler<float> OnMaxHealthChanged;
+
+    
+    private float _currentMaxHealth;
+
+    public float currentMaxHealth
+    {
+        get => _currentMaxHealth;
+        set
+        {
+            _currentMaxHealth = value;
+            OnMaxHealthChanged?.Invoke(this, _currentMaxHealth);
+        }
+    }
+    
+    
+    
     [SerializeField] protected int _level;
     [SerializeField] protected int _goldCostLevel;
     [SerializeField] protected int _goldCostRepair;

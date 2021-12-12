@@ -139,6 +139,7 @@ namespace Enemies
         public void UpdateStats(EnemyStats stats)
         {
             health = stats.hp;
+            maxHealth = stats.hp;
             damage = stats.dmg;
             speed = stats.speed;
             armor = stats.armor;
