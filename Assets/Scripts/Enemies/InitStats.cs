@@ -17,5 +17,7 @@ namespace Enemies
         public float initattackRange = 1;
         public float initangleVision = 1;
         public float initradioVision = 1;
+        public float initInnerAngleVision = 200;
+        public float initInnetRadioVision = 30;
     }
 }

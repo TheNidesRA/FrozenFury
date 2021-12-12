@@ -94,7 +94,7 @@ public class EnemyMoveToBuild : ActionNode
         {
             context.agent.ResetPath();
             context.agent.isStopped = true;
-            Debug.Log(context.enemy.actionTarget);
+            //Debug.Log(context.enemy.actionTarget);
             // Debug.Log("Fracasillo y tal");
             return State.Failure;
         }

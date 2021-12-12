@@ -34,6 +34,38 @@ public class GolemFOVTurret : ActionNode
 
     private bool FieldOfViewCheck()
     {
+        Collider[] innerRangeCheck =
+            Physics.OverlapSphere(context.transform.position, context.enemy.innerRadioVision, targetMask);
+
+        if (innerRangeCheck.Length != 0)
+        {
+            float minDistance = float.MaxValue;
+            GameObject target = null;
+            foreach (var collider in innerRangeCheck)
+            {
+                Vector3 directionToTarget = (collider.transform.position - context.transform.position).normalized;
+                float angulo = Vector3.Angle(context.transform.forward, directionToTarget);
+                if (angulo < context.enemy.innerAngleVision / 2)
+                {
+                    //  Debug.Log("Angulo : " + angulo);
+                    float distance =
+                        Vector3.Distance(context.transform.position, collider.gameObject.transform.position);
+                    if (distance < minDistance)
+                    {
+                        minDistance = distance;
+                        target = collider.gameObject;
+                    }
+                }
+            }
+
+            if (!ReferenceEquals(target, null))
+            {
+                context.enemy.actionTarget = target;
+                return true;
+            }
+        }
+
+
         Collider[] rangeChecks =
             Physics.OverlapSphere(context.transform.position, context.enemy.radioVision, targetMask);
 
@@ -47,7 +79,7 @@ public class GolemFOVTurret : ActionNode
                 float angulo = Vector3.Angle(context.transform.forward, directionToTarget);
                 if (angulo < context.enemy.angleVision / 2)
                 {
-                    Debug.Log("Angulo : " + angulo);
+                    // Debug.Log("Angulo : " + angulo);
                     float distance =
                         Vector3.Distance(context.transform.position, collider.gameObject.transform.position);
                     if (distance < minDistance)

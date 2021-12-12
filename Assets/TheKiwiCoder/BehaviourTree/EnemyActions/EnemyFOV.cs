@@ -12,7 +12,9 @@ public class EnemyFOV : ActionNode
     protected override void OnStart()
     {
         context.enemy.NODOACTUAL = "EnemyFOV";
-        //context.enemy.ActionImage.sprite = ActionImage;
+        //context.enemy.ActionImage.sprite = ActionImage
+        //;
+        
         context.enemy.ActionImage.sprite = BocadillosSistema._instance.GetPlayer();
     }
 
