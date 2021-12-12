@@ -6,9 +6,6 @@ using UnityEngine.UI;
 
 public class MoneyManager : MonoBehaviour
 {
-   
-
-
     [SerializeField]
     public enum CoinType
     {
@@ -222,30 +219,33 @@ public class MoneyManager : MonoBehaviour
 
     private void Start()
     {
-       
-
-            Coins =  MoneySingeltone.Instance.PlayerEconomySo.coins;
-            Rings =  MoneySingeltone.Instance.PlayerEconomySo.rings;
-            Torrine =  MoneySingeltone.Instance.PlayerEconomySo.Torrine;
-            ConeMan =  MoneySingeltone.Instance.PlayerEconomySo.ConeMan;
-            // Debug.Log(PlayerEconomySo.ConeMan);
-            // ButtonBuyConeman.interactable
-            // Debug.Log(ConeMan);
-            // Debug.Log(ButtonBuyConeman.interactable);
-            Skin1Torrine =  MoneySingeltone.Instance.PlayerEconomySo.Torrine_skin_1;
-            Skin2Torrine =  MoneySingeltone.Instance.PlayerEconomySo.Torrine_skin_2;
-            Skin1ConeMan =  MoneySingeltone.Instance.PlayerEconomySo.ConeMan_skin_1;
-            Skin2ConeMan =  MoneySingeltone.Instance.PlayerEconomySo.ConeMan_skin_2;
-            Skin1Icm =  MoneySingeltone.Instance.PlayerEconomySo.ICM_skin_1;
-            Skin2Icm =  MoneySingeltone.Instance.PlayerEconomySo.ICM_skin_2;
-       
-        
+        Coins = MoneySingeltone.Instance.PlayerEconomySo.coins;
+        Rings = MoneySingeltone.Instance.PlayerEconomySo.rings;
+        Torrine = MoneySingeltone.Instance.PlayerEconomySo.Torrine;
+        ConeMan = MoneySingeltone.Instance.PlayerEconomySo.ConeMan;
+        // Debug.Log(PlayerEconomySo.ConeMan);
+        // ButtonBuyConeman.interactable
+        // Debug.Log(ConeMan);
+        // Debug.Log(ButtonBuyConeman.interactable);
+        Skin1Torrine = MoneySingeltone.Instance.PlayerEconomySo.Torrine_skin_1;
+        Skin2Torrine = MoneySingeltone.Instance.PlayerEconomySo.Torrine_skin_2;
+        Skin1ConeMan = MoneySingeltone.Instance.PlayerEconomySo.ConeMan_skin_1;
+        Skin2ConeMan = MoneySingeltone.Instance.PlayerEconomySo.ConeMan_skin_2;
+        Skin1Icm = MoneySingeltone.Instance.PlayerEconomySo.ICM_skin_1;
+        Skin2Icm = MoneySingeltone.Instance.PlayerEconomySo.ICM_skin_2;
     }
 
 
-    public void AddCoins(float coins)
+    public void AddCoins1(float coins)
     {
-        Coins += coins;
+        if (Rings >= 150)
+            Coins += coins;
+    }
+
+    public void AddCoins2(float coins)
+    {
+        if (Rings >= 300)
+            Coins += coins;
     }
 
     public void AddRings(float rings)
