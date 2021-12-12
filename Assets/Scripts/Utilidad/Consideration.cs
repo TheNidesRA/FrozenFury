@@ -1,9 +1,8 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace UtilityBehaviour
 {
-    public abstract class UtilityAction : ScriptableObject
+    public abstract class Consideration : ScriptableObject
     {
         public string Name;
         private float _score;
@@ -16,14 +15,12 @@ namespace UtilityBehaviour
 
 
         public Consideration[] considerations;
-        
+
         private void Awake()
         {
             Score = 0;
         }
-
-
-        public abstract void Execute(NPCController npc);
-
+        
+        public abstract float ScoreConsideration(NPCController npc);
     }
 }

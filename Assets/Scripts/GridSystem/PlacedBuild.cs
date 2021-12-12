@@ -54,6 +54,8 @@ public class PlacedBuild : MonoBehaviour
 
     public event EventHandler<float> OnHealthChanged;
 
+    public bool isDamaged = false;
+
     public int level
     {
         get => _level;
@@ -103,6 +105,15 @@ public class PlacedBuild : MonoBehaviour
         get { return _health; }
         set
         {
+            if (value < currentMaxHealth)
+            {
+                isDamaged = true;
+            }
+            else
+            {
+                isDamaged = false;
+            }
+            
             if (value <= 0)
             {
                 _health = 0;

@@ -60,6 +60,10 @@ namespace GridSystem
         public int gridHeight = 9;
         public float cellSize = 10f;
 
+        private Dictionary<GameObject, PlacedBuild> _buildStruct;
+
+        public Dictionary<GameObject, PlacedBuild> BuildStruct => _buildStruct;
+
 
         private void OnEnable()
         {
@@ -77,6 +81,7 @@ namespace GridSystem
             Instance = this;
             _control = new InputPlayer();
 
+            _buildStruct = new Dictionary<GameObject, PlacedBuild>();
             _grid = new Grid<GridObject>(gridWidth, gridHeight, cellSize,
                 (Grid<GridObject> global, int x, int z) => new GridObject(global, x, z), startPoint);
 
@@ -149,7 +154,7 @@ namespace GridSystem
         {
             removeSelectedBuild();
         }
-        
+
         private void RemoveBuild(InputAction.CallbackContext callbackContext)
         {
             GridObject gridObject = GetMouseGridObject();
@@ -195,8 +200,6 @@ namespace GridSystem
 
         public void RemoveBuild(PlacedBuild build)
         {
-//            Debug.Log("asd");
-
             if (build != null)
             {
                 float payback = (build.BuildingSo.goldCost * 0.5f);
@@ -208,6 +211,13 @@ namespace GridSystem
                     ParticleManager.Instance?.PlayDestroyedBuildParticles(GetWorldCenter(build));
                 }
 
+                //_buildStruct.TryGetValue(build.gameObject, out PlacedBuild x);
+
+                //Debug.Log("Borrando : "+ x.name);
+
+                _buildStruct.Remove(build.gameObject);
+
+                //Debug.Log(_buildStruct.Values.Count);
 
                 build.DestroySelf();
 
@@ -462,6 +472,10 @@ namespace GridSystem
 
             PlacedBuild placedBuild =
                 PlacedBuild.Create(placedBuildWorldPosition, buildPosition, _dir, _buildingSO);
+
+            _buildStruct.Add(placedBuild.gameObject, placedBuild);
+           // _buildStruct.TryGetValue(placedBuild.gameObject, out PlacedBuild x);
+           // Debug.Log(_buildStruct.Values.Count + "Construido " + x.name);
             // Debug.Log("Se ha construido un edificio tipo: "  + placedBuild.BuildingSo.type
             if (PlayerPrefs.GetInt("particlesActivated") == 1)
                 ParticleManager.Instance?.PlayPlacedBuildParticles(GetWorldCenter(placedBuild));

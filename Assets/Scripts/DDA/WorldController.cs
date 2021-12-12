@@ -77,6 +77,8 @@ public class WorldController : MonoBehaviour
     /// </summary>
     private List<BuildStats> _structs;
 
+    public List<BuildStats> Structs => _structs;
+
     /// <summary>
     /// Amount of rounds gone without any base damage.
     /// </summary>
