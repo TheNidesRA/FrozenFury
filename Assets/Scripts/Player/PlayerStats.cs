@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using AutoAttackScripts;
+using Enemies;
 using UnityEngine;
 
 [DefaultExecutionOrder(-1)]
@@ -44,7 +45,7 @@ public class PlayerStats : MonoBehaviour
     }
 
     [SerializeField] private float _attackSpeed;
-    [SerializeField] public int _goldLevelCost{ get; private set; }
+    [SerializeField] public int _goldLevelCost { get; private set; }
 
 
     public AnimationCurve CurveHealth;
@@ -145,6 +146,24 @@ public class PlayerStats : MonoBehaviour
         InitStats();
     }
 
+    private void OnEnable()
+    {
+        WaveController._instance.OnRoundActive += Curar;
+    }
+
+    private void OnDisable()
+    {
+        WaveController._instance.OnRoundActive -= Curar;
+    }
+
+    private void Curar(object sender, bool e)
+    {
+        if (!e)
+        {
+            Health = _maxHealth;
+            ParticleManager.Instance?.PlayHealParticle(gameObject.transform.position);
+        }
+    }
 
     private void Start()
     {
@@ -225,6 +244,7 @@ public class PlayerStats : MonoBehaviour
         {
             gold -= _goldLevelCost;
             Level++;
+            ParticleManager.Instance?.PlayHealParticle(gameObject.transform.position);
         }
     }
 
@@ -233,9 +253,8 @@ public class PlayerStats : MonoBehaviour
         Damage = CurveDamage.Evaluate(Level);
         attackSpeed = CurveAttackSpeed.Evaluate(Level);
         Health = CurveHealth.Evaluate(Level);
-        _goldLevelCost = (int) CurveGoldLevelCost.Evaluate(Level);
+        _goldLevelCost = (int)CurveGoldLevelCost.Evaluate(Level);
         _maxHealth = CurveHealth.Evaluate(Level);
-
     }
 
 
