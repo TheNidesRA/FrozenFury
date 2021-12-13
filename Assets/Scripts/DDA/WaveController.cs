@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Enemies
@@ -33,6 +34,9 @@ namespace Enemies
         private Wave _currentWave;
         private int _round = 1;
         private int _enemiesAlive;
+
+        public bool customizedRound;
+        public List<Enemy> customWave;
 
 
         private bool _roundActiveAux;
@@ -88,20 +92,36 @@ namespace Enemies
         [ContextMenu("Comenzar la ronda")]
         public void StartWave()
         {
-            if (_currentWave == null || !_roundActive)
+            if (!customizedRound)
             {
-                SceneController._instance.round = _round;
-                WorldController.Instance.UpdateWeights();
-                _currentWave = _generator.GenerateWave(_round, spwnPts);
+                if (_currentWave == null || !_roundActive)
+                {
+                    SceneController._instance.round = _round;
+                    WorldController.Instance.UpdateWeights();
+                    _currentWave = _generator.GenerateWave(_round, spwnPts);
+                    float totalHp = 0;
+                    foreach (var enemy in _currentWave.Enemies)
+                    {
+                        totalHp += enemy.health;
+                    }
+
+                    OnWaveCreated?.Invoke(this, totalHp);
+                    Spawner.StartRound(_currentWave.Enemies);
+                    _enemiesAlive = _currentWave.Enemies.Count;
+                    _roundActive = true;
+                }
+            }
+            else
+            {
                 float totalHp = 0;
-                foreach (var enemy in _currentWave.Enemies)
+                foreach (var enemy in customWave)
                 {
                     totalHp += enemy.health;
                 }
 
                 OnWaveCreated?.Invoke(this, totalHp);
-                Spawner.StartRound(_currentWave.Enemies);
-                _enemiesAlive = _currentWave.Enemies.Count;
+                Spawner.StartRound(customWave);
+                _enemiesAlive = customWave.Count;
                 _roundActive = true;
             }
         }
