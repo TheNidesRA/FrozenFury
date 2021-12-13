@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Enemies;
 using GridSystem;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,12 +23,17 @@ namespace UtilityBehaviour
         public Transform HousePosition;
 
         public Image actionImage;
+        public Button PayButton;
+        public TextMeshProUGUI DineroAPagar;
+        public int dineroNecesarioAPagar = 0;
+        public GameObject PanelDePago;
 
         public Transform[] WayPointsPatrol;
         private int waypoint;
 
         public string accionActual;
         public float scoreAccionActual;
+        public float sleepTime = 0;
 
         [SerializeField] private float _timeWorked;
 
@@ -38,6 +44,8 @@ namespace UtilityBehaviour
             TimeWorked = MAXFATIGUE;
             ToolDurability = MAXTOOLDURABILITY;
             waypoint = 0;
+            PayButton.enabled = false;
+            dineroNecesarioAPagar = 0;
         }
 
         public event EventHandler<float> OnTimeWorkedChanged;
@@ -106,8 +114,28 @@ namespace UtilityBehaviour
         {
             mover.MoveTo(HousePosition.position);
             actionImage.sprite = BocadillosSistema._instance.NecesitoPaga;
+            PayButton.enabled = true;
+            dineroNecesarioAPagar = (int) ((MAXTOOLDURABILITY - _toolDurability) * 0.2f);
+            DineroAPagar.text = "I need  " + dineroNecesarioAPagar.ToString() + " Bricks to keep working";
+
             //StartCoroutine()
         }
+
+
+        public void PagarAlPibe()
+        {
+            if (PlayerStats._instance.gold >= dineroNecesarioAPagar)
+            {
+                PlayerStats._instance.gold -= dineroNecesarioAPagar;
+                dineroNecesarioAPagar = 0;
+                ToolDurability = MAXTOOLDURABILITY;
+                PayButton.enabled = false;
+                OnFinishedAction();
+            }
+
+            PanelDePago.SetActive(false);
+        }
+
 
         public void Patrullar()
         {
@@ -169,6 +197,7 @@ namespace UtilityBehaviour
 
                 Debug.Log("De camino y tal");
             }
+
             yield return new WaitForSeconds(0);
             OnFinishedAction();
         }
@@ -184,9 +213,13 @@ namespace UtilityBehaviour
 
             actionImage.sprite = BocadillosSistema._instance.irADormir;
             Debug.Log("ZZZZZzzz");
-            yield return new WaitForSeconds(3);
+            sleepTime = MAXFATIGUE - _timeWorked;
+            sleepTime /= 10;
+            sleepTime *= 0.5f;
+
+            yield return new WaitForSeconds(sleepTime);
             Debug.Log("Siesta completada");
-            TimeWorked -= 10;
+            TimeWorked = 0;
             OnFinishedAction();
         }
 
