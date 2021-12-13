@@ -1,6 +1,9 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using Enemies;
+using GridSystem;
 using UnityEngine;
 
 namespace UtilityBehaviour
@@ -16,8 +19,6 @@ namespace UtilityBehaviour
         public const float MAXTOOLDURABILITY = 1000;
 
         public Transform HousePosition;
-        
-        
 
 
         [SerializeField] private float _timeWorked;
@@ -27,13 +28,13 @@ namespace UtilityBehaviour
         public float TimeWorked
         {
             get => _timeWorked;
-            set { _timeWorked = Mathf.Clamp(value, 0, 100); }
+            set { _timeWorked = Mathf.Clamp(value, 0, MAXFATIGUE); }
         }
 
         public float ToolDurability
         {
             get => _toolDurability;
-            set { _toolDurability = Mathf.Clamp(value, 0, 100); }
+            set { _toolDurability = Mathf.Clamp(value, 0, MAXTOOLDURABILITY); }
         }
 
 
@@ -62,8 +63,6 @@ namespace UtilityBehaviour
 
         #region Corutines
 
-
-
         public void Rest()
         {
             Debug.Log("REST");
@@ -77,11 +76,51 @@ namespace UtilityBehaviour
 
         public void GetPaid()
         {
-            mover.MoveTo(EnemyGoal.instance.getPosition());
+            mover.MoveTo(HousePosition.position);
             //StartCoroutine()
         }
-        
-        
+
+        public void Repair()
+        {
+            Debug.Log("Ha currar");
+            List<PlacedBuild> damagedBuilds = GridBuildingSystem.Instance.BuildStruct.Values.ToList();
+            int dmgBuildIdx = -1;
+
+            for (int i = 0; i < damagedBuilds.Count; i++)
+            {
+                PlacedBuild build = damagedBuilds[i];
+
+                if (!build.isDamaged) continue;
+
+                dmgBuildIdx = i;
+                break;
+            }
+
+            if (dmgBuildIdx == -1)
+            {
+                Debug.LogWarning("No se ha encontrado edificio roto");
+                return;
+            }
+
+            mover.MoveTo(damagedBuilds[dmgBuildIdx].transform.position);
+            StartCoroutine("RepairCoroutine", damagedBuilds[dmgBuildIdx]);
+        }
+
+        IEnumerator RepairCoroutine(PlacedBuild build)
+        {
+            while (mover.reached != true)
+            {
+                yield return new WaitForSeconds(0.5f);
+
+                Debug.Log("De camino y tal");
+            }
+
+            Debug.Log("Reparando");
+            yield return new WaitForSeconds(0);
+            build.BuildRepair(this);
+            OnFinishedAction();
+        }
+
         IEnumerator RestCoroutine()
         {
             while (mover.reached != true)
@@ -106,13 +145,15 @@ namespace UtilityBehaviour
 
                 Debug.Log("De camino y tal");
             }
-            
-            
-            
         }
-        
-        
 
         #endregion
+
+        [ContextMenu("Pagar")]
+        public void Pagar()
+        {
+            ToolDurability = MAXTOOLDURABILITY;
+            OnFinishedAction();
+        }
     }
 }

@@ -23,14 +23,14 @@ namespace UtilityBehaviour
         {
             _agent.SetDestination(position);
             _agent.isStopped = false;
-            //reached = false;
+            reached = false;
         }
 
         public void MoveTo(GameObject position)
         {
             _agent.SetDestination(position.transform.position);
             _agent.isStopped = false;
-            //reached = false;
+            reached = false;
         }
 
         public void MoveTo(Transform position)
@@ -77,7 +77,6 @@ namespace UtilityBehaviour
                 _agent.ResetPath();
                 ;
             }
-         
         }
     }
 }

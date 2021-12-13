@@ -10,18 +10,14 @@ namespace UtilityBehaviour.Considerations
     [CreateAssetMenu(fileName = "Fatigue", menuName = "Consideration/Fatigue")]
     public class Fatigue : Consideration
     {
-        
         public AnimationCurve FatigueCurve;
 
         public override float ScoreConsideration(NPCController npc)
         {
             float reduccion = npc.TimeWorked / NPCController.MAXFATIGUE;
-            return FatigueCurve.Evaluate(reduccion);
-        }
-
-        public AnimationCurve getCurve()
-        {
-            return FatigueCurve;
+            Debug.Log("Calculando peso fatiga");
+            Score = FatigueCurve.Evaluate(reduccion);
+            return Score;
         }
     }
 }

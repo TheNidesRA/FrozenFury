@@ -8,7 +8,8 @@ namespace UtilityBehaviour.Action
         
         public override void Execute(NPCController npc)
         {
-         
+         Debug.Log("Pagame rata");
+         npc.GetPaid();
         }
     }
 }

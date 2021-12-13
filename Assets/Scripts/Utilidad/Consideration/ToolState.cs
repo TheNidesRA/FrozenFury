@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
+
 #endif
 
 namespace UtilityBehaviour.Considerations
@@ -12,7 +13,10 @@ namespace UtilityBehaviour.Considerations
 
         public override float ScoreConsideration(NPCController npc)
         {
-            return considerationCurve.Evaluate(npc.ToolDurability / NPCController.MAXTOOLDURABILITY);
+            Debug.Log("Calculando peso herramienta");
+            Score = considerationCurve.Evaluate(npc.ToolDurability / NPCController.MAXTOOLDURABILITY);
+
+            return Score;
         }
     }
 
