@@ -15,6 +15,8 @@ namespace UtilityBehaviour.Action
             // {
             //    Corout
             // });
+            npc.accionActual = "Rest";
+            npc.scoreAccionActual = Score;
             npc.Rest();
         }
 

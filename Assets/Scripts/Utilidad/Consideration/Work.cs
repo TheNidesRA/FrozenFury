@@ -26,7 +26,7 @@ namespace UtilityBehaviour.Considerations
             Debug.Log("Escores que llegan en WORK: " + considerations[1].Score + " | " + considerations[0].Score);
 
 
-            Score = considerations[1].Score / (considerations[0].Score + 1);
+            Score = considerations[1].Score / (considerations[0].Score * 0.3f + 1);
             //Debug.Log("CALCULO DEL ESCORE CON LA NUEVA FORMULITA Y TAL"+auxScroe);
 
 

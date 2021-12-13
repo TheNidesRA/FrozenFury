@@ -47,7 +47,7 @@ class FatigueEditor : Editor
             case 0:
                 scroll = EditorGUILayout.BeginScrollView(scroll, GUILayout.MaxHeight(300));
 
-                for (int i = 0; i < 101; i++)
+                for (int i = 0; i < 101; i+=5)
                 {
                     EditorGUILayout.BeginHorizontal("box");
                     EditorGUILayout.LabelField("Fatigue " + (i));

@@ -1,5 +1,10 @@
 ﻿using System;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+
+#endif
+
 
 namespace UtilityBehaviour
 {
@@ -7,18 +12,10 @@ namespace UtilityBehaviour
     {
         public UtilityAction bestAction;
 
-        [SerializeField] private NPCController npc;
+        public NPCController npc;
 
         public bool finishedDeciding;
 
-
-        private void Update()
-        {
-            // if (bestAction is null)
-            // {
-            //     DecideBestAction(npc.actionsAviable);
-            // }
-        }
 
         public void DecideBestAction(UtilityAction[] actionsAvaiable)
         {
@@ -32,10 +29,10 @@ namespace UtilityBehaviour
                     index = i;
                     score = actionsAvaiable[i].Score;
                 }
-                
             }
+
             bestAction = actionsAvaiable[index];
-             finishedDeciding = true;
+            finishedDeciding = true;
         }
 
         public float ScoreAction(UtilityAction action)
@@ -62,4 +59,63 @@ namespace UtilityBehaviour
             return action.Score;
         }
     }
+
+#if UNITY_EDITOR
+    [CustomEditor(typeof(AIBrain))]
+    class AIBrainEditor : Editor
+    {
+        private Vector2 scroll;
+        int current_tab = 0;
+
+        public override void OnInspectorGUI()
+        {
+            base.OnInspectorGUI();
+
+            var script = (AIBrain) target;
+            if (script == null) return;
+
+
+            //  current_tab = GUILayout.Toolbar(current_tab, new string[] {"Rest","GetPaid","Repair"});
+
+
+            scroll = EditorGUILayout.BeginScrollView(scroll, GUILayout.MaxHeight(20));
+
+
+            EditorGUILayout.BeginHorizontal("box");
+            EditorGUILayout.LabelField("Score Rest: " + script.ScoreAction(script.npc.actionsAviable[0]));
+            // EditorGUILayout.LabelField((script.FatigueCurve.Evaluate(i / 100.0f)) + " Score");
+            EditorGUILayout.EndHorizontal();
+
+            EditorGUILayout.EndScrollView();
+
+            //  break;
+            //  case 1:
+            scroll = EditorGUILayout.BeginScrollView(scroll, GUILayout.MaxHeight(20));
+
+
+            EditorGUILayout.BeginHorizontal("box");
+            EditorGUILayout.LabelField("Score GetPaid: " + script.ScoreAction(script.npc.actionsAviable[1]));
+            // EditorGUILayout.LabelField((script.FatigueCurve.Evaluate(i / 100.0f)) + " Score");
+            EditorGUILayout.EndHorizontal();
+
+
+            EditorGUILayout.EndScrollView();
+
+            //     break;
+            // case 2:
+            scroll = EditorGUILayout.BeginScrollView(scroll, GUILayout.MaxHeight(20));
+
+
+            EditorGUILayout.BeginHorizontal("box");
+            EditorGUILayout.LabelField("Score Repair: " + script.ScoreAction(script.npc.actionsAviable[2]));
+            // EditorGUILayout.LabelField((script.FatigueCurve.Evaluate(i / 100.0f)) + " Score");
+            EditorGUILayout.EndHorizontal();
+
+
+            EditorGUILayout.EndScrollView();
+
+            //  break;
+        }
+    }
 }
+#endif

@@ -5,6 +5,7 @@ using System.Linq;
 using Enemies;
 using GridSystem;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace UtilityBehaviour
 {
@@ -20,6 +21,13 @@ namespace UtilityBehaviour
 
         public Transform HousePosition;
 
+        public Image actionImage;
+
+        public Transform[] WayPointsPatrol;
+        private int waypoint;
+
+        public string accionActual;
+        public float scoreAccionActual;
 
         [SerializeField] private float _timeWorked;
 
@@ -29,9 +37,11 @@ namespace UtilityBehaviour
         {
             TimeWorked = MAXFATIGUE;
             ToolDurability = MAXTOOLDURABILITY;
+            waypoint = 0;
         }
 
         public event EventHandler<float> OnTimeWorkedChanged;
+
         public float TimeWorked
         {
             get => _timeWorked;
@@ -43,6 +53,7 @@ namespace UtilityBehaviour
         }
 
         public event EventHandler<float> OnDurabilityChanged;
+
         public float ToolDurability
         {
             get => _toolDurability;
@@ -84,6 +95,7 @@ namespace UtilityBehaviour
             Debug.Log("REST");
 
             mover.MoveTo(HousePosition.position);
+            actionImage.sprite = BocadillosSistema._instance.irACasa;
 
             Debug.Log("Lanzo corutina");
             StartCoroutine(RestCoroutine());
@@ -93,7 +105,17 @@ namespace UtilityBehaviour
         public void GetPaid()
         {
             mover.MoveTo(HousePosition.position);
+            actionImage.sprite = BocadillosSistema._instance.NecesitoPaga;
             //StartCoroutine()
+        }
+
+        public void Patrullar()
+        {
+            mover.MoveTo(WayPointsPatrol[waypoint].position);
+            waypoint++;
+            if (waypoint >= WayPointsPatrol.Length)
+                waypoint = 0;
+            StartCoroutine(PatrolCoroutine());
         }
 
         public void Repair()
@@ -119,6 +141,8 @@ namespace UtilityBehaviour
             }
 
             mover.MoveTo(damagedBuilds[dmgBuildIdx].transform.position);
+            actionImage.sprite =
+                BocadillosSistema._instance.GetEdificioCereza(damagedBuilds[dmgBuildIdx].BuildingSo.name);
             StartCoroutine("RepairCoroutine", damagedBuilds[dmgBuildIdx]);
         }
 
@@ -137,6 +161,18 @@ namespace UtilityBehaviour
             OnFinishedAction();
         }
 
+        IEnumerator PatrolCoroutine()
+        {
+            while (mover.reached != true)
+            {
+                yield return new WaitForSeconds(0.5f);
+
+                Debug.Log("De camino y tal");
+            }
+            yield return new WaitForSeconds(0);
+            OnFinishedAction();
+        }
+
         IEnumerator RestCoroutine()
         {
             while (mover.reached != true)
@@ -146,6 +182,7 @@ namespace UtilityBehaviour
                 Debug.Log("De camino y tal");
             }
 
+            actionImage.sprite = BocadillosSistema._instance.irADormir;
             Debug.Log("ZZZZZzzz");
             yield return new WaitForSeconds(3);
             Debug.Log("Siesta completada");

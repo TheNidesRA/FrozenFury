@@ -8,6 +8,8 @@ namespace UtilityBehaviour.Action
     {
         public override void Execute(NPCController npc)
         {
+            npc.accionActual = "Repair";
+            npc.scoreAccionActual = Score;
             npc.Repair();
         }
     }

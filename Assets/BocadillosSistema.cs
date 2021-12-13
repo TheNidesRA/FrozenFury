@@ -22,6 +22,9 @@ public class BocadillosSistema : MonoBehaviour
     public Sprite irATorrineSkin1;
     public Sprite irATorrineSkin2;
 
+    public Sprite irACasa;
+    public Sprite irADormir;
+    public Sprite NecesitoPaga;
 
     private const String NOMBRECANNON = "Ice cream cannon";
     private const String NOMBRECATAPULTA = "Cherry catapult";
@@ -41,7 +44,38 @@ public class BocadillosSistema : MonoBehaviour
     }
 
 
+    public Sprite GetCasa()
+    {
+        return irACasa;
+    }
 
+    public Sprite Dormir()
+    {
+        return irADormir;
+    }
+
+    public Sprite Reparacion()
+    {
+        return NecesitoPaga;
+    }
+
+    public Sprite GetEdificioCereza(String objetivo)
+    {
+        switch (objetivo)
+        {
+            case NOMBREMURO:
+                return irAMuro;
+            case NOMBRECANNON:
+                return irACannon;
+            case NOMBRECATAPULTA:
+                return irACatapulta;
+            default:
+                return GetCasa();
+        }
+
+
+        return irACasa;
+    }
 
     public Sprite GetPlayer()
     {
@@ -69,24 +103,23 @@ public class BocadillosSistema : MonoBehaviour
 
         return irAICM;
     }
-    
-    
+
+
     public Sprite GetSprite(String objetivo)
     {
-        
-            switch (objetivo)
-            {
-                case NOMBREMURO:
-                    return irAMuro;
-                case NOMBRECANNON:
-                    return irACannon;
-                case NOMBRECATAPULTA:
-                    return irACatapulta;
-                default:
-                    return GetPlayer();
-            }
-        
-     
+        switch (objetivo)
+        {
+            case NOMBREMURO:
+                return irAMuro;
+            case NOMBRECANNON:
+                return irACannon;
+            case NOMBRECATAPULTA:
+                return irACatapulta;
+            default:
+                return GetPlayer();
+        }
+
+
         return irACaravana;
     }
 }
