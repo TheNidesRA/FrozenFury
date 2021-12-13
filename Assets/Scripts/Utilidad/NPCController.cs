@@ -39,6 +39,8 @@ namespace UtilityBehaviour
 
         [SerializeField] private float _toolDurability;
 
+        private Animator characterAnimator;
+
         private void Awake()
         {
             TimeWorked = MAXFATIGUE;
@@ -46,6 +48,8 @@ namespace UtilityBehaviour
             waypoint = 0;
             PayButton.enabled = false;
             dineroNecesarioAPagar = 0;
+
+            characterAnimator = GetComponent<Animator>();
         }
 
         public event EventHandler<float> OnTimeWorkedChanged;
@@ -118,6 +122,8 @@ namespace UtilityBehaviour
             dineroNecesarioAPagar = (int) ((MAXTOOLDURABILITY - _toolDurability) * 0.2f);
             DineroAPagar.text = "I need  " + dineroNecesarioAPagar.ToString() + " Bricks to keep working";
 
+            //Ha llegado el pibe ya a casa a cobrar? Tengo que poner aquí la animación?
+
             //StartCoroutine()
         }
 
@@ -184,8 +190,10 @@ namespace UtilityBehaviour
             }
 
             Debug.Log("Reparando");
+            characterAnimator.SetBool("Repair", true);
             yield return new WaitForSeconds(0);
             build.BuildRepair(this);
+            characterAnimator.SetBool("Repair", false);
             OnFinishedAction();
         }
 
@@ -211,6 +219,7 @@ namespace UtilityBehaviour
                 Debug.Log("De camino y tal");
             }
 
+            characterAnimator.SetBool("Rest", true);
             actionImage.sprite = BocadillosSistema._instance.irADormir;
             Debug.Log("ZZZZZzzz");
             sleepTime = MAXFATIGUE - _timeWorked;
@@ -220,6 +229,7 @@ namespace UtilityBehaviour
             yield return new WaitForSeconds(sleepTime);
             Debug.Log("Siesta completada");
             TimeWorked = 0;
+            characterAnimator.SetBool("Rest", false);
             OnFinishedAction();
         }
 
