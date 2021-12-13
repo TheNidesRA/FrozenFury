@@ -27,20 +27,30 @@ namespace UtilityBehaviour
 
         private void Awake()
         {
-            _timeWorked = MAXFATIGUE;
-            _toolDurability = MAXTOOLDURABILITY;
+            TimeWorked = MAXFATIGUE;
+            ToolDurability = MAXTOOLDURABILITY;
         }
 
+        public event EventHandler<float> OnTimeWorkedChanged;
         public float TimeWorked
         {
             get => _timeWorked;
-            set { _timeWorked = Mathf.Clamp(value, 0, MAXFATIGUE); }
+            set
+            {
+                _timeWorked = Mathf.Clamp(value, 0, MAXFATIGUE);
+                OnTimeWorkedChanged?.Invoke(this, _timeWorked);
+            }
         }
 
+        public event EventHandler<float> OnDurabilityChanged;
         public float ToolDurability
         {
             get => _toolDurability;
-            set { _toolDurability = Mathf.Clamp(value, 0, MAXTOOLDURABILITY); }
+            set
+            {
+                _toolDurability = Mathf.Clamp(value, 0, MAXTOOLDURABILITY);
+                OnDurabilityChanged?.Invoke(this, _toolDurability);
+            }
         }
 
 
