@@ -12,6 +12,17 @@ namespace UtilityBehaviour
         public UtilityAction[] actionsAviable;
         private bool doingAction = false;
         private System.Action callback;
+        public const float MAXFATIGUE = 100;
+        public const float MAXTOOLDURABILITY = 1000;
+
+        public Transform HousePosition;
+        
+        
+
+
+        [SerializeField] private float _timeWorked;
+
+        [SerializeField] private float _toolDurability;
 
         public float TimeWorked
         {
@@ -19,7 +30,12 @@ namespace UtilityBehaviour
             set { _timeWorked = Mathf.Clamp(value, 0, 100); }
         }
 
-        [SerializeField] private float _timeWorked;
+        public float ToolDurability
+        {
+            get => _toolDurability;
+            set { _toolDurability = Mathf.Clamp(value, 0, 100); }
+        }
+
 
         public void OnFinishedAction()
         {
@@ -46,23 +62,27 @@ namespace UtilityBehaviour
 
         #region Corutines
 
-        public void DoWork(int time)
-        {
-            StartCoroutine(WorkCoroutine(time));
-        }
+
 
         public void Rest()
         {
             Debug.Log("REST");
 
-            mover.MoveTo(EnemyGoal.instance.getPosition());
+            mover.MoveTo(HousePosition.position);
 
             Debug.Log("Lanzo corutina");
-            StartCoroutine(RestCorutine());
+            StartCoroutine(RestCoroutine());
         }
 
 
-        IEnumerator RestCorutine()
+        public void GetPaid()
+        {
+            mover.MoveTo(EnemyGoal.instance.getPosition());
+            //StartCoroutine()
+        }
+        
+        
+        IEnumerator RestCoroutine()
         {
             while (mover.reached != true)
             {
@@ -78,28 +98,20 @@ namespace UtilityBehaviour
             OnFinishedAction();
         }
 
-        IEnumerator WorkCoroutine(int time)
+        IEnumerator GetPaidCoroutine()
         {
-            // int counter = time;
-            //
-            // while (counter > 0)
-            // {
-            //     yield return new WaitForSeconds(1);
-            //     counter--;
-            // }
-            //
-            // Debug.Log("Fin y tal del trabajito");
-
-            yield return new WaitForSeconds(0);
-            while (!mover.reached)
+            while (mover.reached != true)
             {
+                yield return new WaitForSeconds(0.5f);
+
                 Debug.Log("De camino y tal");
             }
-
-            callback.Invoke();
-            Debug.Log("Ale descansando");
-            OnFinishedAction();
+            
+            
+            
         }
+        
+        
 
         #endregion
     }
