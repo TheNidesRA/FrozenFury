@@ -4,6 +4,7 @@ using AutoAttackScripts;
 using GridSystem;
 using UnityEngine;
 using UnityEngine.AI;
+using UtilityBehaviour;
 #if UNITY_EDITOR
 using UnityEditor;
 
@@ -36,22 +37,19 @@ public class PlacedBuild : MonoBehaviour
     [SerializeField] protected float _damage;
     [SerializeField] protected float _attackSpeed;
     [SerializeField] protected float _health;
-    
-    public event EventHandler<float> OnMaxHealthChanged;
-
-    
     private float _currentMaxHealth;
 
+    public event EventHandler<float> OnMaxHealthChanged;
     public float currentMaxHealth
     {
         get => _currentMaxHealth;
         set
         {
+            OnMaxHealthChanged?.Invoke(this, value);
             _currentMaxHealth = value;
-            OnMaxHealthChanged?.Invoke(this, _currentMaxHealth);
         }
     }
-    
+
     
     
     [SerializeField] protected int _level;
@@ -70,6 +68,8 @@ public class PlacedBuild : MonoBehaviour
     public int MAXGOLDCOSTLEVEL;
 
     public event EventHandler<float> OnHealthChanged;
+
+    public bool isDamaged = false;
 
     public int level
     {
@@ -120,6 +120,15 @@ public class PlacedBuild : MonoBehaviour
         get { return _health; }
         set
         {
+            if (value < currentMaxHealth)
+            {
+                isDamaged = true;
+            }
+            else
+            {
+                isDamaged = false;
+            }
+
             if (value <= 0)
             {
                 _health = 0;
@@ -265,7 +274,7 @@ public class PlacedBuild : MonoBehaviour
         damage = CurveDamage.Evaluate(level);
         attackSpeed = CurveAttackSpeed.Evaluate(level);
         _health = CurveHealth.Evaluate(level);
-        _goldCostLevel = (int)CurveGoldLevelCost.Evaluate(level);
+        _goldCostLevel = (int) CurveGoldLevelCost.Evaluate(level);
         currentMaxHealth = CurveHealth.Evaluate(level);
 
         // Debug.Log("Nuevas estats para : " + _buildingSo.name + " Damage: " + _damage + " attacspeed: " + _attackSpeed +
@@ -278,6 +287,19 @@ public class PlacedBuild : MonoBehaviour
         if (_health == currentMaxHealth) return;
         PlayerStats._instance.gold -= _goldCostRepair;
         _health = currentMaxHealth;
+    }
+
+    public void BuildRepair(NPCController cherryGirl)
+    {
+        float amountRepaired = currentMaxHealth - health;
+        health = currentMaxHealth;
+        Debug.Log("Se ha reparado un total de: " + amountRepaired);
+
+        cherryGirl.ToolDurability -= amountRepaired;
+        Debug.Log("Se ha reparado un total de: " + amountRepaired);
+        float tiempo = amountRepaired * 0.1f;
+        cherryGirl.TimeWorked += tiempo;
+        Debug.Log("Se trabajado un tiempo de: " + tiempo);
     }
 
 
@@ -315,13 +337,13 @@ class PlacedBuildEditor : Editor
         float maxWidth = 200;
         float maxHeight = 300;
 
-        var script = (PlacedBuild)target;
+        var script = (PlacedBuild) target;
         if (script == null) return;
 
         EditorGUILayout.Space();
 
 
-        current_tab = GUILayout.Toolbar(current_tab, new string[] { "Damage", "AttackSpeed", "Health", "Gold" });
+        current_tab = GUILayout.Toolbar(current_tab, new string[] {"Damage", "AttackSpeed", "Health", "Gold"});
 
         switch (current_tab)
         {
@@ -332,7 +354,7 @@ class PlacedBuildEditor : Editor
                 {
                     EditorGUILayout.BeginHorizontal("box");
                     EditorGUILayout.LabelField("Level " + (i));
-                    EditorGUILayout.LabelField(((int)script.CurveDamage.Evaluate(i)) + " Damage");
+                    EditorGUILayout.LabelField(((int) script.CurveDamage.Evaluate(i)) + " Damage");
                     EditorGUILayout.EndHorizontal();
                 }
 
@@ -346,7 +368,7 @@ class PlacedBuildEditor : Editor
                 {
                     EditorGUILayout.BeginHorizontal("box");
                     EditorGUILayout.LabelField("Level " + (i));
-                    EditorGUILayout.LabelField(((int)script.CurveAttackSpeed.Evaluate(i)) + " AttackSpeed");
+                    EditorGUILayout.LabelField(((int) script.CurveAttackSpeed.Evaluate(i)) + " AttackSpeed");
                     EditorGUILayout.EndHorizontal();
                 }
 
@@ -359,7 +381,7 @@ class PlacedBuildEditor : Editor
                 {
                     EditorGUILayout.BeginHorizontal("box");
                     EditorGUILayout.LabelField("Level " + (i));
-                    EditorGUILayout.LabelField(((int)script.CurveHealth.Evaluate(i)) + " Health");
+                    EditorGUILayout.LabelField(((int) script.CurveHealth.Evaluate(i)) + " Health");
                     EditorGUILayout.EndHorizontal();
                 }
 
@@ -372,7 +394,7 @@ class PlacedBuildEditor : Editor
                 {
                     EditorGUILayout.BeginHorizontal("box");
                     EditorGUILayout.LabelField("Level " + (i));
-                    EditorGUILayout.LabelField(((int)script.CurveGoldLevelCost.Evaluate(i)) + " GoldCost");
+                    EditorGUILayout.LabelField(((int) script.CurveGoldLevelCost.Evaluate(i)) + " GoldCost");
                     EditorGUILayout.EndHorizontal();
                 }
 
