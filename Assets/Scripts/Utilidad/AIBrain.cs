@@ -9,6 +9,16 @@ namespace UtilityBehaviour
 
         [SerializeField] private NPCController npc;
 
+        public bool finishedDeciding;
+
+
+        private void Update()
+        {
+            // if (bestAction is null)
+            // {
+            //     DecideBestAction(npc.actionsAviable);
+            // }
+        }
 
         public void DecideBestAction(UtilityAction[] actionsAvaiable)
         {
@@ -24,8 +34,8 @@ namespace UtilityBehaviour
                 }
                 
             }
-
             bestAction = actionsAvaiable[index];
+             finishedDeciding = true;
         }
 
         public float ScoreAction(UtilityAction action)
