@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UtilityBehaviour;
 
 namespace UI
@@ -39,6 +41,8 @@ namespace UI
 
         private void OnEnable()
         {
+            _cherry.OnTimeWorkedChanged += HandleEnergy;
+            _cherry.OnDurabilityChanged += HandleDurability;
             maxTimeWorked = NPCController.MAXFATIGUE;
             maxToolDurability = NPCController.MAXTOOLDURABILITY;
         }
@@ -47,6 +51,7 @@ namespace UI
         {
             //Esto tira fallo si se para la partida y hay enemigos en pantalla
             _cherry.OnTimeWorkedChanged -= HandleEnergy;
+            _cherry.OnDurabilityChanged -= HandleDurability;
         }
 
         private void HandleEnergy(object e, float timeWorked)
@@ -59,5 +64,6 @@ namespace UI
         {
             durabilityBar.fillAmount = durability / maxToolDurability;
         }
+
     }
 }

@@ -5,6 +5,7 @@ using System.Linq;
 using Enemies;
 using GridSystem;
 using TMPro;
+using UI;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -40,6 +41,8 @@ namespace UtilityBehaviour
         [SerializeField] private float _toolDurability;
 
         public Animator characterAnimator;
+
+        public CherryEnergyBar EnergyBar;
 
         private void Awake()
         {
@@ -281,7 +284,6 @@ namespace UtilityBehaviour
             sleepTime = MAXFATIGUE - _timeWorked;
             sleepTime /= 10;
             sleepTime *= 0.5f;
-
             yield return new WaitForSeconds(sleepTime);
             Debug.Log("Siesta completada");
             TimeWorked = 0;
