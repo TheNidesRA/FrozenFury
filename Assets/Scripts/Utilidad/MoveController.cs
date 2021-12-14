@@ -26,6 +26,12 @@ namespace UtilityBehaviour
             reached = false;
         }
 
+        public void Resetear()
+        {
+            reached = false;
+            _agent.ResetPath();
+            _agent.isStopped = false;
+        }
         public void MoveTo(GameObject position)
         {
             _agent.SetDestination(position.transform.position);

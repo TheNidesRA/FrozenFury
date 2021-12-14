@@ -13,7 +13,7 @@ namespace UtilityBehaviour.Considerations
 
         public override float ScoreConsideration(NPCController npc)
         {
-            Debug.Log("Calculando peso herramienta");
+//            Debug.Log("Calculando peso herramienta");
             Score = considerationCurve.Evaluate(npc.ToolDurability / NPCController.MAXTOOLDURABILITY);
 
             return Score;

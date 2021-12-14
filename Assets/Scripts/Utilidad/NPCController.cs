@@ -39,7 +39,7 @@ namespace UtilityBehaviour
 
         [SerializeField] private float _toolDurability;
 
-        private Animator characterAnimator;
+        public Animator characterAnimator;
 
         private void Awake()
         {
@@ -56,6 +56,8 @@ namespace UtilityBehaviour
         private void OnEnable()
         {
             WaveController._instance.OnRoundActive += On_RoundActive;
+            actionImage.gameObject.SetActive(true);
+            // Aparecer();
         }
 
         private void OnDisable()
@@ -68,10 +70,15 @@ namespace UtilityBehaviour
         {
             if (e)
             {
-                gameObject.SetActive(false);
+                mover.Resetear();
+                actionImage.gameObject.SetActive(false);
+                StartCoroutine(Desaparecer());
+
+                // gameObject.SetActive(false);
             }
             else
             {
+                actionImage.gameObject.SetActive(true);
                 aiBrain.DecideBestAction(actionsAviable);
             }
         }
@@ -176,6 +183,12 @@ namespace UtilityBehaviour
             StartCoroutine(PatrolCoroutine());
         }
 
+
+        public void Aparecer()
+        {
+            StartCoroutine(Reaparecer());
+        }
+
         public void Repair()
         {
             Debug.Log("Ha currar");
@@ -220,6 +233,25 @@ namespace UtilityBehaviour
             characterAnimator.SetBool("Repair", false);
             OnFinishedAction();
         }
+
+
+        IEnumerator Reaparecer()
+        {
+            characterAnimator.SetBool("Land", true);
+            yield return new WaitForSeconds(6);
+            characterAnimator.SetBool("Land", false);
+            OnFinishedAction();
+        }
+
+        IEnumerator Desaparecer()
+        {
+            Debug.Log("Animacion y tal");
+            characterAnimator.SetBool("TakeOff", true);
+            yield return new WaitForSeconds(6);
+            characterAnimator.SetBool("TakeOff", false);
+            gameObject.SetActive(false);
+        }
+
 
         IEnumerator PatrolCoroutine()
         {

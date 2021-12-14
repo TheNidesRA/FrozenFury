@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UtilityBehaviour;
 
 namespace Enemies
 {
@@ -8,6 +9,7 @@ namespace Enemies
     {
         public EnemySpawner Spawner;
         public GameObject canvasContinue;
+        public NPCController CherryGirl;
 
 
         /// <summary>
@@ -150,6 +152,10 @@ namespace Enemies
         {
             _roundActive = false;
             round++;
+            
+            CherryGirl.gameObject.SetActive(true);
+            CherryGirl.Aparecer();
+          
             if (_round == winRound)
             {
                 canvasContinue.SetActive(true);

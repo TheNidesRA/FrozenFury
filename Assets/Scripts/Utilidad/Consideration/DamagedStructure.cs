@@ -13,7 +13,7 @@ namespace UtilityBehaviour.Considerations
 
         public override float ScoreConsideration(NPCController npc)
         {
-            Debug.Log("cALCULADO DAMAG2DASUBDAWUI");
+//            Debug.Log("cALCULADO DAMAG2DASUBDAWUI");
             Score = SearchDamageStruct(GridBuildingSystem.Instance.BuildStruct.Values.ToList());
             return Score;
         }

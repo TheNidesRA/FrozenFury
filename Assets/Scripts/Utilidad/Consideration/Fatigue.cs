@@ -15,7 +15,7 @@ namespace UtilityBehaviour.Considerations
         public override float ScoreConsideration(NPCController npc)
         {
             float reduccion = npc.TimeWorked / NPCController.MAXFATIGUE;
-            Debug.Log("Calculando peso fatiga");
+//            Debug.Log("Calculando peso fatiga");
             Score = FatigueCurve.Evaluate(reduccion);
             return Score;
         }
