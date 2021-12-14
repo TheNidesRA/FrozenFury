@@ -52,6 +52,30 @@ namespace UtilityBehaviour
             characterAnimator = GetComponent<Animator>();
         }
 
+
+        private void OnEnable()
+        {
+            WaveController._instance.OnRoundActive += On_RoundActive;
+        }
+
+        private void OnDisable()
+        {
+            WaveController._instance.OnRoundActive -= On_RoundActive;
+            StopAllCoroutines();
+        }
+
+        private void On_RoundActive(object sender, bool e)
+        {
+            if (e)
+            {
+                gameObject.SetActive(false);
+            }
+            else
+            {
+                aiBrain.DecideBestAction(actionsAviable);
+            }
+        }
+
         public event EventHandler<float> OnTimeWorkedChanged;
 
         public float TimeWorked
@@ -122,7 +146,7 @@ namespace UtilityBehaviour
             dineroNecesarioAPagar = (int) ((MAXTOOLDURABILITY - _toolDurability) * 0.2f);
             DineroAPagar.text = "I need  " + dineroNecesarioAPagar.ToString() + " Bricks to keep working";
 
-            //Ha llegado el pibe ya a casa a cobrar? Tengo que poner aquí la animación?
+            //Ha llegado el pibe ya a casa a cobrar? Tengo que poner aquï¿½ la animaciï¿½n?
 
             //StartCoroutine()
         }
@@ -174,7 +198,7 @@ namespace UtilityBehaviour
                 return;
             }
 
-            mover.MoveTo(damagedBuilds[dmgBuildIdx].transform.position);
+            mover.MoveTo(GridBuildingSystem.Instance.GetWorldCenter(damagedBuilds[dmgBuildIdx]));
             actionImage.sprite =
                 BocadillosSistema._instance.GetEdificioCereza(damagedBuilds[dmgBuildIdx].BuildingSo.name);
             StartCoroutine("RepairCoroutine", damagedBuilds[dmgBuildIdx]);
@@ -191,7 +215,7 @@ namespace UtilityBehaviour
 
             Debug.Log("Reparando");
             characterAnimator.SetBool("Repair", true);
-            yield return new WaitForSeconds(0);
+            yield return new WaitForSeconds(4);
             build.BuildRepair(this);
             characterAnimator.SetBool("Repair", false);
             OnFinishedAction();

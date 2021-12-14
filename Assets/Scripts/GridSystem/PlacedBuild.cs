@@ -40,6 +40,7 @@ public class PlacedBuild : MonoBehaviour
     private float _currentMaxHealth;
 
     public event EventHandler<float> OnMaxHealthChanged;
+
     public float currentMaxHealth
     {
         get => _currentMaxHealth;
@@ -50,8 +51,7 @@ public class PlacedBuild : MonoBehaviour
         }
     }
 
-    
-    
+
     [SerializeField] protected int _level;
     [SerializeField] protected int _goldCostLevel;
     [SerializeField] protected int _goldCostRepair;
@@ -291,6 +291,7 @@ public class PlacedBuild : MonoBehaviour
 
     public void BuildRepair(NPCController cherryGirl)
     {
+       
         float amountRepaired = currentMaxHealth - health;
         health = currentMaxHealth;
         Debug.Log("Se ha reparado un total de: " + amountRepaired);
